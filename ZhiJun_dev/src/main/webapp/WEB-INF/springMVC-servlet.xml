@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd  
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/psring-tx-3.0.xsd 
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<!-- 自动扫描指定包下的类 -->
+	<context:component-scan base-package="com.zhijun.controller" />
+	
+	<!-- 开启注解模式 -->
+	<!-- 开启@RequestMapping注解扫描 spring 3.2后使用,请求到处理器的映射 -->
+	<mvc:annotation-driven/>
+	
+	<!-- <mvc:view-controller path="" view-name=""/> -->
+	<!-- 配置试图解析器，方便页面返回 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	 <property name="prefix" value="/WEB-INF/views/"></property>
+	 <property name="suffix" value=".jsp"></property>
+	</bean> 
+	
+	<!-- 使用xml配置aop -->
+	<!-- 强制使用cglib代理，如果不设置，将默认使用jdk的代理，但是jdk的代理是基于接口的 -->
+	<aop:config proxy-target-class="true"/>
+	<aop:config>
+		<!-- 定义切面 -->
+		<aop:aspect id="logAspect" ref="logInterceptor">
+			<!-- 定义切入点 （配置在com.zhijun.controller下所有的类在调用之前都会被拦截） -->
+			<aop:pointcut expression="execution(* com.zhijun.controller.*.*(..))" id="logPointCut"/>
+			<!-- 方法执行之前被调用执行的 -->
+			<aop:before method="before" pointcut-ref="logPointCut"/><!-- 一个切入点的引用 -->
+			<aop:after method="after" pointcut-ref="logPointCut"/><!-- 一个切入点的引用 -->
+		</aop:aspect>
+	</aop:config>
+		
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 多个拦截器，顺序执行 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*"/> 
+			<mvc:exclude-mapping path="/hosme"/> 
+			<bean class="com.zhijun.interceptors.LoginInterceptors"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>
