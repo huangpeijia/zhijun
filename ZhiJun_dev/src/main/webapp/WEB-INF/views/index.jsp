@@ -28,7 +28,7 @@ button{margin:0px 30px;}
 <body>
 	<h1>学生登陆系统</h1>
 	<div id="loginModel">
-		<form id="myloginForm" action="home" method="post" class="form-horizontal">
+		<form id="myloginForm" action="${APP_PATH }/admin/home" method="post" class="form-horizontal">
 			<div class="form-group">
 				<label class="col-sm-3 control-label">登陆名称</label>
 				<div class="col-sm-9">

@@ -48,8 +48,8 @@
 	<mvc:interceptors>
 		<!-- 多个拦截器，顺序执行 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/*/*"/> 
-			<mvc:exclude-mapping path="/hosme"/> 
+			<mvc:mapping path="/admin/**"/> 
+			<mvc:exclude-mapping path="/index"/> 
 			<bean class="com.zhijun.interceptors.LoginInterceptors"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

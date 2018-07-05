@@ -27,11 +27,15 @@ public class UserController {
 	private LoginDao dao;
 	
 	// 从数据库中获取所有学生
-		@RequestMapping("/home") 
-		public String selectOne(@RequestParam("username") String username,@RequestParam("userpassword") String userpassword,Model model) {
+		@RequestMapping("/admin/home") 
+		public String selectOne(@RequestParam(value="username",required=false) String username,@RequestParam(value="userpassword",required=false) String userpassword,Model model) {
 			// ApplicationContext context = new
 			// ClassPathXmlApplicationContext("applicationContext.xml");
 			// 从ioc容器获取dao
+			if(username==null||userpassword==null) {
+				System.out.println("进入");
+				return "index";
+			}
 			boolean users = dao.loginsystem(username, userpassword);
 			System.out.println(users);
 			if(users) {
