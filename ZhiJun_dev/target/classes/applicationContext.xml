@@ -29,19 +29,20 @@
 	<!-- 配置javaBean实体类 -->
 	<bean id="studentBean" class="com.zhijun.bean.Student">
 		<!-- 属性自动配置 -->
-	</bean>
-	
+	</bean> 
 	<bean id="loginBean" class="com.zhijun.bean.Login">
 		<!-- 属性自动配置 -->
 	</bean>
-	
+	<bean id="aboutBean" class="com.zhijun.bean.About">
+		<!-- 属性自动配置 -->
+	</bean>
 	<!-- spring提供的数据访问操作类 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"><property name="dataSource" ref="dataSource"></property></bean>
 	
 	<!-- dao层类 -->
 	<bean id="dao" class="com.zhijun.dao.StudentDao"><property name="jdbcTemplate" ref="jdbcTemplate"></property></bean>
-	
 	<bean id="logindao" class="com.zhijun.dao.LoginDao"><property name="jdbcTemplate" ref="jdbcTemplate"></property></bean>
+	<bean id="aboutdao" class="com.zhijun.dao.AboutDao"><property name="jdbcTemplate" ref="jdbcTemplate"></property></bean>
 	
 	<context:component-scan base-package="com.zhijun.interceptors"/>
 </beans>
