@@ -1,17 +1,13 @@
 package com.zhijun.bean;
-/**
- * 用户表
- * @author hpj
- * @version 2018年7月6日
- */
+
 public class Login {
 	private static final long serialVersionUID = 1L;
 
-	private int id; //ID
+	private int id;
 	
-	private String username; //登陆名称
+	private String username;
 	
-	private String userpassword; //登陆密码
+	private String userpassword;
 
 	public int getId() {
 		return id;
