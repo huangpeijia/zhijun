@@ -44,4 +44,59 @@ public class UserController {
 				return "index";
 			}
 		}
+		
+		//我用来测试静态页面的，你先别删（wzh）
+		@RequestMapping("/dd")
+		public String dd(){
+			return "admin/index";
+		}
+		//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/case")
+				public String dd2(){
+					return "admin/case/case";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/company/1")
+				public String dd3(){
+					return "admin/company/firm";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/company/2")
+				public String dd4(){
+					return "admin/company/honor";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/company/3")
+				public String dd5(){
+					return "admin/company/video";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/contact")
+				public String dd6(){
+					return "admin/contact/contact";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/filemanager")
+				public String dd7(){
+					return "admin/filemanager/file";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/news/1")
+				public String dd8(){
+					return "admin/news/fnews";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/news/2")
+				public String dd9(){
+					return "admin/news/tnews";
+				}
+				//我用来测试静态页面的，你先别删（wzh）
+				@RequestMapping("/dd/personal")
+				public String dd10(){
+					return "admin/personal/amend";
+				}
+				@RequestMapping("/dd/service")
+				public String dd11(){
+					return "admin/service/service";
+				}
 }
