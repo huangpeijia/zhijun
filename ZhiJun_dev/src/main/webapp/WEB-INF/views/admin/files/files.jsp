@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>service</title>
+	<title>文件管理</title>
 	<%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
@@ -26,15 +26,6 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
-	<style type="text/css">
-		.red{border:2px solid red;}
-		.orange{border:2px solid orange;}
-		.yellow{border:2px solid yellow;}
-		.green{border:2px solid green;}
-		.blue{border:2px solid blue;}
-		.indigo{border:2px solid indigo}
-		.purple{border:2px solid purple;}
-	</style>
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -53,8 +44,8 @@
 					   </button>
 					   <!--左边字体提示词-->
 					   <ol class="breadcrumb navbar-breadcrumb">
-						   <li>个人中心</li>
-						   <li class="active">个人信息</li>
+						   <li>招聘信息</li>
+						   <!-- <li class="active">个人信息</li> -->
 					   </ol>
 					   <!--???-->
 					   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
@@ -104,61 +95,26 @@
 					   <!--蓝方框以下的导航-->
 					   <ul class="nav navbar-nav">
 						   <!--导航目录1-->
-						   <li class="active dropdown">
+						   <li>
 							   <!--图标和字-->
-							   <a data-toggle="collapse" href="#dropdown-index">
+							   <a href="">
 								   <!--图标和字-->
-								   <span class="icon fa fa-user"></span><span class="title">个人中心</span>
-							   </a>
-							   <!--下拉列表-->
-							   <div id="dropdown-index" class="panel-collapse collapse">
-								   <div class="panel-body">
-									   <ul class="nav navbar-nav">
-										   <li><a href="index.html">个人信息</a>
-										   </li>
-										   <li><a href="personal/amend.html">密码重置</a>
-										   </li>
-									   </ul>
-								   </div>
-							   </div>
+								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
+							   </a>							 
 						   </li>
 						   <!--导航目录2-->
-						   <li class="panel panel-default dropdown">
-							   <a data-toggle="collapse" href="#dropdown-element">
+						   <li>
+							   <a href="">
 								   <!--图标和字-->
 								   <span class="icon fa fa-desktop"></span><span class="title">公司信息</span>
 							   </a>
-							   <!--下拉列表-->
-							   <div id="dropdown-element" class="panel-collapse collapse">
-								   <div class="panel-body">
-									   <ul class="nav navbar-nav">
-										   <li><a href="company/firm.html">公司概况</a>
-										   </li>
-										   <li><a href="company/honor.html">荣誉资质</a>
-										   </li>
-										   <li><a href="company/video.html">视频中心</a>
-										   </li>
-									   </ul>
-								   </div>
-							   </div>
 						   </li>
 						   <!--导航目录3-->
-						   <li class="panel panel-default dropdown">
-							   <a data-toggle="collapse" href="#dropdown-table">
+						   <li>
+							   <a href="">
 								   <!--图标和字-->
 								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
 							   </a>
-							   <!--下拉列表-->
-							   <div id="dropdown-table" class="panel-collapse collapse">
-								   <div class="panel-body">
-									   <ul class="nav navbar-nav">
-										   <li><a href="news/fnews.html">公司要闻</a>
-										   </li>
-										   <li><a href="news/tnews.html">行业新闻</a>
-										   </li>
-									   </ul>
-								   </div>
-							   </div>
 						   </li>
 						   <!--导航目录4-->
 						   <li>
@@ -168,19 +124,25 @@
 						   </li>
 						   <!--导航目录5-->
 						   <li>
-							   <a href="case/case.html">
-								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">成功案例</span>
+							   <a href="">
+								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">案例信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录6-->
 						   <li>
-							   <a href="contact/contact.html">
-								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
+							   <a href="">
+								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录7-->
 						   <li>
-							   <a href="filemanager/file.html">
+							   <a href="">
+								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
+							   </a>
+						   </li>
+						   <!--导航目录8-->
+						   <li class="active">
+							   <a href="">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>

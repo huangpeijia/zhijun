@@ -11,8 +11,8 @@
 	pageContext.setAttribute("APP_PATH",request.getContextPath());
 %>
 <script type="text/javascript" src="${APP_PATH }/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="${APP_PATH }/js/bootstrap/js/bootstrap.min.js"></script>
-<link type="text/css" href="${APP_PATH }/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
+<link type="text/css" href="${APP_PATH }/js/lib/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 a{
 cursor: pointer;
