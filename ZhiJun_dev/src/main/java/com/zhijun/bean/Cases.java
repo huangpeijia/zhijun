@@ -6,7 +6,7 @@ import java.util.Date;
  * @author hpj
  * @version 2018年7月6日
  */
-public class Case {
+public class Cases {
 	private int case_id; //案例ID
 	private String case_name; //案例名称
 	private String case_constant; //案例描述

@@ -34,7 +34,7 @@ public class StudentController extends ControllerBase {
 	private StudentDao dao;
 
 	// 从数据库中获取所有学生
-	@RequestMapping(value = "/admin/all", produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<Student> queryAll(Model model) {
 		// ApplicationContext context = new
@@ -46,7 +46,7 @@ public class StudentController extends ControllerBase {
 	}
 
 	// 添加一个学生
-	@RequestMapping("/admin/add")
+	@RequestMapping("/add")
 	public String add(Student student) {
 		// ApplicationContext context = new
 		// ClassPathXmlApplicationContext("applicationContext.xml");
@@ -59,7 +59,7 @@ public class StudentController extends ControllerBase {
 	}
 
 	// 删除学生
-	@RequestMapping("/admin/deleteById")
+	@RequestMapping("/deleteById")
 	@ResponseBody
 	public String deleteById(@RequestParam("id") int id) {
 		// ApplicationContext context = new
@@ -72,14 +72,14 @@ public class StudentController extends ControllerBase {
 	}
 
 	// 查询学生个人信息
-	@RequestMapping(value = "/admin/updateStu", produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/updateStu", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<Student> updateStu(@RequestParam("id") int id, Model model) {
 		return dao.query(id);
 	}
 
 	// 学生修改信息
-	@RequestMapping("/admin/update")
+	@RequestMapping("/update")
 	@ResponseBody
 	public String Update(Student student) {
 		int count = dao.update(student);
