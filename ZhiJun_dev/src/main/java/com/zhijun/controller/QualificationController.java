@@ -47,10 +47,6 @@ public class QualificationController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/qua/add")
 	public String add(Qualification qua) throws ParseException{
-//		qua.setQua_name("测试数据");
-//		qua.setQua_photo("测试数据");
-//		qua.setQua_constant("测试数据");
-//		qua.setQua_time(new Date());
 		int count =quadao.addQua(qua);
 		if(count ==1) {
 			return  "admin/qualification/qualification";
@@ -90,11 +86,6 @@ public class QualificationController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/qua/update")
 	public String update(Qualification qua) {
-//		qua.setQua_id(2);
-//		qua.setQua_name("测试数据111");
-//		qua.setQua_photo("测试数据11");
-//		qua.setQua_constant("测试数据11");
-//		qua.setQua_time(new Date());
 		int count = quadao.update(qua);
 		if(count ==1) {
 			return "admin/qualification/qualification";

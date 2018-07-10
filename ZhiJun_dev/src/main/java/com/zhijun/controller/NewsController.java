@@ -48,10 +48,6 @@ public class NewsController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/news/add")
 	public String add(News news) throws ParseException{
-//		news.setNews_title("测试数据");
-//		news.setNews_constant("测试数据");
-//		news.setNews_type(1);
-//		news.setNews_time(new Date());
 		int count = newsdao.addNews(news);
 		if(count == 1) {
 			return "admin/news/news";
@@ -91,11 +87,6 @@ public class NewsController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/news/update")
 	public String update(News news) {
-//		news.setNews_id(2);
-//		news.setNews_title("测试数1据");
-//		news.setNews_constant("测试1数据");
-//		news.setNews_type(1);
-//		news.setNews_time(new Date());
 		int count = newsdao.update(news);
 		if(count == 1) {
 			return "admin/news/news";

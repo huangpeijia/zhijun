@@ -48,10 +48,6 @@ public class ProductController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/pro/add")
 	public String add(Product pro)throws ParseException{
-//		pro.setPro_name("测试数据");
-//		pro.setPro_constant("测试数据");
-//		pro.setPro_photo("测试数据");
-//		pro.setPro_time(new Date());
 		pro.setPro_type(1);
 		int count = prodao.addProduct(pro);
 		if(count ==1) {
@@ -93,12 +89,6 @@ public class ProductController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/pro/update")
 	public String update(Product pro) {
-//		pro.setPro_id(2);
-//		pro.setPro_name("测试数据222");
-//		pro.setPro_constant("测试数据22");
-//		pro.setPro_photo("测试数据22");
-//		pro.setPro_time(new Date());
-		pro.setPro_type(1);
 		int count = prodao.update(pro);
 		if(count ==1) {
 			return "admin/product/product";
