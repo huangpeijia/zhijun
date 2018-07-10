@@ -48,7 +48,7 @@ public class StudentDao {
 		String sql = "delete from student where id=?";
 		return jdbcTemplate.update(sql,new Object[] {id});
 	}
-	
+	//查询一条记录
 	public List<Student> query(int id) {
 		String sql = "select * from student where id="+id+"";
 		List<Student> list = jdbcTemplate.query(sql, new StudentMapper());
