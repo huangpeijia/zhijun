@@ -7,17 +7,18 @@ import java.util.Date;
  * @version 2018年7月6日
  */
 public class Product {
-	private int pri_id; // 产品ID
+	private int pro_id; // 产品ID
 	private String pro_name; //产品名称
 	private String pro_constant; //产品介绍
 	private String pro_photo; //产品照片
 	private int pro_type; //产品类型
 	private Date pro_time; //产品时间
-	public int getPri_id() {
-		return pri_id;
+	 
+	public int getPro_id() {
+		return pro_id;
 	}
-	public void setPri_id(int pri_id) {
-		this.pri_id = pri_id;
+	public void setPro_id(int pro_id) {
+		this.pro_id = pro_id;
 	}
 	public String getPro_name() {
 		return pro_name;

@@ -44,16 +44,16 @@ public class AboutController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/about/add")
 	public String add(About about) throws ParseException {
-		about.setAbout_culture("测试数据1");
-		about.setAbout_products("测试数据1");
-		about.setAbout_profile("测试数据1");
-		about.setAbout_scope("测试数据1"); 
-		about.setAbout_time(new Date());
-		about.setAbout_prospects("测试数据1");
+//		about.setAbout_culture("测试数据1");
+//		about.setAbout_products("测试数据1");
+//		about.setAbout_profile("测试数据1");
+//		about.setAbout_scope("测试数据1"); 
+//		about.setAbout_time(new Date());
+//		about.setAbout_prospects("测试数据1");
 		int count = aboutdao.addAbout(about);
 		System.out.println(count);
 		if(count == 1) {
-			return "about";
+			return "admin/about_us/about_us";
 		}
 		return "error";
 	}
@@ -63,11 +63,10 @@ public class AboutController extends ControllerBase{
 	 * 方法
 	 */
 	@RequestMapping("/admin/about/deleteById")
-	@ResponseBody
 	public String deleteById(@RequestParam("about_id") int about_id) {
 		int count = aboutdao.deleteAbout(about_id);
 		if(count ==1) {
-			return "admin/company/firm";
+			return "admin/about_us/about_us";
 		}
 		return "error";
 	}
@@ -86,18 +85,17 @@ public class AboutController extends ControllerBase{
 	 * 方法
 	 */
 	@RequestMapping("/admin/about/update")
-	@ResponseBody
 	public String update(About about) {
-		about.setAbout_id(3);
-		about.setAbout_culture("测试数据1");
-		about.setAbout_products("测试数据1");
-		about.setAbout_profile("测试数据1");
-		about.setAbout_scope("测试数据1"); 
-		about.setAbout_time(new Date());
+//		about.setAbout_id(3);
+//		about.setAbout_culture("测试数据1");
+//		about.setAbout_products("测试数据1");
+//		about.setAbout_profile("测试数据1");
+//		about.setAbout_scope("测试数据1"); 
+//		about.setAbout_time(new Date());
 		about.setAbout_prospects("测试数据1");
 		int count = aboutdao.update(about);
 		if(count == 1) {
-			return "admin/company/firm";
+			return "admin/about_us/about_us";
 		}
 		return "error";
 	}

@@ -47,10 +47,10 @@ public class CaseController extends ControllerBase{
 	@RequestMapping("/admin/case/add")
 	public String add(Cases cases) throws ParseException{
  
-		cases.setCase_name("sdsdsssssss");
-		cases.setCase_constant("ssssssssssss");
-		cases.setCase_time(new Date());
-		cases.setCase_photo("sssssssssss");
+//		cases.setCase_name("sdsdsssssss");
+//		cases.setCase_constant("ssssssssssss");
+//		cases.setCase_time(new Date());
+//		cases.setCase_photo("sssssssssss");
 		int count = casedao.addCases(cases);
 		if(count == 1){
 			return "admin/case/case";
@@ -64,7 +64,6 @@ public class CaseController extends ControllerBase{
 	 * @version 2018年7月9日
 	 */
 	@RequestMapping("/admin/case/deleteById")
-	@ResponseBody
 	public String deleteById(@RequestParam("case_id") int case_id) {
 		int count =casedao.deleteCases(case_id);
 		if(count ==1) {
@@ -89,7 +88,6 @@ public class CaseController extends ControllerBase{
 	 * @version 2018年7月9日
 	 */
 	@RequestMapping("/admin/case/update")
-	@ResponseBody
 	public String update(Cases cases){
 		int count = casedao.update(cases);
 		if(count == 1) {
