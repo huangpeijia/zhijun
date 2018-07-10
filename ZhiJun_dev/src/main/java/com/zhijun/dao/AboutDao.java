@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.zhijun.base.DateOrString;
 import com.zhijun.bean.About;
 import com.zhijun.bean.Student;
 /**
@@ -41,9 +42,8 @@ public class AboutDao {
 	 */
 	public int addAbout(About about) {
 		String sql= "insert into about(about_profile,about_scope,about_products,about_culture,about_prospects,about_time) value(?,?,?,?,?,?)";
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String time=format.format(about.getAbout_time());
+		DateOrString dates =new DateOrString();
+		String time=dates.Or(about.getAbout_time());
 		return jdbcTemplate.update(sql,new Object[] {about.getAbout_profile(),about.getAbout_scope(),about.getAbout_products(),about.getAbout_culture(),about.getAbout_prospects(),time});
 	}
 	/**
@@ -69,7 +69,9 @@ public class AboutDao {
 	 */
 	public int update(About about){
 		String sql = "update about set about_profile=?,about_scope=?,about_products=?, about_culture=?, about_prospects=?, about_time=? where about_id=?";
-		return jdbcTemplate.update(sql,new Object[] {about.getAbout_profile(),about.getAbout_scope(),about.getAbout_products(),about.getAbout_culture(),about.getAbout_prospects(),about.getAbout_time(),about.getAbout_id()});
+		DateOrString dates =new DateOrString();
+		String time=dates.Or(about.getAbout_time());
+		return jdbcTemplate.update(sql,new Object[] {about.getAbout_profile(),about.getAbout_scope(),about.getAbout_products(),about.getAbout_culture(),about.getAbout_prospects(),time,about.getAbout_id()});
 	}
 	public class AboutMapper implements RowMapper<About>{
 

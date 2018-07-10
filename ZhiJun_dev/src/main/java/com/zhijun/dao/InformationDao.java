@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.zhijun.base.DateOrString;
 import com.zhijun.bean.About;
 import com.zhijun.bean.Information;
 import com.zhijun.dao.AboutDao.AboutMapper;
@@ -43,8 +44,8 @@ public class InformationDao {
 	 */
 	public int addInf(Information inf) {
 		String sql ="insert into information(com_name, com_logo, com_contact,com_number,com_address, com_code, com_fax, com_email, com_copyright, com_profile, com_time) value(?,?,?,?,?,?,?,?,?,?,?)";
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String time=format.format(inf.getCom_time());
+		DateOrString time =new DateOrString();
+		time.Or(inf.getCom_time());
 		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),time});
 	}
 	/**
@@ -73,7 +74,9 @@ public class InformationDao {
 	 */
 	public int update(Information inf) {
 		String sql = "update information set com_name=?,com_logo=?,com_contact=?,com_number=?,com_address=?,com_code=?,com_fax=?,com_email=?,com_profile=?,com_profile=?,com_time_? where com_id=?";
-		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),inf.getCom_time()});
+		DateOrString dates =new DateOrString();
+		String time=dates.Or(inf.getCom_time());
+		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),time});
 	}
 	
 	public class InformationMapper implements RowMapper<Information>{

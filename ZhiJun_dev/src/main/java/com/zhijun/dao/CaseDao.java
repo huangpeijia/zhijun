@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.zhijun.base.DateOrString;
 import com.zhijun.bean.About;
 import com.zhijun.bean.Cases;
 
@@ -42,8 +43,8 @@ public class CaseDao {
 	 */
 	public int addCases(Cases cases) {
 		String sql = "insert into cases(case_name, case_constant, case_photo, case_time) value(?,?,?,?)";
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String time=format.format(cases.getCase_time());
+		DateOrString dates =new DateOrString();
+		String time=dates.Or(cases.getCase_time());
 		return jdbcTemplate.update(sql,new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),time});
 	}
 	/**
@@ -72,7 +73,9 @@ public class CaseDao {
 	 */
 	public int update(Cases cases) {
 		String sql = "update cases set case_name=?, case_constant=?, case_photo=?, case_time=? where case_id=?";
-		return jdbcTemplate.update(sql, new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),cases.getCase_time(),cases.getCase_id()});
+		DateOrString dates =new DateOrString();
+		String time=dates.Or(cases.getCase_time());
+		return jdbcTemplate.update(sql, new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),time,cases.getCase_id()});
 	} 
 	
 	public class CaseMapper implements RowMapper<Cases>{
