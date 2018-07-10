@@ -36,5 +36,11 @@ public class News {
 	public void setNews_time(Date news_time) {
 		this.news_time = news_time;
 	}
+	public int getNews_type() {
+		return news_type;
+	}
+	public void setNews_type(int news_type) {
+		this.news_type = news_type;
+	}
 	 
 }
