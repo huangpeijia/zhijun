@@ -42,9 +42,7 @@ public class AboutDao {
 	 */
 	public int addAbout(About about) {
 		String sql= "insert into about(about_profile,about_scope,about_products,about_culture,about_prospects,about_time) value(?,?,?,?,?,?)";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(about.getAbout_time());
-		return jdbcTemplate.update(sql,new Object[] {about.getAbout_profile(),about.getAbout_scope(),about.getAbout_products(),about.getAbout_culture(),about.getAbout_prospects(),time});
+		return jdbcTemplate.update(sql,new Object[] {about.getAbout_profile(),about.getAbout_scope(),about.getAbout_products(),about.getAbout_culture(),about.getAbout_prospects(),about.getAbout_time()});
 	}
 	/**
 	 * 删除
@@ -69,9 +67,7 @@ public class AboutDao {
 	 */
 	public int update(About about){
 		String sql = "update about set about_profile=?,about_scope=?,about_products=?, about_culture=?, about_prospects=?, about_time=? where about_id=?";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(about.getAbout_time());
-		return jdbcTemplate.update(sql,new Object[] {about.getAbout_profile(),about.getAbout_scope(),about.getAbout_products(),about.getAbout_culture(),about.getAbout_prospects(),time,about.getAbout_id()});
+		return jdbcTemplate.update(sql,new Object[] {about.getAbout_profile(),about.getAbout_scope(),about.getAbout_products(),about.getAbout_culture(),about.getAbout_prospects(),about.getAbout_time(),about.getAbout_id()});
 	}
 	public class AboutMapper implements RowMapper<About>{
 

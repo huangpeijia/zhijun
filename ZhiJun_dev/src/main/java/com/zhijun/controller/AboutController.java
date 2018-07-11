@@ -56,6 +56,7 @@ public class AboutController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/about/add")
 	public String add(About about) throws ParseException {
+		about.setAbout_time(new Date());
 		int count = aboutdao.addAbout(about);
 		if(count == 1) {
 			return "admin/about_us/about_us";
@@ -91,6 +92,7 @@ public class AboutController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/about/update")
 	public String update(About about) {
+		about.setAbout_time(new Date());
 		int count = aboutdao.update(about);
 		if(count == 1) {
 			return "admin/about_us/about_us";

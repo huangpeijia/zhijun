@@ -58,6 +58,7 @@ public class CaseController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/case/add")
 	public String add(Cases cases) throws ParseException{
+		cases.setCase_time(new Date());
 		int count = casedao.addCases(cases);
 		if(count == 1){
 			return "admin/case/case";
@@ -96,6 +97,7 @@ public class CaseController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/case/update")
 	public String update(Cases cases){
+		cases.setCase_time(new Date());
 		int count = casedao.update(cases);
 		if(count == 1) {
 			return "admin/case/case";

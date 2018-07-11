@@ -58,6 +58,7 @@ public class RecruitmentController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/rec/add")
 	public String add(Recruitment rec) throws ParseException{
+		rec.setRec_time(new Date());
 		int count = recdao.addRec(rec);
 		if(count == 1) {
 			return "admin/recruitment/recruitment";
@@ -98,6 +99,7 @@ public class RecruitmentController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/rec/update")
 	public String update(Recruitment rec) {
+		rec.setRec_time(new Date());
 		int count = recdao.update(rec);
 		if(count == 1) {
 			return "admin/recruitment/recruitment";
