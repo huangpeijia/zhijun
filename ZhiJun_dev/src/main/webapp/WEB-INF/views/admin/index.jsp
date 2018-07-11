@@ -206,37 +206,37 @@
                                <form class="form-horizontal" id="myEditForm">
 		                           <div class="form-group">
 		                              <div class="col-sm-10">
-		                              <input type="text" class="form-control" id="EditrecId" name="id" readonly/>
+		                              <input type="text" class="form-control" id="EditrecId" name="rec_id" readonly/>
 		                              </div>
 		                           </div>
 		                           <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="EditrecName" name="recname" placeholder="请输入职位名称">
+								      <input type="text" class="form-control" id="EditrecName" name="rec_name" placeholder="请输入职位名称">
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="col-sm-10">
-								      <input type="number" class="form-control" id="EditrecNum" name="recnum" placeholder="请输入招聘人数">
+								      <input type="number" class="form-control" id="EditrecNum" name="rec_num" placeholder="请输入招聘人数">
 								    </div>
-								  </div>
+								  </div>								  
 								   <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <input type="date" class="form-control" id="EditrecTime" name="rectime" placeholder="请输入招聘时间">
-								    </div>
-								  </div>
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="EditrecAddress" name="recaddress" placeholder="请输入工作地点">
+								      <input type="text" class="form-control" id="EditrecAddress" name="rec_address" placeholder="请输入工作地点">
 								    </div>
 								  </div>
 								  <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <textarea class="form-control textarea_a" id="EditrecClaim" rows="3" name="recclaim" placeholder="请输入招聘要求"></textarea>
+								      <textarea class="form-control textarea_a" id="EditrecClaim" rows="3" name="rec_claim" placeholder="请输入招聘要求"></textarea>
 								    </div>
 								  </div>
 								  <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="EditrecSalary" name="recsalary" placeholder="请输入招聘薪资">
+								      <input type="text" class="form-control" id="EditrecSalary" name="rec_salary" placeholder="请输入招聘薪资">
+								    </div>
+								  </div>
+								   <div class="form-group">								  
+								    <div class="col-sm-10">
+								      <input type="date" class="form-control" id="EditrecTime" name="rec_time" placeholder="请输入招聘时间">
 								    </div>
 								  </div>
 								</form>
@@ -248,8 +248,8 @@
 						    </div><!-- /.modal-content -->
 						  </div><!-- /.modal-dialog -->
 						</div><!-- /.modal -->
-						<!-- 添加模态框 -->
-						<div class="modal fade" id="myAddModel" tabindex="-1" role="dialog">
+					<!-- 添加模态框 -->
+					<div class="modal fade" id="myAddModel" tabindex="-1" role="dialog">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
@@ -260,32 +260,32 @@
 						        <form class="form-horizontal" id="myAddForm">
 								  <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="AddrecName" name="recname" placeholder="请输入职位名称">
+								      <input type="text" class="form-control" id="AddrecName" name="rec_name" placeholder="请输入职位名称">
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="col-sm-10">
-								      <input type="number" class="form-control" id="AddrecNum" name="recnum" placeholder="请输入招聘人数">
+								      <input type="number" class="form-control" id="AddrecNum" name="rec_num" placeholder="请输入招聘人数">
 								    </div>
-								  </div>
+								  </div>								   
 								   <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <input type="date" class="form-control" id="AddrecTime" name="rectime" placeholder="请输入招聘时间">
-								    </div>
-								  </div>
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="AddrecAddress" name="recaddress" placeholder="请输入工作地点">
+								      <input type="text" class="form-control" id="AddrecAddress" name="rec_address" placeholder="请输入工作地点">
 								    </div>
 								  </div>
 								  <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <textarea class="form-control textarea_a" id="AddrecClaim" rows="3" name="recclaim" placeholder="请输入招聘要求"></textarea>
+								      <textarea class="form-control textarea_a" id="AddrecClaim" rows="3" name="rec_claim" placeholder="请输入招聘要求"></textarea>
 								    </div>
 								  </div>
 								  <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="AddrecSalary" name="recsalary" placeholder="请输入招聘薪资">
+								      <input type="text" class="form-control" id="AddrecSalary" name="rec_salary" placeholder="请输入招聘薪资">
+								    </div>
+								  </div>
+								  <div class="form-group">								  
+								    <div class="col-sm-10">
+								      <input type="date" class="form-control" id="AddrecTime" name="rec_time" placeholder="请输入招聘时间">
 								    </div>
 								  </div>
 								</form>
@@ -343,7 +343,8 @@
 		   </div>
 	   </footer>
    </div>
-<script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script>
+<%-- <script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script> --%>
+<script type="text/javascript" src="${APP_PATH }/js/js/jquery-3.2.1.js"></script>
 <!--<script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/Chart.min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap-switch.min.js"></script>
@@ -362,18 +363,18 @@
 $(function(){to_page();});
 function to_page(){
 	$.ajax({
-		url:"all",
+		url:"rec/all",
 		type:"POST",
-		success:function(result){
+		success:function(result){ 
 			//1、解析数据
-			build_student_table(result);
+			build_rec_table(result);
 		},
 	 error:function(e){
 		 alert("error:"+e);
 	 }
 	});
 }
-function build_student_table(result){
+function build_rec_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#index_table tbody").empty();
 	$.each(result,function(index,item){
@@ -397,16 +398,17 @@ function build_student_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(numbersTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(timeTd).append(addressTd).append(claimTd).append(salaryTd)
 		.append(btnTd).appendTo("#index_table tbody");
 	});
 }
 //编辑按钮绑定数据
 function getEditDate(id){
+	alert(id);
 	$.ajax({
-		url:"updateRec",
+		url:"rec/updateRec",
 		type:"GET",
-		data:"id="+id,
+		data:"rec_id="+id,
 		success:function(result){
 			$.each(result,function(index,item){
 				$("#EditrecId").val(item.rec_id);
@@ -446,10 +448,10 @@ $(document).on("click","#myEditBtn",function(){
 	var id=$("#EditrecId").val();
 	var name=$("#EditrecName").val();
 	var num=$("#EditrecNum").val();
-	var time=$("#EditrecTime").val();
 	var address=$("#EditrecAddress").val();
 	var claim=$("#EditrecClaim").val();
 	var salary=$("#EditrecSalary").val();
+	var time=$("#EditrecTime").val();
 	if(name == ""){
 		alert("职位名称不能为空!");
 	}else if(indexOf(name)){
@@ -458,12 +460,12 @@ $(document).on("click","#myEditBtn",function(){
 		alert("招聘人数不能小于零!");
 	}else{
 		 $.ajax({
-			url:"update",
+			url:"rec/update",
 			type:"POST",
 			data:$("#myEditForm").serialize(),
 			success:function(result){
-				$("#myEditModel").modal('hide');
-				to_page();
+				$("#myEditModel").modal('hide');//隐藏模态框
+				to_page();//显示全部
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
@@ -502,11 +504,11 @@ $(document).on("click","#myAddBtn",function(){
 		alert("职位名称不能为空!");
 	}else if(indexOf(name)){
 		alert("职位名称不能含有空白字符!");
-	}else if(num == 0 || num < 0){
+	}else if(num < 0){
 		alert("招聘人数不能小于零!");
 	}else{
 		 $.ajax({
-			url:"add",
+			url:"rec/add",
 			type:"POST",
 			data:$("#myAddForm").serialize(),
 			success:function(result){
@@ -523,9 +525,9 @@ $(document).on("click","#myAddBtn",function(){
 $(document).on("click","#delBtn",function(){
 	var id = $(this).attr("del-id");
 	$.ajax({
-		url:"deleteById",
+		url:"rec/deleteById",
 		type:"GET",
-		data:"id="+id,
+		data:"rec_id="+id,
 		success:function(result){
 			to_page();
 		},
