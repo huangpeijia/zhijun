@@ -46,9 +46,7 @@ public class NewsDao {
 	 */
 	public int addNews(News news) {
 		String sql = "insert into news(news_titile, news_constant, news_type, news_time) value(?,?,?,?)";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(news.getNews_time());
-		return jdbcTemplate.update(sql,new Object[] {news.getNews_title(),news.getNews_constant(),news.getNews_type(),time});
+		return jdbcTemplate.update(sql,new Object[] {news.getNews_title(),news.getNews_constant(),news.getNews_type(),news.getNews_time()});
 	}
 	/**
 	 * 删除
@@ -79,9 +77,7 @@ public class NewsDao {
 	 */
 	public int update(News news) {
 		String sql = "update news set news_titile=?,news_constant=?,news_type=?,news_time=? where news_id=?";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(news.getNews_time());
-		return jdbcTemplate.update(sql,new Object[] {news.getNews_title(),news.getNews_constant(),news.getNews_type(),time,news.getNews_id()});
+		return jdbcTemplate.update(sql,new Object[] {news.getNews_title(),news.getNews_constant(),news.getNews_type(),news.getNews_time(),news.getNews_id()});
 	}
 	public class NewsMapper implements RowMapper<News>{
 

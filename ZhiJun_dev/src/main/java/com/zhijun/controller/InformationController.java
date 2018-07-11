@@ -58,6 +58,7 @@ public class InformationController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/inf/add")
 	public String add(Information inf) throws ParseException{
+		inf.setCom_time(new Date());
 		int count = infdao.addInf(inf);
 		if(count ==1) {
 			return "admin/Information/Information";
@@ -95,6 +96,7 @@ public class InformationController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/inf/update")
 	public String update(Information inf) {
+		inf.setCom_time(new Date());
 		int count = infdao.update(inf);
 		if(count == 1) {
 			return "admin/Information/Information";

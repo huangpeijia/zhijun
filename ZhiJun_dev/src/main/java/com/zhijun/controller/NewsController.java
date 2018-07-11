@@ -60,6 +60,7 @@ public class NewsController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/news/add")
 	public String add(News news) throws ParseException{
+		news.setNews_time(new Date());
 		int count = newsdao.addNews(news);
 		if(count == 1) {
 			return "admin/news/news";
@@ -99,6 +100,7 @@ public class NewsController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/news/update")
 	public String update(News news) {
+		news.setNews_time(new Date());
 		int count = newsdao.update(news);
 		if(count == 1) {
 			return "admin/news/news";

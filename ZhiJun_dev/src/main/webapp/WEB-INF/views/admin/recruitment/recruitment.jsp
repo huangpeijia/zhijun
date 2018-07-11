@@ -236,7 +236,7 @@
 								  </div>
 								   <div class="form-group">								  
 								    <div class="col-sm-10">
-								      <input type="date" class="form-control" id="EditrecTime" name="rec_time" placeholder="请输入招聘时间">
+								      <input type="text" class="form-control" id="EditrecTime" placeholder="请输入招聘时间" readonly>
 								    </div>
 								  </div>
 								</form>
@@ -283,11 +283,6 @@
 								      <input type="text" class="form-control" id="AddrecSalary" name="rec_salary" placeholder="请输入招聘薪资">
 								    </div>
 								  </div>
-								  <div class="form-group">								  
-								    <div class="col-sm-10">
-								      <input type="date" class="form-control" id="AddrecTime" name="rec_time" placeholder="请输入招聘时间">
-								    </div>
-								  </div>
 								</form>
 						      </div>
 						      <div class="modal-footer">
@@ -316,10 +311,10 @@
 								              <th>序号</th>
 								              <th>职位名称</th>
 								              <th>招聘人数</th>
-								              <th>招聘时间</th>
+								              <th>招聘薪资</th>
 								              <th>工作地点</th>
 								              <th>招聘要求</th>
-								              <th>招聘薪资</th>
+								              <th>招聘时间</th>
 								              <th>操作</th>
 								          </tr>
 								       </thead>
@@ -359,6 +354,7 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript">
 $(function(){to_page();});
 function to_page(){
@@ -374,18 +370,20 @@ function to_page(){
 	 }
 	});
 }
+
 function build_rec_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#index_table tbody").empty();
 	$.each(result,function(index,item){
-		/* alert(item.name); */
+		var time=times(item.rec_time);
+		item.rec_time=time;
 		var idTd=$("<td></td>").append(item.rec_id);
 		var nameTd=$("<td></td>").append(item.rec_name);
 		var numTd=$("<td></td>").append(item.rec_num);
-		var timeTd=$("<td></td>").append(item.rec_time);
+		var timeTd=$("<td></td>").append(item.rec_salary);
 		var addressTd=$("<td></td>").append(item.rec_address);
 		var claimTd=$("<td></td>").append(item.rec_claim);
-		var salaryTd=$("<td></td>").append(item.rec_salary);
+		var salaryTd=$("<td></td>").append(item.rec_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.rec_id);
 		
@@ -403,14 +401,15 @@ function build_rec_table(result){
 	});
 }
 //编辑按钮绑定数据
-function getEditDate(id){
-	alert(id);
+function getEditDate(id){ 
 	$.ajax({
 		url:"rec/updateRec",
 		type:"GET",
 		data:"rec_id="+id,
 		success:function(result){
-			$.each(result,function(index,item){
+			$.each(result,function(index,item){ 
+				var time=times(item.rec_time);
+				item.rec_time=time;
 				$("#EditrecId").val(item.rec_id);
 				$("#EditrecName").val(item.rec_name);
 				$("#EditrecNum").val(item.rec_num);
@@ -445,18 +444,18 @@ $(document).on("click","#editBtn",function(){
 });
 //点击编辑模态框的保存按钮
 $(document).on("click","#myEditBtn",function(){
-	var id=$("#EditrecId").val();
-	var name=$("#EditrecName").val();
-	var num=$("#EditrecNum").val();
-	var address=$("#EditrecAddress").val();
-	var claim=$("#EditrecClaim").val();
-	var salary=$("#EditrecSalary").val();
-	var time=$("#EditrecTime").val();
-	if(name == ""){
+	var rec_id=$("#EditrecId").val();
+	var rec_name=$("#EditrecName").val();
+	var rec_num=$("#EditrecNum").val();
+	var rec_address=$("#EditrecAddress").val();
+	var rec_claim=$("#EditrecClaim").val();
+	var rec_salary=$("#EditrecSalary").val();
+	var rec_time=$("#EditrecTime").val();
+	if(rec_name == ""){
 		alert("职位名称不能为空!");
-	}else if(indexOf(name)){
+	}else if(indexOf(rec_name)){
 		alert("职位名称不能含有空白字符!");
-	}else if(num < 0){
+	}else if(rec_num < 0){
 		alert("招聘人数不能小于零!");
 	}else{
 		 $.ajax({
@@ -494,19 +493,20 @@ $(document).on("click","#addpage",function(){
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
-	var name=$("#AddrecName").val();
-	var num=$("#AddrecNum").val();
-	var time=$("#AddrecTime").val();
-	var address=$("#AddrecAddress").val();
-	var claim=$("#AddrecClaim").val();
-	var salary=$("#AddrecSalary").val();
-	if(name == ""){
+	var rec_name=$("#AddrecName").val();
+	var rec_num=$("#AddrecNum").val();
+	var rec_time=$("#AddrecTime").val();
+	var rec_address=$("#AddrecAddress").val();
+	var rec_claim=$("#AddrecClaim").val();
+	var rec_salary=$("#AddrecSalary").val();
+	if(rec_name == ""){
 		alert("职位名称不能为空!");
-	}else if(indexOf(name)){
+	}else if(indexOf(rec_name)){
 		alert("职位名称不能含有空白字符!");
-	}else if(num < 0){
+	}else if(rec_num < 0){
 		alert("招聘人数不能小于零!");
 	}else{
+		alert($("#myAddForm").serialize());
 		 $.ajax({
 			url:"rec/add",
 			type:"POST",
@@ -524,17 +524,21 @@ $(document).on("click","#myAddBtn",function(){
 //删除
 $(document).on("click","#delBtn",function(){
 	var id = $(this).attr("del-id");
-	$.ajax({
-		url:"rec/deleteById",
-		type:"GET",
-		data:"rec_id="+id,
-		success:function(result){
-			to_page();
-		},
-		error:function(result){
-			alert("删除时错误，请重新尝试!");
+	if(confirm("是否要删除?")){
+		//删除 
+		$.ajax({
+			url:"rec/deleteById",
+			type:"GET",
+			data:"rec_id="+id,
+			success:function(result){
+				to_page();
+			},
+			error:function(result){
+				alert("删除时错误，请重新尝试!");
+			}
+		});
 		}
-	});
+	
 });
 
 	/*打开重置密码的模态框*/

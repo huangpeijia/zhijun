@@ -43,9 +43,7 @@ public class RecruitmentDao {
 	 */
 	public int addRec(Recruitment rec) {
 		String sql = "insert into recruitment(rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time) value(?,?,?,?,?,?)";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(rec.getRec_time());
-		return jdbcTemplate.update(sql,new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),time});
+		return jdbcTemplate.update(sql,new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),rec.getRec_time()});
 	}
 	/**
 	 * 删除
@@ -74,9 +72,7 @@ public class RecruitmentDao {
 	 */
 	public int update(Recruitment rec) {
 		String sql = "update recruitment set rec_name=?, rec_num=?, rec_address=?, rec_claim=?, rec_salary=?, rec_time=? where rec_id=?";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(rec.getRec_time());
-		return jdbcTemplate.update(sql, new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),time,rec.getRec_id()});
+		return jdbcTemplate.update(sql, new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),rec.getRec_time(),rec.getRec_id()});
 	}
 	public class RecruitmentMapper implements RowMapper<Recruitment>{
 
@@ -88,7 +84,7 @@ public class RecruitmentDao {
 			rec.setRec_address(rs.getString("rec_address"));
 			rec.setRec_claim(rs.getString("rec_claim"));
 			rec.setRec_salary(rs.getString("rec_salary"));
-			rec.setRec_time(rs.getDate("rec_time"));
+			rec.setRec_time(rs.getTimestamp("rec_time"));
 			return rec;
 		}
 		

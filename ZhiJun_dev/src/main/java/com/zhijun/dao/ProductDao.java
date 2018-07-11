@@ -46,9 +46,7 @@ public class ProductDao {
 	 */
 	public int addProduct(Product pro) {
 		String sql = "insert into product(pro_name, pro_constant, pro_photo, pro_type, pro_time) value(?,?,?,?,?)";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(pro.getPro_time());
-		return jdbcTemplate.update(sql,new Object[] {pro.getPro_name(),pro.getPro_constant(),pro.getPro_photo(),pro.getPro_type(),time});
+		return jdbcTemplate.update(sql,new Object[] {pro.getPro_name(),pro.getPro_constant(),pro.getPro_photo(),pro.getPro_type(),pro.getPro_time()});
 	}
 	/**
 	 * 删除
@@ -79,9 +77,7 @@ public class ProductDao {
 	 */
 	public int update(Product pro) {
 		String sql = "update product set pro_name=?, pro_constant=?, pro_photo=?, pro_type=?,pro_time=? where pro_id=?";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(pro.getPro_time());
-		return jdbcTemplate.update(sql, new Object[] {pro.getPro_name(),pro.getPro_constant(),pro.getPro_photo(),pro.getPro_type(),time,pro.getPro_id()});
+		return jdbcTemplate.update(sql, new Object[] {pro.getPro_name(),pro.getPro_constant(),pro.getPro_photo(),pro.getPro_type(),pro.getPro_time(),pro.getPro_id()});
 	}
 	public class ProductMapper implements RowMapper<Product>{
 
