@@ -37,7 +37,7 @@ public class RecruitmentController extends ControllerBase{
 	public List<Recruitment> queryAll(Model model){
 		List<Recruitment> rec = recdao.queryAll();
 		return rec;
-	}
+	} 
 	/**
 	 * 添加
 	 * 方法
