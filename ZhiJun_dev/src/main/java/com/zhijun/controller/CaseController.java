@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,16 @@ public class CaseController extends ControllerBase{
 	
 	@Autowired
 	private CaseDao casedao;
+	/**
+	 * 跳转页面
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月11日
+	 */
+	@RequestMapping("/admin/case")
+	public String about(HttpServletRequest request) {
+		return "admin/case/case";
+	}
 	/**
 	 * 获取所有数据
 	 * 方法

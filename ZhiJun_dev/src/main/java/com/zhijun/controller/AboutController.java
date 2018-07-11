@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +34,23 @@ public class AboutController extends ControllerBase{
 	private AboutDao aboutdao;
 	
 	// 从数据库中获取所有数据
-		@RequestMapping(value = "/admin/about/all", produces = "application/json; charset=utf-8")
-		@ResponseBody
-		public List<About> queryAll(Model model) { 
-			// 从ioc容器获取dao
-			List<About> about = aboutdao.queryAll(); 
-			return about;
-		}
+	@RequestMapping(value = "/admin/about/all", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<About> queryAll(Model model) { 
+		// 从ioc容器获取dao
+		List<About> about = aboutdao.queryAll(); 
+		return about;
+	}
+	/**
+	 * 跳转页面
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月11日
+	 */
+	@RequestMapping("/admin/about")
+	public String about(HttpServletRequest request) {
+		return "admin/about_us/about_us";
+	}
 	/*
 	 * 添加数据
 	 */

@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,16 @@ public class RecruitmentController extends ControllerBase{
 	private static final Logger logger= LoggerFactory.getLogger(RecruitmentController.class);
 	@Autowired
 	private RecruitmentDao recdao;
+	/**
+	 * 跳转页面
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月11日
+	 */
+	@RequestMapping("/admin/rec")
+	public String about(HttpServletRequest request) {
+		return "admin/recruitment/recruitment";
+	}
 	/**
 	 * 查询所有
 	 * 方法
