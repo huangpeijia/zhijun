@@ -46,9 +46,7 @@ public class QualificationDao {
 	 */
 	public int addQua(Qualification qua) {
 		String sql = "insert into qualification(qua_name,qua_photo,qua_constant,qua_time) value(?,?,?,?)";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(qua.getQua_time());
-		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),time});
+ 		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),qua.getQua_time()});
 	}
 	/**
 	 * 删除
@@ -79,9 +77,7 @@ public class QualificationDao {
 	 */
 	public int update(Qualification qua) {
 		String sql = "update qualification set qua_name=?, qua_photo=?, qua_constant=?,qua_time=? where qua_id=?";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(qua.getQua_time());
-		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),time,qua.getQua_id()});
+		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),qua.getQua_time(),qua.getQua_id()});
 	}
 	
 	public class QualificationMapper implements RowMapper<Qualification>{

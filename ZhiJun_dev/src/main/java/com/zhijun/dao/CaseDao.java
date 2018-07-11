@@ -43,9 +43,7 @@ public class CaseDao {
 	 */
 	public int addCases(Cases cases) {
 		String sql = "insert into cases(case_name, case_constant, case_photo, case_time) value(?,?,?,?)";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(cases.getCase_time());
-		return jdbcTemplate.update(sql,new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),time});
+		return jdbcTemplate.update(sql,new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),cases.getCase_time()});
 	}
 	/**
 	 * 删除
@@ -73,9 +71,7 @@ public class CaseDao {
 	 */
 	public int update(Cases cases) {
 		String sql = "update cases set case_name=?, case_constant=?, case_photo=?, case_time=? where case_id=?";
-		DateOrString dates =new DateOrString();
-		String time=dates.Or(cases.getCase_time());
-		return jdbcTemplate.update(sql, new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),time,cases.getCase_id()});
+		return jdbcTemplate.update(sql, new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),cases.getCase_time(),cases.getCase_id()});
 	} 
 	
 	public class CaseMapper implements RowMapper<Cases>{

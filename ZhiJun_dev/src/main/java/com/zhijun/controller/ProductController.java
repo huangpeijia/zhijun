@@ -60,7 +60,7 @@ public class ProductController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/pro/add")
 	public String add(Product pro)throws ParseException{
-		pro.setPro_type(1);
+		pro.setPro_time(new Date());
 		int count = prodao.addProduct(pro);
 		if(count ==1) {
 			return "admin/product/product";
@@ -101,6 +101,7 @@ public class ProductController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/pro/update")
 	public String update(Product pro) {
+		pro.setPro_time(new Date());
 		int count = prodao.update(pro);
 		if(count ==1) {
 			return "admin/product/product";
