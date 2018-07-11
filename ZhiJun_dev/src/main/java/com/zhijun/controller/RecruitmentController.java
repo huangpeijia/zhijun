@@ -46,12 +46,6 @@ public class RecruitmentController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/rec/add")
 	public String add(Recruitment rec) throws ParseException{
-		rec.setRec_name("测试数据");
-		rec.setRec_num("测试数据");
-		rec.setRec_address("测试数据");
-		rec.setRec_claim("测试数据");
-		rec.setRec_salary("测试数据");
-		rec.setRec_time(new Date());
 		int count = recdao.addRec(rec);
 		if(count == 1) {
 			return "admin/recruitment/recruitment";
@@ -92,13 +86,6 @@ public class RecruitmentController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/rec/update")
 	public String update(Recruitment rec) {
-		rec.setRec_id(1);
-		rec.setRec_name("测试数据1212121");
-		rec.setRec_num("测试数据1");
-		rec.setRec_address("测试数据1");
-		rec.setRec_claim("测试数据1");
-		rec.setRec_salary("测试数据1");
-		rec.setRec_time(new Date()); 
 		int count = recdao.update(rec);
 		if(count == 1) {
 			return "admin/recruitment/recruitment";

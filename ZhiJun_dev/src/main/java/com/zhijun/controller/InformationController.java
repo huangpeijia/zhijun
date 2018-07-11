@@ -46,17 +46,6 @@ public class InformationController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/inf/add")
 	public String add(Information inf) throws ParseException{
-//		inf.setCom_name("测试数据");
-//		inf.setCom_logo("测试数据");
-//		inf.setCom_contact("测试数据");
-//		inf.setCom_number("测试数据");
-//		inf.setCom_address("测试数据");
-//		inf.setCom_code("测试数据");
-//		inf.setCom_fax("测试数据");
-//		inf.setCom_email("测试数据");
-//		inf.setCom_copyright("测试数据");
-//		inf.setCom_profile("测试数据");
-//		inf.setCom_time(new Date());
 		int count = infdao.addInf(inf);
 		if(count ==1) {
 			return "admin/Information/Information";
@@ -94,18 +83,6 @@ public class InformationController extends ControllerBase{
 	 */
 	@RequestMapping("/admin/inf/update")
 	public String update(Information inf) {
-//		inf.setCom_id(1);
-//		inf.setCom_name("测试数据2");
-//		inf.setCom_logo("测试数据");
-//		inf.setCom_contact("测试数据");
-//		inf.setCom_number("测试数据");
-//		inf.setCom_address("测试数据");
-//		inf.setCom_code("测试数据");
-//		inf.setCom_fax("测试数据");
-//		inf.setCom_email("测试数据");
-//		inf.setCom_copyright("测试数据");
-//		inf.setCom_profile("测试数据");
-//		inf.setCom_time(new Date());
 		int count = infdao.update(inf);
 		if(count == 1) {
 			return "admin/Information/Information";
