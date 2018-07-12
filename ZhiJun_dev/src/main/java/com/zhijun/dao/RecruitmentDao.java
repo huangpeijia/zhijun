@@ -26,12 +26,24 @@ public class RecruitmentDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
+	 * 查询总数
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	public int countAll() {
+		String sql = "select count(*) from recruitment";
+		Integer count =jdbcTemplate.queryForObject(sql , Integer.class);  
+		return count;
+		
+	}
+	/**
 	 * 查询所有
 	 * 方法
 	 * @version 2018年7月10日
 	 */
-	public List<Recruitment> queryAll(){
-		String sql ="select rec_id, rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time from recruitment";
+	public List<Recruitment> queryAll(int pages, int keys){
+		String sql ="select rec_id, rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time from recruitment order by rec_time desc limit "+pages+","+keys+"";
 		List<Recruitment> list =jdbcTemplate.query(sql, new RecruitmentMapper());
 		return list;
 		
