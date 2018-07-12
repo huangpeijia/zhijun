@@ -82,7 +82,7 @@ public class CaseDao {
 			cases.setCase_name(rs.getString("case_name"));
 			cases.setCase_constant(rs.getString("case_constant"));
 			cases.setCase_photo(rs.getString("case_photo"));
-			cases.setCase_time(rs.getDate("case_time"));
+			cases.setCase_time(rs.getTimestamp("case_time"));
 			return cases;
 			
 		}
