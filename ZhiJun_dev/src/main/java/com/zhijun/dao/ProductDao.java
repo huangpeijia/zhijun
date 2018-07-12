@@ -88,7 +88,7 @@ public class ProductDao {
 			pro.setPro_constant(rs.getString("pro_constant"));
 			pro.setPro_photo(rs.getString("pro_photo"));
 			pro.setPro_type(rs.getInt("pro_type"));
-			pro.setPro_time(rs.getDate("pro_time"));
+			pro.setPro_time(rs.getTimestamp("pro_time"));
 			return pro;
 		}
 		

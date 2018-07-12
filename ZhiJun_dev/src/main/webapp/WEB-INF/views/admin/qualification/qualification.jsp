@@ -352,6 +352,8 @@ function build_qua_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#qua_table tbody").empty();
 	$.each(result,function(index,item){
+		var time=times(item.qua_time);
+		item.qua_time=time;
 		var idTd=$("<td></td>").append(item.qua_id);
 		var nameTd=$("<td></td>").append(item.qua_name);
 		var photoTd=$("<td></td>").append(item.qua_photo);

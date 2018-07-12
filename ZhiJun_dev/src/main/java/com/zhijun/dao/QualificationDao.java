@@ -88,7 +88,7 @@ public class QualificationDao {
 			qua.setQua_name(rs.getString("qua_name"));
 			qua.setQua_photo(rs.getString("qua_photo"));
 			qua.setQua_constant(rs.getString("qua_constant")); 
-			qua.setQua_time(rs.getDate("qua_time"));
+			qua.setQua_time(rs.getTimestamp("qua_time"));
 			return qua;
 		}
 		

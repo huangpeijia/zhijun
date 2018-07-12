@@ -87,7 +87,7 @@ public class NewsDao {
 			news.setNews_title(rs.getString("news_titile"));
 			news.setNews_constant(rs.getString("news_constant"));
 			news.setNews_type(rs.getInt("news_type"));
-			news.setNews_time(rs.getDate("news_time"));
+			news.setNews_time(rs.getTimestamp("news_time"));
 			return news;
 		}
 		
