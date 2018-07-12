@@ -90,7 +90,7 @@ public class InformationDao {
 			inf.setCom_email(rs.getString("com_email"));
 			inf.setCom_copyright(rs.getString("com_copyright"));
 			inf.setCom_profile(rs.getString("com_profile"));
-			inf.setCom_time(rs.getDate("com_time"));
+			inf.setCom_time(rs.getTimestamp("com_time"));
 			return inf;
 		}
 		
