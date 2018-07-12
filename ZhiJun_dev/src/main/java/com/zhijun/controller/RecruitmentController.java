@@ -40,14 +40,30 @@ public class RecruitmentController extends ControllerBase{
 		return "admin/recruitment/recruitment";
 	}
 	/**
+	 * 查询全部数量
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	@RequestMapping(value = "/admin/rec/countall")
+	@ResponseBody
+	public Integer countAll() {
+		Integer count =recdao.countAll();
+		System.out.println(count);
+		return count;
+		
+	}
+	/**
 	 * 查询所有
 	 * 方法
 	 * @version 2018年7月10日
 	 */
 	@RequestMapping(value = "/admin/rec/all" , produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<Recruitment> queryAll(Model model){
-		List<Recruitment> rec = recdao.queryAll();
+	public List<Recruitment> queryAll(@RequestParam("c_page") int c_page,Model model){
+		c_page-=1;
+		c_page=0+c_page*5;
+		List<Recruitment> rec = recdao.queryAll(c_page,5);
 		return rec;
 	}
 	/**
