@@ -105,7 +105,7 @@
 						   <!--导航目录1-->
 						   <li>
 							   <!--图标和字-->
-							   <a href="">
+							   <a href="rec">
 								   <!--图标和字-->
 								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
 							   </a>							 
@@ -204,12 +204,11 @@
 				   </div>
 				   <div class="row">
 					   <div class="col-xs-12">
-						   <div class="card">							  
-							   <div class="card-body">
+				  
 								   <!--编辑  -->				   
-                           <div class="modal-content">                              
+                           <div class="modal-content">                         
                                <div class="modal-body">
-                               <form class="form-horizontal" id="myEditForm">
+                               <form class="form-horizontal" id="myEditForm" style="margin-top:40px;">
 		                           <div class="form-group">
 		                               <label for="inputcomId" class="col-sm-2 control-label">序号</label>	
 		                              <div class="col-sm-9">
@@ -290,10 +289,7 @@
 						        <button type="button" class="btn btn-primary" id="myEditBtn">修改</button>
 						      </div>
 						    </div>
-				
-				   
-							   </div>
-						   </div>
+
 					   </div>
 				   </div>
 			   </div>

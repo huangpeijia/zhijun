@@ -443,7 +443,7 @@ $(document).on("click","#myEditBtn",function(){
 			data:$("#myEditForm").serialize(),
 			success:function(result){
 				$("#myEditModel").modal('hide');//隐藏模态框
-				to_page();//显示全部
+				to_page(c_page);//显示全部
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
@@ -488,7 +488,7 @@ $(document).on("click","#myAddBtn",function(){
 			data:$("#myAddForm").serialize(),
 			success:function(result){
 				$("#myAddModel").modal('hide');
-				to_page();
+				to_page(c_page);
 			},
 			error:function(result){
 				alert("添加时发生错误!");
@@ -506,7 +506,7 @@ $(document).on("click","#delBtn",function(){
 			type:"GET",
 			data:"qua_id="+id,
 			success:function(result){
-				to_page();
+				to_page(c_page);
 			},
 			error:function(result){
 				alert("删除时错误，请重新尝试!");
