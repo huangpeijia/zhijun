@@ -71,8 +71,8 @@ public class InformationDao {
 	 * @version 2018年7月9日
 	 */
 	public int update(Information inf) {
-		String sql = "update information set com_name=?,com_logo=?,com_contact=?,com_number=?,com_address=?,com_code=?,com_fax=?,com_email=?,com_profile=?,com_profile=?,com_time_? where com_id=?";
-		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),inf.getCom_time()});
+		String sql = "update information set com_name=?,com_logo=?,com_contact=?,com_number=?,com_address=?,com_code=?,com_fax=?,com_email=?,com_copyright=?,com_profile=?,com_time=? where com_id=?";
+		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),inf.getCom_time(),inf.getCom_id()});
 	}
 	
 	public class InformationMapper implements RowMapper<Information>{
