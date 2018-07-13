@@ -26,6 +26,14 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
+	<style type="text/css">
+	table{
+	   table-layout:fixed;width:100%;
+	}
+	td{
+	   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+	}
+	</style>
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -59,8 +67,8 @@
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span> </a>
 						   <ul class="dropdown-menu animated fadeInDown">
 							   <li class="profile-img">
-								   <img src="${APP_PATH }/js/img/profile/picjumbo.jpg" class="profile-img">
-							   </li>
+								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+							   </li>picjumbo.com_HNCK4153_resize
 							   <li>
 								   <div class="profile-info">
 									   <h4 class="username">Admin</h4>
@@ -86,7 +94,7 @@
 				   <div class="side-menu-container">
 					   <!--顶部蓝色正方形div-->
 					   <div class="navbar-header">
-						   <a class="navbar-brand" href="#">
+						   <a class="navbar-brand" href="rec">
 							   <!--纸飞机字体图标-->
 							   <div class="icon fa fa-paper-plane"></div>
 							   <div class="title">智钧时代管理后台</div>
@@ -97,52 +105,52 @@
 						   <!--导航目录1-->
 						   <li>
 							   <!--图标和字-->
-							   <a href="">
+							   <a href="rec">
 								   <!--图标和字-->
 								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
 							   </a>							 
 						   </li>
 						   <!--导航目录2-->
 						   <li>
-							   <a href="">
+							   <a href="inf">
 								   <!--图标和字-->
 								   <span class="icon fa fa-desktop"></span><span class="title">公司信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录3-->
 						   <li>
-							   <a href="">
+							   <a href="news">
 								   <!--图标和字-->
 								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
 							   </a>
 						   </li>
 						   <!--导航目录4-->
 						   <li>
-							   <a href="service/service.html">
+							   <a href="pro">
 								   <span class="icon fa fa-book"></span><span class="title">产品服务</span>
 							   </a>
 						   </li>
 						   <!--导航目录5-->
 						   <li>
-							   <a href="">
+							   <a href="case">
 								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">案例信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录6-->
 						   <li class="active">
-							   <a href="">
+							   <a href="qua">
 								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录7-->
 						   <li>
-							   <a href="">
+							   <a href="about">
 								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
 							   </a>
 						   </li>
 						   <!--导航目录8-->
 						   <li>
-							   <a href="">
+							   <a href="file">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>
@@ -199,32 +207,32 @@
                                <div class="modal-body">
                                <form class="form-horizontal" id="myEditForm">
 		                           <div class="form-group">
-		                               <!-- <label for="inputquaId" class="col-sm-2 control-label">序号</label>	 -->
-		                              <div class="col-sm-10">
+		                               <label for="inputquaId" class="col-sm-2 control-label">序号</label>	
+		                              <div class="col-sm-9">
 		                              <input type="text" class="form-control" id="EditquaId" name="qua_id" readonly/>
 		                              </div>
 		                           </div>
 		                           <div class="form-group">		
-		                          <!--  <label for="inputquaName" class="col-sm-2 control-label">资质名称</label>-->					  
-								    <div class="col-sm-10">
+		                           <label for="inputquaName" class="col-sm-2 control-label">资质名称</label>					  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditquaName" name="qua_name" placeholder="请输入资质名称">
 								    </div>
 								  </div>
 								  <div class="form-group">
-								  <!-- <label for="inputquaPhoto" class="col-sm-2 control-label">资质照片路径</label>	 -->
-								    <div class="col-sm-10">
+								  <label for="inputquaPhoto" class="col-sm-2 control-label">照片路径</label>	
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditquaPhoto" name="qua_photo" placeholder="请输入照片路径">
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
-								  <!--  <label for="inputquaConstant" class="col-sm-2 control-label">资质内容</label>	 -->							  
-								    <div class="col-sm-10">
+								   <label for="inputquaConstant" class="col-sm-2 control-label">资质内容</label>								  
+								    <div class="col-sm-9">
 								      <textarea class="form-control textarea_a" id="EditquaConstant" rows="3" name="qua_constant" placeholder="请输入资质内容"></textarea>
 								    </div>
 								  </div>
 								   <div class="form-group">	
-								   <!-- <label for="inputquaTime" class="col-sm-2 control-label">发布时间</label>	 -->							  
-								    <div class="col-sm-10">
+								   <label for="inputquaTime" class="col-sm-2 control-label">发布时间</label>								  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditquaTime" placeholder="请输入发布时间" readonly>
 								    </div>
 								  </div>
@@ -245,21 +253,23 @@
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title">添加资质信息</h4>
 						      </div>
+						      <div class="modal-body">
+						        <form class="form-horizontal" id="myAddForm">
 						      <div class="form-group">		
-		                          <!--  <label for="inputquaName" class="col-sm-2 control-label">资质名称</label>	 -->						  
-								    <div class="col-sm-10">
+		                           <label for="inputquaName" class="col-sm-2 control-label">资质名称</label>							  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="AddquaName" name="qua_name" placeholder="请输入资质名称">
 								    </div>
 								  </div>
 								  <div class="form-group">
-								 <!--  <label for="inputquaPhoto" class="col-sm-2 control-label">资质照片路径</label>	 -->
-								    <div class="col-sm-10">
+								  <label for="inputquaPhoto" class="col-sm-2 control-label">照片路径</label>	
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="AddquaPhoto" name="qua_photo" placeholder="请输入照片路径">
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
-								  <!--  <label for="inputquaConstant" class="col-sm-2 control-label">资质内容</label>		 -->						  
-								    <div class="col-sm-10">
+								   <label for="inputquaConstant" class="col-sm-2 control-label">资质内容</label>								  
+								    <div class="col-sm-9">
 								      <textarea class="form-control textarea_a" id="AddquaConstant" rows="3" name="qua_constant" placeholder="请输入资质内容"></textarea>
 								    </div>
 								  </div>
@@ -271,7 +281,7 @@
 						     </div><!-- /.modal-content -->
 						  </div><!-- /.modal-dialog -->
 					</div>
-				   
+				   </div>
 				   
 				   
 				   
@@ -284,12 +294,12 @@
 					   <div class="col-xs-12">
 						   <div class="card">							  
 							   <div class="card-body">
-								   <table class="table" id="qua_table">
+								   <table class="table" id="qua_table" >
 								       <thead>
 								          <tr>
 								              <th>序号</th>
 								              <th>资质名称</th>
-								              <th>资质照片路径</th>
+								              <th>照片路径</th>
 								              <th>资质内容</th>
 								              <th>发布时间</th>
 								              <th>操作</th>
