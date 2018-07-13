@@ -80,7 +80,7 @@
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span> </a>
 						   <ul class="dropdown-menu animated fadeInDown">
 							   <li class="profile-img">
-								   <img src="${APP_PATH }/js/img/profile/picjumbo.jpg" class="profile-img">
+								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
 							   </li>
 							   <li>
 								   <div class="profile-info">
@@ -107,7 +107,7 @@
 				   <div class="side-menu-container">
 					   <!--顶部蓝色正方形div-->
 					   <div class="navbar-header">
-						   <a class="navbar-brand" href="#">
+						   <a class="navbar-brand" href="rec">
 							   <!--纸飞机字体图标-->
 							   <div class="icon fa fa-paper-plane"></div>
 							   <div class="title">智钧时代管理后台</div>
@@ -118,58 +118,52 @@
 						   <!--导航目录1-->
 						   <li class="active">
 							   <!--图标和字-->
-							   <a href="">
+							   <a href="rec">
 								   <!--图标和字-->
 								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
 							   </a>							 
 						   </li>
 						   <!--导航目录2-->
 						   <li>
-							   <a href="">
+							   <a href="inf">
 								   <!--图标和字-->
 								   <span class="icon fa fa-desktop"></span><span class="title">公司信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录3-->
 						   <li>
-							   <a href="">
+							   <a href="news">
 								   <!--图标和字-->
 								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
 							   </a>
 						   </li>
 						   <!--导航目录4-->
 						   <li>
-							   <a href="service/service.html">
+							   <a href="pro">
 								   <span class="icon fa fa-book"></span><span class="title">产品服务</span>
 							   </a>
 						   </li>
 						   <!--导航目录5-->
 						   <li>
-							   <a href="">
+							   <a href="case">
 								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">案例信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录6-->
 						   <li>
-							   <a href="">
+							   <a href="qua">
 								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录7-->
-						   <li>
-							   <a href="">
-								   <span class="icon fa fa-phone"></span><span class="title">投资者</span>
 							   </a>
 						   </li>
 						   <!--导航目录8-->
 						   <li>
-							   <a href="">
+							   <a href="about">
 								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
 							   </a>
 						   </li>
 						   <!--导航目录9-->
 						   <li>
-							   <a href="">
+							   <a href="file">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>
@@ -193,17 +187,17 @@
 								   <form class="form-horizontal " id="passForm">
 									   <div class="form-group ">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword" placeholder="请输入旧密码"/>
+											   <input type="password" class="form-control" id="1" name="userpassword" placeholder="请输入旧密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword1" placeholder="请输入新密码"/>
+											   <input type="password" class="form-control" id="2" name="userpassword1" placeholder="请输入新密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword2" placeholder="请确定新密码"/>
+											   <input type="password" class="form-control" id="3" name="userpassword2" placeholder="请确定新密码"/>
 										   </div>
 									   </div>
 								   </form>
@@ -226,37 +220,44 @@
                                <div class="modal-body">
                                <form class="form-horizontal" id="myEditForm">
 		                           <div class="form-group">
-		                              <div class="col-sm-10">
+		                           <label for="inputrecId" class="col-sm-2 control-label">序号</label>
+		                              <div class="col-sm-9">
 		                              <input type="text" class="form-control" id="EditrecId" name="rec_id" readonly/>
 		                              </div>
 		                           </div>
-		                           <div class="form-group">								  
-								    <div class="col-sm-10">
+		                           <div class="form-group">					
+		                           <label for="inputrecName" class="col-sm-2 control-label">职位名称</label>				  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditrecName" name="rec_name" placeholder="请输入职位名称">
 								    </div>
 								  </div>
 								  <div class="form-group">
-								    <div class="col-sm-10">
+								  <label for="inputrecNum" class="col-sm-2 control-label">招聘人数</label>
+								    <div class="col-sm-9">
 								      <input type="number" class="form-control" id="EditrecNum" name="rec_num" placeholder="请输入招聘人数">
 								    </div>
 								  </div>								  
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
+								   <div class="form-group">
+								   <label for="inputrecAddress" class="col-sm-2 control-label">工作地点</label>								  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditrecAddress" name="rec_address" placeholder="请输入工作地点">
 								    </div>
 								  </div>
-								  <div class="form-group">								  
-								    <div class="col-sm-10">
+								  <div class="form-group">	
+								  <label for="inputrecClaim" class="col-sm-2 control-label">招聘要求</label>							  
+								    <div class="col-sm-9">
 								      <textarea class="form-control textarea_a" id="EditrecClaim" rows="3" name="rec_claim" placeholder="请输入招聘要求"></textarea>
 								    </div>
 								  </div>
-								  <div class="form-group">								  
-								    <div class="col-sm-10">
+								  <div class="form-group">	
+								  <label for="inputrecSalary" class="col-sm-2 control-label">招聘薪资</label>							  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditrecSalary" name="rec_salary" placeholder="请输入招聘薪资">
 								    </div>
 								  </div>
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
+								   <div class="form-group">	
+								   <label for="inputrecTime" class="col-sm-2 control-label">招聘时间</label>							  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditrecTime" placeholder="请输入招聘时间" readonly>
 								    </div>
 								  </div>
@@ -279,28 +280,33 @@
 						      </div>
 						      <div class="modal-body">
 						        <form class="form-horizontal" id="myAddForm">
-								  <div class="form-group">								  
-								    <div class="col-sm-10">
+								  <div class="form-group">	
+								  <label for="inputrecName" class="col-sm-2 control-label">职位名称</label>										  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="AddrecName" name="rec_name" placeholder="请输入职位名称">
 								    </div>
 								  </div>
 								  <div class="form-group">
-								    <div class="col-sm-10">
+								  <label for="inputrecNum" class="col-sm-2 control-label">招聘人数</label>
+								    <div class="col-sm-9">
 								      <input type="number" class="form-control" id="AddrecNum" name="rec_num" placeholder="请输入招聘人数">
 								    </div>
 								  </div>								   
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
+								   <div class="form-group">	
+								   <label for="inputrecAddress" class="col-sm-2 control-label">工作地点</label>										  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="AddrecAddress" name="rec_address" placeholder="请输入工作地点">
 								    </div>
 								  </div>
-								  <div class="form-group">								  
-								    <div class="col-sm-10">
+								  <div class="form-group">
+								  <label for="inputrecClaim" class="col-sm-2 control-label">招聘要求</label>										  
+								    <div class="col-sm-9">
 								      <textarea class="form-control textarea_a" id="AddrecClaim" rows="3" name="rec_claim" placeholder="请输入招聘要求"></textarea>
 								    </div>
 								  </div>
-								  <div class="form-group">								  
-								    <div class="col-sm-10">
+								  <div class="form-group">		
+								  <label for="inputrecSalary" class="col-sm-2 control-label">招聘薪资</label>									  
+								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="AddrecSalary" name="rec_salary" placeholder="请输入招聘薪资">
 								    </div>
 								  </div>
