@@ -47,8 +47,10 @@ public class QualificationController extends ControllerBase{
 	 */
 	@RequestMapping(value = "/admin/qua/all", produces = "application/json; charset-utf-8")
 	@ResponseBody
-	public List<Qualification> queryAll(Model model){
-		List<Qualification> qua =quadao.queryAll();
+	public List<Qualification> queryAll(@RequestParam("c_page") int c_page,Model model){
+		c_page-=1;
+		c_page=0+c_page*5;
+		List<Qualification> qua =quadao.queryAll(c_page,5);
 		return qua;
 	}
 	/**

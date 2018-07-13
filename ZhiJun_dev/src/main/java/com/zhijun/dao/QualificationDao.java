@@ -28,13 +28,25 @@ public class QualificationDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
+	 * 查询总数
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	public int countAll() {
+		String sql = "select count(*) from qualification";
+		Integer count =jdbcTemplate.queryForObject(sql , Integer.class);  
+		return count;
+		
+	}
+	/**
 	 * 查询所有
 	 * 方法
 	 * @author hpj
 	 * @version 2018年7月10日
 	 */
-	public List<Qualification> queryAll(){
-		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time FROM qualification";
+	public List<Qualification> queryAll(int pages, int keys){
+		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time FROM qualification order by qua_time limit "+pages+","+keys+"";
 		List<Qualification> list= jdbcTemplate.query(sql, new QualificationMapper());
 		return list;
 	}

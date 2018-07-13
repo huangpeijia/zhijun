@@ -28,13 +28,25 @@ public class NewsDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
+	 * 查询总数
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	public int countAll() {
+		String sql = "select count(*) from news";
+		Integer count =jdbcTemplate.queryForObject(sql , Integer.class);  
+		return count;
+		
+	}
+	/**
 	 * 查询所有
 	 * 方法
 	 * @author hpj
 	 * @version 2018年7月10日
 	 */
-	public List<News> queryAll(){
-		String sql = "select news_id, news_titile, news_constant, news_type, news_time from news";
+	public List<News> queryAll(int pages, int keys){
+		String sql = "select news_id, news_titile, news_constant, news_type, news_time from news order by news_time limit "+pages+","+keys+"";
 		List<News> list=jdbcTemplate.query(sql,new NewsMapper());
 		return list;
 	}
