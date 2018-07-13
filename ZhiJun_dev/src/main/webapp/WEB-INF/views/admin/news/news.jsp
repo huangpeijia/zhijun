@@ -26,6 +26,14 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
+	<style type="text/css">
+	table{
+	   table-layout:fixed;width:100%;
+	}
+	td{
+	   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+	}
+	</style>
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -59,7 +67,7 @@
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span> </a>
 						   <ul class="dropdown-menu animated fadeInDown">
 							   <li class="profile-img">
-								   <img src="${APP_PATH }/js/img/profile/picjumbo.jpg" class="profile-img">
+								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
 							   </li>
 							   <li>
 								   <div class="profile-info">
@@ -86,7 +94,7 @@
 				   <div class="side-menu-container">
 					   <!--顶部蓝色正方形div-->
 					   <div class="navbar-header">
-						   <a class="navbar-brand" href="#">
+						   <a class="navbar-brand" href="rec">
 							   <!--纸飞机字体图标-->
 							   <div class="icon fa fa-paper-plane"></div>
 							   <div class="title">智钧时代管理后台</div>
@@ -97,58 +105,52 @@
 						   <!--导航目录1-->
 						   <li>
 							   <!--图标和字-->
-							   <a href="">
+							   <a href="rec">
 								   <!--图标和字-->
 								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
 							   </a>							 
 						   </li>
 						   <!--导航目录2-->
 						   <li>
-							   <a href="">
+							   <a href="inf">
 								   <!--图标和字-->
 								   <span class="icon fa fa-desktop"></span><span class="title">公司信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录3-->
 						   <li class="active">
-							   <a href="">
+							   <a href="news">
 								   <!--图标和字-->
 								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
 							   </a>
 						   </li>
 						   <!--导航目录4-->
 						   <li>
-							   <a href="service/service.html">
+							   <a href="pro">
 								   <span class="icon fa fa-book"></span><span class="title">产品服务</span>
 							   </a>
 						   </li>
 						   <!--导航目录5-->
 						   <li>
-							   <a href="">
+							   <a href="case">
 								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">案例信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录6-->
 						   <li>
-							   <a href="">
+							   <a href="qua">
 								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录-->
-						   <li>
-							   <a href="">
-								   <span class="icon fa fa-phone"></span><span class="title">投资者</span>
 							   </a>
 						   </li>
 						   <!--导航目录7-->
 						   <li>
-							   <a href="">
+							   <a href="about">
 								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
 							   </a>
 						   </li>
 						   <!--导航目录8-->
 						   <li>
-							   <a href="">
+							   <a href="file">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>
@@ -172,17 +174,17 @@
 								   <form class="form-horizontal " id="passForm">
 									   <div class="form-group ">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword" placeholder="请输入旧密码"/>
+											   <input type="password" class="form-control" id="1" name="userpassword" placeholder="请输入旧密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword1" placeholder="请输入新密码"/>
+											   <input type="password" class="form-control" id="2" name="userpassword1" placeholder="请输入新密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword2" placeholder="请确定新密码"/>
+											   <input type="password" class="form-control" id="3" name="userpassword2" placeholder="请确定新密码"/>
 										   </div>
 									   </div>
 								   </form>
@@ -194,7 +196,7 @@
 						   </div>
 					   </div>
 				   </div>
-                   <!--编辑 模态框  -->
+				    <!--编辑 模态框  -->
 				   <div class="modal fade" id="myEditModel" tabindex="-1" role="dialog">
                        <div class="modal-dialog" role="document">
                            <div class="modal-content">
@@ -205,31 +207,45 @@
                                <div class="modal-body">
                                <form class="form-horizontal" id="myEditForm">
 		                           <div class="form-group">
-		                              <div class="col-sm-10">
-		                              <input type="text" class="form-control" id="EditnewsId" name="id" readonly/>
+		                               <label for="inputnewsId" class="col-sm-2 control-label">序号</label>	
+		                              <div class="col-sm-9">
+		                              <input type="text" class="form-control" id="EditnewsId" name="news_id" readonly/>
 		                              </div>
 		                           </div>
-		                           <div class="form-group">								  
-								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="EditnewsTitle" name="recname" placeholder="请输入新闻标题">
+		                           <div class="form-group">		
+		                           <label for="inputnewsTitle" class="col-sm-2 control-label">新闻标题</label>					  
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="EditnewsTitle" name="news_title" placeholder="请输入新闻标题">
 								    </div>
 								  </div>
-								  <div class="form-group">
-								    <div class="col-sm-10">
-								      <textarea class="form-control textarea_a" id="EditnewsConstant" rows="3" name="newsConstant" placeholder="请输入新闻内容"></textarea>
+								 <!--  <div class="form-group">
+								  <label for="inputnewsPhoto" class="col-sm-2 control-label">照片路径</label>	
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="EditnewsPhoto" name="news_photo" placeholder="请输入照片路径">
+								    </div>
+								  </div> -->								  
+								   <div class="form-group">	
+								   <label for="inputnewsConstant" class="col-sm-2 control-label">新闻内容</label>								  
+								    <div class="col-sm-9">
+								      <textarea class="form-control textarea_a" id="EditnewsConstant" rows="3" name="news_constant" placeholder="请输入新闻内容"></textarea>
+								    </div>
+								    
+								  </div>
+								  <div class="form-group">	
+								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
+								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
+								       <input type="radio" id="EditnewsType" name="news_type" value="0">
+								       <label for="news_type">公司新闻</label>
+								    </div>
+								    <div class="col-sm-2 radio-check radio-success radio-inline">
+								       <input type="radio" id="EditnewsType" name="news_type" value="1">
+								       <label for="news_type">行业动态</label>
 								    </div>
 								  </div>
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
-								      <input type="date" class="form-control" id="EditnewsTime" name="newstime" placeholder="请输入发布时间">
-								    </div>
-								  </div>
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
-								           公司新闻:
-								      <input type="radio" checked="checked" class="form-control" id="EditnewsType" name="newsType" value="0"/>
-								           行业动态:
-								      <input type="radio" checked="checked" class="form-control" id="EditnewsType" name="newsType" value="1"/>   
+								   <div class="form-group">	
+								   <label for="inputnewsTime" class="col-sm-2 control-label">发布时间</label>								  
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="EditnewsTime" placeholder="请输入发布时间" readonly>
 								    </div>
 								  </div>
 								</form>
@@ -238,10 +254,10 @@
 						        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 						        <button type="button" class="btn btn-primary" id="myEditBtn">保存</button>
 						      </div>
-						    </div>
-						  </div>
-						</div>
-				    <!-- 添加模态框 -->
+						    </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					<!-- 添加模态框 -->
 					<div class="modal fade" id="myAddModel" tabindex="-1" role="dialog">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
@@ -251,66 +267,66 @@
 						      </div>
 						      <div class="modal-body">
 						        <form class="form-horizontal" id="myAddForm">
-								  <div class="form-group">								  
-								    <div class="col-sm-10">
-								      <input type="text" class="form-control" id="AddnewsTitle" name="recname" placeholder="请输入新闻标题">
+						      <div class="form-group">		
+		                           <label for="inputnewsTitle" class="col-sm-2 control-label">新闻标题</label>							  
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="AddnewsTitle" name="news_title" placeholder="请输入新闻标题">
+								    </div>
+								  </div> 							  
+								   <div class="form-group">	
+								   <label for="inputnewsConstant" class="col-sm-2 control-label">新闻内容</label>								  
+								    <div class="col-sm-9">
+								      <textarea class="form-control textarea_a" id="AddnewsConstant" rows="3" name="news_constant" placeholder="请输入新闻内容"></textarea>
 								    </div>
 								  </div>
-								  <div class="form-group">
-								    <div class="col-sm-10">
-								      <textarea class="form-control textarea_a" id="AddnewsConstant" rows="3" name="newsConstant" placeholder="请输入新闻内容"></textarea>
+								  <div class="form-group">	
+								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
+								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
+								       <input type="radio" id="AddnewsType" name="news_type" value="0" checked="checked">
+								       <label for="news_type1">公司新闻</label>
 								    </div>
-								  </div>
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
-								      <input type="date" class="form-control" id="AddnewsTime" name="newstime" placeholder="请输入发布时间">
-								    </div>
-								  </div>
-								   <div class="form-group">								  
-								    <div class="col-sm-10">
-								           公司新闻:
-								      <input type="radio" checked="checked" class="form-control" id="AddnewsType" name="newsType" value="0">
-								           行业动态:
-								      <input type="radio" checked="checked" class="form-control" id="AddnewsType" name="newsType" value="1">   
+								    <div class="col-sm-2 radio-check radio-success radio-inline">
+								       <input type="radio" id="AddnewsType" name="news_type" value="1">
+								       <label for="news_type1">行业动态</label>
 								    </div>
 								  </div>
 								</form>
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						        <button type="button" class="btn btn-primary" id="myAddBtn">添加</button>
-						      </div>
-						    </div><!-- /.modal-content -->
+						        <button type="button" class="btn btn-primary" id="myAddBtn">添加</button>						      
+						     </div><!-- /.modal-content -->
 						  </div><!-- /.modal-dialog -->
-						</div><!-- /.modal -->
+					</div>
+				   </div>
 				   
-				   				   
 				   
 				   
 				   <div class="page-title">
 					   <span class="title">新闻中心</span>
+					   <!-- 添加按钮 -->
+					   <button class="btn btn-primary btn-lg navbar-right" id="addpage" style="margin:0px"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加</button>
 				   </div>
 				   <div class="row">
 					   <div class="col-xs-12">
-						   <div class="card">
+						   <div class="card">							  
 							   <div class="card-body">
-								   <div>
-									 <table class="table" id="news_table">
+								   <table class="table" id="news_table" >
 								       <thead>
 								          <tr>
 								              <th>序号</th>
 								              <th>新闻标题</th>
-								              <th>新闻内容</th>
-								              <th>发放时间</th>
-								              <th>新闻类型</th>								            
+								              <!-- <th>照片路径</th> -->
+								              <th>新闻内容</th>							          
+								              <th>新闻类型</th>
+								              <th>发布时间</th>
 								              <th>操作</th>
 								          </tr>
 								       </thead>
 								       <tbody>
 								       
 								       </tbody>
-								      </table>
-								   </div>
+								   </table>
 							   </div>
 						   </div>
 					   </div>
@@ -327,7 +343,8 @@
 		   </div>
 	   </footer>
    </div>
-<script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script>
+<%-- <script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script> --%>
+<script type="text/javascript" src="${APP_PATH }/js/js/jquery-3.2.1.js"></script>
 <!--<script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/Chart.min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap-switch.min.js"></script>
@@ -342,13 +359,14 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript">
 $(function(){to_page();});
 function to_page(){
 	$.ajax({
-		url:"all",
+		url:"news/all",
 		type:"POST",
-		success:function(result){
+		success:function(result){ 
 			//1、解析数据
 			build_news_table(result);
 		},
@@ -357,45 +375,51 @@ function to_page(){
 	 }
 	});
 }
+
 function build_news_table(result){
 	//构建先前情况table,empty掏空信息的方法
-	$("#index_table tbody").empty();
+	$("#news_table tbody").empty();
 	$.each(result,function(index,item){
-		/* alert(item.name); */
+		var time=times(item.news_time);
+		item.news_time=time;
 		var idTd=$("<td></td>").append(item.news_id);
 		var titleTd=$("<td></td>").append(item.news_title);
+		/* var photoTd=$("<td></td>").append(item.news_photo); */
 		var constantTd=$("<td></td>").append(item.news_constant);
 		var timeTd=$("<td></td>").append(item.news_time);
-		var typeTd=$("<td></td>").append(item.news_type);		
+		var typeTd=$("<td></td>").append(item.news_type);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.news_id);
 		
 		var delBtn=$("<button id='delBtn'></button>").addClass("btn btn-danger btn-sm del_btn").append($("<span></span>").addClass("glyphicon glyphicon-trash")).append(" 删除");
 		delBtn.attr("del-id",item.news_id);
 		
-		/* var editBtn=$("<a id='editBtn' onclick='edit("+item.rec_id+")'>编辑</a>");
+		/* var editBtn=$("<a id='editBtn' onclick='edit("+item.news_id+")'>编辑</a>");
 		
-		var delBtn=$("<a id='delBtn' onclick='del("+item.rec_id+")'> 删除</a>"); */
+		var delBtn=$("<a id='delBtn' onclick='del("+item.news_id+")'> 删除</a>"); */
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(numbersTd)
+		$("<tr></tr>").append(idTd).append(titleTd).append(constantTd).append(typeTd).append(timeTd)
 		.append(btnTd).appendTo("#news_table tbody");
 	});
 }
 //编辑按钮绑定数据
-function getEditDate(id){
+function getEditDate(id){ 
 	$.ajax({
-		url:"updateNews",
+		url:"news/updateNews",
 		type:"GET",
-		data:"id="+id,
+		data:"news_id="+id,
 		success:function(result){
-			$.each(result,function(index,item){
-				$("#EditnewsId").val(item.rec_id);
+			$.each(result,function(index,item){ 
+				var time=times(item.news_time);
+				item.news_time=time;
+				$("#EditnewsId").val(item.news_id);
 				$("#EditnewsTitle").val(item.news_title);
+				/* $("#EditnewsPhoto").val(item.qua_photo); */
 				$("#EditnewsConstant").val(item.news_constant);
+				$("input[name=news_type][value='"+item.news_type+"']").attr("checked",true);
 				$("#EditnewsTime").val(item.news_time);
-				$("#EditnewsType").val(item.news_type);
 			});
 		},
 		error:function(result){
@@ -407,9 +431,9 @@ function getEditDate(id){
 $(document).on("click","#editBtn",function(){
 	$("#EditnewsId").val("");
 	$("#EditnewsTitle").val("");
-	$("#EditnewsConstant").val("");
+	/* $("#EditnewsPhoto").val(""); */
+	$("#EditnewsConstant").val("");	
 	$("#EditnewsTime").val("");
-	$("#EditnewsType").val("");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -421,25 +445,31 @@ $(document).on("click","#editBtn",function(){
 });
 //点击编辑模态框的保存按钮
 $(document).on("click","#myEditBtn",function(){
-	var id=$("#EditnewsId").val();
-	var title=$("#EditnewsTitle").val();
-	var constant=$("#EditnewsConstant").val();
-	var time=$("#EditnewsTime").val();
-	var type=$("#EditnewsType").val();
-	if(title == ""){
+	var news_id=$("#EditnewsId").val();
+	alert(news_id);
+	var news_title=$("#EditnewsTitle").val();
+	alert("a"+news_title);
+	var news_constant=$("#EditnewsConstant").val();
+	alert(news_constant);
+	var news_type=$("input:radio[name='news_type']:checked").val();
+	alert(news_type);
+	var news_time=$("#EditnewsTime").val();
+	alert(news_time);
+	if(news_title == ""){
 		alert("新闻标题不能为空!");
-	}else if(indexOf(title)){
+	}else if(indexOf(news_title)){
 		alert("新闻标题不能含有空白字符!");
-	}else if(constant==""){
+	}else if(news_constant==""){
 		alert("新闻内容不能为空!");
 	}else{
+		alert($("#myEditForm").serialize());
 		 $.ajax({
-			url:"update",
+			url:"news/update",
 			type:"POST",
 			data:$("#myEditForm").serialize(),
 			success:function(result){
-				$("#myEditModel").modal('hide');
-				to_page();
+				$("#myEditModel").modal('hide');//隐藏模态框
+				to_page();//显示全部
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
@@ -457,28 +487,26 @@ function indexOf(str){
 //打开添加模态框
 $(document).on("click","#addpage",function(){
 	$("#AddnewsTitle").val("");
+	/* $("#AddnewsPhoto").val(""); */
 	$("#AddnewsConstant").val("");
-	$("#AddnewsTime").val("");
-/* 	$("#AddnewsType").val("");	 */
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
-	var title=$("#AddnewsTitle").val();
-	var constant=$("#AddnewsConstant").val();
-	var time=$("#AddnewsTime").val();
-	var type=$("#AddnewsType").val();
-	if(title == ""){
+	var news_title=$("#AddnewsTitle").val();
+	var news_constant=$("#AddnewsConstant").val();
+	var news_type=$("input:radio[name='news_type']:checked").val();
+	if(news_title == ""){
 		alert("新闻标题不能为空!");
-	}else if(indexOf(title)){
+	}else if(indexOf(news_title)){
 		alert("新闻标题不能含有空白字符!");
-	}else if(constant==""){
+	}else if(news_constant==""){
 		alert("新闻内容不能为空!");
 	}else{
 		 $.ajax({
-			url:"add",
+			url:"news/add",
 			type:"POST",
 			data:$("#myAddForm").serialize(),
 			success:function(result){
@@ -488,25 +516,28 @@ $(document).on("click","#myAddBtn",function(){
 			error:function(result){
 				alert("添加时发生错误!");
 			}
-		}); 
+		});
 	}
 });
 //删除
 $(document).on("click","#delBtn",function(){
 	var id = $(this).attr("del-id");
-	$.ajax({
-		url:"deleteById",
-		type:"GET",
-		data:"id="+id,
-		success:function(result){
-			to_page();
-		},
-		error:function(result){
-			alert("删除时错误，请重新尝试!");
+	if(confirm("是否要删除?")){
+		//删除 
+		$.ajax({
+			url:"news/deleteById",
+			type:"GET",
+			data:"news_id="+id,
+			success:function(result){
+				to_page();
+			},
+			error:function(result){
+				alert("删除时错误，请重新尝试!");
+			}
+		});
 		}
-	});
+	
 });
-
 
 	/*打开重置密码的模态框*/
 	$(document).on("click","#pass_reset",function(){
