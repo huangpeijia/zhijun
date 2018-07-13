@@ -26,14 +26,7 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
-	<style type="text/css">
-	table{
-	   table-layout:fixed;width:100%;
-	}
-	td{
-	   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-	}
-	</style>
+	<link rel="stylesheet" type="text/css" href="${APP_PATH}/js/css/table.css"><!-- 自定义的表格样式和分页的样式 -->	
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -309,6 +302,7 @@
 								       
 								       </tbody>
 								   </table>
+								   <div id="page"></div>
 							   </div>
 						   </div>
 					   </div>
@@ -342,15 +336,19 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script type="text/javascript">
-$(function(){to_page();});
-function to_page(){
+var c_page=1;//当前页数
+$(function(){to_page(c_page);});
+function to_page(c_page){
 	$.ajax({
 		url:"case/all",
 		type:"POST",
+		data:"c_page="+c_page,
 		success:function(result){ 
 			//1、解析数据
 			build_case_table(result);
+			pages("case",c_page);
 		},
 	 error:function(e){
 		 alert("error:"+e);
@@ -445,7 +443,7 @@ $(document).on("click","#myEditBtn",function(){
 			data:$("#myEditForm").serialize(),
 			success:function(result){
 				$("#myEditModel").modal('hide');//隐藏模态框
-				to_page();//显示全部
+				to_page(c_page);//显示全部
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
@@ -490,7 +488,7 @@ $(document).on("click","#myAddBtn",function(){
 			data:$("#myAddForm").serialize(),
 			success:function(result){
 				$("#myAddModel").modal('hide');
-				to_page();
+				to_page(c_page);
 			},
 			error:function(result){
 				alert("添加时发生错误!");
@@ -508,7 +506,7 @@ $(document).on("click","#delBtn",function(){
 			type:"GET",
 			data:"case_id="+id,
 			success:function(result){
-				to_page();
+				to_page(c_page);
 			},
 			error:function(result){
 				alert("删除时错误，请重新尝试!");
