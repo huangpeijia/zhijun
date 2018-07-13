@@ -26,14 +26,7 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
-	<style type="text/css">
-	table{
-	   table-layout:fixed;width:100%;
-	}
-	td{
-	   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-	}
-	</style>
+	<link rel="stylesheet" type="text/css" href="${APP_PATH}/js/css/table.css"><!-- 自定义的表格样式和分页的样式 -->		
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -68,7 +61,7 @@
 						   <ul class="dropdown-menu animated fadeInDown">
 							   <li class="profile-img">
 								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
-							   </li>picjumbo.com_HNCK4153_resize
+							   </li>
 							   <li>
 								   <div class="profile-info">
 									   <h4 class="username">Admin</h4>
@@ -309,6 +302,7 @@
 								       
 								       </tbody>
 								   </table>
+								   <div id="page"></div>
 							   </div>
 						   </div>
 					   </div>
@@ -342,15 +336,19 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script type="text/javascript">
-$(function(){to_page();});
-function to_page(){
+var c_page=1;//当前页数
+$(function(){to_page(c_page);});
+function to_page(c_page){
 	$.ajax({
 		url:"qua/all",
 		type:"POST",
+		data:"c_page="+c_page,
 		success:function(result){ 
 			//1、解析数据
 			build_qua_table(result);
+			pages("qua",c_page);
 		},
 	 error:function(e){
 		 alert("error:"+e);

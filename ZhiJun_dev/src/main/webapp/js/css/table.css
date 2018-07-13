@@ -1,0 +1,44 @@
+table{
+    table-layout:fixed;
+    width:100%;
+    }
+   
+td{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	}
+
+
+
+#page{text-align: center;}
+
+#page a{
+    text-decoration: none;
+    padding:10px 20px 10px 20px;
+    width:20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    }
+   
+#page a.selected{
+	background: #353D47;
+	color:#fff;
+	}
+	
+/* 跳转框 */
+#page input{
+	padding: 13px;
+    text-decoration: none;
+    margin:0px 20px 0px 20px;
+    width:45px;
+    height:35px;
+    border: 1px solid #ccc
+    }
+    
+#page button{
+    margin-right:10px;
+    width:45px;
+    height:30px;
+    }
+   

@@ -1,8 +1,8 @@
 
 //查询总页数
-function pages(c_page){
+function pages(urlname,c_page){
 	$.ajax({
-		url:"rec/countall",
+		url:urlname+"/countall",
 		type:"GET",
 		success:function(result){
 		count(result,c_page);
@@ -14,7 +14,7 @@ function pages(c_page){
 }
 //添加数据
 function count(result,c_pages){
-	var coun=Math.ceil(result/5);
+	var coun=Math.ceil(result/7);
 	var list='';
 	var onpage=c_pages-1; //上一页
 	var unpage =c_pages+1;//下一页
