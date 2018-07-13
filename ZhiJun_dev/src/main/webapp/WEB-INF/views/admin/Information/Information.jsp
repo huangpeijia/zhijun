@@ -279,13 +279,14 @@
 								   <div class="form-group">	
 								   <label for="inputcomTime" class="col-sm-2 control-label">成立时间</label>								  
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomTime" name="com_time" placeholder="请输入成立时间">
+								      <input type="date" class="form-control" id="EditcomTime" placeholder="请输入成立时间">
+								      <input type="hidden" class="form-control" id="EditcomTimes" name="com_time" placeholder="请输入成立时间">
 								    </div>
 								  </div>
 								</form>
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						        <button type="button" class="btn btn-default" id="reduction" >还原</button>
 						        <button type="button" class="btn btn-primary" id="myEditBtn">修改</button>
 						      </div>
 						    </div>
@@ -343,17 +344,19 @@ function inf_update(){
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
-	getEditDate(id);	
+	getEditDate(1);	
 	
-});
+}
 //编辑绑定数据
-function getEditDate(id){ 
+function getEditDate(id){
 	$.ajax({
 		url:"inf/updateAbout",
 		type:"GET",
 		data:"com_id="+id,
 		success:function(result){
-			$.each(result,function(index,item){ 				
+			$.each(result,function(index,item){
+				var time=timest(item.com_time);
+				item.com_time=time;
 				$("#EditcomId").val(item.com_id);
 				$("#EditcomName").val(item.com_name);	
 				$("#EditcomLogo").val(item.com_logo);
@@ -365,7 +368,7 @@ function getEditDate(id){
 				$("#EditcomEmail").val(item.com_email);
 				$("#EditcomCopyright").val(item.com_copyright);
 				$("#EditcomProfile").val(item.com_profile);
-				$("#EditcomTime").val(item.com_time);
+				$("#EditcomTime").val(time);
 			});
 		},
 		error:function(result){
@@ -373,6 +376,15 @@ function getEditDate(id){
 		}
 	});
 }
+
+function timesU(value){
+	var date = new Date(value);
+	return date;
+}
+//点击还原按钮
+$(document).on("click","#reduction",function(){
+	inf_update();
+});
 //点击编辑按钮
 $(document).on("click","#myEditBtn",function(){
 	var com_id=$("#EditcomId").val();
@@ -387,14 +399,18 @@ $(document).on("click","#myEditBtn",function(){
 	var com_copyright=$("#EditcomCopyright").val();
 	var com_profile=$("#EditcomProfile").val();
 	var com_time=$("#EditcomTime").val();
+	var time=timesU(com_time);
 	if(com_name == ""){
 		alert("公司名称不能为空!");
 	}else if(indexOf(com_name)){
 		alert("公司名称不能含有空白字符!");
 	}else if(com_profile==""){
 		alert("公司介绍不能为空!");
+	}else if(com_time==""){
+		alert("成立时间不能为空!");
 	}else{		
 		if(confirm("是否要修改?")){
+			$("#EditcomTimes").val(time);
 			//修改 
 			 $.ajax({
 					url:"inf/update",
