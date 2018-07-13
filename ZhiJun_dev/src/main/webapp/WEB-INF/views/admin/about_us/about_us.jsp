@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>联系我们</title>
+	<title>公司信息</title>
 	<%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
@@ -26,6 +26,7 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
+	<link rel="stylesheet" type="text/css" href="${APP_PATH}/js/css/table.css"><!-- 自定义的表格样式和分页的样式 -->			
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -44,7 +45,7 @@
 					   </button>
 					   <!--左边字体提示词-->
 					   <ol class="breadcrumb navbar-breadcrumb">
-						   <li>招聘信息</li>
+						   <li>关于我们</li>
 						   <!-- <li class="active">个人信息</li> -->
 					   </ol>
 					   <!--???-->
@@ -59,7 +60,7 @@
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span> </a>
 						   <ul class="dropdown-menu animated fadeInDown">
 							   <li class="profile-img">
-								   <img src="${APP_PATH }/js/img/profile/picjumbo.jpg" class="profile-img">
+								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
 							   </li>
 							   <li>
 								   <div class="profile-info">
@@ -86,7 +87,7 @@
 				   <div class="side-menu-container">
 					   <!--顶部蓝色正方形div-->
 					   <div class="navbar-header">
-						   <a class="navbar-brand" href="#">
+						   <a class="navbar-brand" href="rec">
 							   <!--纸飞机字体图标-->
 							   <div class="icon fa fa-paper-plane"></div>
 							   <div class="title">智钧时代管理后台</div>
@@ -97,52 +98,52 @@
 						   <!--导航目录1-->
 						   <li>
 							   <!--图标和字-->
-							   <a href="">
+							   <a href="rec">
 								   <!--图标和字-->
 								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
 							   </a>							 
 						   </li>
 						   <!--导航目录2-->
 						   <li>
-							   <a href="">
+							   <a href="rec">
 								   <!--图标和字-->
 								   <span class="icon fa fa-desktop"></span><span class="title">公司信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录3-->
 						   <li>
-							   <a href="">
+							   <a href="news">
 								   <!--图标和字-->
 								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
 							   </a>
 						   </li>
 						   <!--导航目录4-->
 						   <li>
-							   <a href="service/service.html">
+							   <a href="pro">
 								   <span class="icon fa fa-book"></span><span class="title">产品服务</span>
 							   </a>
 						   </li>
 						   <!--导航目录5-->
 						   <li>
-							   <a href="">
+							   <a href="case">
 								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">案例信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录6-->
 						   <li>
-							   <a href="">
+							   <a href="qua">
 								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录7-->
 						   <li class="active">
-							   <a href="">
+							   <a href="about">
 								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
 							   </a>
 						   </li>
 						   <!--导航目录8-->
 						   <li>
-							   <a href="">
+							   <a href="file">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>
@@ -166,17 +167,17 @@
 								   <form class="form-horizontal " id="passForm">
 									   <div class="form-group ">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword" placeholder="请输入旧密码"/>
+											   <input type="password" class="form-control" id="1" name="userpassword" placeholder="请输入旧密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword1" placeholder="请输入新密码"/>
+											   <input type="password" class="form-control" id="2" name="userpassword1" placeholder="请输入新密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="" name="userpassword2" placeholder="请确定新密码"/>
+											   <input type="password" class="form-control" id="3" name="userpassword2" placeholder="请确定新密码"/>
 										   </div>
 									   </div>
 								   </form>
@@ -188,25 +189,71 @@
 						   </div>
 					   </div>
 				   </div>
+				    
+				   
 				   
 				   <div class="page-title">
-					   <span class="title">个人中心</span>
+					   <span class="title">关于我们</span>					   
 				   </div>
 				   <div class="row">
 					   <div class="col-xs-12">
-						   <div class="card">
-							   <div class="card-header">
-								   <div class="card-title">
-									   <div class="title">个人信息</div>
-								   </div>
-							   </div>
-							   <div class="card-body">
-								   <div>
-									  
-									 
-								   </div>
-							   </div>
-						   </div>
+
+								   <!--编辑  -->				   
+                           <div class="modal-content">                              
+                               <div class="modal-body">
+                               <form class="form-horizontal" id="myEditForm" style="margin-top:40px;">
+		                           <div class="form-group">
+		                               <label for="inputaboutId" class="col-sm-2 control-label">序号</label>	
+		                              <div class="col-sm-9">
+		                              <input type="text" class="form-control" id="EditaboutId" name="about_id" readonly/>
+		                              </div>
+		                           </div>
+		                           <div class="form-group">	
+								   <label for="inputaboutProfile" class="col-sm-2 control-label">公司介绍</label>								  
+								    <div class="col-sm-9">
+								      <textarea class="form-control textarea_a" id="EditaboutProfile" rows="3" name="about_profile" placeholder="请输入公司介绍"></textarea>
+								    </div>				    
+								  </div>		                           
+								  <div class="form-group">
+								  <label for="inputaboutScope" class="col-sm-2 control-label">经营范围</label>	
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="EditaboutScope" name="about_scope" placeholder="请输入公司经营范围">
+								    </div>
+								  </div>								  
+								   <div class="form-group">
+								  <label for="inputaboutProducts" class="col-sm-2 control-label">主要产品</label>	
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="EditaboutProducts" name="about_products" placeholder="请输入公司主要产品">
+								    </div>
+								  </div>	
+								  <div class="form-group">
+								  <label for="inputaboutCulture" class="col-sm-2 control-label">公司文化</label>	
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="EditaboutCulture" name="about_culture" placeholder="请输入公司文化">
+								    </div>
+								  </div>	
+								  <div class="form-group">
+								  <label for="inputaboutProspects" class="col-sm-2 control-label">发展前景</label>	
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" id="EditaboutProspects" name="about_prospects" placeholder="请输入公司发展前景">
+								    </div>
+								  </div>									  
+								   <div class="form-group">	
+								   <label for="inputaboutTime" class="col-sm-2 control-label">成立时间</label>								  
+								    <div class="col-sm-9">
+								      <input type="date" class="form-control" id="EditaboutTime" placeholder="请输入成立时间">
+								      <input type="hidden" class="form-control" id="EditaboutTimes" name="about_time" placeholder="请输入成立时间">
+								    </div>
+								  </div>
+								</form>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" id="reduction" >还原</button>
+						        <button type="button" class="btn btn-primary" id="myEditBtn">修改</button>
+						      </div>
+						    </div>
+				
+				   
 					   </div>
 				   </div>
 			   </div>
@@ -221,7 +268,8 @@
 		   </div>
 	   </footer>
    </div>
-<script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script>
+<%-- <script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script> --%>
+<script type="text/javascript" src="${APP_PATH }/js/js/jquery-3.2.1.js"></script>
 <!--<script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/Chart.min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap-switch.min.js"></script>
@@ -236,7 +284,96 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript">
+$(function(){about_update();});
+//执行编辑
+function about_update(){
+	$("#EditaboutId").val("");
+	$("#EditaboutProfile").val("");
+	$("#EditaboutScope").val("");
+    $("#EditaboutProducts").val("");
+	$("#EditaboutCulture").val("");	
+	$("#EditaboutProspects").val("");	
+	$("#EditaboutTime").val("");
+	//获取编辑按钮自定义属性ID
+	var id = $(this).attr("edit-id");
+	//传递参数ID
+	getEditDate(1);	
+	
+}
+//编辑绑定数据
+function getEditDate(id){
+	$.ajax({
+		url:"about/updateAbout",
+		type:"GET",
+		data:"about_id="+id,
+		success:function(result){
+			$.each(result,function(index,item){
+				var time=timest(item.about_time);
+				item.about_time=time;
+				$("#EditaboutId").val(item.about_id);
+				$("#EditaboutProfile").val(item.about_profile);
+				$("#EditaboutScope").val(item.about_scope);
+			    $("#EditaboutProducts").val(item.about_products);
+				$("#EditaboutCulture").val(item.about_culture);	
+				$("#EditaboutProspects").val(item.about_prospects);	
+				$("#EditaboutTime").val(item.about_time);
+			});
+		},
+		error:function(result){
+			alert("编辑绑定数据错误!");
+		}
+	});
+}
+
+function timesU(value){
+	var date = new Date(value);
+	return date;
+}
+//点击还原按钮
+$(document).on("click","#reduction",function(){
+	inf_update();
+});
+//点击编辑按钮
+$(document).on("click","#myEditBtn",function(){
+	var about_id=$("#EditaboutId").val();
+	var about_profile=$("#EditaboutProfile").val();
+	var about_scope=$("#EditaboutScope").val();
+    var about_products=$("#EditaboutProducts").val();
+	var about_culture=$("#EditaboutCulture").val();	
+	var about_prospects=$("#EditaboutProspects").val();	
+	var about_time=$("#EditaboutTime").val();
+	var time=timesU(about_time);
+	if(about_profile == ""){
+		alert("公司介绍不能为空!");
+	}else if(about_scope==""){
+		alert("公司经营范围不能为空!");
+	}else if(about_products==""){
+		alert("公司主要产品不能为空!");
+	}else if(about_time==""){
+		alert("成立时间不能为空!");
+	}else{		
+		if(confirm("是否要修改?")){
+			$("#EditaboutTimes").val(time);
+			//修改 
+			 $.ajax({
+					url:"about/update",
+					type:"POST",
+					data:$("#myEditForm").serialize(),
+					success:function(result){
+						about_update();
+					},
+					error:function(result){
+						alert("编辑时发生错误!");
+					}
+				}); 
+			}
+		
+		
+	}
+});
+
 	/*打开重置密码的模态框*/
 	$(document).on("click","#pass_reset",function(){
 
@@ -244,6 +381,7 @@
 			backdrop:'static'
 		});
 	});
+
 </script>
 </body>
 </html>
