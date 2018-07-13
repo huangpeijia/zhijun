@@ -28,13 +28,25 @@ public class ProductDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
+	 * 查询总数
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	public int countAll() {
+		String sql = "select count(*) from product";
+		Integer count =jdbcTemplate.queryForObject(sql , Integer.class);  
+		return count;
+		
+	}
+	/**
 	 * 查询所有
 	 * 方法
 	 * @author hpj
 	 * @version 2018年7月10日
 	 */
-	public List<Product> queryAll(){
-		String sql ="select pro_id, pro_name, pro_constant, pro_photo, pro_time, pro_type from product";
+	public List<Product> queryAll(int pages, int keys){
+		String sql ="select pro_id, pro_name, pro_constant, pro_photo, pro_time, pro_type from product order by pro_time limit "+pages+","+keys+"";
 		List<Product> list =jdbcTemplate.query(sql, new ProductMapper());
 		return list;
 	}

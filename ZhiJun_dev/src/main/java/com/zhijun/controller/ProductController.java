@@ -48,8 +48,10 @@ public class ProductController extends ControllerBase{
 	 */
 	@RequestMapping(value = "/admin/pro/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<Product> queryAll(Model model){
-		List<Product> pro = prodao.queryAll();
+	public List<Product> queryAll(@RequestParam("c_page") int c_page,Model model){
+		c_page-=1;
+		c_page=0+c_page*5;
+		List<Product> pro = prodao.queryAll(c_page,5);
 		return pro;
 	}
 	/**

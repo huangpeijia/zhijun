@@ -48,8 +48,10 @@ public class NewsController extends ControllerBase{
 	 */
 	@RequestMapping(value = "/admin/news/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<News> queryAll(Model model){
-		List<News> news = newsdao.queryAll();
+	public List<News> queryAll(@RequestParam("c_page") int c_page,Model model){
+		c_page-=1;
+		c_page=0+c_page*5;
+		List<News> news = newsdao.queryAll(c_page,5);
 		return news;
 	}
 	/**

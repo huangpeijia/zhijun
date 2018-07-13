@@ -47,8 +47,10 @@ public class CaseController extends ControllerBase{
 	 */
 	@RequestMapping(value = "/admin/case/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<Cases> queryAll(Model model){
-		List<Cases> cases = casedao.queryAll();
+	public List<Cases> queryAll(@RequestParam("c_page") int c_page,Model model){
+		c_page-=1;
+		c_page=0+c_page*5;
+		List<Cases> cases = casedao.queryAll(c_page,5);
 		return cases;
 	}
 	/**

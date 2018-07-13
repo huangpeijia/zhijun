@@ -28,11 +28,23 @@ public class CaseDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
+	 * 查询总数
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	public int countAll() {
+		String sql = "select count(*) from cases";
+		Integer count =jdbcTemplate.queryForObject(sql , Integer.class);  
+		return count;
+		
+	}
+	/**
 	 * 查询所有
 	 * 方法
 	 */
-	public List<Cases> queryAll(){
-		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases";
+	public List<Cases> queryAll(int pages, int keys){
+		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases order by case_time limit "+pages+","+keys+"";
 		List<Cases> list = jdbcTemplate.query(sql, new CaseMapper());
 		return list;
 	}
