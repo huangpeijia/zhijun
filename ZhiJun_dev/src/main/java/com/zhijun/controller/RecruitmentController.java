@@ -62,8 +62,8 @@ public class RecruitmentController extends ControllerBase{
 	@ResponseBody
 	public List<Recruitment> queryAll(@RequestParam("c_page") int c_page,Model model){
 		c_page-=1;
-		c_page=0+c_page*5;
-		List<Recruitment> rec = recdao.queryAll(c_page,5);
+		c_page=0+c_page*7;
+		List<Recruitment> rec = recdao.queryAll(c_page,7);
 		return rec;
 	}
 	/**

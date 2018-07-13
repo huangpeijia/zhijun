@@ -41,6 +41,20 @@ public class CaseController extends ControllerBase{
 		return "admin/case/case";
 	}
 	/**
+	 * 查询全部数量
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	@RequestMapping(value = "/admin/case/countall")
+	@ResponseBody
+	public Integer countAll() {
+		Integer count =casedao.countAll();
+		System.out.println(count);
+		return count;
+		
+	}
+	/**
 	 * 获取所有数据
 	 * 方法
 	 * @version 2018年7月9日
@@ -49,8 +63,8 @@ public class CaseController extends ControllerBase{
 	@ResponseBody
 	public List<Cases> queryAll(@RequestParam("c_page") int c_page,Model model){
 		c_page-=1;
-		c_page=0+c_page*5;
-		List<Cases> cases = casedao.queryAll(c_page,5);
+		c_page=0+c_page*7;
+		List<Cases> cases = casedao.queryAll(c_page,7);
 		return cases;
 	}
 	/**

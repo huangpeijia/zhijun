@@ -26,27 +26,7 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
-	<style>
-	#page{text-align: center;}
-        #page a{text-decoration: none;
-          padding: 10px;
-            width:20px;
-            height: 20px;
-        border: 1px solid #ccc}
-        #page a.selected{background: #ccc}
-        #page input{padding: 13px;
-        	text-decoration: none;
-        	margin:0px 20px 0px 20px;
-            width:45px;
-            height:35px;
-        border: 1px solid #ccc
-        }
-        #page button{
-        	margin-right:10px;
-        	width:45px;
-            height:30px;
-        }
-	</style>
+	<link rel="stylesheet" type="text/css" href="${APP_PATH}/js/css/table.css"><!-- 自定义的表格样式和分页的样式 -->	
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -386,8 +366,7 @@
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script type="text/javascript">
 var c_page=1; //当前页数
-$(function(){
-	to_page(c_page);});
+$(function(){to_page(c_page);});
 function to_page(c_page){
 	$.ajax({
 		url:"rec/all",
@@ -396,7 +375,7 @@ function to_page(c_page){
 		success:function(result){ 
 			//1、解析数据
 			build_rec_table(result);
-			pages(c_page); 
+			pages("rec",c_page); 
 		},
 	 error:function(e){
 		 alert("error:"+e);

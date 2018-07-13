@@ -40,6 +40,20 @@ public class QualificationController extends ControllerBase{
 		return "admin/qualification/qualification";
 	}
 	/**
+	 * 查询全部数量
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	@RequestMapping(value = "/admin/qua/countall")
+	@ResponseBody
+	public Integer countAll() {
+		Integer count =quadao.countAll();
+		System.out.println(count);
+		return count;
+		
+	}
+	/**
 	 * 查询所有数据
 	 * 方法
 	 * @author hpj
@@ -49,8 +63,8 @@ public class QualificationController extends ControllerBase{
 	@ResponseBody
 	public List<Qualification> queryAll(@RequestParam("c_page") int c_page,Model model){
 		c_page-=1;
-		c_page=0+c_page*5;
-		List<Qualification> qua =quadao.queryAll(c_page,5);
+		c_page=0+c_page*7;
+		List<Qualification> qua =quadao.queryAll(c_page,7);
 		return qua;
 	}
 	/**

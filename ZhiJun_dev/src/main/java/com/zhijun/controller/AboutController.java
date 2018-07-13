@@ -39,9 +39,23 @@ public class AboutController extends ControllerBase{
 	public List<About> queryAll(@RequestParam("c_page") int c_page,Model model) { 
 		// 从ioc容器获取dao
 		c_page-=1;
-		c_page=0+c_page*5;
-		List<About> about = aboutdao.queryAll(c_page,5); 
+		c_page=0+c_page*7;
+		List<About> about = aboutdao.queryAll(c_page,7); 
 		return about;
+	}
+	/**
+	 * 查询全部数量
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	@RequestMapping(value = "/admin/about/countall")
+	@ResponseBody
+	public Integer countAll() {
+		Integer count =aboutdao.countAll();
+		System.out.println(count);
+		return count;
+		
 	}
 	/**
 	 * 跳转页面
