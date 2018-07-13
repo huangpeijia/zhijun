@@ -26,6 +26,27 @@
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
+	<style>
+	#page{text-align: center;}
+        #page a{text-decoration: none;
+          padding: 10px;
+            width:20px;
+            height: 20px;
+        border: 1px solid #ccc}
+        #page a.selected{background: #ccc}
+        #page input{padding: 13px;
+        	text-decoration: none;
+        	margin:0px 20px 0px 20px;
+            width:45px;
+            height:35px;
+        border: 1px solid #ccc
+        }
+        #page button{
+        	margin-right:10px;
+        	width:45px;
+            height:30px;
+        }
+	</style>
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -319,9 +340,10 @@
 								          </tr>
 								       </thead>
 								       <tbody>
-								       
 								       </tbody>
+								       
 								   </table>
+								       <div id="page"></div>
 							   </div>
 						   </div>
 					   </div>
@@ -355,22 +377,26 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script type="text/javascript">
-$(function(){to_page();});
-function to_page(){
+var c_page=1; //当前页数
+$(function(){
+	to_page(c_page);});
+function to_page(c_page){
 	$.ajax({
 		url:"rec/all",
 		type:"POST",
+		data:"c_page="+c_page,
 		success:function(result){ 
 			//1、解析数据
 			build_rec_table(result);
+			pages(c_page); 
 		},
 	 error:function(e){
 		 alert("error:"+e);
 	 }
 	});
 }
-
 function build_rec_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#index_table tbody").empty();
@@ -464,7 +490,7 @@ $(document).on("click","#myEditBtn",function(){
 			data:$("#myEditForm").serialize(),
 			success:function(result){
 				$("#myEditModel").modal('hide');//隐藏模态框
-				to_page();//显示全部
+				to_page(c_page);//显示全部
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
@@ -505,15 +531,14 @@ $(document).on("click","#myAddBtn",function(){
 		alert("职位名称不能含有空白字符!");
 	}else if(rec_num < 0){
 		alert("招聘人数不能小于零!");
-	}else{
-		alert($("#myAddForm").serialize());
+	}else{ 
 		 $.ajax({
 			url:"rec/add",
 			type:"POST",
 			data:$("#myAddForm").serialize(),
 			success:function(result){
 				$("#myAddModel").modal('hide');
-				to_page();
+				to_page(c_page);
 			},
 			error:function(result){
 				alert("添加时发生错误!");
@@ -531,7 +556,7 @@ $(document).on("click","#delBtn",function(){
 			type:"GET",
 			data:"rec_id="+id,
 			success:function(result){
-				to_page();
+				to_page(c_page);
 			},
 			error:function(result){
 				alert("删除时错误，请重新尝试!");

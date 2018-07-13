@@ -27,11 +27,23 @@ public class AboutDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
+	 * 查询总数
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	public int countAll() {
+		String sql = "select count(*) from about";
+		Integer count =jdbcTemplate.queryForObject(sql , Integer.class);  
+		return count;
+		
+	}
+	/**
 	 * 查询所有
 	 * 方法
 	 */
-	public List<About> queryAll(){
-		String sql ="select about_id, about_profile, about_scope, about_products, about_culture, about_prospects,about_time from about";
+	public List<About> queryAll(int pages, int keys){
+		String sql ="select about_id, about_profile, about_scope, about_products, about_culture, about_prospects,about_time from about order by about_time limit "+pages+","+keys+"";
 		List<About> list=jdbcTemplate.query(sql, new AboutMapper());
 		return list; 
 	}

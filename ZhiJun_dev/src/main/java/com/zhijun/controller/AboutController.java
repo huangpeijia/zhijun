@@ -36,9 +36,11 @@ public class AboutController extends ControllerBase{
 	// 从数据库中获取所有数据
 	@RequestMapping(value = "/admin/about/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<About> queryAll(Model model) { 
+	public List<About> queryAll(@RequestParam("c_page") int c_page,Model model) { 
 		// 从ioc容器获取dao
-		List<About> about = aboutdao.queryAll(); 
+		c_page-=1;
+		c_page=0+c_page*5;
+		List<About> about = aboutdao.queryAll(c_page,5); 
 		return about;
 	}
 	/**
