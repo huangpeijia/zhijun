@@ -41,6 +41,20 @@ public class ProductController extends ControllerBase{
 		return "admin/product/product";
 	}
 	/**
+	 * 查询全部数量
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月12日
+	 */
+	@RequestMapping(value = "/admin/pro/countall")
+	@ResponseBody
+	public Integer countAll() {
+		Integer count =prodao.countAll();
+		System.out.println(count);
+		return count;
+		
+	}
+	/**
 	 * 获取所有数据
 	 * 方法
 	 * @author hpj
@@ -50,8 +64,8 @@ public class ProductController extends ControllerBase{
 	@ResponseBody
 	public List<Product> queryAll(@RequestParam("c_page") int c_page,Model model){
 		c_page-=1;
-		c_page=0+c_page*5;
-		List<Product> pro = prodao.queryAll(c_page,5);
+		c_page=0+c_page*7;
+		List<Product> pro = prodao.queryAll(c_page,7);
 		return pro;
 	}
 	/**
