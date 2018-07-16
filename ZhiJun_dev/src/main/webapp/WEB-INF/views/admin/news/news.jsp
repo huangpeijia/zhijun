@@ -57,17 +57,17 @@
 				   <ul class="nav navbar-nav navbar-right ">
 					   <!--用户登出下拉列表-->
 					   <li class="dropdown profile">
-						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span> </a>
+						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.username}<span class="caret"></span> </a>
 						   <ul class="dropdown-menu animated fadeInDown">
 							   <li class="profile-img">
 								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
 							   </li>
 							   <li>
 								   <div class="profile-info">
-									   <h4 class="username">Admin</h4>
+									   <h4 class="username">${sessionScope.username}</h4>
 									   <div class="btn-group " role="group">
 										   <button type="button" class="btn btn-default" id="pass_reset"><i class="fa fa-user"></i> &nbsp;&nbsp;密码重置</button>
-										   <button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i> 退出</button>
+										   <button type="button" class="btn btn-default" onclick="exituser();"><i class="fa fa-sign-out"></i> 退出</button>
 									   </div>
 								   </div>
 							   </li>
@@ -167,17 +167,17 @@
 								   <form class="form-horizontal " id="passForm">
 									   <div class="form-group ">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="1" name="userpassword" placeholder="请输入旧密码"/>
+											   <input type="password" class="form-control" id="UserPass" name="userpassword" placeholder="请输入旧密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="2" name="userpassword1" placeholder="请输入新密码"/>
+											   <input type="password" class="form-control" id="UserPass1" name="userpassword1" placeholder="请输入新密码"/>
 										   </div>
 									   </div>
 									   <div class="form-group">
 										   <div class="col-sm-10 col-sm-offset-1">
-											   <input type="password" class="form-control" id="3" name="userpassword2" placeholder="请确定新密码"/>
+											   <input type="password" class="form-control" id="UserPass2" name="userpassword2" placeholder="请确定新密码"/>
 										   </div>
 									   </div>
 								   </form>
@@ -537,13 +537,79 @@ $(document).on("click","#delBtn",function(){
 	
 });
 
-	/*打开重置密码的模态框*/
-	$(document).on("click","#pass_reset",function(){
 
-		$("#passModel").modal({
-			backdrop:'static'
-		});
+/*打开重置密码的模态框*/
+$(document).on("click","#pass_reset",function(){
+	$("#UserPass").val("");
+	$("#UserPass1").val("");
+	$("#UserPass2").val("");
+	$("#passModel").modal({
+		backdrop:'static'
 	});
+});
+
+//用户登出
+function exituser(){
+	if(confirm("是否退出？")){
+		window.location.href="exit_user";
+	}
+}
+
+//点击密码模态框的确定按钮
+$(document).on("click","#mypassBtn",function(){
+	var user_pass=$("#UserPass").val();
+	var user_pass1=$("#UserPass1").val();
+	var user_pass2=$("#UserPass2").val();
+	if(user_pass==""){
+		alert("旧密码不能为空!");
+	}else if(user_pass1==""){
+		alert("新密码不能为空!");
+	}else if(user_pass2==""){
+		alert("请确定新密码!");
+	}else if(user_pass1!=user_pass2){
+		alert("确定密码和新密码不一致，请重新确定！");
+	}else{
+
+		$.ajax({
+			url:"user/updateUser",
+			type:"GET",
+			data:"user_id="+1,
+			success:function(result){
+				$.each(result,function(index,item){
+					if(user_pass!=item.userpassword){
+						alert("旧密码输入错误,请重新输入!");
+					}else if(user_pass==user_pass1){
+						alert("新密码不能与旧密码相同，请重新输入!");
+					}else{
+						if(confirm("是否要修改?")){
+							updateUser(user_pass1);
+						}
+						
+					}
+				});
+			},
+			error:function(result){
+				alert("验证旧密码错误，请重新尝试!");
+			}
+		});
+				
+	}
+});
+/* 密码修改 */
+function updateUser(userpassword){		
+	$.ajax({
+		url:"user/update",
+		type:"POST",
+		data:"userpassword="+userpassword,
+		success:function(result){
+			alert("修改成功");
+			window.location.href="exit_user";//登出
+		},
+		error:function(result){
+			alert("添加时发生错误!");
+		}
+	}); 
+}
 </script>
 </body>
 </html>

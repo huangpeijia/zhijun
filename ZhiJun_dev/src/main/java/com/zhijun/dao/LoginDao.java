@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.zhijun.bean.Login;
+import com.zhijun.bean.Recruitment;
+import com.zhijun.dao.RecruitmentDao.RecruitmentMapper;
 
 /**
  * 登陆后台系统的dao层用于查询登陆用户名和密码是否正确
@@ -35,6 +37,26 @@ public class LoginDao {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * 查询一条记录
+	 * 方法
+	 * @version 2018年7月10日
+	 */
+	public List<Login>query(int user_id) {
+		String sql = "select id, username, userpassword from admin where id="+user_id+"";
+		List<Login> list = jdbcTemplate.query(sql,new LoginMapper());
+		return list;
+	}
+	/**
+	 * 修改密码
+	 * 方法
+	 * @version 2018年7月16日
+	 */
+	public int update(String userpassword) {
+		String sql = "update admin set userpassword=? where id=?";
+		return jdbcTemplate.update(sql, new Object[] {userpassword,1});
 	}
 	
 	public class LoginMapper implements RowMapper<Login>{
