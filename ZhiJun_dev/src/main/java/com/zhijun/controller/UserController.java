@@ -1,5 +1,6 @@
 package com.zhijun.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import com.zhijun.bean.Login;
+import com.zhijun.bean.Recruitment;
 import com.zhijun.bean.Student;
 import com.zhijun.dao.LoginDao;
 import com.zhijun.dao.StudentDao;
@@ -45,58 +51,41 @@ public class UserController {
 			}
 		}
 		
-		//我用来测试静态页面的，你先别删（wzh）
-		@RequestMapping("/dd")
-		public String dd(){
-			return "admin/index";
+		/**
+		 * 查询一条信息(用户)
+		 * 方法
+		 * @author hpj
+		 * @version 2018年7月10日
+		 */
+		@RequestMapping(value = "/admin/user/updateUser", produces = "application/json; charset=utf-8")
+		@ResponseBody
+		public List<Login> updateUser(@RequestParam("user_id") int user_id,Model model){
+			return dao.query(user_id);
 		}
-		//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/case")
-				public String dd2(){
-					return "admin/case/case";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/company/1")
-				public String dd3(){
-					return "admin/company/firm";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/company/2")
-				public String dd4(){
-					return "admin/company/honor";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/company/3")
-				public String dd5(){
-					return "admin/company/video";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/contact")
-				public String dd6(){
-					return "admin/contact/contact";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/filemanager")
-				public String dd7(){
-					return "admin/filemanager/file";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/news/1")
-				public String dd8(){
-					return "admin/news/fnews";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/news/2")
-				public String dd9(){
-					return "admin/news/tnews";
-				}
-				//我用来测试静态页面的，你先别删（wzh）
-				@RequestMapping("/dd/personal")
-				public String dd10(){
-					return "admin/personal/amend";
-				}
-				@RequestMapping("/dd/service")
-				public String dd11(){
-					return "admin/service/service";
-				}
+		
+		/**
+		 * 修改密码（用户）
+		 * 方法
+		 * @author hpj
+		 * @version 2018年7月10日
+		 */
+		@RequestMapping("/admin/user/update")
+		public String update(String userpassword) {
+			int count = dao.update(userpassword);
+			if(count == 1) {
+				System.out.println("修改成功");
+				return "/index";
+			}
+			return "error";
+			
+		}
+		
+		//用户登出
+		@RequestMapping("admin/exit_user")
+		public String exitUser(HttpServletRequest request){
+			HttpSession session = request.getSession();
+			session.invalidate();
+			return "index";
+		}
+		
 }
