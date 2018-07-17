@@ -55,6 +55,10 @@
 				   </div>
 				   <!--右边-->
 				   <ul class="nav navbar-nav navbar-right ">
+				   <!-- 缩小的关闭键 -->
+				   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs ">
+						<i class="fa fa-times icon"></i>
+					</button>
 					   <!--用户登出下拉列表-->
 					   <li class="dropdown profile">
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.username}<span class="caret"></span> </a>
@@ -380,12 +384,12 @@ function build_news_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.news_time);
 		item.news_time=time;
-		var idTd=$("<td></td>").append(item.news_id);
-		var titleTd=$("<td></td>").append(item.news_title);
-		/* var photoTd=$("<td></td>").append(item.news_photo); */
-		var constantTd=$("<td></td>").append(item.news_constant);
-		var timeTd=$("<td></td>").append(item.news_time);
-		var typeTd=$("<td></td>").append(item.news_type);
+		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.news_id);
+		var titleTd=$("<td style='vertical-align:middle;'></td>").append(item.news_title);
+		/* var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.news_photo); */
+		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.news_constant);
+		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.news_time);
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.news_type);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.news_id);
 		
