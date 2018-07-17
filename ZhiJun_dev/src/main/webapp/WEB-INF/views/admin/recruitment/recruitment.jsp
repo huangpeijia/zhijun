@@ -48,13 +48,17 @@
 						   <li>招聘信息</li>
 						   <!-- <li class="active">个人信息</li> -->
 					   </ol>
-					   <!--???-->
+					   <!--响应式导航键-->
 					   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
 					       <i class="fa fa-th icon"></i>
 				       </button>
 				   </div>
 				   <!--右边-->
 				   <ul class="nav navbar-nav navbar-right ">
+				   <!-- 缩小的关闭键 -->
+				   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs ">
+						<i class="fa fa-times icon"></i>
+					</button>
 					   <!--用户登出下拉列表-->
 					   <li class="dropdown profile">
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.username}<span class="caret"></span> </a>
@@ -388,13 +392,13 @@ function build_rec_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.rec_time);
 		item.rec_time=time;
-		var idTd=$("<td></td>").append(item.rec_id);
-		var nameTd=$("<td></td>").append(item.rec_name);
-		var numTd=$("<td></td>").append(item.rec_num);
-		var timeTd=$("<td></td>").append(item.rec_salary);
-		var addressTd=$("<td></td>").append(item.rec_address);
-		var claimTd=$("<td></td>").append(item.rec_claim);
-		var salaryTd=$("<td></td>").append(item.rec_time);
+		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_id);
+		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_name);
+		var numTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_num);
+		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_salary);
+		var addressTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_address);
+		var claimTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_claim);
+		var salaryTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.rec_id);
 		
@@ -405,7 +409,7 @@ function build_rec_table(result){
 		
 		var delBtn=$("<a id='delBtn' onclick='del("+item.rec_id+")'> 删除</a>"); */
 		
-		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
+		var btnTd=$("<th></th>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
 		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(timeTd).append(addressTd).append(claimTd).append(salaryTd)
 		.append(btnTd).appendTo("#index_table tbody");
@@ -624,6 +628,7 @@ $(document).on("click","#delBtn",function(){
 			}
 		}); 
 	}
+	
 </script>
 </body>
 </html>
