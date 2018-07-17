@@ -1,0 +1,104 @@
+package com.zhijun.controller;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+@Controller
+public class UploadController {
+	
+	@ResponseBody
+    @RequestMapping("/editFile/upload")
+    public Map<String,Object> upload(HttpServletRequest request,@RequestParam("file") MultipartFile file) throws Exception {
+       System.out.println(file.getOriginalFilename());  
+       String realPath = request.getSession().getServletContext().getRealPath(File.separator);
+//       System.out.println(realPath);
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
+        String res = sdf.format(new Date());
+        //服务器上使用
+       // String rootPath =request.getServletContext().getRealPath("/resource/uploads/");//target的目录
+        //本地使用
+        String rootPath =realPath+"upload";
+        System.out.println("ssssssssssssssssssssssssssssssssssssssss"+rootPath);
+        //原始名称
+        String originalFilename = file.getOriginalFilename();
+        //新的文件名称
+        String newFileName = res+originalFilename.substring(originalFilename.lastIndexOf("."));
+        //创建年月文件夹
+        
+        //新文件
+        File newFile = new File(rootPath+File.separator+newFileName);
+        //判断目标文件所在的目录是否存在
+        if(!newFile.getParentFile().exists()) {
+            //如果目标文件所在的目录不存在，则创建父目录
+            newFile.getParentFile().mkdirs();
+        }
+        System.out.println(newFile);
+        //将内存中的数据写入磁盘
+        file.transferTo(newFile);
+        //完整的url
+        String fileUrl =newFileName;
+        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map2 = new HashMap<String,Object>();
+        map.put("data", "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/upload/"+fileUrl);
+       System.out.println(map);
+        return map;
+    }
+	
+	
+	/**
+	 * 文件普通上传
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月17日
+	 */
+	@RequestMapping("/uploadImg")
+	public String uploadPhoto(@RequestParam(value="file",required=false)MultipartFile files) throws IOException{
+//        System.out.println("我进来了");
+//        System.out.println("fileName："+files.getOriginalFilename());
+		
+		//用来检测程序运行时间
+        long  startTime=System.currentTimeMillis();
+        System.out.println("fileName："+files.getOriginalFilename());
+         
+        try {
+            //获取输出流
+            OutputStream os=new FileOutputStream("D:/aaa/"+new Date().getTime()+files.getOriginalFilename());
+            //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
+            InputStream is=files.getInputStream();
+            int temp;
+            //一个一个字节的读取并写入
+            while((temp=is.read())!=(-1))
+            {
+                os.write(temp);
+            }
+           os.flush();
+           os.close();
+           is.close();
+         
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        long  endTime=System.currentTimeMillis();
+        System.out.println("方法一的运行时间："+String.valueOf(endTime-startTime)+"ms");
+        return "/success";
+    }
+}
