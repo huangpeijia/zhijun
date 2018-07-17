@@ -55,6 +55,10 @@
 				   </div>
 				   <!--右边-->
 				   <ul class="nav navbar-nav navbar-right ">
+				   <!-- 缩小的关闭键 -->
+				   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs ">
+						<i class="fa fa-times icon"></i>
+					</button>
 					   <!--用户登出下拉列表-->
 					   <li class="dropdown profile">
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.username}<span class="caret"></span> </a>
@@ -362,11 +366,11 @@ function build_pro_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.pro_time);
 		item.pro_time=time;
-		var idTd=$("<td></td>").append(item.pro_id);
-		var nameTd=$("<td></td>").append(item.pro_name);
-		var photoTd=$("<td></td>").append(item.pro_photo);
-		var constantTd=$("<td></td>").append(item.pro_constant);
-		var timeTd=$("<td></td>").append(item.pro_time);
+		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_id);
+		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_name);
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_photo);
+		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_constant);
+		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.pro_id);
 		

@@ -62,6 +62,10 @@
 				   </div>
 				   <!--右边-->
 				   <ul class="nav navbar-nav navbar-right ">
+				   <!-- 缩小的关闭键 -->
+				   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs ">
+						<i class="fa fa-times icon"></i>
+					</button>
 					   <!--用户登出下拉列表-->
 					   <li class="dropdown profile">
 						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.username}<span class="caret"></span> </a>
