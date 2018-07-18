@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/lib/css/dataTables.bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/lib/css/select2.min.css">
 
+<script type="text/javascript" src="${APP_PATH }/js/js/release/wangEditor.min.js"></script> 
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
@@ -224,7 +225,8 @@
 								   <div class="form-group">	
 								   <label for="inputquaConstant" class="col-sm-2 control-label">资质内容</label>								  
 								    <div class="col-sm-9">
-								      <textarea class="form-control textarea_a" id="EditquaConstant" rows="3" name="qua_constant" placeholder="请输入资质内容"></textarea>
+								    <div id="up_editor"></div>
+								      <textarea class="form-control textarea_a" id="EditquaConstant" rows="3" name="qua_constant" style="display:none"></textarea>
 								    </div>
 								  </div>
 								   <div class="form-group">	
@@ -267,7 +269,8 @@
 								   <div class="form-group">	
 								   <label for="inputquaConstant" class="col-sm-2 control-label">资质内容</label>								  
 								    <div class="col-sm-9">
-								      <textarea class="form-control textarea_a" id="AddquaConstant" rows="3" name="qua_constant" placeholder="请输入资质内容"></textarea>
+								    	<div id="editor"></div>
+								      <textarea class="form-control textarea_a" id="AddquaConstant" rows="3" name="qua_constant" style="display:none" ></textarea>
 								    </div>
 								  </div>
 								</form>
@@ -342,6 +345,59 @@
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script type="text/javascript">
+var E = window.wangEditor
+var editor = new E('#editor')
+var $text1 = $('#AddquaConstant')
+editor.customConfig.onchange = function (html) {
+    // 监控变化，同步更新到 textarea
+    $text1.val(html)
+}
+// 或者 var editor = new E( document.getElementById('editor') )
+ editor.customConfig.uploadImgServer = 'editFile/upload' 
+   editor.customConfig.showLinkImg = false
+   	editor.customConfig.uploadFileName = 'file';
+   	// 设置:限制一次最多上传 1 张图片
+editor.customConfig.uploadImgMaxLength = 1;
+   // 设置：监听事件
+editor.customConfig.uploadImgHooks = {
+
+customInsert: function (insertImg, result, editor) {
+    // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+    // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+    // result 必须是一个 JSON 格式字符串！！！否则报错
+    // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+	var ulr=result.data; 
+    insertImg(ulr); 
+}
+} 
+editor.create() 
+
+var editor2 = new E('#up_editor')
+var $text2 = $('#EditquaConstant')
+editor2.customConfig.onchange = function (html) {
+    // 监控变化，同步更新到 textarea
+    $text2.val(html)
+}
+// 或者 var editor = new E( document.getElementById('editor') )
+ editor2.customConfig.uploadImgServer = 'editFile/upload' 
+   editor2.customConfig.showLinkImg = false
+   	editor2.customConfig.uploadFileName = 'file';
+   	// 设置:限制一次最多上传 1 张图片
+editor2.customConfig.uploadImgMaxLength = 1;
+   // 设置：监听事件
+editor2.customConfig.uploadImgHooks = {
+
+customInsert: function (insertImg, result, editor2) {
+    // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+    // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+    // result 必须是一个 JSON 格式字符串！！！否则报错
+    // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+	var ulr=result.data; 
+    insertImg(ulr); 
+}
+} 
+editor2.create()
+
 var c_page=1;//当前页数
 $(function(){to_page(c_page);});
 function to_page(c_page){
@@ -369,7 +425,7 @@ function build_qua_table(result){
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_name);
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_photo);
-		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_constant);
+		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_constant.substring(0,20)+'...');
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.qua_id);
@@ -401,6 +457,7 @@ function getEditDate(id){
 				$("#EditquaName").val(item.qua_name);
 				$("#EditquaPhoto").val(item.qua_photo);
 				$("#EditquaConstant").val(item.qua_constant);
+				editor2.txt.html(item.qua_constant);
 				$("#EditquaTime").val(item.qua_time);
 			});
 		},
@@ -470,6 +527,7 @@ $(document).on("click","#addpage",function(){
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
+	editor.txt.html(' ')
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
