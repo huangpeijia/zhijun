@@ -46,7 +46,7 @@ public class QualificationDao {
 	 * @version 2018年7月10日
 	 */
 	public List<Qualification> queryAll(int pages, int keys){
-		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time FROM qualification order by qua_time limit "+pages+","+keys+"";
+		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time FROM qualification order by qua_time desc limit "+pages+","+keys+"";
 		List<Qualification> list= jdbcTemplate.query(sql, new QualificationMapper());
 		return list;
 	}

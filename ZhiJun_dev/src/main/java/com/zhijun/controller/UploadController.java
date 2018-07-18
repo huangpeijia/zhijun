@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
 	
 	@ResponseBody
-    @RequestMapping("/editFile/upload")
+    @RequestMapping("admin/editFile/upload")
     public Map<String,Object> upload(HttpServletRequest request,@RequestParam("file") MultipartFile file) throws Exception {
        System.out.println(file.getOriginalFilename());  
        String realPath = request.getSession().getServletContext().getRealPath(File.separator);
@@ -56,7 +56,6 @@ public class UploadController {
         //完整的url
         String fileUrl =newFileName;
         Map<String,Object> map = new HashMap<String,Object>();
-        Map<String,Object> map2 = new HashMap<String,Object>();
         map.put("data", "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/upload/"+fileUrl);
        System.out.println(map);
         return map;
