@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,22 +33,49 @@ public class UserController {
 	@Autowired
 	private LoginDao dao;
 	
+	/**
+	 * 跳转登录页面
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月11日
+	 */
+	@RequestMapping("/admin/login")
+	public String Login(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "index";
+	}
+	
+	/**
+	 * 跳转首页
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月11日
+	 */
+	@RequestMapping("/admin/index")
+	public String Index(HttpServletRequest request) {
+	    return "admin/index";
+	}
+	
 	// 从数据库中获取所有学生
-		@RequestMapping("/admin/home") 
-		public String selectOne(@RequestParam(value="username",required=false) String username,@RequestParam(value="userpassword",required=false) String userpassword,Model model) {
+		@RequestMapping("/admin/") 
+		public ModelAndView selectOne(@RequestParam(value="username",required=false) String username,@RequestParam(value="userpassword",required=false) String userpassword,Model model) {
 			// ApplicationContext context = new
 			// ClassPathXmlApplicationContext("applicationContext.xml");
 			// 从ioc容器获取dao
 			if(username==null||userpassword==null) {
 				System.out.println("进入");
-				return "index";
+				ModelAndView mv = new ModelAndView("redirect:/admin/login");
+			    return mv;
 			}
 			boolean users = dao.loginsystem(username, userpassword);
 			System.out.println(users);
 			if(users) {
-				return "list";
+				ModelAndView mv = new ModelAndView("redirect:/admin/index");
+			    return mv;
 			}else {
-				return "index";
+				ModelAndView mv = new ModelAndView("redirect:/admin/login");
+			    return mv;
 			}
 		}
 		
@@ -80,12 +108,6 @@ public class UserController {
 			
 		}
 		
-		//用户登出
-		@RequestMapping("admin/exit_user")
-		public String exitUser(HttpServletRequest request){
-			HttpSession session = request.getSession();
-			session.invalidate();
-			return "index";
-		}
+
 		
 }
