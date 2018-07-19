@@ -10,14 +10,15 @@
 <script type="text/javascript" src="js/js/release/wangEditor.min.js"></script> 
 </head>
 <body>
-<!-- <form action="uploadImg" method="post" enctype="multipart/form-data">
-	<input type="file" name="file"/>
+<form action="uploadImg" method="post" enctype="multipart/form-data">
+	<input type="file" name="file" accept="image/gif,image/jpeg,image/jpg,image/png"/>
 	<input type="submit" value="提交" />
-</form> --> 
+ 
 	<div id="editor"></div>
 	<textarea id="text1" name="text1" style="width:100%; height:200px;"></textarea>
 	<input type="submit" value="提交"/>
-</body>
+	</form>
+	</body>
 <script type="text/javascript">
 var E = window.wangEditor
 var editor = new E('#editor')

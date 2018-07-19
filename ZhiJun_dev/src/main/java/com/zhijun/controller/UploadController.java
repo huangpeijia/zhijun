@@ -69,35 +69,34 @@ public class UploadController {
 	 * @version 2018年7月17日
 	 */
 	@RequestMapping("/uploadImg")
-	public String uploadPhoto(@RequestParam(value="file",required=false)MultipartFile files) throws IOException{
-//        System.out.println("我进来了");
-//        System.out.println("fileName："+files.getOriginalFilename());
-		
+	public String uploadPhoto(@RequestParam(value="file",required=false)MultipartFile files,HttpServletRequest request) throws IOException{
+	    //工作空间路径
+		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
 		//用来检测程序运行时间
         long  startTime=System.currentTimeMillis();
-        System.out.println("fileName："+files.getOriginalFilename());
-         
-        try {
-            //获取输出流
-            OutputStream os=new FileOutputStream("D:/aaa/"+new Date().getTime()+files.getOriginalFilename());
-            //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
-            InputStream is=files.getInputStream();
+      //原始名称
+        String originalFilename = files.getOriginalFilename();
+        //新的文件名称（1531988920850.jpg）
+        String newFileName =new Date().getTime()+originalFilename.substring(originalFilename.lastIndexOf("."));
+      //获取输出流
+        OutputStream os=new FileOutputStream(realPath+"/upload/"+newFileName);
+      //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
+        InputStream is=files.getInputStream();
+        try { 
             int temp;
             //一个一个字节的读取并写入
             while((temp=is.read())!=(-1))
             {
                 os.write(temp);
             }
-           os.flush();
-           os.close();
-           is.close();
-         
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }finally {
+        	os.flush();
+            os.close();
+            is.close();
         }
-        long  endTime=System.currentTimeMillis();
-        System.out.println("方法一的运行时间："+String.valueOf(endTime-startTime)+"ms");
-        return "/success";
+        return "/index";
     }
 }
