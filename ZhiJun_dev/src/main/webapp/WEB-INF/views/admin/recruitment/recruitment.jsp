@@ -99,6 +99,12 @@
 					   </div>
 					   <!--蓝方框以下的导航-->
 					   <ul class="nav navbar-nav">
+					        <!--导航目录-->
+							<li>
+								<a href="index">
+									<span class="icon fa fa-home"></span><span class="title">首页</span>
+								</a>
+							</li>
 						   <!--导航目录1-->
 						   <li class="active">
 							   <!--图标和字-->
@@ -569,7 +575,7 @@ $(document).on("click","#delBtn",function(){
 	//用户登出
 	function exituser(){
 		if(confirm("是否退出？")){
-			window.location.href="exit_user";
+			window.location.href="login";
 		}
 	}
 	
@@ -621,7 +627,7 @@ $(document).on("click","#delBtn",function(){
 			data:"userpassword="+userpassword,
 			success:function(result){
 				alert("修改成功");
-				window.location.href="exit_user";//登出
+				window.location.href="login";//登出
 			},
 			error:function(result){
 				alert("添加时发生错误!");
