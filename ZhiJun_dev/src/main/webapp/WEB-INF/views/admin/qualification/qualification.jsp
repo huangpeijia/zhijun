@@ -209,7 +209,7 @@
                                    <h4 class="modal-title">资质信息编辑</h4>
                                </div>
                                <div class="modal-body">
-                               <form class="form-horizontal" id="myEditForm">
+                               <form class="form-horizontal" action="aa" id="myEditForm" enctype="multipart/form-data">
 		                           <div class="form-group">
 		                               <label for="inputquaId" class="col-sm-2 control-label">序号</label>	
 		                              <div class="col-sm-9">
@@ -225,7 +225,9 @@
 								  <div class="form-group">
 								  <label for="inputquaPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditquaPhoto" name="qua_photo" placeholder="请输入照片路径">
+								      <img id="oldPhoto" style="width:100px;height:100px"/>
+								      <input id="EditquaPhoto" type="file" name="qua_photo" />
+								      <!-- <input type="text" class="form-control" id="EditquaPhoto" name="qua_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
@@ -259,7 +261,7 @@
 						        <h4 class="modal-title">添加资质信息</h4>
 						      </div>
 						      <div class="modal-body">
-						        <form class="form-horizontal" id="myAddForm">
+						        <form class="form-horizontal" id="myAddForm" enctype="multipart/form-data">
 						      <div class="form-group">		
 		                           <label for="inputquaName" class="col-sm-2 control-label">资质名称</label>							  
 								    <div class="col-sm-9">
@@ -269,7 +271,9 @@
 								  <div class="form-group">
 								  <label for="inputquaPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="AddquaPhoto" name="qua_photo" placeholder="请输入照片路径">
+								      <img id="imgPhoto" style="width:100px;height:100px"/>
+								   	  <input id="AddquaPhoto" type="file" name="qua_photo" />
+								      <!-- <input type="text" class="form-control" id="AddquaPhoto" name="qua_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
@@ -421,7 +425,14 @@ function to_page(c_page){
 	 }
 	});
 }
-
+$('#AddquaPhoto').on('change',function(){
+	var filePath = window.URL.createObjectURL(this.files[0]);
+	$('#imgPhoto').attr("src",filePath);
+ });
+ $('#EditquaPhoto').on('change',function(){
+		var filePath = window.URL.createObjectURL(this.files[0]);
+		$('#oldPhoto').attr("src",filePath);
+	 });
 function build_qua_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#qua_table tbody").empty();
@@ -430,7 +441,7 @@ function build_qua_table(result){
 		item.qua_time=time;
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_name);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_photo);
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.qua_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_constant.substring(0,20)+'...');
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
@@ -461,7 +472,7 @@ function getEditDate(id){
 				item.qua_time=time;
 				$("#EditquaId").val(item.qua_id);
 				$("#EditquaName").val(item.qua_name);
-				$("#EditquaPhoto").val(item.qua_photo);
+				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.qua_photo);
 				$("#EditquaConstant").val(item.qua_constant);
 				editor2.txt.html(item.qua_constant);
 				$("#EditquaTime").val(item.qua_time);
@@ -490,31 +501,51 @@ $(document).on("click","#editBtn",function(){
 });
 //点击编辑模态框的保存按钮
 $(document).on("click","#myEditBtn",function(){
+	var formData = new FormData();
+	var qua_photo = $('#EditquaPhoto').get(0).files[0];
 	var qua_id=$("#EditquaId").val();
+	qua_id=parseInt(qua_id);
 	var qua_name=$("#EditquaName").val();
-	var qua_photo=$("#EditquaPhoto").val();
 	var qua_constant=$("#EditquaConstant").val();
 	var qua_time=$("#EditquaTime").val();
+	var old_photo = $("#oldPhoto")[0].src;
+	var index = old_photo .lastIndexOf("\/");  
+	old_photo = old_photo.substring(index + 1, old_photo.length);
+	formData.append("qua_id",qua_id);
+	formData.append("qua_name",qua_name);
+	formData.append("qua_constant",qua_constant);
+	formData.append("qua_time",qua_time); 
+	formData.append("qua_photo",qua_photo);
+	formData.append("old_photo",old_photo);
+	console.log(qua_photo); 
 	if(qua_name == ""){
 		alert("资质名称不能为空!");
 	}else if(indexOf(qua_name)){
 		alert("资质名称不能含有空白字符!");
-	}else if(qua_photo==""){
-		alert("资质照片路径不能为空!");
 	}else if(qua_constant==""){
 		alert("资质内容不能为空!");
 	}else{
 		 $.ajax({
 			url:"qua/update",
 			type:"POST",
-			data:$("#myEditForm").serialize(),
+			data:formData,
+			async: false,  
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
 			success:function(result){
 				$("#myEditModel").modal('hide');//隐藏模态框
 				to_page(c_page);//显示全部
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
-			}
+			},
+	        beforeSend: function(){
+	        	alert("等待中");
+	        }, 
+	        complete: function(){  
+	        	alert("上传成功");
+	        }
 		}); 
 	}
 });
@@ -537,34 +568,47 @@ $(document).on("click","#addpage",function(){
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
+	var formData = new FormData();
+	var qua_upload = $('#AddquaPhoto').get(0).files[0];
 	var qua_name=$("#AddquaName").val();
-	var qua_photo=$("#AddquaPhoto").val();
 	var qua_constant=$("#AddquaConstant").val();
+	formData.append("qua_name",qua_name);
+	formData.append("qua_upload",qua_upload);
+	formData.append("qua_constant",qua_constant);
 	if(qua_name == ""){
 		alert("资质名称不能为空!");
 	}else if(indexOf(qua_name)){
 		alert("资质名称不能含有空白字符!");
-	}else if(qua_photo==""){
-		alert("资质照片路径不能为空!");
-	}else if(qua_constant==""){
+	} else if(qua_constant==""){
 		alert("资质内容不能为空!");
 	}else{
-		alert($("#myAddForm").serialize());
-		 $.ajax({
-			url:"qua/add",
-			type:"POST",
-			data:$("#myAddForm").serialize(),
-			success:function(result){
-				$("#myAddModel").modal('hide');
-				to_page(c_page);
-			},
-			error:function(result){
-				alert("添加时发生错误!");
-			}
-		}); 
+		if("undefined" != typeof(qua_upload) && qua_upload != null && qua_upload != ""){
+			$.ajax({
+				url:"qua/add",
+				type:"POST",
+				data:formData,async: false,  
+				cache: false, 
+				contentType: false, //不设置内容类型
+				processData: false, //不处理数据
+				success:function(result){
+					$("#myAddModel").modal('hide');
+					to_page(c_page);
+				},
+				beforeSend: function(){  
+		            alert("aa");
+		        }, 
+		        complete: function(){  
+		        	alert("上传结束");
+		        	},
+				error:function(result){
+					alert("添加时发生错误!");
+				}
+			});
+		}else{
+			alert("选择的文件无效！请重新选择");
+		}
 	}
 });
-//删除
 $(document).on("click","#delBtn",function(){
 	var id = $(this).attr("del-id");
 	if(confirm("是否要删除?")){

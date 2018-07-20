@@ -10,6 +10,21 @@
 <script type="text/javascript" src="js/js/release/wangEditor.min.js"></script> 
 </head>
 <body>
+<form method="post" id="file" action="" enctype="multipart/form-data">
+			<select id="select">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<input type="text" name="input_te" id="input_te" />
+		    <h3>选择一个文件:</h3>
+		    <input id="excelFile" type="file" name="uploadFile" />
+		    <br/><br/>
+		    <input type="button" value="上传" onclick="uploadFiles();"/>
+		</form>
+
 <form action="uploadImg" method="post" enctype="multipart/form-data">
 	<input type="file" name="file" accept="image/gif,image/jpeg,image/jpg,image/png"/>
 	<input type="submit" value="提交" />
@@ -19,6 +34,41 @@
 	<input type="submit" value="提交"/>
 	</form>
 	</body>
+	<script>
+function uploadFiles(){  
+	var formData = new FormData();
+	var uploadFile = $('#excelFile').get(0).files[0];
+	var selectedId = $('#select').val();
+	var input_te =$('#input_te').val();
+	alert(input_te);
+	formData.append("uploadFile",uploadFile);
+	formData.append("selectedId", selectedId);
+	formData.append("input_te",input_te);
+	console.log(uploadFile); 
+		$.ajax({
+			url:'input/upload',
+			type:'POST',
+			data:formData,
+			async: false,  
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
+			success:function(data){
+				console.log(data); 
+			},
+			beforeSend: function(){  
+	            alert("aa");
+	        }, 
+	        complete: function(){  
+	        	alert("上传结束");
+	        	},
+			error:function(){
+				alert("上传失败！");
+			}
+		})
+}   
+</script>
+	
 <script type="text/javascript">
 var E = window.wangEditor
 var editor = new E('#editor')
