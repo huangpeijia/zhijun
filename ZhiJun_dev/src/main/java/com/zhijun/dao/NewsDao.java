@@ -46,7 +46,7 @@ public class NewsDao {
 	 * @version 2018年7月10日
 	 */
 	public List<News> queryAll(int pages, int keys){
-		String sql = "select news_id, news_title, news_constant, news_type, news_time from news order by news_time limit "+pages+","+keys+"";
+		String sql = "select news_id, news_title, news_constant, news_type, news_time from news order by news_time desc limit "+pages+","+keys+"";
 		List<News> list=jdbcTemplate.query(sql,new NewsMapper());
 		return list;
 	}

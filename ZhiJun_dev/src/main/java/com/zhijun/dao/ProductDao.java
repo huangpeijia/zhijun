@@ -46,7 +46,7 @@ public class ProductDao {
 	 * @version 2018年7月10日
 	 */
 	public List<Product> queryAll(int pages, int keys){
-		String sql ="select pro_id, pro_name, pro_constant, pro_photo, pro_time, pro_type from product order by pro_time limit "+pages+","+keys+"";
+		String sql ="select pro_id, pro_name, pro_constant, pro_photo, pro_time, pro_type from product order by pro_time desc limit "+pages+","+keys+"";
 		List<Product> list =jdbcTemplate.query(sql, new ProductMapper());
 		return list;
 	}

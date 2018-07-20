@@ -44,7 +44,7 @@ public class CaseDao {
 	 * 方法
 	 */
 	public List<Cases> queryAll(int pages, int keys){
-		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases order by case_time limit "+pages+","+keys+"";
+		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases order by case_time desc limit  "+pages+","+keys+"";
 		List<Cases> list = jdbcTemplate.query(sql, new CaseMapper());
 		return list;
 	}

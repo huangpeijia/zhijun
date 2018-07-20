@@ -89,13 +89,5 @@ public class StudentController extends ControllerBase {
 		return "error";
 	}
 
-//	@RequestMapping("/home")
-//	public String home() {
-//		return "list";
-//	}
 
-	@RequestMapping("/index")
-	public String index(HttpServletRequest request) {
-		return "index";
-	}
 }

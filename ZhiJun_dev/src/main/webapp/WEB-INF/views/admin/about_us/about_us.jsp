@@ -22,7 +22,8 @@
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/lib/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/lib/css/dataTables.bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/lib/css/select2.min.css">
-
+	
+	<script type="text/javascript" src="${APP_PATH }/js/js/release/wangEditor.min.js"></script> 
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
@@ -99,6 +100,12 @@
 					   </div>
 					   <!--蓝方框以下的导航-->
 					   <ul class="nav navbar-nav">
+					        <!--导航目录-->
+							<li>
+								<a href="index">
+									<span class="icon fa fa-home"></span><span class="title">首页</span>
+								</a>
+							</li>
 						   <!--导航目录1-->
 						   <li>
 							   <!--图标和字-->
@@ -233,7 +240,8 @@
 								  <div class="form-group">
 								  <label for="inputaboutCulture" class="col-sm-2 control-label">公司文化</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditaboutCulture" name="about_culture" placeholder="请输入公司文化">
+								      <div id="editor"></div> 
+								      <textarea class="form-control textarea_a" id="EditaboutCulture" rows="3" name="about_culture" style="display:none" ></textarea>
 								    </div>
 								  </div>	
 								  <div class="form-group">
@@ -290,6 +298,34 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript">
+
+var E = window.wangEditor
+var editor = new E('#editor')
+var $text1 = $('#EditaboutCulture')
+editor.customConfig.onchange = function (html) {
+    // 监控变化，同步更新到 textarea
+    $text1.val(html)
+}
+// 或者 var editor = new E( document.getElementById('editor') )
+ editor.customConfig.uploadImgServer = 'editFile/upload' 
+   editor.customConfig.showLinkImg = false
+   	editor.customConfig.uploadFileName = 'file';
+   	// 设置:限制一次最多上传 1 张图片
+editor.customConfig.uploadImgMaxLength = 1;
+   // 设置：监听事件
+editor.customConfig.uploadImgHooks = {
+
+customInsert: function (insertImg, result, editor) {
+    // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+    // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+    // result 必须是一个 JSON 格式字符串！！！否则报错
+    // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+	var ulr=result.data; 
+    insertImg(ulr); 
+}
+} 
+editor.create()
+
 $(function(){about_update();});
 //执行编辑
 function about_update(){
@@ -321,6 +357,7 @@ function getEditDate(id){
 				$("#EditaboutScope").val(item.about_scope);
 			    $("#EditaboutProducts").val(item.about_products);
 				$("#EditaboutCulture").val(item.about_culture);	
+				editor.txt.html(item.about_culture)
 				$("#EditaboutProspects").val(item.about_prospects);	
 				$("#EditaboutTime").val(item.about_time);
 			});
@@ -392,7 +429,7 @@ $(document).on("click","#pass_reset",function(){
 //用户登出
 function exituser(){
 	if(confirm("是否退出？")){
-		window.location.href="exit_user";
+		window.location.href="login";
 	}
 }
 
@@ -444,7 +481,7 @@ function updateUser(userpassword){
 		data:"userpassword="+userpassword,
 		success:function(result){
 			alert("修改成功");
-			window.location.href="exit_user";//登出
+			window.location.href="login";//登出
 		},
 		error:function(result){
 			alert("添加时发生错误!");

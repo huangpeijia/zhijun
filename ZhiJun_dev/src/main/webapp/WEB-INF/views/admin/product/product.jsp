@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/lib/css/dataTables.bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/lib/css/select2.min.css">
 
+<script type="text/javascript" src="${APP_PATH }/js/js/release/wangEditor.min.js"></script> 
 	<!--CSS App-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
@@ -99,6 +100,12 @@
 					   </div>
 					   <!--蓝方框以下的导航-->
 					   <ul class="nav navbar-nav">
+					        <!--导航目录-->
+							<li>
+								<a href="index">
+									<span class="icon fa fa-home"></span><span class="title">首页</span>
+								</a>
+							</li>
 						   <!--导航目录1-->
 						   <li>
 							   <!--图标和字-->
@@ -224,7 +231,8 @@
 								   <div class="form-group">	
 								   <label for="inputproConstant" class="col-sm-2 control-label">产品介绍</label>								  
 								    <div class="col-sm-9">
-								      <textarea class="form-control textarea_a" id="EditproConstant" rows="3" name="pro_constant" placeholder="请输入产品介绍"></textarea>
+								    	<div id="up_editor"></div> 
+								      <textarea class="form-control textarea_a" id="EditproConstant" rows="3" name="pro_constant" style="display:none"></textarea>
 								    </div>
 								  </div>
 								   <div class="form-group">	
@@ -267,7 +275,8 @@
 								   <div class="form-group">	
 								   <label for="inputproConstant" class="col-sm-2 control-label">产品介绍</label>								  
 								    <div class="col-sm-9">
-								      <textarea class="form-control textarea_a" id="AddproConstant" rows="3" name="pro_constant" placeholder="请输入产品介绍"></textarea>
+								   		<div id="editor"></div> 
+								      <textarea class="form-control textarea_a" id="AddproConstant" rows="3" name="pro_constant"  style="display:none"></textarea>
 								    </div>
 								  </div>
 								</form>
@@ -342,6 +351,59 @@
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script type="text/javascript">
+var E = window.wangEditor
+var editor = new E('#editor')
+var $text1 = $('#AddproConstant')
+editor.customConfig.onchange = function (html) {
+    // 监控变化，同步更新到 textarea
+    $text1.val(html)
+}
+// 或者 var editor = new E( document.getElementById('editor') )
+ editor.customConfig.uploadImgServer = 'editFile/upload' 
+   editor.customConfig.showLinkImg = false
+   	editor.customConfig.uploadFileName = 'file';
+   	// 设置:限制一次最多上传 1 张图片
+editor.customConfig.uploadImgMaxLength = 1;
+   // 设置：监听事件
+editor.customConfig.uploadImgHooks = {
+
+customInsert: function (insertImg, result, editor) {
+    // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+    // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+    // result 必须是一个 JSON 格式字符串！！！否则报错
+    // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+	var ulr=result.data; 
+    insertImg(ulr); 
+}
+} 
+editor.create() 
+
+var editor2 = new E('#up_editor')
+var $text2= $('#EditproConstant')
+editor2.customConfig.onchange = function (html) {
+    // 监控变化，同步更新到 textarea
+    $text2.val(html)
+}
+// 或者 var editor = new E( document.getElementById('editor') )
+ editor2.customConfig.uploadImgServer = 'editFile/upload' 
+   editor2.customConfig.showLinkImg = false
+   	editor2.customConfig.uploadFileName = 'file';
+   	// 设置:限制一次最多上传 1 张图片
+editor2.customConfig.uploadImgMaxLength = 1;
+   // 设置：监听事件
+editor2.customConfig.uploadImgHooks = {
+
+customInsert: function (insertImg, result, editor2) {
+    // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+    // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+    // result 必须是一个 JSON 格式字符串！！！否则报错
+    // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+	var ulr=result.data; 
+    insertImg(ulr); 
+}
+} 
+editor2.create() 
+
 var c_page=1;//当前页数
 $(function(){to_page(c_page);});
 function to_page(c_page){
@@ -369,7 +431,7 @@ function build_pro_table(result){
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_name);
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_photo);
-		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_constant);
+		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_constant.substring(0,20)+'...');
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.pro_id);
@@ -401,6 +463,7 @@ function getEditDate(id){
 				$("#EditproName").val(item.pro_name);
 				$("#EditproPhoto").val(item.pro_photo);
 				$("#EditproConstant").val(item.pro_constant);
+				editor2.txt.html(item.pro_constant)
 				$("#EditproTime").val(item.pro_time);
 			});
 		},
@@ -447,7 +510,7 @@ $(document).on("click","#myEditBtn",function(){
 			data:$("#myEditForm").serialize(),
 			success:function(result){
 				$("#myEditModel").modal('hide');//隐藏模态框
-				to_page(c_page);//显示全部
+				to_page(c_page);//显示全部 
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
@@ -470,6 +533,7 @@ $(document).on("click","#addpage",function(){
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
+	editor.txt.html(' ')
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
@@ -485,7 +549,6 @@ $(document).on("click","#myAddBtn",function(){
 	}else if(pro_constant==""){
 		alert("产品介绍不能为空!");
 	}else{
-		alert($("#myAddForm").serialize());
 		 $.ajax({
 			url:"pro/add",
 			type:"POST",
@@ -534,7 +597,7 @@ $(document).on("click","#pass_reset",function(){
 //用户登出
 function exituser(){
 	if(confirm("是否退出？")){
-		window.location.href="exit_user";
+		window.location.href="login";
 	}
 }
 
@@ -586,7 +649,7 @@ function updateUser(userpassword){
 		data:"userpassword="+userpassword,
 		success:function(result){
 			alert("修改成功");
-			window.location.href="exit_user";//登出
+			window.location.href="login";//登出
 		},
 		error:function(result){
 			alert("添加时发生错误!");

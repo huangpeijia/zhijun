@@ -37,7 +37,7 @@ public class LoginInterceptors implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		//回去session作用域中是否已有存在的值
 		Object username = session.getAttribute("username");
-		if(string.equals("index")) {
+		if(string.equals("login")) {
 			if(username != null) {
 	 			session.removeAttribute("username");
 			}
@@ -49,7 +49,7 @@ public class LoginInterceptors implements HandlerInterceptor {
 				return true;
 			}
 			//登陆拦截
-			if(string.equals("home")) {
+			if(string.equals("")) {
 				//移除session作用域中的值
 				session.removeAttribute("username");
 				//回去request请求路径中的用户名和密码
@@ -68,7 +68,7 @@ public class LoginInterceptors implements HandlerInterceptor {
 					//查询不到用户名和密码
 					System.out.println("用户登录密码错误，请重新登陆");
 					//重定向index登陆界面
-					response.sendRedirect(request.getContextPath()+"/index");
+					response.sendRedirect(request.getContextPath()+"/admin/login");
 					//拦截
 					return false;
 				}
@@ -76,7 +76,7 @@ public class LoginInterceptors implements HandlerInterceptor {
 				//除了登陆请求以外的所有路径
 				System.out.println("用户还没登陆，请重新登陆2");
 				//重定向index登陆界面
-				response.sendRedirect(request.getContextPath()+"/index");
+				response.sendRedirect(request.getContextPath()+"/admin/login");
 				//拦截
 				return false;
 			}
