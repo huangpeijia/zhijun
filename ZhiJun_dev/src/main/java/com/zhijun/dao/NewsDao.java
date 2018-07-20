@@ -104,4 +104,19 @@ public class NewsDao {
 		}
 		
 	}
+	
+	/**
+	 * 查询前几条数据
+	 * 方法
+	 * @author wzh
+	 * @version 2018年7月20日
+	 */
+	public List<News> queryNewest(int num){
+		String sql = "select news_id, news_title, news_constant, news_type, news_time from news order by news_time desc limit "+num+"";
+		List<News> list=jdbcTemplate.query(sql,new NewsMapper());
+		return list;
+	}
+	
+	
+	
 }
