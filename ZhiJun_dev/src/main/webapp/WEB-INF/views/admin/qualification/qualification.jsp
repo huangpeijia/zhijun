@@ -209,7 +209,7 @@
                                    <h4 class="modal-title">资质信息编辑</h4>
                                </div>
                                <div class="modal-body">
-                               <form class="form-horizontal" action="aa" id="myEditForm" enctype="multipart/form-data">
+                               <form class="form-horizontal" id="myEditForm" enctype="multipart/form-data">
 		                           <div class="form-group">
 		                               <label for="inputquaId" class="col-sm-2 control-label">序号</label>	
 		                              <div class="col-sm-9">
@@ -541,7 +541,7 @@ $(document).on("click","#myEditBtn",function(){
 				alert("编辑时发生错误!");
 			},
 	        beforeSend: function(){
-	        	alert("等待中");
+	        	alert("上传等待中");
 	        }, 
 	        complete: function(){  
 	        	alert("上传成功");
@@ -560,6 +560,7 @@ function indexOf(str){
 $(document).on("click","#addpage",function(){
 	$("#AddquaName").val("");
 	$("#AddquaPhoto").val("");
+	$("#imgPhoto").attr("src","");
 	$("#AddquaConstant").val("");
 	$("#myAddModel").modal({
 		backdrop:'static'
@@ -595,10 +596,10 @@ $(document).on("click","#myAddBtn",function(){
 					to_page(c_page);
 				},
 				beforeSend: function(){  
-		            alert("aa");
+		            alert("上传等待中");
 		        }, 
 		        complete: function(){  
-		        	alert("上传结束");
+		        	alert("上传成功");
 		        	},
 				error:function(result){
 					alert("添加时发生错误!");
