@@ -209,7 +209,7 @@
                                    <h4 class="modal-title">案例编辑</h4>
                                </div>
                                <div class="modal-body">
-                               <form class="form-horizontal" id="myEditForm">
+                               <form class="form-horizontal" id="myEditForm" enctype="multipart/form-data">
 		                           <div class="form-group">
 		                               <label for="inputcaseId" class="col-sm-2 control-label">序号</label>	
 		                              <div class="col-sm-9">
@@ -225,7 +225,9 @@
 								  <div class="form-group">
 								  <label for="inputcasePhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcasePhoto" name="case_photo" placeholder="请输入照片路径">
+								     <img id="oldPhoto" style="width:100px;height:100px"/>
+								      <input id="EditcasePhoto" type="file" name="case_photo" />
+								     <!--  <input type="text" class="form-control" id="EditcasePhoto" name="case_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
@@ -259,7 +261,7 @@
 						        <h4 class="modal-title">添加案例信息</h4>
 						      </div>
 						      <div class="modal-body">
-						        <form class="form-horizontal" id="myAddForm">
+						        <form class="form-horizontal" id="myAddForm" enctype="multipart/form-data">
 						      <div class="form-group">		
 		                           <label for="inputcaseName" class="col-sm-2 control-label">案例名称</label>							  
 								    <div class="col-sm-9">
@@ -269,7 +271,9 @@
 								  <div class="form-group">
 								  <label for="inputcasePhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="AddcasePhoto" name="case_photo" placeholder="请输入照片路径">
+								      <img id="imgPhoto" style="width:100px;height:100px"/>
+								   	  <input id="AddcasePhoto" type="file" name="case_photo" />
+								      <!-- <input type="text" class="form-control" id="AddcasePhoto" name="case_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
@@ -423,6 +427,14 @@ function to_page(c_page){
 	});
 }
 
+$('#AddcasePhoto').on('change',function(){
+	var filePath = window.URL.createObjectURL(this.files[0]);
+	$('#imgPhoto').attr("src",filePath);
+ });
+ $('#EditcasePhoto').on('change',function(){
+		var filePath = window.URL.createObjectURL(this.files[0]);
+		$('#oldPhoto').attr("src",filePath);
+	 });
 function build_case_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#case_table tbody").empty();
@@ -431,7 +443,7 @@ function build_case_table(result){
 		item.case_time=time;
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.case_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.case_name);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.case_photo);
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.case_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.case_constant.substring(0,20)+'...');
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.case_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
@@ -462,7 +474,7 @@ function getEditDate(id){
 				item.case_time=time;
 				$("#EditcaseId").val(item.case_id);
 				$("#EditcaseName").val(item.case_name);
-				$("#EditcasePhoto").val(item.case_photo);
+				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.case_photo);
 				$("#EditcaseConstant").val(item.case_constant);
 				editor2.txt.html(item.case_constant)
 				$("#EditcaseTime").val(item.case_time);
@@ -491,31 +503,50 @@ $(document).on("click","#editBtn",function(){
 });
 //点击编辑模态框的保存按钮
 $(document).on("click","#myEditBtn",function(){
+	var formData = new FormData();
+	var case_photo = $('#EditcasePhoto').get(0).files[0];
 	var case_id=$("#EditcaseId").val();
+	case_id=parseInt(case_id);
 	var case_name=$("#EditcaseName").val();
-	var case_photo=$("#EditcasePhoto").val();
 	var case_constant=$("#EditcaseConstant").val();
 	var case_time=$("#EditcaseTime").val();
+	var old_photo = $("#oldPhoto")[0].src;
+	var index = old_photo .lastIndexOf("\/");  
+	old_photo = old_photo.substring(index + 1, old_photo.length);
+	formData.append("case_id",case_id);
+	formData.append("case_name",case_name);
+	formData.append("case_constant",case_constant);
+	formData.append("case_time",case_time); 
+	formData.append("case_photo",case_photo);
+	formData.append("old_photo",old_photo);
 	if(case_name == ""){
 		alert("案例名称不能为空!");
 	}else if(indexOf(case_name)){
 		alert("案例名称不能含有空白字符!");
-	}else if(case_photo==""){
-		alert("照片路径不能为空!");
 	}else if(case_constant==""){
 		alert("案例内容不能为空!");
 	}else{
 		 $.ajax({
 			url:"case/update",
 			type:"POST",
-			data:$("#myEditForm").serialize(),
+			data:formData,
+			async: false,  
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
 			success:function(result){
 				$("#myEditModel").modal('hide');//隐藏模态框
 				to_page(c_page);//显示全部
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
-			}
+			},
+	        beforeSend: function(){
+	        	alert("上传等待中");
+	        }, 
+	        complete: function(){  
+	        	alert("上传成功");
+	        }
 		}); 
 	}
 });
@@ -530,7 +561,8 @@ function indexOf(str){
 $(document).on("click","#addpage",function(){
 	$("#AddcaseName").val("");
 	$("#AddcasePhoto").val("");
-	$("#AddcaseConstant").val("");
+	$("#AddcaseConstant").val(""); 
+	$("#imgPhoto").attr("src","");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
@@ -538,30 +570,46 @@ $(document).on("click","#addpage",function(){
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
+	var formData = new FormData();
+	var case_upload = $('#AddcasePhoto').get(0).files[0];
 	var case_name=$("#AddcaseName").val();
-	var case_photo=$("#AddcasePhoto").val();
 	var case_constant=$("#AddcaseConstant").val();
+	formData.append("case_name",case_name);
+	formData.append("case_upload",case_upload);
+	formData.append("case_constant",case_constant);
 	if(case_name == ""){
 		alert("案例名称不能为空!");
 	}else if(indexOf(case_name)){
 		alert("案例名称不能含有空白字符!");
-	}else if(case_photo==""){
-		alert("照片路径不能为空!");
 	}else if(case_constant==""){
 		alert("案例内容不能为空!");
 	}else{
+		if("undefined" != typeof(case_upload) && case_upload != null && case_upload != ""){
 		 $.ajax({
 			url:"case/add",
 			type:"POST",
-			data:$("#myAddForm").serialize(),
+			data:formData,
+			async: false,  
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
 			success:function(result){
 				$("#myAddModel").modal('hide');
 				to_page(c_page);
 			},
 			error:function(result){
 				alert("添加时发生错误!");
-			}
+			},
+			beforeSend: function(){  
+	            alert("上传等待中");
+	        }, 
+	        complete: function(){  
+	        	alert("上传成功");
+	        }
 		}); 
+		}else{
+			alert("选择的文件无效！请重新选择");
+		}
 	}
 });
 //删除

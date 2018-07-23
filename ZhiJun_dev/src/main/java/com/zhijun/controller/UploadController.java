@@ -57,7 +57,7 @@ public class UploadController {
         String fileUrl =newFileName;
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("data", "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/upload/"+fileUrl);
-       System.out.println(map);
+        System.out.println(map);
         return map;
     }
 	

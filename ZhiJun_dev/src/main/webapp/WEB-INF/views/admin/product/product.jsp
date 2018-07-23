@@ -209,7 +209,7 @@
                                    <h4 class="modal-title">产品编辑</h4>
                                </div>
                                <div class="modal-body">
-                               <form class="form-horizontal" id="myEditForm">
+                               <form class="form-horizontal" id="myEditForm" enctype="multipart/form-data">
 		                           <div class="form-group">
 		                               <label for="inputproId" class="col-sm-2 control-label">序号</label>	
 		                              <div class="col-sm-9">
@@ -225,7 +225,9 @@
 								  <div class="form-group">
 								  <label for="inputproPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditproPhoto" name="pro_photo" placeholder="请输入照片路径">
+								      <img id="oldPhoto" style="width:100px;height:100px"/>
+								      <input id="EditproPhoto" type="file" name="pro_photo" />
+								      <!-- <input type="text" class="form-control" id="EditproPhoto" name="pro_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
@@ -269,7 +271,9 @@
 								  <div class="form-group">
 								  <label for="inputproPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="AddproPhoto" name="pro_photo" placeholder="请输入照片路径">
+								      <img id="imgPhoto" style="width:100px;height:100px"/>
+								   	  <input id="AddproPhoto" type="file" name="pro_photo" />
+								      <!-- <input type="text" class="form-control" id="AddproPhoto" name="pro_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
 								   <div class="form-group">	
@@ -421,7 +425,14 @@ function to_page(c_page){
 	 }
 	});
 }
-
+$('#AddproPhoto').on('change',function(){
+	var filePath = window.URL.createObjectURL(this.files[0]);
+	$('#imgPhoto').attr("src",filePath);
+ });
+ $('#EditproPhoto').on('change',function(){
+		var filePath = window.URL.createObjectURL(this.files[0]);
+		$('#oldPhoto').attr("src",filePath);
+	 });
 function build_pro_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#pro_table tbody").empty();
@@ -430,7 +441,7 @@ function build_pro_table(result){
 		item.pro_time=time;
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_name);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_photo);
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.pro_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_constant.substring(0,20)+'...');
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
@@ -461,7 +472,7 @@ function getEditDate(id){
 				item.pro_time=time;
 				$("#EditproId").val(item.pro_id);
 				$("#EditproName").val(item.pro_name);
-				$("#EditproPhoto").val(item.pro_photo);
+				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.pro_photo);
 				$("#EditproConstant").val(item.pro_constant);
 				editor2.txt.html(item.pro_constant)
 				$("#EditproTime").val(item.pro_time);
@@ -490,31 +501,50 @@ $(document).on("click","#editBtn",function(){
 });
 //点击编辑模态框的保存按钮
 $(document).on("click","#myEditBtn",function(){
+	var formData = new FormData();
+	var pro_photo = $('#EditproPhoto').get(0).files[0];
 	var pro_id=$("#EditproId").val();
+	pro_id=parseInt(pro_id);
 	var pro_name=$("#EditproName").val();
-	var pro_photo=$("#EditproPhoto").val();
 	var pro_constant=$("#EditproConstant").val();
 	var pro_time=$("#EditproTime").val();
+	var old_photo = $("#oldPhoto")[0].src;
+	var index = old_photo .lastIndexOf("\/");  
+	old_photo = old_photo.substring(index + 1, old_photo.length);
+	formData.append("pro_id",pro_id);
+	formData.append("pro_name",pro_name);
+	formData.append("pro_constant",pro_constant);
+	formData.append("pro_time",pro_time); 
+	formData.append("pro_photo",pro_photo);
+	formData.append("old_photo",old_photo);
 	if(pro_name == ""){
 		alert("产品名称不能为空!");
 	}else if(indexOf(pro_name)){
 		alert("产品名称不能含有空白字符!");
-	}else if(pro_photo==""){
-		alert("照片路径不能为空!");
 	}else if(pro_constant==""){
 		alert("产品介绍不能为空!");
 	}else{
 		 $.ajax({
 			url:"pro/update",
 			type:"POST",
-			data:$("#myEditForm").serialize(),
+			data:formData,
+			async: false,  
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
 			success:function(result){
 				$("#myEditModel").modal('hide');//隐藏模态框
 				to_page(c_page);//显示全部 
 			},
 			error:function(result){
 				alert("编辑时发生错误!");
-			}
+			},
+	        beforeSend: function(){
+	        	alert("上传等待中");
+	        }, 
+	        complete: function(){  
+	        	alert("上传成功");
+	        }
 		}); 
 	}
 });
@@ -529,6 +559,7 @@ function indexOf(str){
 $(document).on("click","#addpage",function(){
 	$("#AddproName").val("");
 	$("#AddproPhoto").val("");
+	$("#imgPhoto").attr("src","");
 	$("#AddproConstant").val("");
 	$("#myAddModel").modal({
 		backdrop:'static'
@@ -537,30 +568,46 @@ $(document).on("click","#addpage",function(){
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
+	var formData = new FormData();
+	var pro_upload = $('#AddproPhoto').get(0).files[0];
 	var pro_name=$("#AddproName").val();
-	var pro_photo=$("#AddproPhoto").val();
 	var pro_constant=$("#AddproConstant").val();
+	formData.append("pro_name",pro_name);
+	formData.append("pro_upload",pro_upload);
+	formData.append("pro_constant",pro_constant);
 	if(pro_name == ""){
 		alert("产品名称不能为空!");
 	}else if(indexOf(pro_name)){
 		alert("产品名称不能含有空白字符!");
-	}else if(pro_photo==""){
-		alert("照片路径不能为空!");
 	}else if(pro_constant==""){
 		alert("产品介绍不能为空!");
 	}else{
+		if("undefined" != typeof(pro_upload) && pro_upload != null && pro_upload != ""){
 		 $.ajax({
 			url:"pro/add",
 			type:"POST",
-			data:$("#myAddForm").serialize(),
+			data:formData,
+			async: false,  
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
 			success:function(result){
 				$("#myAddModel").modal('hide');
 				to_page(c_page);
 			},
 			error:function(result){
 				alert("添加时发生错误!");
-			}
-		}); 
+			},
+			beforeSend: function(){  
+	            alert("上传等待中");
+	        }, 
+	        complete: function(){  
+	        	alert("上传成功");
+	        	}
+		});
+		}else{
+			alert("选择的文件无效！请重新选择");
+		}
 	}
 });
 //删除
