@@ -91,7 +91,7 @@
 				   <div class="side-menu-container">
 					   <!--顶部蓝色正方形div-->
 					   <div class="navbar-header">
-						   <a class="navbar-brand" href="rec">
+						   <a class="navbar-brand" href="index">
 							   <!--纸飞机字体图标-->
 							   <div class="icon fa fa-paper-plane"></div>
 							   <div class="title">智钧时代管理后台</div>

@@ -75,6 +75,7 @@ public class UserController {
 			    return mv;
 			}else {
 				ModelAndView mv = new ModelAndView("redirect:/admin/login");
+				mv.addObject("verdict", false);
 			    return mv;
 			}
 		}

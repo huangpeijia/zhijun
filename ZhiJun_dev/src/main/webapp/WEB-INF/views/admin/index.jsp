@@ -91,7 +91,7 @@
 				   <div class="side-menu-container">
 					   <!--顶部蓝色正方形div-->
 					   <div class="navbar-header">
-						   <a class="navbar-brand" href="rec">
+						   <a class="navbar-brand" href="index">
 							   <!--纸飞机字体图标-->
 							   <div class="icon fa fa-paper-plane"></div>
 							   <div class="title">智钧时代管理后台</div>
@@ -342,58 +342,22 @@
 						<div class="card card-success">
 							<div class="card-header">
 								<div class="card-title">
-									<div class="title"><i class="fa fa-comment-o"></i> Last Message </div>
+									<div class="title"><i class="fa  fa-newspaper-o"></i> &nbsp;&nbsp;最新动态 </div>
 								</div>
 								<div class="clear-both"></div>
 							</div>
 							<div class="card-body no-padding">
-								<ul class="message-list">
-									<!--信息1-->
-									<a href="#">
-										<li>
-											<img src="${APP_PATH }/js/img/profile/profile-1.jpg" class="profile-img pull-left">
-											<div class="message-block">
-												<div><span class="username">Tui2Tone</span> <span class="message-datetime">12 min ago</span> </div>
-											    <div class="message">dasdfa df asdf asdf asdf, asdf asdf asdf aaasd fasd fasd fasd fasd f,dfasdf asdf asdf , sdsf asdf asdf .</div>
-											</div>
-										</li>
-									</a>
-									<!--信息2-->
-									<a href="#">
-										<li>
-											<img src="${APP_PATH }/js/img/profile/profile-1.jpg" class="profile-img pull-left">
-											<div class="message-block">
-												<div><span class="username">Tui2Tone</span> <span class="message-datetime">12 min ago</span> </div>
-												<div class="message">dasdfa df asdf asdf asdf, asdf asdf asdf aaasd fasd fasd fasd fasd f,dfasdf asdf asdf , sdsf asdf asdf .</div>
-											</div>
-										</li>
-									</a>
-									<!--信息3-->
-									<a href="#">
-										<li>
-											<img src="${APP_PATH }/js/img/profile/profile-1.jpg" class="profile-img pull-left">
-											<div class="message-block">
-												<div><span class="username">Tui2Tone</span> <span class="message-datetime">12 min ago</span> </div>
-												<div class="message">dasdfa df asdf asdf asdf, asdf asdf asdf aaasd fasd fasd fasd fasd f,dfasdf asdf asdf , sdsf asdf asdf .</div>
-											</div>
-										</li>
-									</a>
-									<!--信息4-->
-									<a href="#">
-										<li>
-											<img src="${APP_PATH }/js/img/profile/profile-1.jpg" class="profile-img pull-left">
-											<div class="message-block">
-												<div><span class="username">Tui2Tone</span> <span class="message-datetime">12 min ago</span> </div>
-												<div class="message">dasdfa df asdf asdf asdf, asdf asdf asdf aaasd fasd fasd fasd fasd f,dfasdf asdf asdf , sdsf asdf asdf .</div>
-											</div>
-										</li>
-									</a>
-									<a href="#" id="message-load-more">
+								<ul class="message-list" id="newest_4">									
+									
+								</ul>
+								<ul class="message-list">									
+									<a href="news">
 										<li class="text-center load-more">
-											<i class="fa fa-refresh"></i> load more..
+											<i class="fa fa-refresh"></i> 更多...
 										</li>
 									</a>
 								</ul>
+								
 							</div>
 						</div>
 					</div>
@@ -426,6 +390,58 @@
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script type="text/javascript">
+var c_page=1; //当前页数
+$(function(){
+	to_count();
+    to_newest();
+});
+function to_count(){
+	$.ajax({
+		url:"index/countall",
+		type:"POST",
+		success:function(result){ 
+			$("#news_count").html(result.news_count);
+			$("#pro_count").html(result.pro_count);
+			$("#case_count").html(result.case_count);
+			$("#qua_count").html(result.qua_count);
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	});
+}
+function to_newest(){
+	$.ajax({
+		url:"index/newest",
+		type:"POST",
+		data:"number=4",
+		success:function(result){ 
+			build_news_newest(result);
+		},
+	 error:function(e){
+		 alert("error2:"+e);
+	 }
+	});
+}
+function build_news_newest(result){
+	$("#newest_4").empty();
+	$.each(result,function(index,item){
+		var time=times(item.news_time);
+		item.news_time=time;
+		var titleTd=$("<span class='username'></span>").append(item.news_title);
+		var photoTd=$("<img src='' class='profile-img pull-left'>").attr("src","${APP_PATH }/js/img/profile/profile-1.jpg");
+		var constantTd=$("<div class='message'></div>").append(item.news_constant.substring(0,130)+'...');
+		var timeTd=$("<span class='message-datetime'>&nbsp;&nbsp;&nbsp;&nbsp;</span>").append(item.news_time);
+        
+		var t_tTd=$("<div></div>").append(titleTd).append(timeTd);
+		var t_cTd=$("<div class='message-block'></div>").append(t_tTd).append(constantTd);
+		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
+		var lTd=$("<li></li>").append(photoTd).append(t_cTd);
+		$("<a href='#'></a>").append(lTd).appendTo("#newest_4");
+	});
+}
+
+
 	/*打开重置密码的模态框*/
 	$(document).on("click","#pass_reset",function(){
 		$("#UserPass").val("");
