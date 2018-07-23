@@ -8,6 +8,7 @@ D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\Recruitm
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\News.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\dao\ProductDao.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\NewsController.java
+D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\Document.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\InformationController.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\IndexController.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\dao\InformationDao.java
@@ -20,14 +21,17 @@ D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\CaseCont
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\dao\NewsDao.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\Student.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\AboutController.java
-D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\Qualification.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\base\UploadInterface.java
+D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\Qualification.java
+D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\DocumentController.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\UploadController.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\About.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\Recruitment.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\UserController.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\controller\QualificationController.java
+D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\dao\DocumentDao.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\dao\QualificationDao.java
+D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\base\demo.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\base\DateOrString.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\dao\LoginDao.java
 D:\github_desktop\zhijun\ZhiJun_dev\src\main\java\com\zhijun\bean\Product.java
