@@ -111,6 +111,10 @@
     			$("#myloginForm").submit();
     		}
         });
+        alert(requestScope.verdict);
+        if(!requestScope.verdict){
+        	alert("用户名或密码错误，请重新输入！");
+        }
     </script>
 </body>
 
