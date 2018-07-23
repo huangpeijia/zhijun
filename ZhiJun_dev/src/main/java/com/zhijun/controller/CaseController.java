@@ -1,5 +1,6 @@
 package com.zhijun.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -12,10 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.zhijun.base.ControllerBase;
+import com.zhijun.base.UploadInterface;
 import com.zhijun.bean.Cases;
 import com.zhijun.dao.CaseDao;
 
@@ -71,9 +75,17 @@ public class CaseController extends ControllerBase{
 	 * 添加数据
 	 * 方法
 	 * @version 2018年7月9日
+	 * @throws IOException 
 	 */
-	@RequestMapping("/admin/case/add")
-	public String add(Cases cases) throws ParseException{
+	@RequestMapping(value="/admin/case/add", method=RequestMethod.POST)
+	public String add(HttpServletRequest request,MultipartFile case_upload,Cases cases) throws ParseException, IOException{
+		if(case_upload==null) {
+			return "error";
+		}else {
+			String case_upload_name=UploadInterface.upload_one(request,case_upload);
+			cases.setCase_photo(case_upload_name);
+			System.out.println("========================"+case_upload_name);
+		}
 		cases.setCase_time(new Date());
 		int count = casedao.addCases(cases);
 		if(count == 1){
@@ -110,9 +122,27 @@ public class CaseController extends ControllerBase{
 	 * 修改
 	 * 方法
 	 * @version 2018年7月9日
+	 * @throws IOException 
 	 */
-	@RequestMapping("/admin/case/update")
-	public String update(Cases cases){
+	@RequestMapping(value="/admin/case/update",method=RequestMethod.POST)
+	public String update(HttpServletRequest request,MultipartFile case_photo) throws IOException{
+		int case_id =Integer.parseInt(request.getParameter("case_id"));
+		String case_name =request.getParameter("case_name");
+		String case_constant =request.getParameter("case_constant");
+		String old_photo =request.getParameter("old_photo");
+		Cases cases=new Cases();
+		String cases_upload_name;
+		if(case_photo==null) {
+			cases.setCase_photo(old_photo);
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa"+case_photo);
+		}else {
+			cases_upload_name=UploadInterface.upload_one(request,case_photo);
+			 cases.setCase_photo(cases_upload_name);
+			System.out.println("========================"+cases_upload_name);
+		}
+		cases.setCase_id(case_id);
+		cases.setCase_name(case_name);
+		cases.setCase_constant(case_constant);
 		cases.setCase_time(new Date());
 		int count = casedao.update(cases);
 		if(count == 1) {
