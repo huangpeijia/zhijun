@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhijun.base.ControllerBase;
 import com.zhijun.bean.News;
+import com.zhijun.bean.Product;
 import com.zhijun.dao.CaseDao;
 import com.zhijun.dao.NewsDao;
 import com.zhijun.dao.ProductDao;
@@ -65,7 +66,7 @@ public class IndexController extends ControllerBase{
 	/**
 	 * 获取新闻最新四条数据
 	 * 方法
-	 * @author hpj
+	 * @author wzh
 	 * @version 2018年7月10日
 	 */
 	@RequestMapping(value = "/admin/index/newest", produces = "application/json; charset=utf-8")
@@ -73,5 +74,18 @@ public class IndexController extends ControllerBase{
 	public List<News> queryNewest(@RequestParam("number")int num,Model model){
 		List<News> news = newsdao.queryNewest(num);
 		return news;
+	}
+	
+	/**
+	 * 获取产品信息最新两条数据
+	 * 方法
+	 * @author wzh
+	 * @version 2018年7月10日
+	 */
+	@RequestMapping(value = "/admin/index/pro_newest", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<Product> queryNewest1(@RequestParam("number")int num,Model model){
+		List<Product> pro = prodao.queryNewest1(num);
+		return pro;
 	}
 }

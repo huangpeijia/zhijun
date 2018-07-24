@@ -91,6 +91,21 @@ public class ProductDao {
 		String sql = "update product set pro_name=?, pro_constant=?, pro_photo=?, pro_type=?,pro_time=? where pro_id=?";
 		return jdbcTemplate.update(sql, new Object[] {pro.getPro_name(),pro.getPro_constant(),pro.getPro_photo(),pro.getPro_type(),pro.getPro_time(),pro.getPro_id()});
 	}
+	
+	
+	/**
+	 * 查询前几条信息
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月10日
+	 */
+	public List<Product> queryNewest1(int num){
+		String sql ="select pro_id, pro_name, pro_constant, pro_photo, pro_time, pro_type from product order by pro_time desc limit "+num+"";
+		List<Product> list =jdbcTemplate.query(sql, new ProductMapper());
+		return list;
+	}
+	
+		
 	public class ProductMapper implements RowMapper<Product>{
 
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {

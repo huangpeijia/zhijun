@@ -234,7 +234,6 @@
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/theme-github.js"></script>
 <!--Javascript-->
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
-<script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	/*打开重置密码的模态框*/

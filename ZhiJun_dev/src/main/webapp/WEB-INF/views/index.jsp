@@ -9,6 +9,7 @@
 <title>管理登录</title>
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
+   String path=(String)request.getSession().getAttribute("vel");
 %>
 <!-- Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
@@ -68,6 +69,7 @@
                                 <div class="control">
                                     <input type="password" class="form-control" id="userpassword" name="userpassword" placeholder="密码"/>
                                 </div>
+                                <!-- <div class="text-center" id="error"></div> -->
                                 <div class="login-button text-center">
                                     <button type="button" class="btn btn-primary btn-lg" id="loginBtn">登录</button>
                                 </div>
@@ -96,6 +98,23 @@
     <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
     
     <script type="text/javascript">
+    /* 由于window.name在浏览器刷新后会仍然保存，所有可以用window.name来判断页面缩放已经刷新过 */
+    if(window.name!="hasLoad"){
+    	location.reload();
+    	window.name="hasLoad";
+    }else{
+    	window.name="";
+    }
+    $(function(){
+    	/* $("#error").empty(); */
+    	var s='<%=path%>';
+        if(s=="false"){
+        	alert("用户名或密码错误，请重新输入！");
+        	/* $("#error").html("用户名或密码错误，请重新输入！"); */
+        	<%session.removeAttribute("vel");%>
+        }   
+    });
+    
         $(document).on("click","#loginBtn",function(){
         	var username = $("username").val();
         	var userpassword = $("#userpassword").val();
@@ -107,14 +126,9 @@
     			alert("用户密码长度不能小于6位!");
     			$("#userpassword").val("");
     		}else{
-    			alert("我提交了!")
     			$("#myloginForm").submit();
     		}
-        });
-        alert(requestScope.verdict);
-        if(!requestScope.verdict){
-        	alert("用户名或密码错误，请重新输入！");
-        }
+        });        
     </script>
 </body>
 

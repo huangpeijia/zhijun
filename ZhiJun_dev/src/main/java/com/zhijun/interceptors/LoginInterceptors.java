@@ -29,15 +29,25 @@ public class LoginInterceptors implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 		//System.out.println("======处理请求之前======");
 		//获取请求的URL
+		
 		String url = request.getRequestURI();
 		System.out.println("LoginInterceptors拦截路径为:"+url);
 		//截取登陆信息
 		String string = url.substring(url.lastIndexOf("/")+1);
 		//声明一个session
 		HttpSession session = request.getSession();
+//		session.removeAttribute("vel");
 		//回去session作用域中是否已有存在的值
 		Object username = session.getAttribute("username");
+		Object vel = session.getAttribute("vel");
 		if(string.equals("login")) {
+			/*System.out.println("经过这里");
+			if(vel==null){
+				System.out.println("经过这里，并且vel为空");
+			}			
+			if(vel!=null){
+				System.out.println("vel不为空");
+			}*/
 			if(username != null) {
 	 			session.removeAttribute("username");
 			}
@@ -65,9 +75,12 @@ public class LoginInterceptors implements HandlerInterceptor {
 					return true;
 				}
 				else {
+					/*session.setAttribute("vel", false);
+					System.out.println(session.getAttribute("vel"));*/
 					//查询不到用户名和密码
 					System.out.println("用户登录密码错误，请重新登陆");
 					//重定向index登陆界面
+					request.getSession().setAttribute("vel","false");
 					response.sendRedirect(request.getContextPath()+"/admin/login");
 					//拦截
 					return false;
