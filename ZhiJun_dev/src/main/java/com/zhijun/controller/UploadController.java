@@ -99,7 +99,7 @@ public class UploadController {
 		}
 		String input_te=request.getParameter("input_te");
 		String selectedId = request.getParameter("selectedId");
-		Map<String,  Object> resultMap = new HashMap<>();
+		Map<String,  Object> resultMap = new HashMap<String,Object>();
 		System.out.println(input_te+"-----------------"+selectedId+"+++++++++++++"+uploadFile);
 		return resultMap;
 	}
