@@ -76,7 +76,7 @@ public class UploadController {
 	      //原始名称
 	        String originalFilename = uploadFile.getOriginalFilename();
 	        //新的文件名称（1531988920850.jpg）
-	        String newFileName =new Date().getTime()+originalFilename.substring(originalFilename.lastIndexOf("."));
+	        String newFileName ="2"+originalFilename.substring(originalFilename.lastIndexOf("."));
 	      //获取输出流
 	        OutputStream os=new FileOutputStream(realPath+"/upload/"+newFileName);
 	      //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
