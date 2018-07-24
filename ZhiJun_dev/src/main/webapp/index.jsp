@@ -10,6 +10,7 @@
 <script type="text/javascript" src="js/js/release/wangEditor.min.js"></script> 
 </head>
 <body>
+<img src="D:\develop_eclipse\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\/ZhiJun_dev/upload/1532318324444.jpg" />
 <form method="post" id="file" action="" enctype="multipart/form-data">
 			<select id="select">
 				<option value="1">1</option>
