@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>新闻中心</title>
+	<title>文件管理</title>
 	<%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
@@ -122,7 +122,7 @@
 							   </a>
 						   </li>
 						   <!--导航目录3-->
-						   <li class="active">
+						   <li>
 							   <a href="news">
 								   <!--图标和字-->
 								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
@@ -143,7 +143,7 @@
 						   <!--导航目录6-->
 						   <li>
 							   <a href="qua">
-								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
+								   <span class="icon fa fa-trophy"></span><span class="title">资质信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录7-->
@@ -153,8 +153,8 @@
 							   </a>
 						   </li>
 						   <!--导航目录8-->
-						   <li>
-							   <a href="file">
+						   <li class="active">
+							   <a href="document">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>
@@ -201,9 +201,7 @@
 					   </div>
 				   </div> 
 				   <div class="page-title">
-					   <span class="title">新闻中心</span>
-					   <!-- 添加按钮 -->
-					   <button class="btn btn-primary btn-lg navbar-right" id="addpage" style="margin:0px"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加</button>
+					   <span class="title">文件管理</span>					   
 				   </div> 
 				   <div class="row">
 					   <div class="col-xs-12">
@@ -240,9 +238,7 @@
 		   </div>
 	   </footer>
    </div> 
-<%-- <script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script> --%>
 <script type="text/javascript" src="${APP_PATH }/js/js/jquery-3.2.1.js"></script>
-<!--<script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/Chart.min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap-switch.min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.matchHeight-min.js"></script>
@@ -295,7 +291,7 @@ function build_news_table(result,page,num){
 		
 		var btnTd=$("<td></td>").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(timeTd).append(photoTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(photoTd).append(timeTd)
 		.append(btnTd).appendTo("#news_table tbody");
 		}
 	});
