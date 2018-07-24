@@ -143,7 +143,7 @@
 						   <!--导航目录6-->
 						   <li class="active">
 							   <a href="qua">
-								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
+								   <span class="icon fa fa-trophy"></span><span class="title">资质信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录7-->
@@ -154,7 +154,7 @@
 						   </li>
 						   <!--导航目录8-->
 						   <li>
-							   <a href="file">
+							   <a href="document">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>
@@ -350,7 +350,6 @@
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/theme-github.js"></script>
 <!--Javascript-->
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
-<script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>

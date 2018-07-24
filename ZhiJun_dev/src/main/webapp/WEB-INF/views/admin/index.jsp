@@ -142,7 +142,7 @@
 						   <!--导航目录6-->
 						   <li>
 							   <a href="qua">
-								   <span class="icon fa fa-certificate"></span><span class="title">资质信息</span>
+								   <span class="icon fa fa-trophy"></span><span class="title">资质信息</span>
 							   </a>
 						   </li>
 						   <!--导航目录8-->
@@ -153,7 +153,7 @@
 						   </li>
 						   <!--导航目录9-->
 						   <li>
-							   <a href="file">
+							   <a href="document">
 								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
 							   </a>
 						   </li>
