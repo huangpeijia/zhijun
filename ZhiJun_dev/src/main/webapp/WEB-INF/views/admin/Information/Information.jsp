@@ -328,7 +328,6 @@
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/theme-github.js"></script>
 <!--Javascript-->
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
-<script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript">

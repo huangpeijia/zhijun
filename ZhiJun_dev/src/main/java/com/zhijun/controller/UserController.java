@@ -41,8 +41,6 @@ public class UserController {
 	 */
 	@RequestMapping("/admin/login")
 	public String Login(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		session.invalidate();
 		return "index";
 	}
 	
@@ -54,6 +52,7 @@ public class UserController {
 	 */
 	@RequestMapping("/admin/index")
 	public String Index(HttpServletRequest request) {
+		System.out.println(request+"rrr");
 	    return "admin/index";
 	}
 	
@@ -75,7 +74,6 @@ public class UserController {
 			    return mv;
 			}else {
 				ModelAndView mv = new ModelAndView("redirect:/admin/login");
-				mv.addObject("verdict", false);
 			    return mv;
 			}
 		}
