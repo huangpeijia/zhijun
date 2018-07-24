@@ -239,11 +239,11 @@
 								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
 								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
 								       <input type="radio" id="EditnewsType" name="news_type" value="0">
-								       <label for="news_type">公司新闻</label>
+								       <label for="EditnewsType">公司新闻</label>
 								    </div>
 								    <div class="col-sm-2 radio-check radio-success radio-inline">
-								       <input type="radio" id="EditnewsType" name="news_type" value="1">
-								       <label for="news_type">行业动态</label>
+								       <input type="radio" id="EditnewsType1" name="news_type" value="1">
+								       <label for="EditnewsType1">行业动态</label>
 								    </div>
 								  </div>
 								   <div class="form-group">	
@@ -288,11 +288,11 @@
 								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
 								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
 								       <input type="radio" id="AddnewsType" name="news_type" value="0" checked="checked">
-								       <label for="news_type1">公司新闻</label>
+								       <label for="AddnewsType">公司新闻</label>
 								    </div>
 								    <div class="col-sm-2 radio-check radio-success radio-inline">
-								       <input type="radio" id="AddnewsType" name="news_type" value="1">
-								       <label for="news_type1">行业动态</label>
+								       <input type="radio" id="AddnewsType1" name="news_type" value="1">
+								       <label for="AddnewsType1">行业动态</label>
 								    </div>
 								  </div>
 								</form>
@@ -363,7 +363,6 @@
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/theme-github.js"></script>
 <!--Javascript-->
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
-<script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>

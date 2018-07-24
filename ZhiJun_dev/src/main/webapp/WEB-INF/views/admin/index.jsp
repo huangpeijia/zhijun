@@ -283,30 +283,9 @@
 								</div>
 							</div>
 						</div>
-						<!--图文-->
-						<div class="row">
-							<!--图文1-->
-							<div class="col-md-6 col-sm-12">
-								<div class="thumbnail no-margin-bottom">
-									<img src="${APP_PATH }/js/img/thumbnails/picjumbo.com_IMG_4566.jpg" class="img-responsive">
-									<div class="caption">
-										<h3 id="thumbnail-label1">Thumbnail label<a class="anchorjs-link" href="#thumbnail-label"><span class="anchorjs-icon"></span></a></h3>
-										<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-										<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-									</div>
-								</div>
-							</div>
-							<!--图文2-->
-							<div class="col-md-6 col-sm-12">
-								<div class="thumbnail no-margin-bottom">
-									<img src="${APP_PATH }/js/img/thumbnails/picjumbo.com_IMG_3241.jpg" class="img-responsive">
-									<div class="caption">
-										<h3 id="thumbnail-label">Thumbnail label<a class="anchorjs-link" href="#thumbnail-label"><span class="anchorjs-icon"></span></a></h3>
-										<p>似的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶</p>
-										<p><a href="#" class="btn btn-success" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-									</div>
-								</div>
-							</div>
+						 <!--图文-->
+						<div class="row" id="newest_2">
+							
 						</div>
 					</div>
 					<!--右-->
@@ -348,7 +327,7 @@
 							</div>
 							<div class="card-body no-padding">
 								<ul class="message-list" id="newest_4">									
-									
+									<!-- 遍歷内容之處 -->
 								</ul>
 								<ul class="message-list">									
 									<a href="news">
@@ -392,8 +371,9 @@
 <script type="text/javascript">
 var c_page=1; //当前页数
 $(function(){
-	to_count();
-    to_newest();
+	to_count();//查询总数
+    to_newest();//查询新闻
+    to_pro_newest()//查询产品信息
 });
 function to_count(){
 	$.ajax({
@@ -436,8 +416,36 @@ function build_news_newest(result){
 		var t_tTd=$("<div></div>").append(titleTd).append(timeTd);
 		var t_cTd=$("<div class='message-block'></div>").append(t_tTd).append(constantTd);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		var lTd=$("<li></li>").append(photoTd).append(t_cTd);
+		var lTd=$("<li></li>").append(t_cTd);
 		$("<a href='#'></a>").append(lTd).appendTo("#newest_4");
+	});
+}
+function to_pro_newest(){
+	$.ajax({
+		url:"index/pro_newest",
+		type:"POST",
+		data:"number=2",
+		success:function(result){ 
+			build_pro_newest(result);
+		},
+	 error:function(e){
+		 alert("error2:"+e);
+	 }
+	});
+}
+function build_pro_newest(result){
+	$("#newest_2").empty();
+	$.each(result,function(index,item){
+		var time=times(item.news_time);
+		item.news_time=time;
+		var nameTd=$("<h3 id='thumbnail-label'></h3>").append(item.pro_name);
+		var constantTd=$("<p></p>").append(item.pro_constant.substring(0,130)+'...');
+		var photoTd=$("<img src='' class='img-responsive'>").attr("src","/ZhiJun_dev/upload/"+item.pro_photo);
+        
+		var n_cTd=$("<div class='caption'></div>").append(nameTd).append(constantTd);
+		var p_nTd=$("<div class='thumbnail no-margin-bottom'></div>").append(photoTd).append(n_cTd);
+		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
+		$("<div class='col-md-6 col-sm-12'></div>").append(p_nTd).appendTo("#newest_2");
 	});
 }
 
