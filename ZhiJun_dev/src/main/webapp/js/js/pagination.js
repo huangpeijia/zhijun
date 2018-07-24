@@ -12,6 +12,15 @@ function pages(urlname,c_page){
 	 }
 	});
 }
+function document_count(d_pages){ 
+	$.ajax({
+		url:"document/count",
+		type:"POST",
+		success:function(result){ 
+			count(result,d_pages);
+		}
+	});
+}
 //添加数据
 function count(result,c_pages){
 	var coun=Math.ceil(result/7);
