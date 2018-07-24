@@ -10,7 +10,8 @@
 <script type="text/javascript" src="js/js/release/wangEditor.min.js"></script> 
 </head>
 <body>
-<img src="D:\develop_eclipse\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\/ZhiJun_dev/upload/1532318324444.jpg" />
+
+<video  src="/ZhiJun_dev/upload/1.mp4"style="width:300px;height:300px" controls="controls"></video>
 <form method="post" id="file" action="" enctype="multipart/form-data">
 			<select id="select">
 				<option value="1">1</option>
@@ -21,7 +22,7 @@
 			</select>
 			<input type="text" name="input_te" id="input_te" />
 		    <h3>选择一个文件:</h3>
-		    <input id="excelFile" type="file" name="uploadFile" />
+		    <input id="excelFile"  accept="video/*" type="file" name="uploadFile" />
 		    <br/><br/>
 		    <input type="button" value="上传" onclick="uploadFiles();"/>
 		</form>
