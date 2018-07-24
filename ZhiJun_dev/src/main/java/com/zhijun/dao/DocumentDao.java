@@ -33,25 +33,25 @@ public class DocumentDao {
     	// 获得指定文件对象  
         File file = new File(path);   
         // 获得该文件夹内的所有文件   
-        File[] array = file.listFiles();   
+        File[] array = file.listFiles();
         for(int i=0;i<array.length;i++)
         {   
             if(array[i].isFile())//如果是文件
             {
             	Document docu=new Document();
             	// 文件名字  
-            	System.out.println( array[i].getName());
+//            	System.out.println( array[i].getName());
             	String name=array[i].getName();
             	// 输出当前文件的完整路径   
             	long time = array[i].lastModified();
             	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             	String res = sdf.format(time);
-            	System.out.println("时间：："+res);
+//            	System.out.println("时间：："+res);
             	//文件的大小
             	String num=array[i].length()+"";
-            	System.out.println("大小是：："+array[i].length());
+//            	System.out.println("大小是：："+array[i].length());
             	// 同样输出当前文件的完整路径   大家可以去掉注释 测试一下   
-            	System.out.println(array[i].getPath());
+//            	System.out.println(array[i].getPath());
             	docu.setName(name);
             	docu.setNum(num);
             	docu.setTime(res);
@@ -68,6 +68,21 @@ public class DocumentDao {
 		return list;   
     }
 
+    public int countAll(String path) {
+    	File file = new File(path);   
+      // 获得该文件夹内的所有文件   
+      File[] array = file.listFiles();   
+      int count=0;
+      for(int i=0;i<array.length;i++)
+      {   
+          if(array[i].isFile())//如果是文件
+          {
+        	count++;
+          }
+      }
+		return count;
+    	
+    }
 	public boolean deleteFile(String path_name) {
 		// TODO Auto-generated method stub
 		File file = new File(path_name);

@@ -37,22 +37,32 @@ public class DocumentController {
 	public List<Document> documentAll(HttpServletRequest request) {
 		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
 		realPath = realPath+"/upload/"; //原路径
-		List<Document> list =docudao.getFile(realPath,0);
+		List<Document> list =docudao.getFile(realPath,0); 
 		return list;
 	}
-	/**
+	@RequestMapping(value="/admin/document/count")
+	@ResponseBody
+	public int countAll(HttpServletRequest request) {
+		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
+		realPath = realPath+"/upload/"; //原路径
+		int count =docudao.countAll(realPath);
+		return count;
+		
+	}
+	/** 
 	 * 删除文件夹下的照片
 	 * 方法
 	 * @author hpj
 	 * @version 2018年7月23日
 	 */
 	@RequestMapping(value="/admin/document/delete_name")
+	@ResponseBody
 	public String deleteFile(HttpServletRequest request) {
 		String path_name =request.getParameter("path_name");
 		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
 		realPath = realPath+"/upload/"; //原路径
 		
-		System.out.println(realPath+path_name);
+		System.out.println("-----------------"+realPath+path_name);
 		boolean bool = docudao.deleteFile(realPath+path_name);
 		System.out.println(bool);
 		if(bool){

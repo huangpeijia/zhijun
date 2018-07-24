@@ -95,7 +95,7 @@
 						   <a class="navbar-brand" href="index">
 							   <!--纸飞机字体图标-->
 							   <div class="icon fa fa-paper-plane"></div>
-							   <div class="title">智钧时代管理后台</div>
+							   <div class="title">智钧时代管理后台</div> 
 						   </a>
 					   </div>
 					   <!--蓝方框以下的导航-->
@@ -218,13 +218,12 @@
 								              <th>照片</th>
 								              <th>文件时间</th>
 								              <th>操作</th>
-								              
 								          </tr>
 								       </thead>
 								       <tbody> 
 								       </tbody>
 								   </table>
-								    <div id="page"></div>
+								   <div id="page"></div>
 							   </div>
 						   </div>
 					   </div>
@@ -267,8 +266,8 @@ function to_page(c_page){
 		type:"POST",
 		success:function(result){
 			//1、解析数据
-			build_news_table(result);
-			pages("news",c_page);
+			build_news_table(result,(c_page-1)*7,7*c_page);
+			document_count(c_page);
 		},
 	 error:function(e){
 		 alert("error:"+e);
@@ -276,10 +275,11 @@ function to_page(c_page){
 	});
 }
 
-function build_news_table(result){
+function build_news_table(result,page,num){
 	//构建先前情况table,empty掏空信息的方法
 	$("#news_table tbody").empty();
 	$.each(result,function(index,item){
+		if(index>=page&&index<num){
 		index++;
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(index);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.name);
@@ -297,6 +297,7 @@ function build_news_table(result){
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
 		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(timeTd).append(photoTd)
 		.append(btnTd).appendTo("#news_table tbody");
+		}
 	});
 } 
 //判断有没有包含空白字符的字符串
@@ -309,15 +310,14 @@ function indexOf(str){
 //删除
 $(document).on("click","#delBtn",function(){
 	var name = $(this).attr("del-name");
-	alert(name);
 	if(confirm("是否要删除?")){
 		//删除 
 		$.ajax({
 			url:"document/delete_name",
-			type:"GET",
+			type:"POST",
 			data:"path_name="+name,
 			success:function(result){
-				alert(name);
+				to_page(c_page);
 			},
 			error:function(result){
 				alert("删除时错误，请重新尝试!");
