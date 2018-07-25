@@ -203,6 +203,7 @@
 				    <!--编辑 模态框  -->
 				   <div class="modal fade" id="myEditModel" tabindex="-1" role="dialog">
                        <div class="modal-dialog" role="document">
+                       <div class="" id="upE" style="z-index:99999;width:600px;height:784px; background-color:rgba(0,0,0,0.5);position:absolute;display:none"><img src="${APP_PATH }/js/img/1.gif" style="position:absolute;left:230px;top:270px"></div>
                            <div class="modal-content">
                                <div class="modal-header">
                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -255,6 +256,7 @@
 					<!-- 添加模态框 -->
 					<div class="modal fade" id="myAddModel" tabindex="-1" role="dialog">
 						  <div class="modal-dialog" role="document">
+						  <div class="" id="upA" style="z-index:99999;width:600px;height:685px; background-color:rgba(0,0,0,0.5);position:absolute;display:none"><img src="${APP_PATH }/js/img/1.gif" style="position:absolute;left:230px;top:270px"></div>
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -529,7 +531,6 @@ $(document).on("click","#myEditBtn",function(){
 			url:"case/update",
 			type:"POST",
 			data:formData,
-			async: false,  
 			cache: false, 
 			contentType: false, //不设置内容类型
 			processData: false, //不处理数据
@@ -541,10 +542,12 @@ $(document).on("click","#myEditBtn",function(){
 				alert("编辑时发生错误!");
 			},
 	        beforeSend: function(){
-	        	alert("上传等待中");
+	        	/* alert("上传等待中"); */
+	        	$("#upE").show();
 	        }, 
 	        complete: function(){  
-	        	alert("上传成功");
+	        	$("#upE").hide();
+	        	/* alert("上传成功"); */
 	        }
 		}); 
 	}
@@ -561,7 +564,7 @@ $(document).on("click","#addpage",function(){
 	$("#AddcaseName").val("");
 	$("#AddcasePhoto").val("");
 	$("#AddcaseConstant").val(""); 
-	$("#imgPhoto").attr("src","");
+	$("#imgPhoto").attr("src","${APP_PATH }/js/img/2.jpeg");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
@@ -587,8 +590,7 @@ $(document).on("click","#myAddBtn",function(){
 		 $.ajax({
 			url:"case/add",
 			type:"POST",
-			data:formData,
-			async: false,  
+			data:formData, 
 			cache: false, 
 			contentType: false, //不设置内容类型
 			processData: false, //不处理数据
@@ -600,10 +602,12 @@ $(document).on("click","#myAddBtn",function(){
 				alert("添加时发生错误!");
 			},
 			beforeSend: function(){  
-	            alert("上传等待中");
+	            /* alert("上传等待中"); */
+				$("#upA").show();
 	        }, 
 	        complete: function(){  
-	        	alert("上传成功");
+	        	$("#upA").hide();
+	        	/* alert("上传成功"); */
 	        }
 		}); 
 		}else{
