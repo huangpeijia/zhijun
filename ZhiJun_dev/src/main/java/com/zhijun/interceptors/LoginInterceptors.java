@@ -59,7 +59,7 @@ public class LoginInterceptors implements HandlerInterceptor {
 				return true;
 			}
 			//登陆拦截
-			if(string.equals("")) {
+			if(string.equals("enter")) {
 				//移除session作用域中的值
 				session.removeAttribute("username");
 				//回去request请求路径中的用户名和密码

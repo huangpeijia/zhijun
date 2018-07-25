@@ -43,6 +43,11 @@ public class UserController {
 	public String Login(HttpServletRequest request) {
 		return "index";
 	}
+	@RequestMapping("/admin")
+	public String Index1(HttpServletRequest request) {		
+	    return "index";
+	}
+	
 	
 	/**
 	 * 跳转首页
@@ -57,7 +62,7 @@ public class UserController {
 	}
 	
 	// 从数据库中获取所有学生
-		@RequestMapping("/admin/") 
+		@RequestMapping("/admin/enter") 
 		public ModelAndView selectOne(@RequestParam(value="username",required=false) String username,@RequestParam(value="userpassword",required=false) String userpassword,Model model) {
 			// ApplicationContext context = new
 			// ClassPathXmlApplicationContext("applicationContext.xml");
