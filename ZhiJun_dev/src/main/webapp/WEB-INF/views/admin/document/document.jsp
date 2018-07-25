@@ -28,6 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/style.css">
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/js/css/themes/flat-blue.css"><!--设置颜色样式-->
 	<link rel="stylesheet" type="text/css" href="${APP_PATH}/js/css/table.css"><!-- 自定义的表格样式和分页的样式 -->		
+
 </head>
 <body class="flat-blue">
    <div class="app-container">
@@ -201,13 +202,15 @@
 					   </div>
 				   </div> 
 				   <div class="page-title">
-					   <span class="title">文件管理</span>					   
+					   <span class="title">文件管理</span> 
+					    <button class="title" id="addvideo" style="margin-left:100px">宣传视频</button>		
+					    	   
 				   </div> 
 				   <div class="row">
 					   <div class="col-xs-12">
 						   <div class="card">							  
 							   <div class="card-body">
-								   <table class="table" id="news_table" >
+								   <table class="table" id="document_table" >
 								       <thead>
 								          <tr>
 								              <th>序号</th>
@@ -229,7 +232,33 @@
 			   </div>
 		   </div>
 		   <div>
-
+			<!-- 添加模态框 -->
+					<div class="modal fade" id="videoModel" tabindex="-1" role="dialog">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title">修改宣传视频</h4>
+						      </div>
+						      <div class="modal-body">
+						        <form class="form-horizontal" id="myAddForm" method="post" enctype="multipart/form-data">
+								  <div class="form-group">
+								    <div class="col-sm-12">
+								     <video id="docu_video" src="/ZhiJun_dev/video/index.mp4" controlslist="nodownload"  style="width:550px;height:400px" controls="controls"></video>
+								   	<input id="excelFile"  accept="video/*" type="file" name="uploadFile" />
+								    </div>
+								  </div>	 
+								</form>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						        <button type="button" class="btn btn-primary"  id="myAddBtn" onclick="uploadFiles();">修改</button>						      
+						    	
+						     </div><!-- /.modal-content -->
+						  </div><!-- /.modal-dialog -->
+					</div>
+				   </div>
+				   
 		   </div>
 	   </div>
 	   <footer class="app-footer">
@@ -270,10 +299,53 @@ function to_page(c_page){
 	 }
 	});
 }
-
+//打开视频模态框
+$(document).on("click","#addvideo",function(){
+	$("#videoModel").modal({
+		backdrop:'static'
+	});
+	upFile();
+});
+function upFile(){
+	$.ajax({
+		url:'document/select_video',
+		type:'POST',
+		success:function(result){
+			$("#docu_video").attr("src","/ZhiJun_dev/video/"+result);
+		} 
+	})
+}
+function uploadFiles(){
+	var formData = new FormData();
+	var uploadFile = $('#excelFile').get(0).files[0];
+	alert("sasa::"+uploadFile);
+	formData.append("uploadFile",uploadFile);
+		$.ajax({
+			url:'document/video',
+			type:'POST',
+			data:formData,
+			async: false,  
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
+			success:function(data){
+				$("#videoModel").modal('hide');//隐藏模态框
+				to_page(c_page);
+			},
+			beforeSend: function(){  
+	            alert("aa");
+	        }, 
+	        complete: function(){  
+	        	alert("上传结束");
+	        	},
+			error:function(){
+				alert("上传失败！");
+			}
+		})
+}   
 function build_news_table(result,page,num){
 	//构建先前情况table,empty掏空信息的方法
-	$("#news_table tbody").empty();
+	$("#document_table tbody").empty();
 	$.each(result,function(index,item){
 		if(index>=page&&index<num){
 		index++;
@@ -292,7 +364,7 @@ function build_news_table(result,page,num){
 		var btnTd=$("<td></td>").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
 		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(photoTd).append(timeTd)
-		.append(btnTd).appendTo("#news_table tbody");
+		.append(btnTd).appendTo("#document_table tbody");
 		}
 	});
 } 

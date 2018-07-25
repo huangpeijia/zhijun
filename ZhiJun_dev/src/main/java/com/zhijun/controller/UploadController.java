@@ -36,7 +36,6 @@ public class UploadController {
        // String rootPath =request.getServletContext().getRealPath("/resource/uploads/");//target的目录
         //本地使用
         String rootPath =realPath+"upload";
-        System.out.println("ssssssssssssssssssssssssssssssssssssssss"+rootPath);
         //原始名称
         String originalFilename = file.getOriginalFilename();
         //新的文件名称
