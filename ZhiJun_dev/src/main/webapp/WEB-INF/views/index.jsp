@@ -62,7 +62,7 @@
                                     Log In...
                                 </div>
                             </div>
-                            <form id="myloginForm" action="${APP_PATH }/admin/" method="post" class="form-horizontal" style="background-color:transparent">
+                            <form id="myloginForm" action="${APP_PATH }/admin/enter" method="post" class="form-horizontal" style="background-color:transparent">
                                 <div class="control">
                                     <input type="text" class="form-control" id="username" name="username" placeholder="用户名" />
                                 </div>
