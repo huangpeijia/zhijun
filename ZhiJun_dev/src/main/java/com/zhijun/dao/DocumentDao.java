@@ -67,7 +67,23 @@ public class DocumentDao {
         }
 		return list;   
     }
-
+    public static String getFilevideo(String path){
+    	String video_name="";
+    	// 获得指定文件对象  
+        File file = new File(path);   
+        // 获得该文件夹内的所有文件   
+        File[] array = file.listFiles();
+        for(int i=0;i<array.length;i++)
+        {   
+            if(array[i].isFile())//如果是文件
+            {
+            	// 文件名字   
+            	video_name=array[i].getName();
+            	 
+            } 
+        }
+		return video_name;   
+    }
     public int countAll(String path) {
     	File file = new File(path);   
       // 获得该文件夹内的所有文件   

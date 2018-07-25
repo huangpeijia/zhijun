@@ -8,10 +8,11 @@
 
 <script type="text/javascript" src="js/js/jquery-3.2.1.js"></script> 
 <script type="text/javascript" src="js/js/release/wangEditor.min.js"></script> 
+ 
 </head>
 <body>
 
-<video  src="/ZhiJun_dev/upload/1.mp4"style="width:300px;height:300px" controls="controls"></video>
+<video  src="/ZhiJun_dev/upload/1.mp4" controlslist="nodownload" style="width:300px;height:300px" controls="controls"></video>
 <form method="post" id="file" action="" enctype="multipart/form-data">
 			<select id="select">
 				<option value="1">1</option>
