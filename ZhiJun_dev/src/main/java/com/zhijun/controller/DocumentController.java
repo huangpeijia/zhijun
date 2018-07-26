@@ -81,6 +81,12 @@ public class DocumentController {
 		}
 		
 	}
+	/**
+	 * 查询视频
+	 * 方法
+	 * @author hpj
+	 * @version 2018年7月26日
+	 */
 	@RequestMapping(value="admin/document/select_video", method=RequestMethod.POST)
 	@ResponseBody
 	public String select_video(HttpServletRequest request) throws IOException {
@@ -112,24 +118,10 @@ public class DocumentController {
 	        //新的文件名称（1531988920850.jpg）
 	        String newFileName ="index"+originalFilename.substring(originalFilename.lastIndexOf("."));
 	      //获取输出流
-	        OutputStream os=new FileOutputStream(realPath+"/video/"+newFileName);
-	      //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
-	        InputStream is=uploadFile.getInputStream();
-	        try { 
-	            int temp;
-	            //一个一个字节的读取并写入
-	            while((temp=is.read())!=(-1))
-	            {
-	                os.write(temp);
-	            }
-	        } catch (FileNotFoundException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }finally {
-	        	os.flush();
-	            os.close();
-	            is.close();
-	        }
+	        String path=realPath+"/video/"+newFileName;
+	        File newFile=new File(path);
+	        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+	        uploadFile.transferTo(newFile);
 		}
 		String input_te=request.getParameter("input_te");
 		String selectedId = request.getParameter("selectedId");

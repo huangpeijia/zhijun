@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 public class UploadController {
@@ -60,7 +61,24 @@ public class UploadController {
         return map;
     }
 	
-	
+	@RequestMapping(value="input/uploadss", method=RequestMethod.POST)
+	@ResponseBody
+	public String uploadssFile(HttpServletRequest request,
+			  MultipartFile uploadFile) throws IOException{
+	         long  startTime=System.currentTimeMillis();
+	        System.out.println("fileName："+uploadFile.getOriginalFilename());
+	        String realPath = request.getSession().getServletContext().getRealPath(File.separator);
+	        realPath=realPath+"/upload/";
+	        String path=realPath+new Date().getTime()+uploadFile.getOriginalFilename();
+	        System.out.println("上传的路径是：："+path);
+	        File newFile=new File(path);
+	        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+	        uploadFile.transferTo(newFile);
+	        long  endTime=System.currentTimeMillis();
+	        System.out.println("采用file.Transto的运行时间："+String.valueOf(endTime-startTime)+"ms");
+	        return "/success";
+	    }
+	 
 	@RequestMapping(value="input/upload", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> uploadFile(HttpServletRequest request,
