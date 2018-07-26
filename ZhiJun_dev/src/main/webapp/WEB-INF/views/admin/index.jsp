@@ -268,21 +268,6 @@
 				<div class="row no-margin-bottom">
 					<!--左-->
 					<div class="col-sm-6 col-xs-12">
-						<!--线型图-->
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="card primary">
-									<div class="card-jumbotron no-padding">
-										<canvas id="jumbotron-line-chart" class="chart no-padding"></canvas>
-									</div>
-									<div class="card-body half-padding">
-										<h3 class="float-left no-margin font-weight-300">访问量</h3>
-										<h2 class="float-right no-margin font-weight-300">3000</h2>
-										<div class="clear-both"></div>
-									</div>
-								</div>
-							</div>
-						</div>
 						 <!--图文-->
 						<div class="row" id="newest_2">
 							
@@ -292,31 +277,6 @@
 					<div class="col-sm-6 col-xs-12">
 						<!--类型图-->
 						<div class="row">
-							<!--条形图-->
-							<div class="col-md-6 col-sm-12">
-								<div class="card primary">
-									<div class="card-jumbotron no-padding">
-										<canvas id="jumbotron-bar-chart" class="chart no-padding"></canvas>
-									</div>
-									<div class="card-body half-padding">
-										<h4 class="float-right no-margin font-weight-300">Orders</h4>
-										<div class="clear-both"></div>
-									</div>
-								</div>
-							</div>
-							<!--折线图-->
-							<div class="col-md-6 col-sm-12">
-								<div class="card primary">
-									<div class="card-jumbotron no-padding">
-										<canvas id="jumbotron-line-2-chart" class="chart no-padding"></canvas>
-									</div>
-									<div class="card-body half-padding">
-										<h4 class="float-left no-margin font-weight-300">Pages view</h4>
-										<div class="clear-both"></div>
-									</div>
-								</div>
-							</div>
-						</div>
 						<!--图文-->
 						<div class="card card-success">
 							<div class="card-header">
@@ -350,9 +310,7 @@
 		   </div>
 	   </footer>
    </div>
-<%-- <script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.min.js"></script> --%>
 <script type="text/javascript" src="${APP_PATH }/js/js/jquery-3.2.1.js"></script>
-<!--<script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap.min.js"></script>-->
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/Chart.min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/bootstrap-switch.min.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/jquery.matchHeight-min.js"></script>
@@ -364,7 +322,6 @@
 <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/theme-github.js"></script>
 <!--Javascript-->
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
-<script type="text/javascript" src="${APP_PATH }/js/js/index.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
