@@ -14,16 +14,23 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UploadInterface {
 	public static String upload_one(HttpServletRequest request,MultipartFile upload_one) throws IOException {
-		  //工作空间路径
+		//工作空间路径
 		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
-		//用来检测程序运行时间
-      long  startTime=System.currentTimeMillis();
+		 realPath=realPath+"/upload/";
+		// 获得指定文件对象  
+        File file = new File(realPath);   
+      //判断是否存在
+      		if (!file.exists()) {
+      			//创建父目录文件
+      			file.mkdirs();
+      		}
+      		file.createNewFile();
     //原始名称
       String originalFilename = upload_one.getOriginalFilename();
       //新的文件名称（1531988920850.jpg）
       String newFileName =new Date().getTime()+originalFilename.substring(originalFilename.lastIndexOf("."));
     //获取输出流
-      OutputStream os=new FileOutputStream(realPath+"/upload/"+newFileName);
+      OutputStream os=new FileOutputStream(realPath+newFileName);
     //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
       InputStream is=upload_one.getInputStream();
       try { 

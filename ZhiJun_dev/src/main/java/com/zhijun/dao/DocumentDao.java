@@ -1,6 +1,7 @@
 package com.zhijun.dao;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,10 +29,16 @@ public class DocumentDao {
      * 参数：path：文件夹路径   deep：表示文件的层次深度，控制前置空格的个数
      * 前置空格缩进，显示文件层次结构
      */
-    public static List<Document> getFile(String path,int deep){
+    public static List<Document> getFile(String path,int deep) throws IOException{
     	List<Document> list = new ArrayList<Document>();
     	// 获得指定文件对象  
-        File file = new File(path);   
+        File file = new File(path);    
+		//判断是否存在
+		if (!file.exists()) {
+//		创建父目录文件
+			file.mkdirs();
+		}
+		file.createNewFile();
         // 获得该文件夹内的所有文件   
         File[] array = file.listFiles();
         for(int i=0;i<array.length;i++)
@@ -67,10 +74,16 @@ public class DocumentDao {
         }
 		return list;   
     }
-    public static String getFilevideo(String path){
+    public static String getFilevideo(String path) throws IOException{
     	String video_name="";
     	// 获得指定文件对象  
         File file = new File(path);   
+      //判断是否存在
+      		if (!file.exists()) {
+      			//创建父目录文件
+      			file.mkdirs();
+      		}
+      		file.createNewFile();
         // 获得该文件夹内的所有文件   
         File[] array = file.listFiles();
         for(int i=0;i<array.length;i++)
