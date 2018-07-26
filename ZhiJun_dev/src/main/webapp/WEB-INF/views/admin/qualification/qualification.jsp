@@ -203,6 +203,7 @@
 				    <!--编辑 模态框  -->
 				   <div class="modal fade" id="myEditModel" tabindex="-1" role="dialog">
                        <div class="modal-dialog" role="document">
+                       <div class="" id="upE" style="z-index:99999;width:600px;height:784px; background-color:rgba(0,0,0,0.5);position:absolute;display:none"><img src="${APP_PATH }/js/img/1.gif" style="position:absolute;left:230px;top:270px"></div>
                            <div class="modal-content">
                                <div class="modal-header">
                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -255,8 +256,10 @@
 					<!-- 添加模态框 -->
 					<div class="modal fade" id="myAddModel" tabindex="-1" role="dialog">
 						  <div class="modal-dialog" role="document">
+						  <div class="" id="upA" style="z-index:99999;width:600px;height:700px; background-color:rgba(0,0,0,0.5);position:absolute;display:none"><img src="${APP_PATH }/js/img/1.gif" style="position:absolute;left:230px;top:270px"></div>
 						    <div class="modal-content">
 						      <div class="modal-header">
+						      
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title">添加资质信息</h4>
 						      </div>
@@ -268,7 +271,7 @@
 								      <input type="text" class="form-control" id="AddquaName" name="qua_name" placeholder="请输入资质名称">
 								    </div>
 								  </div>
-								  <div class="form-group">
+								  <div class="form-group">								  
 								  <label for="inputquaPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
 								      <img id="imgPhoto" style="width:100px;height:100px"/>
@@ -527,8 +530,7 @@ $(document).on("click","#myEditBtn",function(){
 		 $.ajax({
 			url:"qua/update",
 			type:"POST",
-			data:formData,
-			async: false,  
+			data:formData, 
 			cache: false, 
 			contentType: false, //不设置内容类型
 			processData: false, //不处理数据
@@ -540,10 +542,11 @@ $(document).on("click","#myEditBtn",function(){
 				alert("编辑时发生错误!");
 			},
 	        beforeSend: function(){
-	        	alert("上传等待中");
+	        	$("#upE").show();
 	        }, 
-	        complete: function(){  
-	        	alert("上传成功");
+	        complete: function(){
+	        	$("#upE").hide();
+	        	/* alert("上传成功"); */
 	        }
 		}); 
 	}
@@ -559,7 +562,7 @@ function indexOf(str){
 $(document).on("click","#addpage",function(){
 	$("#AddquaName").val("");
 	$("#AddquaPhoto").val("");
-	$("#imgPhoto").attr("src","");
+	$("#imgPhoto").attr("src","${APP_PATH }/js/img/2.jpeg");
 	$("#AddquaConstant").val("");
 	$("#myAddModel").modal({
 		backdrop:'static'
@@ -586,7 +589,7 @@ $(document).on("click","#myAddBtn",function(){
 			$.ajax({
 				url:"qua/add",
 				type:"POST",
-				data:formData,async: false,  
+				data:formData,  
 				cache: false, 
 				contentType: false, //不设置内容类型
 				processData: false, //不处理数据
@@ -595,10 +598,13 @@ $(document).on("click","#myAddBtn",function(){
 					to_page(c_page);
 				},
 				beforeSend: function(){  
-		            alert("上传等待中");
+		            
+					$("#upA").show();
+					
 		        }, 
 		        complete: function(){  
-		        	alert("上传成功");
+		         $("#upA").hide();
+		        	/* alert("上传成功"); */
 		        	},
 				error:function(result){
 					alert("添加时发生错误!");
