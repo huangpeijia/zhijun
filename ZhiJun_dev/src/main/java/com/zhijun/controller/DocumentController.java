@@ -39,10 +39,11 @@ public class DocumentController {
 	 * 方法
 	 * @author hpj
 	 * @version 2018年7月23日
+	 * @throws IOException 
 	 */
 	@RequestMapping(value="/admin/document/all")
 	@ResponseBody
-	public List<Document> documentAll(HttpServletRequest request) {
+	public List<Document> documentAll(HttpServletRequest request) throws IOException {
 		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
 		realPath = realPath+"/upload/"; //原路径
 		List<Document> list =docudao.getFile(realPath,0); 
@@ -82,7 +83,7 @@ public class DocumentController {
 	}
 	@RequestMapping(value="admin/document/select_video", method=RequestMethod.POST)
 	@ResponseBody
-	public String select_video(HttpServletRequest request) {
+	public String select_video(HttpServletRequest request) throws IOException {
 		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
 		realPath = realPath+"/video/"; //原路径
 		String  video_name = docudao.getFilevideo(realPath);
