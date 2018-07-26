@@ -227,7 +227,7 @@
 								  <label for="inputquaPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
 								      <img id="oldPhoto" style="width:100px;height:100px"/>
-								      <input id="EditquaPhoto" type="file" name="qua_photo" />
+								      <input id="EditquaPhoto" type="file" accept="image/*" name="qua_photo" />
 								      <!-- <input type="text" class="form-control" id="EditquaPhoto" name="qua_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
@@ -275,7 +275,7 @@
 								  <label for="inputquaPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
 								      <img id="imgPhoto" style="width:100px;height:100px"/>
-								   	  <input id="AddquaPhoto" type="file" name="qua_photo" />
+								   	  <input id="AddquaPhoto" type="file" accept="image/*" name="qua_photo" />
 								      <!-- <input type="text" class="form-control" id="AddquaPhoto" name="qua_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  

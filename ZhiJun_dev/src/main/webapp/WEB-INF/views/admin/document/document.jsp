@@ -232,26 +232,27 @@
 			   </div>
 		   </div>
 		   <div>
-			<!-- 添加模态框 -->
+			<!-- 视频模态框 -->
 					<div class="modal fade" id="videoModel" tabindex="-1" role="dialog">
 						  <div class="modal-dialog" role="document">
+						  <div class="" id="upE" style="z-index:99999;width:600px;height:596px; background-color:rgba(0,0,0,0.5);position:absolute;display:none"><img src="${APP_PATH }/js/img/1.gif" style="position:absolute;left:230px;top:230px"></div>
 						    <div class="modal-content">
 						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <button type="button" class="close exit_video" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title">修改宣传视频</h4>
 						      </div>
 						      <div class="modal-body">
 						        <form class="form-horizontal" id="myAddForm" method="post" enctype="multipart/form-data">
 								  <div class="form-group">
 								    <div class="col-sm-12">
-								     <video id="docu_video" src="/ZhiJun_dev/video/index.mp4" controlslist="nodownload"  style="width:550px;height:400px" controls="controls"></video>
+								     <video id="docu_video" src="" controlslist="nodownload"  style="width:550px;height:400px" controls="controls"></video>
 								   	<input id="excelFile"  accept="video/*" type="file" name="uploadFile" />
 								    </div>
 								  </div>	 
 								</form>
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						        <button type="button" class="btn btn-default exit_video" data-dismiss="modal">关闭</button>
 						        <button type="button" class="btn btn-primary"  id="myAddBtn" onclick="uploadFiles();">修改</button>						      
 						    	
 						     </div><!-- /.modal-content -->
@@ -318,13 +319,11 @@ function upFile(){
 function uploadFiles(){
 	var formData = new FormData();
 	var uploadFile = $('#excelFile').get(0).files[0];
-	alert("sasa::"+uploadFile);
 	formData.append("uploadFile",uploadFile);
 		$.ajax({
 			url:'document/video',
 			type:'POST',
-			data:formData,
-			async: false,  
+			data:formData, 
 			cache: false, 
 			contentType: false, //不设置内容类型
 			processData: false, //不处理数据
@@ -332,17 +331,25 @@ function uploadFiles(){
 				$("#videoModel").modal('hide');//隐藏模态框
 				to_page(c_page);
 			},
-			beforeSend: function(){  
-	            alert("aa");
+			beforeSend: function(){  	      
+				$("#upE").show();
 	        }, 
 	        complete: function(){  
-	        	alert("上传结束");
+	        	$("#upE").hide();
+	        	/* alert("上传结束"); */
 	        	},
 			error:function(){
+				$("#upE").hide();
 				alert("上传失败！");
 			}
 		})
-}   
+}  
+/* 单击关闭按钮清空视频，解决隐藏视频模态框后继续播放问题 */
+$(document).on("click",".exit_video",function(){
+	$("#docu_video").attr("src","");
+})
+
+
 function build_news_table(result,page,num){
 	//构建先前情况table,empty掏空信息的方法
 	$("#document_table tbody").empty();
