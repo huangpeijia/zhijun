@@ -377,7 +377,7 @@ editor.customConfig.onchange = function (html) {
 }
 // 或者 var editor = new E( document.getElementById('editor') )
  editor.customConfig.uploadImgServer = 'editFile/upload' 
-   editor.customConfig.showLinkImg = false
+   editor.customConfig.showLinkImg = false    //关闭网络图片
    	editor.customConfig.uploadFileName = 'file';
    	// 设置:限制一次最多上传 1 张图片
 editor.customConfig.uploadImgMaxLength = 1;

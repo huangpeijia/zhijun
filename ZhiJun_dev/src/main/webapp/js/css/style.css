@@ -9,6 +9,15 @@ body {
 	font-size: 13px;
 }
 
+/* 富文本编辑器中缩放超出隐藏 */
+#editor{
+	overflow:hidden;
+}
+#up_editor{
+	overflow:hidden;
+}
+
+
 * {
 	outline: none;
 }
