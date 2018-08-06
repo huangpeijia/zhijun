@@ -320,7 +320,8 @@ function uploadFiles(){
 	var formData = new FormData();
 	var uploadFile = $('#excelFile').get(0).files[0];
 	formData.append("uploadFile",uploadFile);
-		$.ajax({
+	if("undefined" != typeof(uploadFile) && uploadFile != null && uploadFile != ""){	
+	$.ajax({
 			url:'document/video',
 			type:'POST',
 			data:formData, 
@@ -330,6 +331,7 @@ function uploadFiles(){
 			success:function(data){
 				$("#videoModel").modal('hide');//隐藏模态框
 				to_page(c_page);
+				$("#docu_video").attr("src","");
 			},
 			beforeSend: function(){  	      
 				$("#upE").show();
@@ -343,6 +345,9 @@ function uploadFiles(){
 				alert("上传失败！");
 			}
 		})
+	}else{
+		alert("请选择要修改的视频");
+	}
 }  
 /* 单击关闭按钮清空视频，解决隐藏视频模态框后继续播放问题 */
 $(document).on("click",".exit_video",function(){
