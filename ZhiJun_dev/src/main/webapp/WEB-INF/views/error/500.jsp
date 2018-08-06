@@ -28,7 +28,7 @@
 		<span style="font-size:110px; color: darksalmon;">5</span><br />
 		<span style="color: indianred;">Page not found</span><br /><br />
 		<span style="font-size:20px; color: #696969;">有人来，有人走，请到
-			<a href="/" style="text-decoration:none;margin-top: 10px; color:Coral"><b>首页</b></a>
+			<a href="/ZhiJun_dev/index" style="text-decoration:none;margin-top: 10px; color:Coral"><b>首页</b></a>
 			找找我。
 			</span>
     </div>

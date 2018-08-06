@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.RowMapper;
 import com.zhijun.base.DateOrString;
 import com.zhijun.bean.About;
 import com.zhijun.bean.Cases;
+import com.zhijun.bean.News;
+import com.zhijun.dao.NewsDao.NewsMapper;
 
 /**
  * 案例表
@@ -100,4 +102,16 @@ public class CaseDao {
 		}
 		
 	}
+	/**
+	 * 查询前几条数据
+	 * 方法
+	 * @author wzh
+	 * @version 2018年7月20日
+	 */
+	public List<Cases> queryCase(int num){
+		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases order by case_time desc limit "+num+"";
+		List<Cases> list=jdbcTemplate.query(sql,new CaseMapper());
+		return list;
+	}
+	
 }
