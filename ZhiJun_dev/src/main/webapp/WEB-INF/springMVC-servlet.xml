@@ -18,6 +18,7 @@
 	
 	<!-- 自动扫描指定包下的类 -->
 	<context:component-scan base-package="com.zhijun.controller" />
+	<context:component-scan base-package="com.zhijun.controller.*" />
 	
 	<!-- 开启注解模式 -->
 	<!-- 开启@RequestMapping注解扫描 spring 3.2后使用,请求到处理器的映射 -->
