@@ -97,6 +97,21 @@ public class DocumentController {
 		
 	}
 	/**
+	 * 前台查询视频
+	 * 方法
+	 * @author hpj
+	 * @version 2018年8月6日
+	 */
+	@RequestMapping(value="document/select_video", method=RequestMethod.POST)
+	@ResponseBody
+	public String select_Qtvideo(HttpServletRequest request) throws IOException {
+		String realPath = request.getSession().getServletContext().getRealPath(File.separator);
+		realPath = realPath+"/video/"; //原路径
+		String  video_name = docudao.getFilevideo(realPath);
+		return video_name;
+		
+	}
+	/**
 	 * 添加视频
 	 * 方法
 	 * @author hpj

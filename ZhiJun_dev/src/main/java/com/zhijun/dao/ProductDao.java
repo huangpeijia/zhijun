@@ -99,7 +99,7 @@ public class ProductDao {
 	 * @author hpj
 	 * @version 2018年7月10日
 	 */
-	public List<Product> queryNewest1(int num){
+	public List<Product> queryPro(int num){
 		String sql ="select pro_id, pro_name, pro_constant, pro_photo, pro_time, pro_type from product order by pro_time desc limit "+num+"";
 		List<Product> list =jdbcTemplate.query(sql, new ProductMapper());
 		return list;
