@@ -41,11 +41,11 @@ public class UserController {
 	 */
 	@RequestMapping("/admin/login")
 	public String Login(HttpServletRequest request) {
-		return "index";
+		return "login";
 	}
 	@RequestMapping("/admin")
 	public String Index1(HttpServletRequest request) {		
-	    return "index";
+	    return "login";
 	}
 	
 	
@@ -57,11 +57,9 @@ public class UserController {
 	 */
 	@RequestMapping("/admin/index")
 	public String Index(HttpServletRequest request) {
-		System.out.println(request+"rrr");
 	    return "admin/index";
 	}
 	
-	// 从数据库中获取所有学生
 		@RequestMapping("/admin/enter") 
 		public ModelAndView selectOne(@RequestParam(value="username",required=false) String username,@RequestParam(value="userpassword",required=false) String userpassword,Model model) {
 			// ApplicationContext context = new

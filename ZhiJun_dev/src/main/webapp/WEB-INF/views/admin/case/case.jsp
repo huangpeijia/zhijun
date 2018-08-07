@@ -227,7 +227,7 @@
 								  <label for="inputcasePhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
 								     <img id="oldPhoto" style="width:100px;height:100px"/>
-								      <input id="EditcasePhoto" type="file" name="case_photo" />
+								      <input id="EditcasePhoto" type="file" accept="image/*" name="case_photo" />
 								     <!--  <input type="text" class="form-control" id="EditcasePhoto" name="case_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
@@ -274,7 +274,7 @@
 								  <label for="inputcasePhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
 								      <img id="imgPhoto" style="width:100px;height:100px"/>
-								   	  <input id="AddcasePhoto" type="file" name="case_photo" />
+								   	  <input id="AddcasePhoto" type="file" accept="image/*" name="case_photo" />
 								      <!-- <input type="text" class="form-control" id="AddcasePhoto" name="case_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  

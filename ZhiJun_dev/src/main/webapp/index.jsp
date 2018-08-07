@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<video  src="/ZhiJun_dev/upload/1.mp4" controlslist="nodownload" style="width:300px;height:300px" controls="controls"></video>
+<!-- <video  src="/ZhiJun_dev/upload/1.mp4" controlslist="nodownload" style="width:300px;height:300px" controls="controls"></video> -->
 <form method="post" id="file" action="" enctype="multipart/form-data">
 			<select id="select">
 				<option value="1">1</option>
@@ -23,7 +23,7 @@
 			</select>
 			<input type="text" name="input_te" id="input_te" />
 		    <h3>选择一个文件:</h3>
-		    <input id="excelFile"  accept="video/*" type="file" name="uploadFile" />
+		    <input id="excelFile"   type="file" name="uploadFile" />
 		    <br/><br/>
 		    <input type="button" value="上传" onclick="uploadFiles();"/>
 		</form>
@@ -49,7 +49,7 @@ function uploadFiles(){
 	formData.append("input_te",input_te);
 	console.log(uploadFile); 
 		$.ajax({
-			url:'input/upload',
+			url:'input/uploadss',
 			type:'POST',
 			data:formData,
 			async: false,  

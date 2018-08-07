@@ -29,25 +29,11 @@ public class UploadInterface {
       String originalFilename = upload_one.getOriginalFilename();
       //新的文件名称（1531988920850.jpg）
       String newFileName =new Date().getTime()+originalFilename.substring(originalFilename.lastIndexOf("."));
-    //获取输出流
-      OutputStream os=new FileOutputStream(realPath+newFileName);
-    //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
-      InputStream is=upload_one.getInputStream();
-      try { 
-          int temp;
-          //一个一个字节的读取并写入
-          while((temp=is.read())!=(-1))
-          {
-              os.write(temp);
-          }
-      } catch (FileNotFoundException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-      }finally {
-      	os.flush();
-          os.close();
-          is.close();
-      }
+    // 添加文件
+      String path=realPath+newFileName;
+      File newFile=new File(path);
+      //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+      upload_one.transferTo(newFile);
 		return newFileName;
 	}
 }

@@ -85,7 +85,7 @@ public class IndexController extends ControllerBase{
 	@RequestMapping(value = "/admin/index/pro_newest", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<Product> queryNewest1(@RequestParam("number")int num,Model model){
-		List<Product> pro = prodao.queryNewest1(num);
+		List<Product> pro = prodao.queryPro(num);
 		return pro;
 	}
 }

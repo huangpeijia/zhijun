@@ -227,7 +227,7 @@
 								  <label for="inputproPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
 								      <img id="oldPhoto" style="width:100px;height:100px"/>
-								      <input id="EditproPhoto" type="file" name="pro_photo" />
+								      <input id="EditproPhoto" type="file" accept="image/*" name="pro_photo" />
 								      <!-- <input type="text" class="form-control" id="EditproPhoto" name="pro_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
@@ -274,7 +274,7 @@
 								  <label for="inputproPhoto" class="col-sm-2 control-label">照片路径</label>	
 								    <div class="col-sm-9">
 								      <img id="imgPhoto" style="width:100px;height:100px" src=""/>
-								   	  <input id="AddproPhoto" type="file" name="pro_photo" />
+								   	  <input id="AddproPhoto" type="file" accept="image/*" name="pro_photo" />
 								      <!-- <input type="text" class="form-control" id="AddproPhoto" name="pro_photo" placeholder="请输入照片路径"> -->
 								    </div>
 								  </div>								  
