@@ -1,7 +1,9 @@
 package com.zhijun.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.zhijun.base.ShaInterface;
 import com.zhijun.bean.Login;
 import com.zhijun.bean.Recruitment;
 import com.zhijun.bean.Student;
@@ -64,14 +67,14 @@ public class UserController {
 		public ModelAndView selectOne(@RequestParam(value="username",required=false) String username,@RequestParam(value="userpassword",required=false) String userpassword,Model model) {
 			// ApplicationContext context = new
 			// ClassPathXmlApplicationContext("applicationContext.xml");
-			// 从ioc容器获取dao
-			if(username==null||userpassword==null) {
-				System.out.println("进入");
+			// 从ioc容器获取dao 
+			if(username==null||userpassword==null) { 
 				ModelAndView mv = new ModelAndView("redirect:/admin/login");
 			    return mv;
 			}
+			username=ShaInterface.getResult(username);
+			userpassword=ShaInterface.getResult(userpassword);
 			boolean users = dao.loginsystem(username, userpassword);
-			System.out.println(users);
 			if(users) {
 				ModelAndView mv = new ModelAndView("redirect:/admin/index");
 			    return mv;
@@ -101,6 +104,7 @@ public class UserController {
 		 */
 		@RequestMapping("/admin/user/update")
 		public String update(String userpassword) {
+			userpassword=ShaInterface.getResult(userpassword);
 			int count = dao.update(userpassword);
 			if(count == 1) {
 				System.out.println("修改成功");
@@ -110,6 +114,13 @@ public class UserController {
 			
 		}
 		
-
+		@RequestMapping(value = "/admin/user/replacement")
+		@ResponseBody
+		public String replacement(@RequestParam("replacement") String replacement,Model model){
+			System.out.println("进来控制器"); 
+			String aa=ShaInterface.getResult(replacement);
+			System.out.println(aa); ;
+			return aa; 
+		}
 		
 }

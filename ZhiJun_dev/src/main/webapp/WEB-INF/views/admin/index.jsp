@@ -325,6 +325,7 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
+<script type="text/javascript" src="${APP_PATH }/js/js/sha1.js"></script>
 <script type="text/javascript">
 var c_page=1; //当前页数
 $(function(){
@@ -427,6 +428,7 @@ function build_pro_newest(result){
 	//点击密码模态框的确定按钮
 	$(document).on("click","#mypassBtn",function(){
 		var user_pass=$("#UserPass").val();
+		var replace_user_pass=replacement(user_pass); 
 		var user_pass1=$("#UserPass1").val();
 		var user_pass2=$("#UserPass2").val();
 		if(user_pass==""){
@@ -437,15 +439,15 @@ function build_pro_newest(result){
 			alert("请确定新密码!");
 		}else if(user_pass1!=user_pass2){
 			alert("确定密码和新密码不一致，请重新确定！");
-		}else{
-
+		}else{ 
+			
 			$.ajax({
 				url:"user/updateUser",
 				type:"GET",
 				data:"user_id="+1,
 				success:function(result){
 					$.each(result,function(index,item){
-						if(user_pass!=item.userpassword){
+						if(replace_user_pass!=item.userpassword){
 							alert("旧密码输入错误,请重新输入!");
 						}else if(user_pass==user_pass1){
 							alert("新密码不能与旧密码相同，请重新输入!");
@@ -453,7 +455,7 @@ function build_pro_newest(result){
 							if(confirm("是否要修改?")){
 								updateUser(user_pass1);
 							}
-							
+								
 						}
 					});
 				},
@@ -462,7 +464,7 @@ function build_pro_newest(result){
 				}
 			});
 					
-		}
+		} 
 	});
 	/* 密码修改 */
 	function updateUser(userpassword){		
@@ -479,7 +481,22 @@ function build_pro_newest(result){
 			}
 		}); 
 	}
-	
+	var replaces;
+	function replacement(replace){
+		$.ajax({
+			url:"user/replacement",
+			type:"POST", 
+			async:false,
+			data:"replacement="+replace,
+			success:function(result){
+				replaces=result;
+			},
+			error:function(result){
+				alert("添加时发生错误!");
+			}
+		}); 
+		return replaces;
+	}
 </script>
 </body>
 </html>
