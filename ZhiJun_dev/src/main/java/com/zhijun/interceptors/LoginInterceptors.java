@@ -1,5 +1,8 @@
 package com.zhijun.interceptors;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zhijun.base.ShaInterface;
 import com.zhijun.dao.LoginDao;
 
 /**
@@ -66,7 +70,9 @@ public class LoginInterceptors implements HandlerInterceptor {
 				String name = request.getParameter("username");
 				String pass = request.getParameter("userpassword");
 				//查询用户名和密码是否正确
-				boolean flag = logindao.loginsystem(name, pass);
+				String names=ShaInterface.getResult(name);
+				pass=ShaInterface.getResult(pass);
+				boolean flag = logindao.loginsystem(names, pass);
 				//如果用户名和密码存在则返回true，否则返回false
 				if(flag) {
 					//返回true，并且把用户名存入session作用域
@@ -95,7 +101,7 @@ public class LoginInterceptors implements HandlerInterceptor {
 			}
 		}
 	}
-
+	 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
