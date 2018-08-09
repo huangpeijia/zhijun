@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored ="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,13 +27,11 @@ function selectAll(){
 	}
 	});
 }
-function upFile(){
-	alert("进来了");
+function upFile(){ 
 	$.ajax({
 		url:'document/select_video',
 		type:'POST',
-		success:function(result){
-			alert(result);  //图片名称
+		success:function(result){ 
 			$("#docu_video").attr("src","/ZhiJun_dev/video/"+result);
 		} 
 	})
@@ -40,6 +39,10 @@ function upFile(){
 </script>
 </head>
 <body>
-sdsd
+<h1>${video_path}</h1>
+<c:forEach items="${requestScope.pro}" var="p">
+<span>${p.pro_id}</span>
+</c:forEach>
+asa
 </body>
 </html>

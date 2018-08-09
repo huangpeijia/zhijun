@@ -1,5 +1,6 @@
 package com.zhijun.controller.front;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,15 +8,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller; 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseBody; 
+import org.springframework.web.servlet.ModelAndView;
 
 import com.zhijun.bean.Cases;
 import com.zhijun.bean.Information;
 import com.zhijun.bean.News;
 import com.zhijun.bean.Product;
+import com.zhijun.controller.DocumentController;
 import com.zhijun.dao.CaseDao;
 import com.zhijun.dao.InformationDao;
 import com.zhijun.dao.NewsDao;
@@ -38,9 +40,17 @@ public class QtIndexController {
 	private InformationDao infodao;
 	
 	@RequestMapping("/index")
-	public String about(HttpServletRequest request) {
-		System.out.println("----------------------------------------");
-		return "/index";
+	public ModelAndView about(ModelAndView modelAndView,HttpServletRequest request) throws IOException {
+		DocumentController docu=new DocumentController();
+		Map<String,Object> map=queryNewest();
+		String video_path =docu.select_video(request);
+		modelAndView.setViewName("/index");
+		modelAndView.addObject("cases",map.get("cases"));
+		modelAndView.addObject("pro", map.get("pro"));
+		modelAndView.addObject("news", map.get("news"));
+		modelAndView.addObject("info", map.get("info"));
+		modelAndView.addObject("video_path", video_path); 
+		return modelAndView;
 	}
 	/**
 	 * 查询首页所需的数据
@@ -49,7 +59,7 @@ public class QtIndexController {
 	 */
 	@RequestMapping(value = "/indexs", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> queryNewest(Model model){
+	public Map<String, Object> queryNewest(){
 		List<Product> pro =prodao.queryPro(4); //产品信息
 		List<News> news = newsdao.queryNewest(9);
 		List<Cases> cases = casedao.queryCase(3);

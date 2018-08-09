@@ -118,9 +118,8 @@ public class UserController {
 		@ResponseBody
 		public String replacement(@RequestParam("replacement") String replacement,Model model){
 			System.out.println("进来控制器"); 
-			String aa=ShaInterface.getResult(replacement);
-			System.out.println(aa); ;
-			return aa; 
+			String userpasswrod=ShaInterface.getResult(replacement);
+			return userpasswrod; 
 		}
 		
 }
