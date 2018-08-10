@@ -88,6 +88,13 @@ public class StudentController extends ControllerBase {
 		}
 		return "error";
 	}
+	
+	
+	
+	@RequestMapping("/front/test")
+	public String about(HttpServletRequest request) {
+		return "test/index";
+	}
 
 
 }
