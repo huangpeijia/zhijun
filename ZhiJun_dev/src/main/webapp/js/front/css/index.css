@@ -576,8 +576,8 @@ main{
 
 .case_content>p{
 	width: 842px;
-	height: 102px;
-	margin: 25px 26px;
+	/* height: 40px; */
+	margin: 10px 26px;
 	color: #8C8C8C;
 	overflow: hidden;
 	font-size:18px;
