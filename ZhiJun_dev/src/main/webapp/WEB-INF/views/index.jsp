@@ -117,25 +117,25 @@
 						<li class=" wow bounceInLeft delay-02s">
 							<a href="javascript:void(none)">
 								<img src="${APP_PATH }/js/front/img/images/ts1.png">
-								<span>专业核心竞争力</span>
+								<div><span>专业核心竞争力</span></div>
 							</a>
 						</li>
 						<li class="wow bounceInLeft delay-03s">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts2.png">
-								<span>工业级互联网思维</span>
+								<div><span>工业级互联网思维</span></div>
 							</a>
 						</li>
 						<li class="wow bounceInLeft delay-04s">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts3.png">
-								<span>极致化服务</span>
+								<div><span>极致化服务</span></div>
 							</a>
 						</li>
 						<li class="wow bounceInLeft delay-05s">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts4.png">
-								<span>工业领域大数据挖掘</span>
+								<div><span>工业领域大数据挖掘</span></div>
 							</a>
 						</li>
 					</ul>
