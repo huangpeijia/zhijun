@@ -75,7 +75,7 @@
 				</div>
 			</div>
 			<!--图2-->
-			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/f2.jpg)">
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/artificial.jpg)">
 				<div class="div_zz"><!--遮罩-->
 					<div class="caption">
 						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 			<!--图3-->
-			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/f3.jpg)">
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/oil.jpg)">
 				<div class="div_zz"><!--遮罩-->
 					<div class="caption">
 						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
@@ -114,28 +114,28 @@
 				<div class="div_title">智钧特色</div>
 				<div class="div_content cf">
 					<ul class="ul_feature">
-						<li class=" wow bounceInLeft delay-02s">
+						<li class=" ">
 							<a href="javascript:void(none)">
 								<img src="${APP_PATH }/js/front/img/images/ts1.png">
-								<div><span>专业核心竞争力</span></div>
+								<div class="wow pulse delay-04s"><span>专业核心竞争力</span></div>
 							</a>
 						</li>
-						<li class="wow bounceInLeft delay-03s">
+						<li class="">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts2.png">
-								<div><span>工业级互联网思维</span></div>
+								<div class="wow pulse delay-04s"><span>工业级互联网思维</span></div>
 							</a>
 						</li>
-						<li class="wow bounceInLeft delay-04s">
+						<li class="">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts3.png">
-								<div><span>极致化服务</span></div>
+								<div class="wow pulse delay-04s"><span>极致化服务</span></div>
 							</a>
 						</li>
-						<li class="wow bounceInLeft delay-05s">
+						<li class="">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts4.png">
-								<div><span>工业领域大数据挖掘</span></div>
+								<div class="wow pulse delay-04s"><span>工业领域大数据挖掘</span></div>
 							</a>
 						</li>
 					</ul>
@@ -148,8 +148,8 @@
 					<div class="div_pro1 div_title_opacity">
 						<img src="${APP_PATH }/upload/${pro[0].pro_photo}"/>
 						<div class="pro_span">
-							<div class="" style="border: 1px solid red" >
-								<span style="height:180px">${pro[0].pro_constant}</span>
+							<div class="" >
+								<span>${pro[0].pro_constant}</span>
 							</div>
 						</div>
 						<div class="pro_span_title">${pro[0].pro_name}</div>
@@ -312,6 +312,16 @@
 		animateClass: 'animated',
 	});
 	wow.init();
+	
+	$(function(){
+		$(".pro_span>div>span").each(function(){
+			var maxwidth=60;
+			if($(this).text().length>maxwidth){
+				$(this).text($(this).text().substring(0,maxwidth));
+				$(this).html($(this).html()+'...');
+			}
+		});
+	});
 
 </script>
 </body>

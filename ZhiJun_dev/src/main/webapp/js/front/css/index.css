@@ -2,6 +2,18 @@
 	margin: 0px auto;
 	padding: 0px;
 }
+
+@font-face {
+  font-family: "../lib/fonts/SourceHanSansCN-Bold/SourceHanSansCN-Bold";
+  src: url("../lib/fonts/SourceHanSansCN-Bold/SourceHanSansCN-Bold.woff2") format("woff2"),
+       url("../lib/fonts/SourceHanSansCN-Bold/SourceHanSansCN-Bold.woff") format("woff"),
+       url("../lib/fonts/SourceHanSansCN-Bold/SourceHanSansCN-Bold.ttf") format("truetype"),
+       url("../lib/fonts/SourceHanSansCN-Bold/SourceHanSansCN-Bold.eot") format("embedded-opentype"),
+       url("../lib/fonts/SourceHanSansCN-Bold/SourceHanSansCN-Bold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html{
 	font-size: 100%;
 }
@@ -10,7 +22,7 @@ body{
 	background-color: #fbfbfb;
 	color: #333;
 	font-size: 20px;
-	font-family: 'Open Sans',sans-serif;
+	font-family: SourceHanSansCN-Bold;
 	line-height: 1.8;
 }
 
@@ -340,10 +352,11 @@ main{
 }
 
 .ul_feature>li>a>div{
+	font-weight:bold;
 	position: absolute;
 	width:260px;
 	height:120px;
-	font-size: 1.3em;
+	font-size: 16px;
 	color: #f5f5f5;
 	left: 0px;
 	top: 5px;
