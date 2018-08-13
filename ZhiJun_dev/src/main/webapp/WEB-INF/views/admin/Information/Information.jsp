@@ -228,68 +228,74 @@
 		                           <div class="form-group">		
 		                           <label for="inputcomName" class="col-sm-2 control-label">公司名称</label>					  
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomName" name="com_name" placeholder="请输入公司名称">
+								      <input type="text" class="form-control" id="EditcomName" name="com_name" placeholder="公司名称">
 								    </div>
 								  </div>
 								  <div class="form-group">
 								  <label for="inputcomLogo" class="col-sm-2 control-label">Logo</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomLogo" name="com_logo" placeholder="请输入公司Logo路径">
+								      <input type="text" class="form-control" id="EditcomLogo" name="com_logo" placeholder="公司Logo路径">
 								    </div>
 								  </div>								  
 								   <div class="form-group">
 								  <label for="inputcomContact" class="col-sm-2 control-label">联系人</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomContact" name="com_contact" placeholder="请输入联系人名称">
+								      <input type="text" class="form-control" id="EditcomContact" name="com_contact" placeholder="联系人名称">
 								    </div>
 								  </div>	
 								  <div class="form-group">
 								  <label for="inputcomNumber" class="col-sm-2 control-label">联系电话</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomNumber" name="com_number" placeholder="请输入联系电话">
+								      <input type="text" class="form-control" id="EditcomNumber" name="com_number" placeholder="联系电话">
 								    </div>
 								  </div>	
 								  <div class="form-group">
 								  <label for="inputcomAddress" class="col-sm-2 control-label">公司地址</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomAddress" name="com_address" placeholder="请输入公司地址">
+								      <input type="text" class="form-control" id="EditcomAddress" name="com_address" placeholder="公司地址">
 								    </div>
 								  </div>	
 								  <div class="form-group">
 								  <label for="inputcomCode" class="col-sm-2 control-label">邮编</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomCode" name="com_code" placeholder="请输入邮编号">
+								      <input type="text" class="form-control" id="EditcomCode" name="com_code" placeholder="邮编号">
 								    </div>
 								  </div>
 								  <div class="form-group">
 								  <label for="inputcomFax" class="col-sm-2 control-label">传真</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomFax" name="com_fax" placeholder="请输入传真地址">
+								      <input type="text" class="form-control" id="EditcomFax" name="com_fax" placeholder="传真地址">
 								    </div>
 								  </div>
 								  <div class="form-group">
 								  <label for="inputcomEmail" class="col-sm-2 control-label">E-mail</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomEmail" name="com_email" placeholder="请输入E-mail">
+								      <input type="text" class="form-control" id="EditcomEmail" name="com_email" placeholder="E-mail">
 								    </div>
 								  </div>
 								  <div class="form-group">
 								  <label for="inputcomCopyright" class="col-sm-2 control-label">版权所有</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomCopyright" name="com_copyright" placeholder="请输入版权信息">
+								      <input type="text" class="form-control" id="EditcomCopyright" name="com_copyright" placeholder="版权信息">
 								    </div>
 								  </div>									 
 								  <div class="form-group">	
 								   <label for="inputcomProfile" class="col-sm-2 control-label">公司介绍</label>								  
 								    <div class="col-sm-9">
-								      <textarea class="form-control textarea_a" id="EditcomProfile" rows="3" name="com_profile" placeholder="请输入公司介绍"></textarea>
+								      <textarea class="form-control textarea_a" id="EditcomProfile" rows="3" name="com_profile" placeholder="公司介绍"></textarea>
+								    </div>				    
+								  </div>
+								  <div class="form-group">	
+								   <label for="inputcomProfile" class="col-sm-2 control-label">成立背景</label>								  
+								    <div class="col-sm-9">
+								      <textarea class="form-control textarea_a" id="EditcomBackdrop" rows="3" name="com_backdrop" placeholder="成立背景"></textarea>
 								    </div>				    
 								  </div>
 								   <div class="form-group">	
 								   <label for="inputcomTime" class="col-sm-2 control-label">成立时间</label>								  
 								    <div class="col-sm-9">
-								      <input type="date" class="form-control" id="EditcomTime" placeholder="请输入成立时间">
-								      <input type="hidden" class="form-control" id="EditcomTimes" name="com_time" placeholder="请输入成立时间">
+								      <input type="date" class="form-control" id="EditcomTime" placeholder="成立时间">
+								      <input type="hidden" class="form-control" id="EditcomTimes" name="com_time" placeholder="成立时间">
 								    </div>
 								  </div>
 								</form>
@@ -345,6 +351,7 @@ function inf_update(){
 	$("#EditcomEmail").val("");
 	$("#EditcomCopyright").val("");
 	$("#EditcomProfile").val("");
+	$("#EditcomBackdrop").val("");
 	$("#EditcomTime").val("");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
@@ -373,6 +380,7 @@ function getEditDate(id){
 				$("#EditcomEmail").val(item.com_email);
 				$("#EditcomCopyright").val(item.com_copyright);
 				$("#EditcomProfile").val(item.com_profile);
+				$("#EditcomBackdrop").val(item.com_backdrop);
 				$("#EditcomTime").val(time);
 			});
 		},
@@ -403,6 +411,7 @@ $(document).on("click","#myEditBtn",function(){
 	var com_email=$("#EditcomEmail").val();
 	var com_copyright=$("#EditcomCopyright").val();
 	var com_profile=$("#EditcomProfile").val();
+	var com_backdrop=$("#EditcomBackdrop").val();
 	var com_time=$("#EditcomTime").val();
 	var time=timesU(com_time);
 	if(com_name == ""){

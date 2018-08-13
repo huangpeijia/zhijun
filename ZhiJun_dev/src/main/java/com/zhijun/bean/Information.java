@@ -18,6 +18,13 @@ public class Information {
 	private String com_email; //公司邮箱
 	private String com_copyright; //版权所有
 	private String com_profile; //公司介绍
+	private String com_backdrop;
+	public String getCom_backdrop() {
+		return com_backdrop;
+	}
+	public void setCom_backdrop(String com_backdrop) {
+		this.com_backdrop = com_backdrop;
+	}
 	private Date com_time; //成立时间
 	public int getCom_id() {
 		return com_id;

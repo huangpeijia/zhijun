@@ -33,7 +33,7 @@ public class InformationDao {
 	 * 查询所有
 	 */
 	public List<Information> queryAll(){
-		String sql = "SELECT com_id, com_name, com_logo, com_contact,com_number,com_address, com_code, com_fax, com_email, com_copyright, com_profile, com_time from information";
+		String sql = "SELECT com_id, com_name, com_logo, com_contact,com_number,com_address, com_code, com_fax, com_email, com_copyright, com_profile,com_backdrop, com_time from information";
 		List<Information> list =jdbcTemplate.query(sql, new InformationMapper() );
 		return list;
 	}
@@ -43,8 +43,8 @@ public class InformationDao {
 	 * @version 2018年7月9日
 	 */
 	public int addInf(Information inf) {
-		String sql ="insert into information(com_name, com_logo, com_contact,com_number,com_address, com_code, com_fax, com_email, com_copyright, com_profile, com_time) value(?,?,?,?,?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),inf.getCom_time()});
+		String sql ="insert into information(com_name, com_logo, com_contact,com_number,com_address, com_code, com_fax, com_email, com_copyright, com_profile,com_backdrop, com_time) value(?,?,?,?,?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),inf.getCom_backdrop(),inf.getCom_time()});
 	}
 	/**
 	 * 删除
@@ -61,7 +61,7 @@ public class InformationDao {
 	 * @version 2018年7月9日
 	 */
 	public List<Information> query(int com_id) {
-		String sql ="SELECT com_id, com_name, com_logo, com_contact,com_number,com_address, com_code, com_fax, com_email, com_copyright, com_profile, com_time from information where com_id="+com_id+"";
+		String sql ="SELECT com_id, com_name, com_logo, com_contact,com_number,com_address, com_code, com_fax, com_email, com_copyright, com_profile,com_backdrop, com_time from information where com_id="+com_id+"";
 		List<Information> list =jdbcTemplate.query(sql, new InformationMapper());
 		return list;
 	}
@@ -71,8 +71,8 @@ public class InformationDao {
 	 * @version 2018年7月9日
 	 */
 	public int update(Information inf) {
-		String sql = "update information set com_name=?,com_logo=?,com_contact=?,com_number=?,com_address=?,com_code=?,com_fax=?,com_email=?,com_copyright=?,com_profile=?,com_time=? where com_id=?";
-		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),inf.getCom_time(),inf.getCom_id()});
+		String sql = "update information set com_name=?,com_logo=?,com_contact=?,com_number=?,com_address=?,com_code=?,com_fax=?,com_email=?,com_copyright=?,com_profile=?,com_backdrop=?,com_time=? where com_id=?";
+		return jdbcTemplate.update(sql,new Object[] {inf.getCom_name(),inf.getCom_logo(),inf.getCom_contact(),inf.getCom_number(),inf.getCom_address(),inf.getCom_code(),inf.getCom_fax(),inf.getCom_email(),inf.getCom_copyright(),inf.getCom_profile(),inf.getCom_backdrop(),inf.getCom_time(),inf.getCom_id()});
 	}
 	
 	public class InformationMapper implements RowMapper<Information>{
@@ -90,6 +90,7 @@ public class InformationDao {
 			inf.setCom_email(rs.getString("com_email"));
 			inf.setCom_copyright(rs.getString("com_copyright"));
 			inf.setCom_profile(rs.getString("com_profile"));
+			inf.setCom_backdrop(rs.getString("com_backdrop"));
 			inf.setCom_time(rs.getTimestamp("com_time"));
 			return inf;
 		}
