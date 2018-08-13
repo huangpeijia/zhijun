@@ -381,7 +381,7 @@ main{
 
 
 .pro_span>div{
-	margin: 40% 37px 0px 37px;
+	/* margin: 40% 37px 0px 37px; */
 }
 
 .pro_span>div:nth-child(2){
@@ -405,7 +405,18 @@ main{
 }
 
 .div_pro1>div>div{
-	margin-top: 70%;
+	/* margin-top: 70%; */
+}
+.pro_span div{
+	position: absolute;
+    width: 360px; 
+    top: 42%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.pro_span div span{
+	text-indent:2em;
+	height:210px;
 }
 
 .div_pro2,.div_pro3{
@@ -414,10 +425,10 @@ main{
 	height: 345px;
 	overflow: hidden;
 }
-
+/* 
 .div_pro2>div>div,.div_pro3>div>div{
 	margin-top: 15%;
-}
+} */
 
 .div_pro3{
 	margin-top: 30px;

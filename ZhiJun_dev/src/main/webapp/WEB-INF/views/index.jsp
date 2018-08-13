@@ -148,8 +148,8 @@
 					<div class="div_pro1 div_title_opacity">
 						<img src="${APP_PATH }/upload/${pro[0].pro_photo}"/>
 						<div class="pro_span">
-							<div class="">
-								<span>${pro[0].pro_constant}</span>
+							<div class="" style="border: 1px solid red" >
+								<span style="height:180px">${pro[0].pro_constant}</span>
 							</div>
 						</div>
 						<div class="pro_span_title">${pro[0].pro_name}</div>
