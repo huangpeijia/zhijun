@@ -88,6 +88,5 @@ public class StudentController extends ControllerBase {
 		}
 		return "error";
 	}
-
-
+	 
 }
