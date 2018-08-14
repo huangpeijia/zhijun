@@ -209,13 +209,12 @@
 				    
 				   
 				   
-				   <div class="page-title">
+				  <!--  <div class="page-title">
 					   <span class="title">公司信息</span>					   
-				   </div>
+				   </div> -->
 				   <div class="row">
 					   <div class="col-xs-12">
-				  
-								   <!--编辑  -->				   
+				  			 	   <!--编辑  -->				   
                            <div class="modal-content">                         
                                <div class="modal-body">
                                <form class="form-horizontal" id="myEditForm" style="margin-top:40px;">
@@ -230,11 +229,12 @@
 								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditcomName" name="com_name" placeholder="公司名称">
 								    </div>
-								  </div>
+								  </div> 
 								  <div class="form-group">
-								  <label for="inputcomLogo" class="col-sm-2 control-label">Logo</label>	
+								  <label for="inputcomLogo" class="col-sm-2 control-label">Logo路径</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditcomLogo" name="com_logo" placeholder="公司Logo路径">
+								      <img id="oldPhoto" style="width:100px;height:100px"/><br/>原文件名：<span id="span_logo"></span>
+								      <input id="EditcomLogo" type="file" accept="image/*" name="com_logo" />
 								    </div>
 								  </div>								  
 								   <div class="form-group">
@@ -337,6 +337,11 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript">
+
+$('#EditcomLogo').on('change',function(){
+	var filePath = window.URL.createObjectURL(this.files[0]);
+	$('#oldPhoto').attr("src",filePath);
+ });
 $(function(){inf_update();});
 //执行编辑
 function inf_update(){
@@ -371,7 +376,8 @@ function getEditDate(id){
 				item.com_time=time;
 				$("#EditcomId").val(item.com_id);
 				$("#EditcomName").val(item.com_name);	
-				$("#EditcomLogo").val(item.com_logo);
+				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.com_logo);
+				$("#span_logo").html(item.com_logo);
 			    $("#EditcomContact").val(item.com_contact);
 				$("#EditcomNumber").val(item.com_number);
 				$("#EditcomAddress").val(item.com_address);
@@ -400,20 +406,40 @@ $(document).on("click","#reduction",function(){
 });
 //点击编辑按钮
 $(document).on("click","#myEditBtn",function(){
+	var formData = new FormData();
+	var pro_photo = $('#EditcomLogo').get(0).files[0];
 	var com_id=$("#EditcomId").val();
+	com_id=parseInt(com_id);
 	var com_name=$("#EditcomName").val();
-	var com_logo=$("#EditcomLogo").val();
+	var old_photo = $("#oldPhoto")[0].src;
+	var index = old_photo.lastIndexOf("\/");  
+	old_photo = old_photo.substring(index + 1, old_photo.length);
     var com_contact=$("#EditcomContact").val();
 	var com_number=$("#EditcomNumber").val();
 	var com_address=$("#EditcomAddress").val();
 	var com_code=$("#EditcomCode").val();
 	var com_fax=$("#EditcomFax").val();
-	var com_email=$("#EditcomEmail").val();
+	var com_eamil=$("#EditcomEmail").val();
 	var com_copyright=$("#EditcomCopyright").val();
 	var com_profile=$("#EditcomProfile").val();
 	var com_backdrop=$("#EditcomBackdrop").val();
 	var com_time=$("#EditcomTime").val();
 	var time=timesU(com_time);
+	formData.append("com_id",com_id);
+	formData.append("com_name",com_name);
+	formData.append("old_photo",old_photo);
+	formData.append("com_contact",com_contact);
+	formData.append("com_number",com_number);
+	formData.append("com_address",com_address);
+	formData.append("com_code",com_code);
+	formData.append("com_fax",com_fax);
+	formData.append("com_eamil",com_eamil);
+	formData.append("com_copyright",com_copyright);
+	formData.append("com_profile",com_profile);
+	formData.append("com_backdrop",com_backdrop);
+	formData.append("com_time",com_time);
+	formData.append("pro_photo",pro_photo);
+	console.log(formData);
 	if(com_name == ""){
 		alert("公司名称不能为空!");
 	}else if(indexOf(com_name)){
@@ -429,7 +455,10 @@ $(document).on("click","#myEditBtn",function(){
 			 $.ajax({
 					url:"inf/update",
 					type:"POST",
-					data:$("#myEditForm").serialize(),
+					data:formData,
+					cache: false, 
+					contentType: false, //不设置内容类型
+					processData: false, //不处理数据
 					success:function(result){
 						inf_update();
 					},

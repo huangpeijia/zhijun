@@ -445,6 +445,11 @@ function build_news_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.news_time);
 		item.news_time=time;
+		if(item.news_type==0){
+			item.news_type="公司新闻";
+		}else if(item.news_type==1){
+			item.news_type="行业动态";
+		}
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.news_id);
 		var titleTd=$("<td style='vertical-align:middle;'></td>").append(item.news_title);
 		/* var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.news_photo); */
