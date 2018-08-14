@@ -21,7 +21,9 @@
 <header class="transparent" id="transparent">
 	<div class="div_header cf">
 		<div class="div_logo float_l">
-			<h1 class="h1_logo"><img src="${APP_PATH }/js/front/img/images/logo.png"> <!--<a href="index.html">智钧时代</a>--></h1>
+		<c:forEach items="${requestScope.info}" var="logo">
+			<h1 class="h1_logo"><img src="${APP_PATH }/upload/${logo.com_logo}" style="width:116px;height:26px;"> <!--<a href="index.html">智钧时代</a>--></h1>
+		</c:forEach>
 		</div>
 		<nav class="float_r">
 			<ul class="ul_nav float_r">
@@ -205,7 +207,7 @@
 						</ul>
 						<a href="#" class="news_more float_r ">更多>></a>
 					</div>
-					<video id="media" class="div_video float_r" poster="" controls>
+					<video id="media" class="div_video float_r" poster="${APP_PATH }/js/front/img/images/video_index.png" controls>
 						<source src="${APP_PATH }/video/${video_path}" type="video/mp4">
 					</video>
 				</div>
