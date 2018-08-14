@@ -239,6 +239,17 @@
 								    </div>
 								  </div>
 								   <div class="form-group">	
+								   <label for="inputnewsType" class="col-sm-2 control-label">案例类型</label>								  
+								    <div class="col-sm-4 radio-check radio-success radio-inline" style="margin-left:15px">
+								       <input type="radio" autocomplete="off" id="EditcaseType" name="case_type" value="0">
+								       <label for="EditcaseType">中海油厂区项目</label>
+								    </div>
+								    <div class="col-sm-4 radio-check radio-success radio-inline">
+								       <input type="radio" autocomplete="off" id="EditcaseType1" name="case_type" value="1">
+								       <label for="EditcaseType1">中海油钻井平台项目</label>
+								    </div>
+								  </div>
+								   <div class="form-group">	
 								   <label for="inputcaseTime" class="col-sm-2 control-label">发布时间</label>								  
 								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditcaseTime" placeholder="请输入发布时间" readonly>
@@ -285,6 +296,17 @@
 								      <textarea class="form-control textarea_a" id="AddcaseConstant" rows="3" name="case_constant" style="display:none" ></textarea>
 								    </div>
 								  </div>
+								   <div class="form-group">	
+								   <label for="inputcaseType" class="col-sm-2 control-label">新闻类型</label>								  
+								    <div class="col-sm-4 radio-check radio-success radio-inline" style="margin-left:15px">
+								       <input type="radio" id="AddnewsType" name="case_type" value="0" checked="checked">
+								       <label for="AddcaseType">中海油厂区项目</label>
+								    </div>
+								    <div class="col-sm-4 radio-check radio-success radio-inline">
+								       <input type="radio" id="AddcaseType1" name="case_type" value="1">
+								       <label for="AddcaseType1">中海油钻井平台项目</label>
+								    </div>
+								  </div>
 								</form>
 						      </div>
 						      <div class="modal-footer">
@@ -313,6 +335,7 @@
 								              <th>案例名称</th>
 								              <th>照片路径</th>
 								              <th>案例内容</th>
+								              <th>案例类型</th>
 								              <th>发布时间</th>
 								              <th>操作</th>
 								          </tr>
@@ -442,10 +465,17 @@ function build_case_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.case_time);
 		item.case_time=time;
+		if(item.case_type==0){
+			item.case_type="中海油厂区项目";
+		}else if(item.case_type==1){
+			item.case_type="中海油钻井平台项目";
+		}
+		
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.case_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.case_name);
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.case_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.case_constant.substring(0,20)+'...');
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.case_type);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.case_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.case_id);
@@ -459,7 +489,7 @@ function build_case_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(timeTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(typeTd).append(timeTd)
 		.append(btnTd).appendTo("#case_table tbody");
 	});
 }
@@ -477,6 +507,7 @@ function getEditDate(id){
 				$("#EditcaseName").val(item.case_name);
 				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.case_photo);
 				$("#EditcaseConstant").val(item.case_constant);
+				$("input[name=case_type][value='"+item.case_type+"']").attr("checked",true);
 				editor2.txt.html(item.case_constant)
 				$("#EditcaseTime").val(item.case_time);
 			});
@@ -510,6 +541,7 @@ $(document).on("click","#myEditBtn",function(){
 	case_id=parseInt(case_id);
 	var case_name=$("#EditcaseName").val();
 	var case_constant=$("#EditcaseConstant").val();
+	var case_type=$("input:radio[name='case_type']:checked").val();
 	var case_time=$("#EditcaseTime").val();
 	var old_photo = $("#oldPhoto")[0].src;
 	var index = old_photo .lastIndexOf("\/");  
@@ -517,6 +549,7 @@ $(document).on("click","#myEditBtn",function(){
 	formData.append("case_id",case_id);
 	formData.append("case_name",case_name);
 	formData.append("case_constant",case_constant);
+	formData.append("case_type",case_type);
 	formData.append("case_time",case_time); 
 	formData.append("case_photo",case_photo);
 	formData.append("old_photo",old_photo);
@@ -576,9 +609,12 @@ $(document).on("click","#myAddBtn",function(){
 	var case_upload = $('#AddcasePhoto').get(0).files[0];
 	var case_name=$("#AddcaseName").val();
 	var case_constant=$("#AddcaseConstant").val();
+	var case_type=$("input:radio[name='case_type']:checked").val();
+	alert(case_type);
 	formData.append("case_name",case_name);
 	formData.append("case_upload",case_upload);
 	formData.append("case_constant",case_constant);
+	formData.append("case_type",case_type);
 	if(case_name == ""){
 		alert("案例名称不能为空!");
 	}else if(indexOf(case_name)){
