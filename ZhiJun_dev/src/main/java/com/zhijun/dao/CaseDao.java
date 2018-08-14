@@ -46,7 +46,7 @@ public class CaseDao {
 	 * 方法
 	 */
 	public List<Cases> queryAll(int pages, int keys){
-		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases order by case_time desc limit  "+pages+","+keys+"";
+		String sql = "select case_id, case_name, case_constant, case_photo, case_time,case_type from cases order by case_time desc limit  "+pages+","+keys+"";
 		List<Cases> list = jdbcTemplate.query(sql, new CaseMapper());
 		return list;
 	}
@@ -56,8 +56,8 @@ public class CaseDao {
 	 * @version 2018年7月9日
 	 */
 	public int addCases(Cases cases) {
-		String sql = "insert into cases(case_name, case_constant, case_photo, case_time) value(?,?,?,?)";
-		return jdbcTemplate.update(sql,new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),cases.getCase_time()});
+		String sql = "insert into cases(case_name, case_constant, case_photo, case_time,case_type) value(?,?,?,?,?)";
+		return jdbcTemplate.update(sql,new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),cases.getCase_time(),cases.getCase_type()});
 	}
 	/**
 	 * 删除
@@ -74,7 +74,7 @@ public class CaseDao {
 	 * @version 2018年7月9日
 	 */
 	public List<Cases> query(int case_id) {
-		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases where case_id="+case_id+"";
+		String sql = "select case_id, case_name, case_constant, case_photo, case_time,case_type from cases where case_id="+case_id+"";
 		List<Cases> list = jdbcTemplate.query(sql, new CaseMapper());
 		return list;
 	}
@@ -84,8 +84,8 @@ public class CaseDao {
 	 * @version 2018年7月9日
 	 */
 	public int update(Cases cases) {
-		String sql = "update cases set case_name=?, case_constant=?, case_photo=?, case_time=? where case_id=?";
-		return jdbcTemplate.update(sql, new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),cases.getCase_time(),cases.getCase_id()});
+		String sql = "update cases set case_name=?, case_constant=?, case_photo=?, case_time=?,case_type=? where case_id=?";
+		return jdbcTemplate.update(sql, new Object[] {cases.getCase_name(), cases.getCase_constant(), cases.getCase_photo(),cases.getCase_time(),cases.getCase_type(),cases.getCase_id()});
 	} 
 	
 	public class CaseMapper implements RowMapper<Cases>{
@@ -96,6 +96,7 @@ public class CaseDao {
 			cases.setCase_name(rs.getString("case_name"));
 			cases.setCase_constant(rs.getString("case_constant"));
 			cases.setCase_photo(rs.getString("case_photo"));
+			cases.setCase_type(rs.getInt("case_type"));
 			cases.setCase_time(rs.getTimestamp("case_time"));
 			return cases;
 			
@@ -109,7 +110,7 @@ public class CaseDao {
 	 * @version 2018年7月20日
 	 */
 	public List<Cases> queryCase(int num){
-		String sql = "select case_id, case_name, case_constant, case_photo, case_time from cases order by case_time desc limit "+num+"";
+		String sql = "select case_id, case_name, case_constant, case_photo, case_time,case_type from cases order by case_time desc limit "+num+"";
 		List<Cases> list=jdbcTemplate.query(sql,new CaseMapper());
 		return list;
 	}
