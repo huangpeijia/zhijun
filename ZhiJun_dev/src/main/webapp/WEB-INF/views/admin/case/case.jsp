@@ -610,7 +610,6 @@ $(document).on("click","#myAddBtn",function(){
 	var case_name=$("#AddcaseName").val();
 	var case_constant=$("#AddcaseConstant").val();
 	var case_type=$("input:radio[name='case_type']:checked").val();
-	alert(case_type);
 	formData.append("case_name",case_name);
 	formData.append("case_upload",case_upload);
 	formData.append("case_constant",case_constant);
