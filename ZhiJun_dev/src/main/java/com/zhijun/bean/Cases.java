@@ -11,7 +11,14 @@ public class Cases {
 	private String case_name; //案例名称
 	private String case_constant; //案例描述
 	private String case_photo; //案例照片
+	private int case_type; //案例类型
 	private Date case_time; //案例时间
+	public int getCase_type() {
+		return case_type;
+	}
+	public void setCase_type(int case_type) {
+		this.case_type = case_type;
+	}
 	public int getCase_id() {
 		return case_id;
 	}

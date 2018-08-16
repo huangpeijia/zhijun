@@ -21,7 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.zhijun.base.ControllerBase;
 import com.zhijun.base.UploadInterface;
 import com.zhijun.bean.Product;
+import com.zhijun.bean.Protype;
 import com.zhijun.dao.ProductDao;
+import com.zhijun.dao.ProtypeDao;
 
 /**
  * 产品服务
@@ -33,7 +35,7 @@ public class ProductController extends ControllerBase{
 	private static final Logger logger= LoggerFactory.getLogger(ProductController.class);
 	
 	@Autowired
-	private ProductDao prodao;
+	private ProductDao prodao; 
 	/**
 	 * 跳转页面
 	 * 方法
@@ -121,6 +123,7 @@ public class ProductController extends ControllerBase{
 	public List<Product> updatePro(@RequestParam("pro_id") int pro_id, Model model){
 		return prodao.query(pro_id);
 	}
+	 
 	/**
 	 * 修改
 	 * 方法
@@ -133,6 +136,7 @@ public class ProductController extends ControllerBase{
 		int pro_id =Integer.parseInt(request.getParameter("pro_id"));
 		String pro_name =request.getParameter("pro_name");
 		String pro_constant =request.getParameter("pro_constant");
+		int pro_type= Integer.parseInt(request.getParameter("pro_type"));
 		String old_photo =request.getParameter("old_photo");
 		Product pro =new Product();
 		String pro_upload_name;
@@ -145,6 +149,7 @@ public class ProductController extends ControllerBase{
 		pro.setPro_id(pro_id);
 		pro.setPro_name(pro_name);
 		pro.setPro_constant(pro_constant);
+		pro.setPro_type(pro_type);
 		pro.setPro_time(new Date());
 		int count = prodao.update(pro);
 		if(count ==1) {
@@ -152,9 +157,5 @@ public class ProductController extends ControllerBase{
 		}
 		return null;
 		
-	}
-	
-	
-	
-
+	}  
 }

@@ -130,19 +130,19 @@ public class CaseController extends ControllerBase{
 		String case_name =request.getParameter("case_name");
 		String case_constant =request.getParameter("case_constant");
 		String old_photo =request.getParameter("old_photo");
+		int case_type=Integer.parseInt(request.getParameter("case_type"));
 		Cases cases=new Cases();
 		String cases_upload_name;
 		if(case_photo==null) {
-			cases.setCase_photo(old_photo);
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa"+case_photo);
+			cases.setCase_photo(old_photo); 
 		}else {
 			cases_upload_name=UploadInterface.upload_one(request,case_photo);
-			 cases.setCase_photo(cases_upload_name);
-			System.out.println("========================"+cases_upload_name);
+			 cases.setCase_photo(cases_upload_name); 
 		}
 		cases.setCase_id(case_id);
 		cases.setCase_name(case_name);
 		cases.setCase_constant(case_constant);
+		cases.setCase_type(case_type);
 		cases.setCase_time(new Date());
 		int count = casedao.update(cases);
 		if(count == 1) {

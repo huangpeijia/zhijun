@@ -239,6 +239,13 @@
 								    </div>
 								  </div>
 								   <div class="form-group">	
+								   <label for="inputcaseType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="update_type" name="case_type">
+										</select> 
+								    </div>
+								  </div>
+								   <div class="form-group">	
 								   <label for="inputcaseTime" class="col-sm-2 control-label">发布时间</label>								  
 								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditcaseTime" placeholder="请输入发布时间" readonly>
@@ -285,6 +292,13 @@
 								      <textarea class="form-control textarea_a" id="AddcaseConstant" rows="3" name="case_constant" style="display:none" ></textarea>
 								    </div>
 								  </div>
+								   <div class="form-group">	
+								   <label for="inputproType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select id="insert_type" name="pro_type">
+										</select> 
+								    </div>
+								  </div>
 								</form>
 						      </div>
 						      <div class="modal-footer">
@@ -313,6 +327,7 @@
 								              <th>案例名称</th>
 								              <th>照片路径</th>
 								              <th>案例内容</th>
+								              <th>案例类型</th>
 								              <th>发布时间</th>
 								              <th>操作</th>
 								          </tr>
@@ -436,16 +451,82 @@ $('#AddcasePhoto').on('change',function(){
 		var filePath = window.URL.createObjectURL(this.files[0]);
 		$('#oldPhoto').attr("src",filePath);
 	 });
+//绑定编辑下拉框的类型
+ function casetype(case_type){  
+ 	$.ajax({
+ 		url:"casetype/all",
+ 		type:"POST",
+ 		async: false,
+ 		success:function(result){ 
+ 			console.log(result); 
+ 			$.each(result, function(index,item) { 
+ 	            $("#update_type").append(  //此处向select中循环绑定数据
+ 	    "<option value="+item.casetype_id+">" + item.casetype_name+ "</option>");
+ 				if(case_type==item.casetype_id){
+ 					$("#update_type option[value="+item.casetype_id+"]").attr("selected",true);
+ 				}
+ 			});
+ 			
+ 			$('#update_type').next('span').remove();
+ 			$('#update_type').removeAttr("tabindex class aria-hidden"); 
+ 		},
+ 	 error:function(e){
+ 		 alert("error:"+e);
+ 	 }
+ 	}); 
+ }
+//绑定显示的类型值
+ function casetype_one(case_id){
+ 	var casetype;
+ 	$.ajax({
+ 		url:"casetype/one",
+ 		type:"POST",
+ 		data:"case_id="+case_id,
+ 		async: false,
+ 		success:function(result){ 
+ 			$.each(result,function(index,item){
+ 				casetype=item.casetype_name; 
+ 			}); 
+ 		},
+ 		error:function(e){
+ 			alert("error:"+e);
+ 		}
+ 	});
+ 	return casetype;
+ }
+//绑定新建下拉框的类型
+ function casetype_insert(){  
+ 	$.ajax({
+ 		url:"casetype/all",
+ 		type:"POST",
+ 		async: false,
+ 		success:function(result){ 
+ 			console.log(result); 
+ 			$.each(result, function(index,item) { 
+ 	            $("#insert_type").append(  //此处向select中循环绑定数据
+ 	    "<option value="+item.casetype_id+">" + item.casetype_name+ "</option>");
+ 			});
+ 			
+ 			$('#insert_type').next('span').remove();
+ 			$('#insert_type').removeAttr("tabindex class aria-hidden"); 
+ 		},
+ 	 error:function(e){
+ 		 alert("error:"+e);
+ 	 }
+ 	}); 
+ }
 function build_case_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#case_table tbody").empty();
 	$.each(result,function(index,item){
 		var time=times(item.case_time);
 		item.case_time=time;
+		item.case_type=casetype_one(item.case_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.case_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.case_name);
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.case_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.case_constant.substring(0,20)+'...');
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.case_type);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.case_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.case_id);
@@ -459,7 +540,7 @@ function build_case_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(timeTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(typeTd).append(timeTd)
 		.append(btnTd).appendTo("#case_table tbody");
 	});
 }
@@ -470,13 +551,15 @@ function getEditDate(id){
 		type:"GET",
 		data:"case_id="+id,
 		success:function(result){
-			$.each(result,function(index,item){ 
+			$.each(result,function(index,item){
+				casetype(item.case_type);
 				var time=times(item.case_time);
 				item.case_time=time;
 				$("#EditcaseId").val(item.case_id);
 				$("#EditcaseName").val(item.case_name);
 				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.case_photo);
 				$("#EditcaseConstant").val(item.case_constant);
+				$("input[name=case_type][value='"+item.case_type+"']").attr("checked",true);
 				editor2.txt.html(item.case_constant)
 				$("#EditcaseTime").val(item.case_time);
 			});
@@ -493,6 +576,7 @@ $(document).on("click","#editBtn",function(){
 	$("#EditcasePhoto").val("");
 	$("#EditcaseConstant").val("");
 	$("#EditcaseTime").val("");
+	$('#update_type').html("");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -510,6 +594,7 @@ $(document).on("click","#myEditBtn",function(){
 	case_id=parseInt(case_id);
 	var case_name=$("#EditcaseName").val();
 	var case_constant=$("#EditcaseConstant").val();
+	var case_type=$("#update_type").val(); 
 	var case_time=$("#EditcaseTime").val();
 	var old_photo = $("#oldPhoto")[0].src;
 	var index = old_photo .lastIndexOf("\/");  
@@ -517,6 +602,7 @@ $(document).on("click","#myEditBtn",function(){
 	formData.append("case_id",case_id);
 	formData.append("case_name",case_name);
 	formData.append("case_constant",case_constant);
+	formData.append("case_type",case_type);
 	formData.append("case_time",case_time); 
 	formData.append("case_photo",case_photo);
 	formData.append("old_photo",old_photo);
@@ -565,10 +651,12 @@ $(document).on("click","#addpage",function(){
 	$("#AddcasePhoto").val("");
 	$("#AddcaseConstant").val(""); 
 	$("#imgPhoto").attr("src","${APP_PATH }/js/img/2.jpeg");
+	$('#insert_type').html("");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
 	editor.txt.html(' ')
+	casetype_insert();
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
@@ -576,9 +664,11 @@ $(document).on("click","#myAddBtn",function(){
 	var case_upload = $('#AddcasePhoto').get(0).files[0];
 	var case_name=$("#AddcaseName").val();
 	var case_constant=$("#AddcaseConstant").val();
+	var case_type=$("#insert_type").val();
 	formData.append("case_name",case_name);
 	formData.append("case_upload",case_upload);
 	formData.append("case_constant",case_constant);
+	formData.append("case_type",case_type);
 	if(case_name == ""){
 		alert("案例名称不能为空!");
 	}else if(indexOf(case_name)){
