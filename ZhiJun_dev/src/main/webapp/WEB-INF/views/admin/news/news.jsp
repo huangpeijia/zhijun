@@ -236,14 +236,10 @@
 								    </div>
 								  </div>
 								  <div class="form-group">	
-								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
-								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
-								       <input type="radio" id="EditnewsType" name="news_type" value="0">
-								       <label for="EditnewsType">公司新闻</label>
-								    </div>
-								    <div class="col-sm-2 radio-check radio-success radio-inline">
-								       <input type="radio" id="EditnewsType1" name="news_type" value="1">
-								       <label for="EditnewsType1">行业动态</label>
+								   <label for="inputnewType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="update_type" name="news_type">
+										</select> 
 								    </div>
 								  </div>
 								   <div class="form-group">	
@@ -284,15 +280,11 @@
 								      <textarea class="form-control textarea_a" id="AddnewsConstant" rows="3" name="news_constant" style="display:none" ></textarea>
 								    </div>
 								  </div>
-								  <div class="form-group">	
-								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
-								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
-								       <input type="radio" id="AddnewsType" name="news_type" value="0" checked="checked">
-								       <label for="AddnewsType">公司新闻</label>
-								    </div>
-								    <div class="col-sm-2 radio-check radio-success radio-inline">
-								       <input type="radio" id="AddnewsType1" name="news_type" value="1">
-								       <label for="AddnewsType1">行业动态</label>
+								 <div class="form-group">	
+								   <label for="inputnewType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="insert_type" name="news_type">
+										</select> 
 								    </div>
 								  </div>
 								</form>
@@ -438,18 +430,77 @@ function to_page(c_page){
 	 }
 	});
 }
-
+//绑定编辑下拉框的类型
+function newtype(new_type){  
+	$.ajax({
+		url:"newtype/all",
+		type:"POST",
+		async: false,
+		success:function(result){ 
+			console.log(result); 
+			$.each(result, function(index,item) { 
+	            $("#update_type").append(  //此处向select中循环绑定数据
+	    "<option value="+item.newtype_id+">" + item.newtype_name+ "</option>");
+				if(new_type==item.newtype_id){
+					$("#update_type option[value="+item.newtype_id+"]").attr("selected",true);
+				}
+			});
+			
+			$('#update_type').next('span').remove();
+			$('#update_type').removeAttr("tabindex class aria-hidden"); 
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	}); 
+}
+//绑定显示的类型值
+function newtype_one(new_id){
+	var newtype; 
+	$.ajax({
+		url:"newtype/one",
+		type:"POST",
+		data:"new_id="+new_id,
+		async: false,
+		success:function(result){ 
+			$.each(result,function(index,item){
+				newtype=item.newtype_name;
+			}); 
+		},
+		error:function(e){
+			alert("error:"+e);
+		}
+	});
+	return newtype;
+}
+//绑定新建下拉框的类型
+function newtype_insert(){  
+	$.ajax({
+		url:"newtype/all",
+		type:"POST",
+		async: false,
+		success:function(result){ 
+			console.log(result); 
+			$.each(result, function(index,item) { 
+	            $("#insert_type").append(  //此处向select中循环绑定数据
+	    "<option value="+item.newtype_id+">" + item.newtype_name+ "</option>");
+			});
+			
+			$('#insert_type').next('span').remove();
+			$('#insert_type').removeAttr("tabindex class aria-hidden"); 
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	}); 
+}
 function build_news_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#news_table tbody").empty();
 	$.each(result,function(index,item){
 		var time=times(item.news_time);
 		item.news_time=time;
-		if(item.news_type==0){
-			item.news_type="公司新闻";
-		}else if(item.news_type==1){
-			item.news_type="行业动态";
-		}
+		item.news_type=newtype_one(item.news_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.news_id);
 		var titleTd=$("<td style='vertical-align:middle;'></td>").append(item.news_title);
 		/* var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.news_photo); */
@@ -480,6 +531,7 @@ function getEditDate(id){
 		data:"news_id="+id,
 		success:function(result){
 			$.each(result,function(index,item){ 
+				newtype(item.news_type);
 				var time=times(item.news_time);
 				item.news_time=time;
 				$("#EditnewsId").val(item.news_id);
@@ -503,6 +555,7 @@ $(document).on("click","#editBtn",function(){
 	/* $("#EditnewsPhoto").val(""); */
 	$("#EditnewsConstant").val("");	
 	$("#EditnewsTime").val("");
+	$('#update_type').html("");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -517,7 +570,8 @@ $(document).on("click","#myEditBtn",function(){
 	var news_id=$("#EditnewsId").val();
 	var news_title=$("#EditnewsTitle").val();
 	var news_constant=$("#EditnewsConstant").val();
-	var news_type=$("input:radio[name='news_type']:checked").val();
+	var news_type=$("#update_type").val();
+	alert(news_type);
 	var news_time=$("#EditnewsTime").val();
 	if(news_title == ""){
 		alert("新闻标题不能为空!");
@@ -552,16 +606,18 @@ $(document).on("click","#addpage",function(){
 	$("#AddnewsTitle").val("");
 	/* $("#AddnewsPhoto").val(""); */
 	$("#AddnewsConstant").val("");
+	$('#insert_type').html("");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
 	editor.txt.html(' ')
+	newtype_insert();
 });
 //点击保存按钮
-$(document).on("click","#myAddBtn",function(){
+$(document).on("click","#myAddBtn",function(){ 
 	var news_title=$("#AddnewsTitle").val();
 	var news_constant=$("#AddnewsConstant").val();
-	var news_type=$("input:radio[name='news_type']:checked").val();
+	var news_type=$("#insert_type").val(); 
 	if(news_title == ""){
 		alert("新闻标题不能为空!");
 	}else if(indexOf(news_title)){

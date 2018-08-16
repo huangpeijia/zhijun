@@ -22,13 +22,13 @@ public class CasetypeController {
 	
 	@RequestMapping(value = "/admin/casetype/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<Casetype> Protype(Model model){
+	public List<Casetype> Casetype(Model model){
 		return casetypedao.queryAll();
 	}
 	
 	@RequestMapping(value = "/admin/casetype/one", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<Casetype> Protype_one(@RequestParam("case_id") int case_id,Model model){
+	public List<Casetype> Casetype_one(@RequestParam("case_id") int case_id,Model model){
 		return casetypedao.select_one(case_id);
 	}
 }

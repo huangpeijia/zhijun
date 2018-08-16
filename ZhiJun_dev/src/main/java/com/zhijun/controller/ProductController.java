@@ -87,8 +87,7 @@ public class ProductController extends ControllerBase{
 			return "error";
 		}else {
 			String pro_upload_name=UploadInterface.upload_one(request,pro_upload);
-			pro.setPro_photo(pro_upload_name);
-			System.out.println("========================"+pro_upload_name);
+			pro.setPro_photo(pro_upload_name); 
 		}
 		pro.setPro_time(new Date());
 		int count = prodao.addProduct(pro);
