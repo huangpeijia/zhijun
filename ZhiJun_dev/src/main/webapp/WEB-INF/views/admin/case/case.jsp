@@ -239,14 +239,10 @@
 								    </div>
 								  </div>
 								   <div class="form-group">	
-								   <label for="inputnewsType" class="col-sm-2 control-label">案例类型</label>								  
-								    <div class="col-sm-4 radio-check radio-success radio-inline" style="margin-left:15px">
-								       <input type="radio" autocomplete="off" id="EditcaseType" name="case_type" value="0">
-								       <label for="EditcaseType">中海油厂区项目</label>
-								    </div>
-								    <div class="col-sm-4 radio-check radio-success radio-inline">
-								       <input type="radio" autocomplete="off" id="EditcaseType1" name="case_type" value="1">
-								       <label for="EditcaseType1">中海油钻井平台项目</label>
+								   <label for="inputcaseType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="update_type" name="case_type">
+										</select> 
 								    </div>
 								  </div>
 								   <div class="form-group">	
@@ -297,14 +293,10 @@
 								    </div>
 								  </div>
 								   <div class="form-group">	
-								   <label for="inputcaseType" class="col-sm-2 control-label">新闻类型</label>								  
-								    <div class="col-sm-4 radio-check radio-success radio-inline" style="margin-left:15px">
-								       <input type="radio" id="AddnewsType" name="case_type" value="0" checked="checked">
-								       <label for="AddcaseType">中海油厂区项目</label>
-								    </div>
-								    <div class="col-sm-4 radio-check radio-success radio-inline">
-								       <input type="radio" id="AddcaseType1" name="case_type" value="1">
-								       <label for="AddcaseType1">中海油钻井平台项目</label>
+								   <label for="inputproType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select id="insert_type" name="pro_type">
+										</select> 
 								    </div>
 								  </div>
 								</form>
@@ -459,18 +451,77 @@ $('#AddcasePhoto').on('change',function(){
 		var filePath = window.URL.createObjectURL(this.files[0]);
 		$('#oldPhoto').attr("src",filePath);
 	 });
+//绑定编辑下拉框的类型
+ function casetype(case_type){  
+ 	$.ajax({
+ 		url:"casetype/all",
+ 		type:"POST",
+ 		async: false,
+ 		success:function(result){ 
+ 			console.log(result); 
+ 			$.each(result, function(index,item) { 
+ 	            $("#update_type").append(  //此处向select中循环绑定数据
+ 	    "<option value="+item.casetype_id+">" + item.casetype_name+ "</option>");
+ 				if(case_type==item.casetype_id){
+ 					$("#update_type option[value="+item.casetype_id+"]").attr("selected",true);
+ 				}
+ 			});
+ 			
+ 			$('#update_type').next('span').remove();
+ 			$('#update_type').removeAttr("tabindex class aria-hidden"); 
+ 		},
+ 	 error:function(e){
+ 		 alert("error:"+e);
+ 	 }
+ 	}); 
+ }
+//绑定显示的类型值
+ function casetype_one(case_id){
+ 	var casetype;
+ 	$.ajax({
+ 		url:"casetype/one",
+ 		type:"POST",
+ 		data:"case_id="+case_id,
+ 		async: false,
+ 		success:function(result){ 
+ 			$.each(result,function(index,item){
+ 				casetype=item.casetype_name; 
+ 			}); 
+ 		},
+ 		error:function(e){
+ 			alert("error:"+e);
+ 		}
+ 	});
+ 	return casetype;
+ }
+//绑定新建下拉框的类型
+ function casetype_insert(){  
+ 	$.ajax({
+ 		url:"casetype/all",
+ 		type:"POST",
+ 		async: false,
+ 		success:function(result){ 
+ 			console.log(result); 
+ 			$.each(result, function(index,item) { 
+ 	            $("#insert_type").append(  //此处向select中循环绑定数据
+ 	    "<option value="+item.casetype_id+">" + item.casetype_name+ "</option>");
+ 			});
+ 			
+ 			$('#insert_type').next('span').remove();
+ 			$('#insert_type').removeAttr("tabindex class aria-hidden"); 
+ 		},
+ 	 error:function(e){
+ 		 alert("error:"+e);
+ 	 }
+ 	}); 
+ }
 function build_case_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#case_table tbody").empty();
 	$.each(result,function(index,item){
 		var time=times(item.case_time);
 		item.case_time=time;
-		if(item.case_type==0){
-			item.case_type="中海油厂区项目";
-		}else if(item.case_type==1){
-			item.case_type="中海油钻井平台项目";
-		}
-		
+		item.case_type=casetype_one(item.case_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.case_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.case_name);
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.case_photo).attr("style","width:50px;height:50px;"));
@@ -500,7 +551,8 @@ function getEditDate(id){
 		type:"GET",
 		data:"case_id="+id,
 		success:function(result){
-			$.each(result,function(index,item){ 
+			$.each(result,function(index,item){
+				casetype(item.case_type);
 				var time=times(item.case_time);
 				item.case_time=time;
 				$("#EditcaseId").val(item.case_id);
@@ -524,6 +576,7 @@ $(document).on("click","#editBtn",function(){
 	$("#EditcasePhoto").val("");
 	$("#EditcaseConstant").val("");
 	$("#EditcaseTime").val("");
+	$('#update_type').html("");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -541,7 +594,7 @@ $(document).on("click","#myEditBtn",function(){
 	case_id=parseInt(case_id);
 	var case_name=$("#EditcaseName").val();
 	var case_constant=$("#EditcaseConstant").val();
-	var case_type=$("input:radio[name='case_type']:checked").val();
+	var case_type=$("#update_type").val(); 
 	var case_time=$("#EditcaseTime").val();
 	var old_photo = $("#oldPhoto")[0].src;
 	var index = old_photo .lastIndexOf("\/");  
@@ -598,10 +651,12 @@ $(document).on("click","#addpage",function(){
 	$("#AddcasePhoto").val("");
 	$("#AddcaseConstant").val(""); 
 	$("#imgPhoto").attr("src","${APP_PATH }/js/img/2.jpeg");
+	$('#insert_type').html("");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
 	editor.txt.html(' ')
+	casetype_insert();
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
@@ -609,7 +664,7 @@ $(document).on("click","#myAddBtn",function(){
 	var case_upload = $('#AddcasePhoto').get(0).files[0];
 	var case_name=$("#AddcaseName").val();
 	var case_constant=$("#AddcaseConstant").val();
-	var case_type=$("input:radio[name='case_type']:checked").val();
+	var case_type=$("#insert_type").val();
 	formData.append("case_name",case_name);
 	formData.append("case_upload",case_upload);
 	formData.append("case_constant",case_constant);
