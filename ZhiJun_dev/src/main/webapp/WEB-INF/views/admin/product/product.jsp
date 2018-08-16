@@ -239,6 +239,13 @@
 								    </div>
 								  </div>
 								   <div class="form-group">	
+								   <label for="inputproType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="update_type" name="pro_type">
+										</select> 
+								    </div>
+								  </div>
+								   <div class="form-group">	
 								   <label for="inputproTime" class="col-sm-2 control-label">发布时间</label>								  
 								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditproTime" placeholder="请输入发布时间" readonly>
@@ -285,6 +292,13 @@
 								      <textarea class="form-control textarea_a" id="AddproConstant" rows="3" name="pro_constant"  style="display:none"></textarea>
 								    </div>
 								  </div>
+								   <div class="form-group">	
+								   <label for="inputproType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="insert_type" name="pro_type">
+										</select> 
+								    </div>
+								  </div>
 								</form>
 						      </div>
 						      <div class="modal-footer">
@@ -313,6 +327,7 @@
 								              <th>产品名称</th>
 								              <th>照片路径</th>
 								              <th>产品介绍</th>
+								              <th>产品类型</th>
 								              <th>发布时间</th>
 								              <th>操作</th>
 								          </tr>
@@ -321,7 +336,7 @@
 								       
 								       </tbody>
 								   </table>
-								   <div id="page"></div>
+								   <div id="page"></div> 
 							   </div>
 						   </div>
 					   </div>
@@ -426,6 +441,70 @@ function to_page(c_page){
 	 }
 	});
 }
+//绑定编辑下拉框的类型
+function protype(pro_type){  
+	$.ajax({
+		url:"protype/all",
+		type:"POST",
+		async: false,
+		success:function(result){ 
+			console.log(result); 
+			$.each(result, function(index,item) { 
+	            $("#update_type").append(  //此处向select中循环绑定数据
+	    "<option value="+item.protype_id+">" + item.protype_name+ "</option>");
+				if(pro_type==item.protype_id){
+					$("#update_type option[value="+item.protype_id+"]").attr("selected",true);
+				}
+			});
+			
+			$('#update_type').next('span').remove();
+			$('#update_type').removeAttr("tabindex class aria-hidden"); 
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	}); 
+}
+//绑定显示的类型值
+function protype_one(pro_id){
+	var protype;
+	$.ajax({
+		url:"protype/one",
+		type:"POST",
+		data:"pro_id="+pro_id,
+		async: false,
+		success:function(result){ 
+			$.each(result,function(index,item){
+				protype=item.protype_name;
+			}); 
+		},
+		error:function(e){
+			alert("error:"+e);
+		}
+	});
+	return protype;
+}
+//绑定新建下拉框的类型
+function protype_insert(){  
+	$.ajax({
+		url:"protype/all",
+		type:"POST",
+		async: false,
+		success:function(result){ 
+			console.log(result); 
+			$.each(result, function(index,item) { 
+	            $("#insert_type").append(  //此处向select中循环绑定数据
+	    "<option value="+item.protype_id+">" + item.protype_name+ "</option>");
+			});
+			
+			$('#insert_type').next('span').remove();
+			$('#insert_type').removeAttr("tabindex class aria-hidden"); 
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	}); 
+}
 $('#AddproPhoto').on('change',function(){
 	var filePath = window.URL.createObjectURL(this.files[0]);
 	$('#imgPhoto').attr("src",filePath);
@@ -440,10 +519,12 @@ function build_pro_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.pro_time);
 		item.pro_time=time;
+		item.pro_type=protype_one(item.pro_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_name);
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.pro_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_constant.substring(0,20)+'...');
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_type);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.pro_id);
@@ -457,7 +538,7 @@ function build_pro_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(timeTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(typeTd).append(timeTd)
 		.append(btnTd).appendTo("#pro_table tbody");
 	});
 }
@@ -469,6 +550,7 @@ function getEditDate(id){
 		data:"pro_id="+id,
 		success:function(result){
 			$.each(result,function(index,item){ 
+				protype(item.pro_type);
 				var time=times(item.pro_time);
 				item.pro_time=time;
 				$("#EditproId").val(item.pro_id);
@@ -491,6 +573,7 @@ $(document).on("click","#editBtn",function(){
 	$("#EditproPhoto").val("");
 	$("#EditproConstant").val("");
 	$("#EditproTime").val("");
+	$('#update_type').html("");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -508,6 +591,7 @@ $(document).on("click","#myEditBtn",function(){
 	pro_id=parseInt(pro_id);
 	var pro_name=$("#EditproName").val();
 	var pro_constant=$("#EditproConstant").val();
+	var pro_type=$("#update_type").val();
 	var pro_time=$("#EditproTime").val();
 	var old_photo = $("#oldPhoto")[0].src;
 	var index = old_photo .lastIndexOf("\/");  
@@ -515,6 +599,7 @@ $(document).on("click","#myEditBtn",function(){
 	formData.append("pro_id",pro_id);
 	formData.append("pro_name",pro_name);
 	formData.append("pro_constant",pro_constant);
+	formData.append("pro_type",pro_type);
 	formData.append("pro_time",pro_time); 
 	formData.append("pro_photo",pro_photo);
 	formData.append("old_photo",old_photo);
@@ -563,10 +648,12 @@ $(document).on("click","#addpage",function(){
 	$("#AddproPhoto").val("");
 	$("#imgPhoto").attr("src","${APP_PATH }/js/img/2.jpeg");
 	$("#AddproConstant").val("");
+	$('#insert_type').html("");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
 	editor.txt.html(' ')
+	protype_insert();
 });
 //点击保存按钮
 $(document).on("click","#myAddBtn",function(){
@@ -574,9 +661,11 @@ $(document).on("click","#myAddBtn",function(){
 	var pro_upload = $('#AddproPhoto').get(0).files[0];
 	var pro_name=$("#AddproName").val();
 	var pro_constant=$("#AddproConstant").val();
+	var pro_type=$("#insert_type").val();
 	formData.append("pro_name",pro_name);
 	formData.append("pro_upload",pro_upload);
 	formData.append("pro_constant",pro_constant);
+	formData.append("pro_type",pro_type);
 	if(pro_name == ""){
 		alert("产品名称不能为空!");
 	}else if(indexOf(pro_name)){
