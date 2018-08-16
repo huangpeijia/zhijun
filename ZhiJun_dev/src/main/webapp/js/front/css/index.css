@@ -564,9 +564,20 @@ main{
 	margin-bottom: 30px;
 }
 
+.ul_case>a>li:hover>img{
+	border-color: #f9f9f9;
+}
+
+.ul_case>a>li:hover>.div_case>.case_content *,.ul_case>a>li:hover>.div_case>.case_title>span{
+	color: #1551FC;
+}
+
 .ul_case>a>li>img{
-	width: 300px;
-	height: 225px;
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	border: 10px solid rgb(238, 238, 238);
+	box-shadow: 0px 0px 60px rgba(172, 169, 176, 0.45);
 	background-position:center center;
 	-webkit-background-size: cover; /*完美的背景图全屏*/
 	-moz-background-size: cover;
@@ -577,10 +588,6 @@ main{
 .div_case{
 	width: 900px;
 	height: 225px;
-}
-
-.div_case:hover{
-	background-color: #f5f5f5;
 }
 
 .case_title>span:nth-child(1){
@@ -658,6 +665,7 @@ main{
 	margin-top: 0.5em;
 	line-height: 40px;
 	font-size: 1.3rem;
+	color: #fbfbfb;
 }
 
 .center_footer{
@@ -682,7 +690,7 @@ main{
 
 
 .img_haiwang{
-	background: #f0f0f0;
+	color:#F0F5F7;
 	filter:alpha(Opacity=80);
 	-moz-opacity: 0.8;
 	opacity: 0.8;
@@ -720,6 +728,7 @@ main{
 	letter-spacing: 0px;/*间距*/
 	margin: 5px 0px;
 	text-align: center;
+	color: #EBF0F2;
 }
 
 .arrows_top>a{
