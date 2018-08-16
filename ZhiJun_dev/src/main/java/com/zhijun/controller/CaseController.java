@@ -134,12 +134,10 @@ public class CaseController extends ControllerBase{
 		Cases cases=new Cases();
 		String cases_upload_name;
 		if(case_photo==null) {
-			cases.setCase_photo(old_photo);
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa"+case_photo);
+			cases.setCase_photo(old_photo); 
 		}else {
 			cases_upload_name=UploadInterface.upload_one(request,case_photo);
-			 cases.setCase_photo(cases_upload_name);
-			System.out.println("========================"+cases_upload_name);
+			 cases.setCase_photo(cases_upload_name); 
 		}
 		cases.setCase_id(case_id);
 		cases.setCase_name(case_name);
