@@ -133,3 +133,14 @@
 	</div>
 </main>
    <%@ include file="front/footer.jsp" %>
+   <script>
+   $(function(){
+		$(".pro_span>div>span").each(function(){
+			var maxwidth=60;
+			if($(this).text().length>maxwidth){
+				$(this).text($(this).text().substring(0,maxwidth));
+				$(this).html($(this).html()+'...');
+			}
+		});
+	});
+   </script>
