@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
     
     <%@ include file="../head.jsp" %>
+     <script>
+    document.title="联系我们";
+    </script>
+    <style type="text/css">
+        .ul_nav>li:nth-child(7)>a{
+            border-bottom: 2px solid #FB8722;
+        }
+    </style>
     <!-- 联系我们 -->
 	<!--内容-->
 	<div id="main" class="main_con">

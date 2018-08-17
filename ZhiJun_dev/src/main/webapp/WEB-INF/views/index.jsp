@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
     
     <%@ include file="front/head.jsp" %>
+    <style type="text/css">
+        .ul_nav>li:nth-child(1)>a{
+            border-bottom: 2px solid #FB8722;
+        }
+    </style>
 	<!--内容-->
 	<div id="main" class="">
 		<div class="div_main">
