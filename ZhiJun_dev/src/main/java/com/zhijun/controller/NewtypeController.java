@@ -32,4 +32,16 @@ public class NewtypeController {
 	public List<Newtype> Newtype_one(@RequestParam("new_id") int new_id,Model model){
 		return newtypedao.select_one(new_id);
 	}
+	/**
+	 * 查询全部数量
+	 * 方法 
+	 */
+	@RequestMapping(value = "/admin/newtype/countall")
+	@ResponseBody
+	public Integer countAll() {
+		Integer count =newtypedao.countAll();
+		System.out.println(count);
+		return count;
+		
+	}
 }

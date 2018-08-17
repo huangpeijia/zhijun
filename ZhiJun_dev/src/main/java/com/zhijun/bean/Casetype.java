@@ -1,15 +1,8 @@
 package com.zhijun.bean;
 
-public class Casetype {
-	private int id;
+public class Casetype { 
 	private int casetype_id; //案例id
-	private String casetype_name; //案例名称
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	private String casetype_name; //案例名称 
 	public int getCasetype_id() {
 		return casetype_id;
 	}

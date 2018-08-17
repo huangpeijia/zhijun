@@ -31,7 +31,7 @@ public class CasetypeDao {
 	 * @return
 	 */
 	public List<Casetype> queryAll(){
-		String sql ="select id,casetype_id,casetype_name from casetype";
+		String sql ="select casetype_id,casetype_name from casetype";
 		List<Casetype> list = jdbcTemplate.query(sql,new CasetypeMapper());
 		return list;
 		
@@ -42,15 +42,14 @@ public class CasetypeDao {
 	 *
 	 */
 	public List<Casetype> select_one(int case_id){
-		String sql = "select id,casetype_id,casetype_name from casetype where casetype_id="+case_id+""; 
+		String sql = "select casetype_id,casetype_name from casetype where casetype_id="+case_id+""; 
 		List<Casetype> list = jdbcTemplate.query(sql,new CasetypeMapper());
 		return list;
 		
 	}
 	public class CasetypeMapper implements RowMapper<Casetype>{
 		public Casetype mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Casetype casetype= new Casetype();
-			casetype.setId(rs.getInt("id"));
+			Casetype casetype= new Casetype(); 
 			casetype.setCasetype_id(rs.getInt("casetype_id"));
 			casetype.setCasetype_name(rs.getString("casetype_name"));
 			return casetype;
