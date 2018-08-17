@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
     
     <%@ include file="../head.jsp" %>
+     <script>
+    document.title="公司概况";
+    </script>
+    <style type="text/css">
+        .ul_nav>li:nth-child(2)>a{
+            border-bottom: 2px solid #FB8722;
+        }
+    </style>
 	<!--内容-->
 	<div id="main" class="main_con">
 		<div class="div_main1">

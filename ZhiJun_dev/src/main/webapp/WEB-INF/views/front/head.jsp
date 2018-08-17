@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>测试首页</title>
+<title>首页</title>
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
-    %>
-<link rel="stylesheet" href="${APP_PATH }/js/front/css/font-awesome-4.7.0/css/font-awesome.min.css">
+%>
+<link rel="shortcut icon" href="img/work-2.jpg"><!-- 标题小图标 -->
+<link rel="stylesheet" href="${APP_PATH }/js/front/css/font-awesome-4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="${APP_PATH }/js/front/css/index.css"/>
 <link rel="stylesheet" href="${APP_PATH }/js/front/css/animate.css"/>
 <link rel="stylesheet" href="${APP_PATH }/js/front/lib/fonts/pmzdtitlefont/pmzdtitlefont.css"/>
@@ -27,7 +28,7 @@
 		</div>
 		<nav class="float_r">
 			<ul class="ul_nav float_r">
-				<li class="li_focus">
+				<li>
 					<a href="index">首页</a>
 					
 				</li>

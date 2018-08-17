@@ -2,13 +2,21 @@
     pageEncoding="UTF-8"%>
     
     <%@ include file="../head.jsp" %>
+     <script>
+    document.title="新闻中心";
+    </script>
+    <style type="text/css">
+        .ul_nav>li:nth-child(4)>a{
+            border-bottom: 2px solid #FB8722;
+        }
+    </style>
 	<!--内容-->
 	<div id="main" class="main_con">
 		<div class="div_main1">
 			<!--层-->
 			<div class="condition">
 				<!--总标题-->
-				<div class="con_title">人才招聘</div>
+				<div class="con_title">新闻中心</div>
 				<!--内容层-->
 				<div class="con_content cf">
 					<!--滑动的动画效果-->

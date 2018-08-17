@@ -161,6 +161,16 @@ main{
 	width: 100%;
 	background-color: #fbfbfb;
 }
+
+@media screen and (max-width: 1200px){
+	html{
+	width:1200px;
+	}
+	
+	main{
+		width: 1200px;
+	}
+}
 /*轮播层*/
 .div_lunbo{
 	position: relative;
