@@ -93,7 +93,7 @@
     <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/ace.js"></script>
     <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/mode-html.js"></script>
     <script type="text/javascript" src="${APP_PATH }/js/lib/js/ace/theme-github.js"></script>
-    <script type="text/javascript" src="${APP_PATH }/js/jquery-3.2.1.js"></script>
+   <%--  <script type="text/javascript" src="${APP_PATH }/js/jquery-3.2.1.js"></script> --%>
     <!-- Javascript -->
     <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
     

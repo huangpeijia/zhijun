@@ -376,7 +376,7 @@ function getEditDate(id){
 				item.com_time=time;
 				$("#EditcomId").val(item.com_id);
 				$("#EditcomName").val(item.com_name);	
-				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.com_logo);
+				$("#oldPhoto").attr("src","/upload/"+item.com_logo);
 				$("#span_logo").html(item.com_logo);
 			    $("#EditcomContact").val(item.com_contact);
 				$("#EditcomNumber").val(item.com_number);

@@ -312,7 +312,7 @@ function upFile(){
 		url:'document/select_video',
 		type:'POST',
 		success:function(result){
-			$("#docu_video").attr("src","/ZhiJun_dev/video/"+result);
+			$("#docu_video").attr("src","/video/"+result);
 		} 
 	})
 }
@@ -365,7 +365,7 @@ function build_news_table(result,page,num){
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.name);
 		var numTd=$("<td style='vertical-align:middle;'></td>").append(item.num);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.time);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.name).attr("style","width:50px;height:50px;"));
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.name).attr("style","width:50px;height:50px;"));
 		var delBtn=$("<button id='delBtn'></button>").addClass("btn btn-danger btn-sm del_btn").append($("<span></span>").addClass("glyphicon glyphicon-trash")).append(" 删除文件");
 		delBtn.attr("del-name",item.name);
 		

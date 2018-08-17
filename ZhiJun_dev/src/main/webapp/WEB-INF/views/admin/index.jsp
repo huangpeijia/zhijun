@@ -324,8 +324,7 @@
 <script type="text/javascript" src="${APP_PATH }/js/js/app.js"></script>
 <script type="text/javascript" src="${APP_PATH }/js/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
-<script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
-<script type="text/javascript" src="${APP_PATH }/js/js/sha1.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script> 
 <script type="text/javascript">
 var c_page=1; //当前页数
 $(function(){
@@ -398,7 +397,7 @@ function build_pro_newest(result){
 		item.news_time=time;
 		var nameTd=$("<h3 id='thumbnail-label'></h3>").append(item.pro_name);
 		var constantTd=$("<p></p>").append(item.pro_constant.substring(0,130)+'...');
-		var photoTd=$("<img src='' class='img-responsive'>").attr("src","/ZhiJun_dev/upload/"+item.pro_photo);
+		var photoTd=$("<img src='' class='img-responsive'>").attr("src","/upload/"+item.pro_photo);
         
 		var n_cTd=$("<div class='caption'></div>").append(nameTd).append(constantTd);
 		var p_nTd=$("<div class='thumbnail no-margin-bottom'></div>").append(photoTd).append(n_cTd);

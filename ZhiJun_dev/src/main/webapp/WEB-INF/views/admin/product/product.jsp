@@ -522,7 +522,7 @@ function build_pro_table(result){
 		item.pro_type=protype_one(item.pro_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_name);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.pro_photo).attr("style","width:50px;height:50px;"));
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.pro_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_constant.substring(0,20)+'...');
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_type);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_time);
@@ -555,7 +555,7 @@ function getEditDate(id){
 				item.pro_time=time;
 				$("#EditproId").val(item.pro_id);
 				$("#EditproName").val(item.pro_name);
-				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.pro_photo);
+				$("#oldPhoto").attr("src","/upload/"+item.pro_photo);
 				$("#EditproConstant").val(item.pro_constant);
 				editor2.txt.html(item.pro_constant)
 				$("#EditproTime").val(item.pro_time);

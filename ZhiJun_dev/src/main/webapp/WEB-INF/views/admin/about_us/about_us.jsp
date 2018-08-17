@@ -373,7 +373,7 @@ function timesU(value){
 }
 //点击还原按钮
 $(document).on("click","#reduction",function(){
-	inf_update();
+	about_update();
 });
 //点击编辑按钮
 $(document).on("click","#myEditBtn",function(){
