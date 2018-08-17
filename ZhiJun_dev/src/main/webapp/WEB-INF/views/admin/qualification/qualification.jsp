@@ -443,7 +443,7 @@ function build_qua_table(result){
 		item.qua_time=time;
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_name);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.qua_photo).attr("style","width:50px;height:50px;"));
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.qua_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_constant.substring(0,20)+'...');
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
@@ -474,7 +474,7 @@ function getEditDate(id){
 				item.qua_time=time;
 				$("#EditquaId").val(item.qua_id);
 				$("#EditquaName").val(item.qua_name);
-				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.qua_photo);
+				$("#oldPhoto").attr("src","/upload/"+item.qua_photo);
 				$("#EditquaConstant").val(item.qua_constant);
 				editor2.txt.html(item.qua_constant);
 				$("#EditquaTime").val(item.qua_time);

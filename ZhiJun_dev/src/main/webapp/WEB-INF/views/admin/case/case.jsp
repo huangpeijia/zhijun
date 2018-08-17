@@ -524,7 +524,7 @@ function build_case_table(result){
 		item.case_type=casetype_one(item.case_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.case_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.case_name);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.case_photo).attr("style","width:50px;height:50px;"));
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.case_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.case_constant.substring(0,20)+'...');
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.case_type);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.case_time);
@@ -557,7 +557,7 @@ function getEditDate(id){
 				item.case_time=time;
 				$("#EditcaseId").val(item.case_id);
 				$("#EditcaseName").val(item.case_name);
-				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.case_photo);
+				$("#oldPhoto").attr("src","/upload/"+item.case_photo);
 				$("#EditcaseConstant").val(item.case_constant);
 				$("input[name=case_type][value='"+item.case_type+"']").attr("checked",true);
 				editor2.txt.html(item.case_constant)
