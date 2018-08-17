@@ -4,16 +4,9 @@ package com.zhijun.bean;
  * @author Administer
  *
  */
-public class Protype {
-	private int id; 
+public class Protype { 
 	private int protype_id; //产品类型id
-	private String protype_name; //产品类型名称
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	private String protype_name; //产品类型名称 
 	public int getProtype_id() {
 		return protype_id;
 	}

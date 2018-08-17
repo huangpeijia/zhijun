@@ -1,15 +1,8 @@
 package com.zhijun.bean;
 
-public class Newtype {
-	private int id;
+public class Newtype { 
 	private int newtype_id; //新闻id
-	private String newtype_name; //新闻类型名
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	private String newtype_name; //新闻类型名 
 	public int getNewtype_id() {
 		return newtype_id;
 	}

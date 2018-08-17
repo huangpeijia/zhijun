@@ -24,7 +24,7 @@ public class ProtypeDao {
 	 * @return
 	 */
 	public List<Protype> queryAll(){
-		String sql ="select id,protype_id,protype_name from protype";
+		String sql ="select protype_id,protype_name from protype";
 		List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
 		return list;
 		
@@ -35,15 +35,14 @@ public class ProtypeDao {
 	 *
 	 */
 	public List<Protype> select_one(int pro_id){
-		String sql = "select id,protype_id,protype_name from protype where protype_id="+pro_id+""; 
+		String sql = "select protype_id,protype_name from protype where protype_id="+pro_id+""; 
 		List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
 		return list;
 		
 	}
 	public class ProtypeMapper implements RowMapper<Protype>{
 		public Protype mapRow(ResultSet rs, int rowNum) throws SQLException{
-			Protype protype= new Protype();
-			protype.setId(rs.getInt("id"));
+			Protype protype= new Protype(); 
 			protype.setProtype_id(rs.getInt("protype_id"));
 			protype.setProtype_name(rs.getString("protype_name"));
 			return protype;
