@@ -89,10 +89,5 @@ public class StudentController extends ControllerBase {
 		return "error";
 	}
 	
-	
-	@RequestMapping("/recruitment")
-	public String about(HttpServletRequest request) {
-		return "front/recruitment/recruitment";
-	}
 	 
 }
