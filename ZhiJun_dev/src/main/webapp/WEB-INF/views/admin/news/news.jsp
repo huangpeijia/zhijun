@@ -571,7 +571,6 @@ $(document).on("click","#myEditBtn",function(){
 	var news_title=$("#EditnewsTitle").val();
 	var news_constant=$("#EditnewsConstant").val();
 	var news_type=$("#update_type").val();
-	alert(news_type);
 	var news_time=$("#EditnewsTime").val();
 	if(news_title == ""){
 		alert("新闻标题不能为空!");
