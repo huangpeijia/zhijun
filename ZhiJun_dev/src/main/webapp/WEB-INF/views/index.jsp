@@ -18,25 +18,25 @@
 						<li class=" ">
 							<a href="javascript:void(none)">
 								<img src="${APP_PATH }/js/front/img/images/ts1.png">
-								<div class="wow pulse delay-04s"><span>专业核心竞争力</span></div>
+								<div data-wow-duration="2s" class="wow fadeInUp "><span>专业核心竞争力</span></div>
 							</a>
 						</li>
 						<li class="">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts2.png">
-								<div class="wow pulse delay-04s"><span>工业级互联网思维</span></div>
+								<div data-wow-duration="2s" class="wow fadeInUp "><span>工业级互联网思维</span></div>
 							</a>
 						</li>
 						<li class="">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts3.png">
-								<div class="wow pulse delay-04s"><span>极致化服务</span></div>
+								<div data-wow-duration="2s" class="wow fadeInUp "><span>极致化服务</span></div>
 							</a>
 						</li>
 						<li class="">
 							<a href="#">
 								<img src="${APP_PATH }/js/front/img/images/ts4.png">
-								<div class="wow pulse delay-04s"><span>工业领域大数据挖掘</span></div>
+								<div data-wow-duration="2s" class="wow fadeInUp "><span>工业领域大数据挖掘</span></div>
 							</a>
 						</li>
 					</ul>
@@ -87,7 +87,7 @@
 							<div class="pro_span_title">${pro[3].pro_name}</div>
 						</div>
 						<div class="pro_more">
-							<a href="#">更多</a>
+							<a href="product#main">更多</a>
 						</div>
 					</div>
 				</div>
@@ -104,7 +104,7 @@
 							</a></li>
 							</c:forEach>
 						</ul>
-						<a href="#" class="news_more float_r ">更多>></a>
+						<a href="news#main" class="news_more float_r ">更多>></a>
 					</div>
 					<video id="media" class="div_video float_r" poster="${APP_PATH }/js/front/img/images/video_index.png" controls>
 						<source src="${APP_PATH }/video/${video_path}" type="video/mp4">
@@ -130,7 +130,7 @@
 						</c:forEach> 
 					</ul>
 					<div class="case_more">
-						<a href="#" class="">查看更多</a>
+						<a href="case#main" class="">查看更多</a>
 					</div>
 				</div>
 			</div>
@@ -142,6 +142,14 @@
    $(function(){
 		$(".pro_span>div>span").each(function(){
 			var maxwidth=60;
+			if($(this).text().length>maxwidth){
+				$(this).text($(this).text().substring(0,maxwidth));
+				$(this).html($(this).html()+'...');
+			}
+		});
+		
+		$(".case_content>p").each(function(){
+			var maxwidth=138;
 			if($(this).text().length>maxwidth){
 				$(this).text($(this).text().substring(0,maxwidth));
 				$(this).html($(this).html()+'...');
