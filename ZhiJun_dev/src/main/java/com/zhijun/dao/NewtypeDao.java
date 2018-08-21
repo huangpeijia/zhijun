@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.zhijun.bean.News;
 import com.zhijun.bean.Newtype;
 import com.zhijun.bean.Protype;
 import com.zhijun.dao.ProtypeDao.ProtypeMapper;
@@ -30,8 +31,8 @@ public class NewtypeDao {
 	 * 查询所有新闻类型
 	 * @return
 	 */
-	public List<Newtype> queryAll(){
-		String sql ="select newtype_id,newtype_name from newtype";
+	public List<Newtype> queryAll(int pages, int keys){
+		String sql ="select newtype_id,newtype_name from newtype limit "+pages+","+keys+"";
 		List<Newtype> list = jdbcTemplate.query(sql,new NewtypeMapper());
 		return list;
 		
@@ -56,6 +57,21 @@ public class NewtypeDao {
 		List<Newtype> list = jdbcTemplate.query(sql,new NewtypeMapper());
 		return list;
 		
+	}
+	//添加
+	public int add(Newtype newtype) {
+		String sql = "insert into newtype(newtype_name) value(?)";
+		return jdbcTemplate.update(sql,new Object[] {newtype.getNewtype_name()});
+	}
+	//删除
+	public int delete(int newtype_id) {
+		String sql = "delete from newtype where newtype_id=?";
+		return jdbcTemplate.update(sql, new Object[] {newtype_id});
+	}
+	//修改
+	public int update(Newtype newtype) {
+		String sql = "update newtype set newtype_name=? where newtype_id=?";
+		return jdbcTemplate.update(sql,new Object[] {newtype.getNewtype_name(),newtype.getNewtype_id()});
 	}
 	public class NewtypeMapper implements RowMapper<Newtype>{
 		public Newtype mapRow(ResultSet rs, int rowNum) throws SQLException{

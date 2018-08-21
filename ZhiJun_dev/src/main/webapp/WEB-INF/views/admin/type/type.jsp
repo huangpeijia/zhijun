@@ -61,7 +61,7 @@
                                         <!-- Tab panes -->
                                         <div class="tab-content"> 
                                         	<!-- 新闻类型 -->
-                                            <div role="tabpanel" class="tab-pane active">
+                                            <div role="tabpanel" class="tab-pane active" id="new">
                                             	 <!--编辑 模态框  -->
 												   <div class="modal fade" id="myEditModel" tabindex="-1" role="dialog">
 								                       <div class="modal-dialog" role="document">
@@ -80,8 +80,7 @@
 																  </div> 								  
 																   <div class="form-group">	
 																   <label for="inputnewtypeName" class="col-sm-3 control-label">新闻类型名称</label>								  
-																    <div class="col-sm-8"> 
-																    <div id="up_editor"></div> 
+																    <div class="col-sm-8">  
 																    	<input type="text" class="form-control" id="EditnewtypeName" name="newtype_name" placeholder="请输入新闻类型名称">
 																     </div>
 																  </div>  
@@ -104,12 +103,6 @@
 													      </div>
 													      <div class="modal-body">
 													        <form class="form-horizontal" id="myAddForm">
-													      <div class="form-group">		
-									                           <label for="inputnewtypeName" class="col-sm-3 control-label">新闻类型编号</label>							  
-															    <div class="col-sm-8">
-															      <input type="number" class="form-control" id="AddnewtypeId" name="newtype_id" placeholder="请输入新闻类型编号">
-															    </div>
-															  </div> 							  
 															   <div class="form-group">	
 															   <label for="inputnewsConstant" class="col-sm-3 control-label">新闻类型名称</label>								  
 															    <div class="col-sm-8">
@@ -157,14 +150,176 @@
                                               
                                             <!-- 产品类型 -->  
                                             <div role="tabpanel" class="tab-pane" id="product">
-                                           	试试撒大声地所                                          
+                                           		<!--编辑 模态框  -->
+												   <div class="modal fade" id="myEditModel_pro" tabindex="-1" role="dialog">
+								                       <div class="modal-dialog" role="document">
+								                           <div class="modal-content">
+								                               <div class="modal-header">
+								                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								                                   <h4 class="modal-title">产品信息编辑</h4>
+								                               </div>
+								                               <div class="modal-body">
+								                               <form class="form-horizontal" id="myEditForm_pro">
+										                           <div class="form-group">		
+										                           <label for="inputprotypeId" class="col-sm-3 control-label">产品类型编号</label>					  
+																    <div class="col-sm-8">
+																      <input type="number" class="form-control" id="EditprotypeId" name="protype_id"  readonly>
+																    </div>
+																  </div> 								  
+																   <div class="form-group">	
+																   <label for="inputprotypeName" class="col-sm-3 control-label">产品类型名称</label>								  
+																    <div class="col-sm-8">  
+																    	<input type="text" class="form-control" id="EditprotypeName" name="protype_name" placeholder="请输入产品类型名称">
+																     </div>
+																  </div>  
+																</form>
+														      </div>
+														      <div class="modal-footer">
+														        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+														        <button type="button" class="btn btn-primary" id="myEditBtn_pro">保存</button>
+														      </div>
+														    </div><!-- /.modal-content -->
+														  </div><!-- /.modal-dialog -->
+														</div><!-- /.modal -->
+                                            	<!-- 添加模态框 -->
+												<div class="modal fade" id="myAddModel_pro" tabindex="-1" role="dialog">
+													  <div class="modal-dialog" role="document">
+													    <div class="modal-content">
+													      <div class="modal-header">
+													        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													        <h4 class="modal-title">添加产品类型</h4>
+													      </div>
+													      <div class="modal-body">
+													        <form class="form-horizontal" id="myAddForm_pro">
+															   <div class="form-group">	
+															   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型名称</label>								  
+															    <div class="col-sm-8"> 
+															       <input type="text" class="form-control" id="AddprotypeName" name="protype_name" placeholder="请输入产品类型名称">
+															    </div>
+															  </div> 
+															</form>
+													      </div>
+													      <div class="modal-footer">
+													        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+													        <button type="button" class="btn btn-primary" id="myAddBtn_pro">添加</button>						      
+													     </div><!-- /.modal-content -->
+													  </div><!-- /.modal-dialog -->
+												</div>
+											   </div>
+                                        	     <div class="page-title">
+													   <span class="title"></span>
+													   <!-- 添加按钮 -->
+													   <button class="btn btn-primary btn-lg navbar-right" id="addpage_pro" style="margin:0px"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加</button>
+												   </div> 
+												   <div class="row">
+													   <div class="col-xs-12">
+														   <div class="card">							  
+															   <div class="card-body">
+																   <table class="table" id="protype_table" >
+																       <thead>
+																          <tr>
+																              <th>序号</th>
+																              <th>产品类型编号</th> 					          
+																              <th>产品类型名称</th> 
+																              <th>操作</th> 
+																          </tr>
+																       </thead>
+																       <tbody> 
+																       </tbody>
+																   </table>
+																    <div class="page"></div>
+															   </div>
+														   </div>
+													   </div>
+												   </div>                           
                                            	  </div>
                                            	  
                                            	  
                                            	  
                                            	<!-- 案例类型 -->  
                                             <div role="tabpanel" class="tab-pane" id="case">
-                                                in futurum.
+                                               <!--编辑 模态框  -->
+												   <div class="modal fade" id="myEditModel_case" tabindex="-1" role="dialog">
+								                       <div class="modal-dialog" role="document">
+								                           <div class="modal-content">
+								                               <div class="modal-header">
+								                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								                                   <h4 class="modal-title">产品信息编辑</h4>
+								                               </div>
+								                               <div class="modal-body">
+								                               <form class="form-horizontal" id="myEditForm_case">
+										                           <div class="form-group">		
+										                           <label for="inputcasetypeId" class="col-sm-3 control-label">案例类型编号</label>					  
+																    <div class="col-sm-8">
+																      <input type="number" class="form-control" id="EditcasetypeId" name="casetype_id"  readonly>
+																    </div>
+																  </div> 								  
+																   <div class="form-group">	
+																   <label for="inputcasetypeName" class="col-sm-3 control-label">案例类型名称</label>								  
+																    <div class="col-sm-8">  
+																    	<input type="text" class="form-control" id="EditcasetypeName" name="casetype_name" placeholder="请输入案例类型名称">
+																     </div>
+																  </div>  
+																</form>
+														      </div>
+														      <div class="modal-footer">
+														        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+														        <button type="button" class="btn btn-primary" id="myEditBtn_case">保存</button>
+														      </div>
+														    </div><!-- /.modal-content -->
+														  </div><!-- /.modal-dialog -->
+														</div><!-- /.modal -->
+                                            	<!-- 添加模态框 -->
+												<div class="modal fade" id="myAddModel_case" tabindex="-1" role="dialog">
+													  <div class="modal-dialog" role="document">
+													    <div class="modal-content">
+													      <div class="modal-header">
+													        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													        <h4 class="modal-title">添加案例类型</h4>
+													      </div>
+													      <div class="modal-body">
+													        <form class="form-horizontal" id="myAddForm_case">
+															   <div class="form-group">	
+															   <label for="inputcaseConstant" class="col-sm-3 control-label">产品类型名称</label>								  
+															    <div class="col-sm-8"> 
+															       <input type="text" class="form-control" id="AddcasetypeName" name="casetype_name" placeholder="请输入案例类型名称">
+															    </div>
+															  </div> 
+															</form>
+													      </div>
+													      <div class="modal-footer">
+													        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+													        <button type="button" class="btn btn-primary" id="myAddBtn_case">添加</button>						      
+													     </div><!-- /.modal-content -->
+													  </div><!-- /.modal-dialog -->
+												</div>
+											   </div>
+                                        	     <div class="page-title">
+													   <span class="title"></span>
+													   <!-- 添加按钮 -->
+													   <button class="btn btn-primary btn-lg navbar-right" id="addpage_case" style="margin:0px"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加</button>
+												   </div> 
+												   <div class="row">
+													   <div class="col-xs-12">
+														   <div class="card">							  
+															   <div class="card-body">
+																   <table class="table" id="casetype_table" >
+																       <thead>
+																          <tr>
+																              <th>序号</th>
+																              <th>类型编号</th> 					          
+																              <th>案例类型名称</th> 
+																              <th>操作</th> 
+																          </tr>
+																       </thead>
+																       <tbody> 
+																       </tbody>
+																   </table>
+																    <div class="page_case"></div>
+															   </div>
+														   </div>
+													   </div>
+												   </div> 
                                             </div>
                                         </div>
                                     </div>
@@ -198,21 +353,23 @@
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script> 
 <script type="text/javascript">
-
 var c_page=1;//当前页数 
-$(function(){to_page();});
-function to_page(){
+$(function(){
+	to_page(c_page);
+	protype_all(c_page);
+	casetype_all(c_page);
+});
+function to_page(c_page){
 	newtype_all(c_page);
 }
-
+//新闻
 function newtype_all(c_page){
 	$.ajax({
-		url:"type/all",
+		url:"type/new",
 		type:"POST",
 		data:"c_page="+c_page,
 		success:function(result){  
-			//1、解析数据
-			console.log(result); 
+			//1、解析数据 
 			newtype_table(result);
 			pages("newtype",c_page);
 		},
@@ -220,8 +377,40 @@ function newtype_all(c_page){
 		 alert("error:"+e);
 	 }
 	});
-}
-//绑定数据
+} 
+//产品
+function protype_all(c_page){
+	$.ajax({
+		url:"type/pro",
+		type:"POST",
+		data:"c_page="+c_page,
+		success:function(result){  
+			//1、解析数据 
+			protype_table(result);
+			pages_class("protype",c_page);
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	});
+} 
+//案例
+function casetype_all(c_page){
+	$.ajax({
+		url:"type/case",
+		type:"POST",
+		data:"c_page="+c_page,
+		success:function(result){  
+			//1、解析数据 
+			casetype_table(result);
+			pages_case("casetype",c_page);
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	});
+} 
+//绑定新闻数据
 function newtype_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#newtype_table tbody").empty();
@@ -233,7 +422,7 @@ function newtype_table(result){
 		editBtn.attr("edit-id",item.newtype_id);
 		
 		var delBtn=$("<button id='delBtn'></button>").addClass("btn btn-danger btn-sm del_btn").append($("<span></span>").addClass("glyphicon glyphicon-trash")).append(" 删除");
-		delBtn.attr("del-id",item.id);
+		delBtn.attr("del-id",item.newtype_id);
 		
 		/* var editBtn=$("<a id='editBtn' onclick='edit("+item.news_id+")'>编辑</a>");
 		
@@ -245,31 +434,87 @@ function newtype_table(result){
 		.append(btnTd).appendTo("#newtype_table tbody");
 	});
 }
+//绑定产品数据
+function protype_table(result){
+	//构建先前情况table,empty掏空信息的方法
+	$("#protype_table tbody").empty();
+	$.each(result,function(index,item){ 
+		var idTd=$("<td style='vertical-align:middle;'></td>").append(++index);  
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_id);  
+		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_name.substring(0,20)+'...'); 
+		var editBtn=$("<button id='editBtn_pro'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
+		editBtn.attr("edit-id",item.protype_id);
+		
+		var delBtn=$("<button id='delBtn_pro'></button>").addClass("btn btn-danger btn-sm del_btn").append($("<span></span>").addClass("glyphicon glyphicon-trash")).append(" 删除");
+		delBtn.attr("del-id",item.protype_id);
+		
+		/* var editBtn=$("<a id='editBtn' onclick='edit("+item.news_id+")'>编辑</a>");
+		
+		var delBtn=$("<a id='delBtn' onclick='del("+item.news_id+")'> 删除</a>"); */
+		
+		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
+		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
+		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd)
+		.append(btnTd).appendTo("#protype_table tbody");
+	});
+}
+//绑定案例数据
+function casetype_table(result){
+	//构建先前情况table,empty掏空信息的方法
+	$("#casetype_table tbody").empty();
+	$.each(result,function(index,item){ 
+		var idTd=$("<td style='vertical-align:middle;'></td>").append(++index);  
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.casetype_id);  
+		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.casetype_name.substring(0,20)+'...'); 
+		var editBtn=$("<button id='editBtn_case'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
+		editBtn.attr("edit-id",item.casetype_id);
+		
+		var delBtn=$("<button id='delBtn_case'></button>").addClass("btn btn-danger btn-sm del_btn").append($("<span></span>").addClass("glyphicon glyphicon-trash")).append(" 删除");
+		delBtn.attr("del-id",item.casetype_id);
+		
+		/* var editBtn=$("<a id='editBtn' onclick='edit("+item.news_id+")'>编辑</a>");
+		
+		var delBtn=$("<a id='delBtn' onclick='del("+item.news_id+")'> 删除</a>"); */
+		
+		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
+		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
+		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd)
+		.append(btnTd).appendTo("#casetype_table tbody");
+	});
+}
 //打开新闻添加模态框
-$(document).on("click","#addpage",function(){
-	$("#AddnewtypeId").val("");
+$(document).on("click","#addpage",function(){ 
 	$("#AddnewtypeName").val(""); 
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});  
 });
+//打开产品添加模态框
+$(document).on("click","#addpage_pro",function(){ 
+	$("#AddprotypeName").val(""); 
+	$("#myAddModel_pro").modal({
+		backdrop:'static'
+	});  
+});
+//打开案例添加模态框
+$(document).on("click","#addpage_case",function(){ 
+	$("#AddcasetypeName").val(""); 
+	$("#myAddModel_case").modal({
+		backdrop:'static'
+	});  
+});
 //点击新闻保存按钮
-$(document).on("click","#myAddBtn",function(){ 
-	var newtype_id=$("#AddnewtypeId").val();
+$(document).on("click","#myAddBtn",function(){
 	var newtype_name=$("#AddnewtypeName").val();
-	if(newtype_id == ""){
-		alert("新闻标题不能为空!");
-	}else if(indexOf(newtype_id)){
-		alert("新闻标题不能含有空白字符!");
-	}else if(newtype_name==""){
-		alert("新闻内容不能为空!");
+	if(newtype_name==""){
+		alert("新闻类型名称不能为空!");
 	}else{
 		 $.ajax({
-			url:"news/add",
+			url:"newtype/add",
 			type:"POST",
 			data:$("#myAddForm").serialize(),
 			success:function(result){
-				$("#myAddModel").modal('hide');
+				$("#myAddModel").modal('hide'); 
 				to_page(c_page);
 			},
 			error:function(result){
@@ -278,20 +523,139 @@ $(document).on("click","#myAddBtn",function(){
 		});
 	}
 });
+//点击产品保存按钮
+$(document).on("click","#myAddBtn_pro",function(){
+	var protype_name=$("#AddprotypeName").val();
+	if(protype_name==""){
+		alert("产品类型名称不能为空!");
+	}else{
+		 $.ajax({
+			url:"protype/add",
+			type:"POST",
+			data:$("#myAddForm_pro").serialize(),
+			success:function(result){
+				$("#myAddModel_pro").modal('hide'); 
+				protype_all(c_page);
+			},
+			error:function(result){
+				alert("添加时发生错误!");
+			}
+		});
+	}
+});
+//点击案例保存按钮
+$(document).on("click","#myAddBtn_case",function(){
+	var casetype_name=$("#AddcasetypeName").val();
+	if(casetype_name==""){
+		alert("产品类型名称不能为空!");
+	}else{
+		 $.ajax({
+			url:"casetype/add",
+			type:"POST",
+			data:$("#myAddForm_case").serialize(),
+			success:function(result){
+				$("#myAddModel_case").modal('hide'); 
+				casetype_all(c_page);
+			},
+			error:function(result){
+				alert("添加时发生错误!");
+			}
+		});
+	}
+});
+//删除新闻
+$(document).on("click","#delBtn",function(){
+	var id = $(this).attr("del-id"); 
+	if(confirm("是否要删除?")){
+		//删除 
+		$.ajax({
+			url:"newtype/deleteById",
+			type:"GET",
+			data:"newtype_id="+id,
+			success:function(result){
+				to_page(c_page);
+			},
+			error:function(result){
+				alert("删除时错误，请重新尝试!");
+			}
+		});
+		}
+	
+});
+//删除产品
+$(document).on("click","#delBtn_pro",function(){
+	var id = $(this).attr("del-id"); 
+	if(confirm("是否要删除?")){
+		//删除 
+		$.ajax({
+			url:"protype/deleteById",
+			type:"GET",
+			data:"protype_id="+id,
+			success:function(result){
+				protype_all(c_page);
+			},
+			error:function(result){
+				alert("删除时错误，请重新尝试!");
+			}
+		});
+		}
+	
+});
+//删除案例
+$(document).on("click","#delBtn_case",function(){
+	var id = $(this).attr("del-id"); 
+	if(confirm("是否要删除?")){
+		//删除 
+		$.ajax({
+			url:"casetype/deleteById",
+			type:"GET",
+			data:"casetype_id="+id,
+			success:function(result){
+				casetype_all(c_page);
+			},
+			error:function(result){
+				alert("删除时错误，请重新尝试!");
+			}
+		});
+		}
+	
+});
 //点击新闻编辑按钮
 $(document).on("click","#editBtn",function(){
-	$("#EditnewsId").val("");
-	$("#EditnewsTitle").val("");
-	/* $("#EditnewsPhoto").val(""); */
-	$("#EditnewsConstant").val("");	
-	$("#EditnewsTime").val("");
-	$('#update_type').html("");
+	$("#EditnewtypeId").val("");
+	$("#EditnewtypeName").val(""); 
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
 	getEditDate(id);
 	//打开模特卡 并设置背景点击无效
 	$("#myEditModel").modal({
+		backdrop:'static'
+	});
+});
+//点击产品编辑按钮
+$(document).on("click","#editBtn_pro",function(){
+	$("#EditprotypeId").val("");
+	$("#EditprotypeName").val(""); 
+	//获取编辑按钮自定义属性ID
+	var id = $(this).attr("edit-id");
+	//传递参数ID
+	getEditDate_pro(id);
+	//打开模特卡 并设置背景点击无效
+	$("#myEditModel_pro").modal({
+		backdrop:'static'
+	});
+});
+//点击案例编辑按钮
+$(document).on("click","#editBtn_case",function(){
+	$("#EditcasetypeId").val("");
+	$("#EditcasetypeName").val(""); 
+	//获取编辑按钮自定义属性ID
+	var id = $(this).attr("edit-id");
+	//传递参数ID
+	getEditDate_case(id);
+	//打开模特卡 并设置背景点击无效
+	$("#myEditModel_case").modal({
 		backdrop:'static'
 	});
 });
@@ -302,10 +666,43 @@ function getEditDate(id){
 		type:"POST",
 		data:"new_id="+id,
 		success:function(result){
-			$.each(result,function(index,item){ 
-				$("#EditId").val(item.id);
+			$.each(result,function(index,item){  
 				$("#EditnewtypeId").val(item.newtype_id); 
 				$("#EditnewtypeName").val(item.newtype_name);   
+			});
+		},
+		error:function(result){
+			alert("编辑绑定数据错误!");
+		}
+	});
+}
+//编辑产品按钮绑定数据
+function getEditDate_pro(id){  
+	$.ajax({
+		url:"protype/one",
+		type:"POST",
+		data:"pro_id="+id,
+		success:function(result){
+			$.each(result,function(index,item){  
+				$("#EditprotypeId").val(item.protype_id); 
+				$("#EditprotypeName").val(item.protype_name);   
+			});
+		},
+		error:function(result){
+			alert("编辑绑定数据错误!");
+		}
+	});
+}
+//编辑案例按钮绑定数据
+function getEditDate_case(id){  
+	$.ajax({
+		url:"casetype/one",
+		type:"POST",
+		data:"case_id="+id,
+		success:function(result){
+			$.each(result,function(index,item){  
+				$("#EditcasetypeId").val(item.casetype_id); 
+				$("#EditcasetypeName").val(item.casetype_name);   
 			});
 		},
 		error:function(result){
@@ -322,7 +719,69 @@ function getEditDate(id){
 			backdrop:'static'
 		});
 	});
-	
+	//点击新闻编辑模态框的保存按钮
+	$(document).on("click","#myEditBtn",function(){
+		var newtype_id=$("#EditnewtypeId").val(); 
+		var newtype_name=$("#EditnewtypeName").val();
+		if(newtype_name==""){
+			alert("新闻类型名称不能为空!");
+		}else{
+			 $.ajax({
+				url:"newtype/update",
+				type:"POST",
+				data:$("#myEditForm").serialize(),
+				success:function(result){
+					$("#myEditModel").modal('hide');//隐藏模态框
+					to_page(c_page);//显示全部
+				},
+				error:function(result){
+					alert("编辑时发生错误!");
+				}
+			}); 
+		}
+	});
+	//点击产品编辑模态框的保存按钮
+	$(document).on("click","#myEditBtn_pro",function(){
+		var protype_id=$("#EditprotypeId").val(); 
+		var protype_name=$("#EditprotypeName").val(); 
+		if(protype_name==""){
+			alert("新闻类型名称不能为空!");
+		}else{
+			 $.ajax({
+				url:"protype/update",
+				type:"POST",
+				data:$("#myEditForm_pro").serialize(),
+				success:function(result){
+					$("#myEditModel_pro").modal('hide');//隐藏模态框
+					protype_all(c_page);//显示全部
+				},
+				error:function(result){
+					alert("编辑时发生错误!");
+				}
+			}); 
+		}
+	});
+	//点击案例编辑模态框的保存按钮
+	$(document).on("click","#myEditBtn_case",function(){
+		var casetype_id=$("#EditcasetypeId").val(); 
+		var casetype_name=$("#EditcasetypeName").val(); 
+		if(casetype_name==""){
+			alert("案例类型名称不能为空!");
+		}else{
+			 $.ajax({
+				url:"casetype/update",
+				type:"POST",
+				data:$("#myEditForm_case").serialize(),
+				success:function(result){
+					$("#myEditModel_case").modal('hide');//隐藏模态框
+					casetype_all(c_page);//显示全部
+				},
+				error:function(result){
+					alert("编辑时发生错误!");
+				}
+			}); 
+		}
+	});
 	//用户登出
 	function exituser(){
 		if(confirm("是否退出？")){
