@@ -1,12 +1,113 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <%@ include file="../head.jsp" %>
+     <script>
+    document.title="成功案例";
+    </script>
+    <style type="text/css">
+        .ul_nav>li:nth-child(5)>a{
+            border-bottom: 2px solid #FB8722;
+        }
+    </style>
+	<!--内容-->
+	<div id="main" class="main_con">
+		<div class="div_main1">
+			<!--层-->
+			<div class="condition">
+				<!--总标题-->
+				<div class="con_title">成功案例</div>
+				<!--内容层-->
+				<div class="con_content cf">
+					<!--滑动的动画效果-->
+					<div class="div_slide float_l">
+						<div class="slide"></div>
+					</div>
+					<!--左边导航栏-->
+					<div class="left_nav case_nav float_l">
+						<ul>
+							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
+							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
+							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
+							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
+						</ul>
+					</div>
+					<!--右边内容区 成功案例-->
+					<div class="right_content case_img float_r">
+						<ul>
+							<li>
+								<img src="img/case/案例一.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+							<li>
+								<img src="img/case/案例二.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+							<li>
+								<img src="img/case/案例三.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+							<li>
+								<img src="img/case/案例四.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+							<li>
+								<img src="img/case/案例五.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+							<li>
+								<img src="img/case/案例六.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+							<li>
+								<img src="img/case/案例七.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+							<li>
+								<img src="img/case/案例八.png"/>
+								<span>污水厂运营信息管理化系统</span>
+							</li>
+						</ul>
 
-</body>
-</html>
+
+
+
+
+
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<%@ include file="../footer.jsp" %>
+	<script>
+
+	$(function () {
+		$(".left_nav ul a").each(
+			function () {
+				$(this).click(function () {
+					$(this).css("color","#1551fc");
+					$(this).siblings().css("color","#afafaf");
+				});
+			}
+		);
+
+		var div=$(".slide");
+		$(".left_nav ul a:nth-child(1)").click(function () {
+			div.animate({margin:'52px 0px 0px 0px'},'300ms');
+		});
+		$(".left_nav ul a:nth-child(2)").click(function () {
+			div.animate({margin:'126px 0px 0px 0px'},'300ms');
+		});
+		$(".left_nav ul a:nth-child(3)").click(function () {
+			div.animate({margin:'200px 0px 0px 0px'},'300ms');
+		});
+		$(".left_nav ul a:nth-child(4)").click(function () {
+			div.animate({margin:'274px 0px 0px 0px'},'300ms');
+		});
+	});
+</script>

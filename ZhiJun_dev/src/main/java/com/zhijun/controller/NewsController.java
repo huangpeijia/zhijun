@@ -75,8 +75,9 @@ public class NewsController extends ControllerBase{
 	 * @version 2018年7月10日
 	 */
 	@RequestMapping("/admin/news/add")
-	public String add(News news) throws ParseException{
+	public String add(HttpServletRequest request,News news) throws ParseException{
 		news.setNews_time(new Date());
+		System.out.println("------------------"+news.getNews_type());
 		int count = newsdao.addNews(news);
 		if(count == 1) {
 			return "admin/news/news";

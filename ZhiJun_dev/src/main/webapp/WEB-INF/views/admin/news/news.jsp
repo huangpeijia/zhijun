@@ -32,136 +32,10 @@
 <body class="flat-blue">
    <div class="app-container">
 	   <!--顶部-->
-	   <div class="row content-container">
-		   <!--顶部导航白条1-->
-		   <nav class="navbar navbar-default navbar-fixed-top navbar-top">
-			   <!--top导航条2-->
-			   <div class="container-fluid">
-				   <!--左边 小图标+字-->
-				   <div class="navbar-header">
-					   <!--图标按钮-->
-					   <button type="button" class="navbar-expand-toggle">
-						   <!--"三"字体图标(收缩)-->
-						   <i class="fa fa-bars icon"></i>
-					   </button>
-					   <!--左边字体提示词-->
-					   <ol class="breadcrumb navbar-breadcrumb">
-						   <li>新闻中心</li>
-						   <!-- <li class="active">个人信息</li> -->
-					   </ol>
-					   <!--???-->
-					   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
-					       <i class="fa fa-th icon"></i>
-				       </button>
-				   </div>
-				   <!--右边-->
-				   <ul class="nav navbar-nav navbar-right ">
-				   <!-- 缩小的关闭键 -->
-				   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs ">
-						<i class="fa fa-times icon"></i>
-					</button>
-					   <!--用户登出下拉列表-->
-					   <li class="dropdown profile">
-						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.username}<span class="caret"></span> </a>
-						   <ul class="dropdown-menu animated fadeInDown">
-							   <li class="profile-img">
-								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
-							   </li>
-							   <li>
-								   <div class="profile-info">
-									   <h4 class="username">${sessionScope.username}</h4>
-									   <div class="btn-group " role="group">
-										   <button type="button" class="btn btn-default" id="pass_reset"><i class="fa fa-user"></i> &nbsp;&nbsp;密码重置</button>
-										   <button type="button" class="btn btn-default" onclick="exituser();"><i class="fa fa-sign-out"></i> 退出</button>
-									   </div>
-								   </div>
-							   </li>
-						   </ul>
-					   </li>
-				   </ul>
-			   </div>
-		   </nav>
-
-
-
-		   <!--左边垂直导航目录-->
-		   <div class="side-menu sidebar-inverse">
-			   <!--垂直导航条-->
-			   <nav class="navbar navbar-default " role="navigation">
-				   <!--垂直顶部-->
-				   <div class="side-menu-container">
-					   <!--顶部蓝色正方形div-->
-					   <div class="navbar-header">
-						   <a class="navbar-brand" href="index">
-							   <!--纸飞机字体图标-->
-							   <div class="icon fa fa-paper-plane"></div>
-							   <div class="title">智钧时代管理后台</div>
-						   </a>
-					   </div>
-					   <!--蓝方框以下的导航-->
-					   <ul class="nav navbar-nav">
-					        <!--导航目录-->
-							<li>
-								<a href="index">
-									<span class="icon fa fa-home"></span><span class="title">首页</span>
-								</a>
-							</li>
-						   <!--导航目录1-->
-						   <li>
-							   <!--图标和字-->
-							   <a href="rec">
-								   <!--图标和字-->
-								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
-							   </a>							 
-						   </li>
-						   <!--导航目录2-->
-						   <li>
-							   <a href="inf">
-								   <!--图标和字-->
-								   <span class="icon fa fa-desktop"></span><span class="title">公司信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录3-->
-						   <li class="active">
-							   <a href="news">
-								   <!--图标和字-->
-								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
-							   </a>
-						   </li>
-						   <!--导航目录4-->
-						   <li>
-							   <a href="pro">
-								   <span class="icon fa fa-book"></span><span class="title">产品服务</span>
-							   </a>
-						   </li>
-						   <!--导航目录5-->
-						   <li>
-							   <a href="case">
-								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">案例信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录6-->
-						   <li>
-							   <a href="qua">
-								   <span class="icon fa fa-trophy"></span><span class="title">资质信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录7-->
-						   <li>
-							   <a href="about">
-								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
-							   </a>
-						   </li>
-						   <!--导航目录8-->
-						   <li>
-							   <a href="document">
-								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
-							   </a>
-						   </li>
-					   </ul>
-				   </div>
-			   </nav>
-		   </div>
+	   <%@ include file="../top.jsp" %> 
+		<!-- 左边栏 -->
+		<%@ include file="../left.jsp" %>
+		
 		   <!--内容-->
 		   <div class="container-fluid">
 			   <div class="side-body">
@@ -236,14 +110,10 @@
 								    </div>
 								  </div>
 								  <div class="form-group">	
-								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
-								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
-								       <input type="radio" id="EditnewsType" name="news_type" value="0">
-								       <label for="EditnewsType">公司新闻</label>
-								    </div>
-								    <div class="col-sm-2 radio-check radio-success radio-inline">
-								       <input type="radio" id="EditnewsType1" name="news_type" value="1">
-								       <label for="EditnewsType1">行业动态</label>
+								   <label for="inputnewType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="update_type" name="news_type">
+										</select> 
 								    </div>
 								  </div>
 								   <div class="form-group">	
@@ -284,15 +154,11 @@
 								      <textarea class="form-control textarea_a" id="AddnewsConstant" rows="3" name="news_constant" style="display:none" ></textarea>
 								    </div>
 								  </div>
-								  <div class="form-group">	
-								   <label for="inputnewsType" class="col-sm-2 control-label">新闻类型</label>								  
-								    <div class="col-sm-2 radio-check radio-success radio-inline" style="margin-left:15px">
-								       <input type="radio" id="AddnewsType" name="news_type" value="0" checked="checked">
-								       <label for="AddnewsType">公司新闻</label>
-								    </div>
-								    <div class="col-sm-2 radio-check radio-success radio-inline">
-								       <input type="radio" id="AddnewsType1" name="news_type" value="1">
-								       <label for="AddnewsType1">行业动态</label>
+								 <div class="form-group">	
+								   <label for="inputnewType" class="col-sm-2 control-label">产品类型</label>								  
+								    <div class="col-sm-9">
+								    	<select  id="insert_type" name="news_type">
+										</select> 
 								    </div>
 								  </div>
 								</form>
@@ -438,18 +304,77 @@ function to_page(c_page){
 	 }
 	});
 }
-
+//绑定编辑下拉框的类型
+function newtype(new_type){  
+	$.ajax({
+		url:"newtype/all",
+		type:"POST",
+		async: false,
+		success:function(result){ 
+			console.log(result); 
+			$.each(result, function(index,item) { 
+	            $("#update_type").append(  //此处向select中循环绑定数据
+	    "<option value="+item.newtype_id+">" + item.newtype_name+ "</option>");
+				if(new_type==item.newtype_id){
+					$("#update_type option[value="+item.newtype_id+"]").attr("selected",true);
+				}
+			});
+			
+			$('#update_type').next('span').remove();
+			$('#update_type').removeAttr("tabindex class aria-hidden"); 
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	}); 
+}
+//绑定显示的类型值
+function newtype_one(new_id){
+	var newtype; 
+	$.ajax({
+		url:"newtype/one",
+		type:"POST",
+		data:"new_id="+new_id,
+		async: false,
+		success:function(result){ 
+			$.each(result,function(index,item){
+				newtype=item.newtype_name;
+			}); 
+		},
+		error:function(e){
+			alert("error:"+e);
+		}
+	});
+	return newtype;
+}
+//绑定新建下拉框的类型
+function newtype_insert(){  
+	$.ajax({
+		url:"newtype/all",
+		type:"POST",
+		async: false,
+		success:function(result){ 
+			console.log(result); 
+			$.each(result, function(index,item) { 
+	            $("#insert_type").append(  //此处向select中循环绑定数据
+	    "<option value="+item.newtype_id+">" + item.newtype_name+ "</option>");
+			});
+			
+			$('#insert_type').next('span').remove();
+			$('#insert_type').removeAttr("tabindex class aria-hidden"); 
+		},
+	 error:function(e){
+		 alert("error:"+e);
+	 }
+	}); 
+}
 function build_news_table(result){
 	//构建先前情况table,empty掏空信息的方法
 	$("#news_table tbody").empty();
 	$.each(result,function(index,item){
 		var time=times(item.news_time);
 		item.news_time=time;
-		if(item.news_type==0){
-			item.news_type="公司新闻";
-		}else if(item.news_type==1){
-			item.news_type="行业动态";
-		}
+		item.news_type=newtype_one(item.news_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.news_id);
 		var titleTd=$("<td style='vertical-align:middle;'></td>").append(item.news_title);
 		/* var photoTd=$("<td style='vertical-align:middle;'></td>").append(item.news_photo); */
@@ -480,6 +405,7 @@ function getEditDate(id){
 		data:"news_id="+id,
 		success:function(result){
 			$.each(result,function(index,item){ 
+				newtype(item.news_type);
 				var time=times(item.news_time);
 				item.news_time=time;
 				$("#EditnewsId").val(item.news_id);
@@ -503,6 +429,7 @@ $(document).on("click","#editBtn",function(){
 	/* $("#EditnewsPhoto").val(""); */
 	$("#EditnewsConstant").val("");	
 	$("#EditnewsTime").val("");
+	$('#update_type').html("");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -517,7 +444,7 @@ $(document).on("click","#myEditBtn",function(){
 	var news_id=$("#EditnewsId").val();
 	var news_title=$("#EditnewsTitle").val();
 	var news_constant=$("#EditnewsConstant").val();
-	var news_type=$("input:radio[name='news_type']:checked").val();
+	var news_type=$("#update_type").val();
 	var news_time=$("#EditnewsTime").val();
 	if(news_title == ""){
 		alert("新闻标题不能为空!");
@@ -552,16 +479,18 @@ $(document).on("click","#addpage",function(){
 	$("#AddnewsTitle").val("");
 	/* $("#AddnewsPhoto").val(""); */
 	$("#AddnewsConstant").val("");
+	$('#insert_type').html("");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
 	editor.txt.html(' ')
+	newtype_insert();
 });
 //点击保存按钮
-$(document).on("click","#myAddBtn",function(){
+$(document).on("click","#myAddBtn",function(){ 
 	var news_title=$("#AddnewsTitle").val();
 	var news_constant=$("#AddnewsConstant").val();
-	var news_type=$("input:radio[name='news_type']:checked").val();
+	var news_type=$("#insert_type").val(); 
 	if(news_title == ""){
 		alert("新闻标题不能为空!");
 	}else if(indexOf(news_title)){

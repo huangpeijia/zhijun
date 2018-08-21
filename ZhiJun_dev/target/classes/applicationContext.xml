@@ -68,6 +68,9 @@
 	<bean id="casetypeBean" class="com.zhijun.bean.Casetype">
 		<!-- 属性自动配置 -->
 	</bean>
+	<bean id="newtypeBean" class="com.zhijun.bean.Newtype">
+		<!-- 属性自动配置 -->
+	</bean>
 	<!-- spring提供的数据访问操作类 -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"><property name="dataSource" ref="dataSource"></property></bean>
 	
@@ -84,6 +87,7 @@
 	<bean id="docudao" class="com.zhijun.dao.DocumentDao"><property name="jdbcTemplate" ref="jdbcTemplate"></property></bean>
 	<bean id="protypedao" class="com.zhijun.dao.ProtypeDao"><property name="jdbcTemplate" ref="jdbcTemplate"></property></bean>
 	<bean id="casetypedao" class="com.zhijun.dao.CasetypeDao"><property name="jdbcTemplate" ref="jdbcTemplate"></property></bean>
+	<bean id="newtypedao" class="com.zhijun.dao.NewtypeDao"><property name="jdbcTemplate" ref="jdbcTemplate"></property></bean>
 	
 	<context:component-scan base-package="com.zhijun.interceptors"/>
 </beans>

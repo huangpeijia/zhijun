@@ -6,44 +6,45 @@
 	<div class="top_footer cf">
 		<div class="">
 			<ul>
-				<li><a href="#">网站首页</a></li>
+				<li><a href="index">网站首页</a></li>
 				
 			</ul>
 		</div>
 		<div class="">
 			<ul>
-				<li><a href="#">成功案例</a></li>
+				<li><a href="case">成功案例</a></li>
 				
 			</ul>
 		</div>
 		<div class="">
 			<ul>
-				<li><a href="condition.html">公司概况</a></li>
+				<li><a href="Information">公司概况</a></li>
 				
 			</ul>
 		</div>
 		<div class="">
 			<ul>
-				<li><a href="#">人才招聘</a></li>
+				<li><a href="recruitment">人才招聘</a></li>
 				
 			</ul>
 		</div>
 		<div class="">
 			<ul>
-				<li><a href="#">产品服务</a></li>
+				<li><a href="product">产品服务</a></li>
 			
 			</ul>
 		</div>
 		<div class="">
 			<ul>
-				<li><a href="#">联系我们</a></li>
+				<li><a href="about">联系我们</a></li>
 			
 			</ul>
 		</div>
 	</div>
 	<!--中-->
 	<c:forEach items="${requestScope.info}" var="info">
-	<div class="center_footer cf">
+	<div class="center_footer">
+	<div class="footer_div cf">
 		<div class="footer_img float_l">
 			<iframe width="366" height="280" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/s/CtiXLV"></iframe>
 			<%-- <img src="${APP_PATH }/js/front/img/images/map_haiwangdasha.png" usemap="#haiwangmap" class="img_haiwang"/>
@@ -59,6 +60,7 @@
 				<li>Email：${info.com_email}</li>
 			</ul>
 		</div>
+	</div>
 	</div>
 	<!--下 版权信息-->
 	<div class="bottom_footer">
@@ -76,16 +78,6 @@
 		animateClass: 'animated',
 	});
 	wow.init();
-	
-	$(function(){
-		$(".pro_span>div>span").each(function(){
-			var maxwidth=60;
-			if($(this).text().length>maxwidth){
-				$(this).text($(this).text().substring(0,maxwidth));
-				$(this).html($(this).html()+'...');
-			}
-		});
-	});
 
 </script>
 </body>

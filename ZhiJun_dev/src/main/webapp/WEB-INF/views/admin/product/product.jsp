@@ -32,136 +32,10 @@
 <body class="flat-blue">
    <div class="app-container">
 	   <!--顶部-->
-	   <div class="row content-container">
-		   <!--顶部导航白条1-->
-		   <nav class="navbar navbar-default navbar-fixed-top navbar-top">
-			   <!--top导航条2-->
-			   <div class="container-fluid">
-				   <!--左边 小图标+字-->
-				   <div class="navbar-header">
-					   <!--图标按钮-->
-					   <button type="button" class="navbar-expand-toggle">
-						   <!--"三"字体图标(收缩)-->
-						   <i class="fa fa-bars icon"></i>
-					   </button>
-					   <!--左边字体提示词-->
-					   <ol class="breadcrumb navbar-breadcrumb">
-						   <li>产品服务</li>
-						   <!-- <li class="active">个人信息</li> -->
-					   </ol>
-					   <!--???-->
-					   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
-					       <i class="fa fa-th icon"></i>
-				       </button>
-				   </div>
-				   <!--右边-->
-				   <ul class="nav navbar-nav navbar-right ">
-				   <!-- 缩小的关闭键 -->
-				   <button type="button" class="navbar-right-expand-toggle pull-right visible-xs ">
-						<i class="fa fa-times icon"></i>
-					</button>
-					   <!--用户登出下拉列表-->
-					   <li class="dropdown profile">
-						   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.username}<span class="caret"></span> </a>
-						   <ul class="dropdown-menu animated fadeInDown">
-							   <li class="profile-img">
-								   <img src="${APP_PATH }/js/img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
-							   </li>
-							   <li>
-								   <div class="profile-info">
-									   <h4 class="username">${sessionScope.username}</h4>
-									   <div class="btn-group " role="group">
-										   <button type="button" class="btn btn-default" id="pass_reset"><i class="fa fa-user"></i> &nbsp;&nbsp;密码重置</button>
-										   <button type="button" class="btn btn-default" onclick="exituser();"><i class="fa fa-sign-out"></i> 退出</button>
-									   </div>
-								   </div>
-							   </li>
-						   </ul>
-					   </li>
-				   </ul>
-			   </div>
-		   </nav>
-
-
-
-		   <!--左边垂直导航目录-->
-		   <div class="side-menu sidebar-inverse">
-			   <!--垂直导航条-->
-			   <nav class="navbar navbar-default " role="navigation">
-				   <!--垂直顶部-->
-				   <div class="side-menu-container">
-					   <!--顶部蓝色正方形div-->
-					   <div class="navbar-header">
-						   <a class="navbar-brand" href="index">
-							   <!--纸飞机字体图标-->
-							   <div class="icon fa fa-paper-plane"></div>
-							   <div class="title">智钧时代管理后台</div>
-						   </a>
-					   </div>
-					   <!--蓝方框以下的导航-->
-					   <ul class="nav navbar-nav">
-					        <!--导航目录-->
-							<li>
-								<a href="index">
-									<span class="icon fa fa-home"></span><span class="title">首页</span>
-								</a>
-							</li>
-						   <!--导航目录1-->
-						   <li>
-							   <!--图标和字-->
-							   <a href="rec">
-								   <!--图标和字-->
-								   <span class="icon fa fa-user"></span><span class="title">招聘信息</span>
-							   </a>							 
-						   </li>
-						   <!--导航目录2-->
-						   <li>
-							   <a href="inf">
-								   <!--图标和字-->
-								   <span class="icon fa fa-desktop"></span><span class="title">公司信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录3-->
-						   <li>
-							   <a href="news">
-								   <!--图标和字-->
-								   <span class="icon fa fa-newspaper-o"></span><span class="title">新闻中心</span>
-							   </a>
-						   </li>
-						   <!--导航目录4-->
-						   <li class="active">
-							   <a href="pro">
-								   <span class="icon fa fa-book"></span><span class="title">产品服务</span>
-							   </a>
-						   </li>
-						   <!--导航目录5-->
-						   <li>
-							   <a href="case">
-								   <span class="icon fa fa-thumbs-o-up"></span><span class="title">案例信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录6-->
-						   <li>
-							   <a href="qua">
-								   <span class="icon fa fa-trophy"></span><span class="title">资质信息</span>
-							   </a>
-						   </li>
-						   <!--导航目录7-->
-						   <li>
-							   <a href="about">
-								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
-							   </a>
-						   </li>
-						   <!--导航目录8-->
-						   <li>
-							   <a href="document">
-								   <span class="icon fa fa-folder"></span><span class="title">文件管理</span>
-							   </a>
-						   </li>
-					   </ul>
-				   </div>
-			   </nav>
-		   </div>
+	   <%@ include file="../top.jsp" %> 
+		<!-- 左边栏 -->
+		<%@ include file="../left.jsp" %>
+		
 		   <!--内容-->
 		   <div class="container-fluid">
 			   <div class="side-body">
@@ -522,7 +396,7 @@ function build_pro_table(result){
 		item.pro_type=protype_one(item.pro_type);
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_name);
-		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/ZhiJun_dev/upload/"+item.pro_photo).attr("style","width:50px;height:50px;"));
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.pro_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_constant.substring(0,20)+'...');
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_type);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.pro_time);
@@ -555,7 +429,7 @@ function getEditDate(id){
 				item.pro_time=time;
 				$("#EditproId").val(item.pro_id);
 				$("#EditproName").val(item.pro_name);
-				$("#oldPhoto").attr("src","/ZhiJun_dev/upload/"+item.pro_photo);
+				$("#oldPhoto").attr("src","/upload/"+item.pro_photo);
 				$("#EditproConstant").val(item.pro_constant);
 				editor2.txt.html(item.pro_constant)
 				$("#EditproTime").val(item.pro_time);
