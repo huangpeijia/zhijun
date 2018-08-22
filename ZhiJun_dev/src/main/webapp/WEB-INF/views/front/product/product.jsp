@@ -26,7 +26,7 @@
 			<ul>
 				<li>
 					<div class="pro_img_content cf">
-						<img src="img/pro/product1.png">
+						<img src="${APP_PATH }/js/front/img/pro/product1.png">
 						<div class="product_main">
 							<span>工业互联网</span>
 							<p>工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
@@ -37,7 +37,7 @@
 				</li>
 				<li>
 					<div class="pro_img_content cf">
-						<img src="img/pro/product2.png">
+						<img src="${APP_PATH }/js/front/img/pro/product2.png">
 						<div class="product_main">
 							<span>工业互联网</span>
 							<p>工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
@@ -48,7 +48,7 @@
 				</li>
 				<li>
 					<div class="pro_img_content cf">
-						<img src="img/pro/product3.png">
+						<img src="${APP_PATH }/js/front/img/pro/product3.png">
 						<div class="product_main">
 							<span>工业互联网</span>
 							<p>工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
