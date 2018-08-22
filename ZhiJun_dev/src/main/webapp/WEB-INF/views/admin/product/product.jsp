@@ -318,7 +318,7 @@ function to_page(c_page){
 //绑定编辑下拉框的类型
 function protype(pro_type){  
 	$.ajax({
-		url:"protype/all",
+		url:"protype/all_type",
 		type:"POST",
 		async: false,
 		success:function(result){ 
@@ -361,7 +361,7 @@ function protype_one(pro_id){
 //绑定新建下拉框的类型
 function protype_insert(){  
 	$.ajax({
-		url:"protype/all",
+		url:"protype/all_type",
 		type:"POST",
 		async: false,
 		success:function(result){ 

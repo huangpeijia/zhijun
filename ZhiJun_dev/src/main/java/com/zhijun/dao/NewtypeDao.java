@@ -28,11 +28,21 @@ public class NewtypeDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
-	 * 查询所有新闻类型
+	 * 查询所有新闻数据
 	 * @return
 	 */
 	public List<Newtype> queryAll(int pages, int keys){
 		String sql ="select newtype_id,newtype_name from newtype limit "+pages+","+keys+"";
+		List<Newtype> list = jdbcTemplate.query(sql,new NewtypeMapper());
+		return list;
+		
+	}
+	/**
+	 * 查询所有新闻类型
+	 * @return
+	 */
+	public List<Newtype> querytypeAll(){
+		String sql ="select newtype_id,newtype_name from newtype";
 		List<Newtype> list = jdbcTemplate.query(sql,new NewtypeMapper());
 		return list;
 		
