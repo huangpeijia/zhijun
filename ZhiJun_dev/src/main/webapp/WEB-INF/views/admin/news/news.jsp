@@ -307,7 +307,7 @@ function to_page(c_page){
 //绑定编辑下拉框的类型
 function newtype(new_type){  
 	$.ajax({
-		url:"newtype/all",
+		url:"newtype/all_type",
 		type:"POST",
 		async: false,
 		success:function(result){ 
@@ -350,7 +350,7 @@ function newtype_one(new_id){
 //绑定新建下拉框的类型
 function newtype_insert(){  
 	$.ajax({
-		url:"newtype/all",
+		url:"newtype/all_type",
 		type:"POST",
 		async: false,
 		success:function(result){ 

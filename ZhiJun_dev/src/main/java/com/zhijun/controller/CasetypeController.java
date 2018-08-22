@@ -24,15 +24,21 @@ public class CasetypeController {
 	@Autowired
 	private CasetypeDao casetypedao;
 	
+	//查询所有数据
 	@RequestMapping(value = "/admin/casetype/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<Casetype> Casetype(@RequestParam("c_page") int c_page,Model model){
+	public List<Casetype> Cases(@RequestParam("c_page") int c_page,Model model){
 		c_page-=1;
 		c_page=0+c_page*7;
 		System.out.println(c_page);
 		return casetypedao.queryAll(c_page,7);
 	}
-	
+	//查询所有类型
+		@RequestMapping(value = "/admin/casetype/all_type", produces = "application/json; charset=utf-8")
+		@ResponseBody
+		public List<Casetype> Casetype(Model model){ 
+			return casetypedao.querytypeAll();
+		}
 	@RequestMapping(value = "/admin/casetype/one", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public List<Casetype> Casetype_one(@RequestParam("case_id") int case_id,Model model){

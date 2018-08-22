@@ -20,16 +20,26 @@ public class ProtypeDao {
 		public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 			this.jdbcTemplate = jdbcTemplate;
 		}
-	/**
-	 * 查询所有产品
-	 * @return
-	 */
-	public List<Protype> queryAll(int pages, int keys){
-		String sql ="select protype_id,protype_name from protype limit "+pages+","+keys+"";
-		List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
-		return list;
-		
-	}
+		/**
+		 * 查询所有产品
+		 * @return
+		 */
+		public List<Protype> queryAll(int pages, int keys){
+			String sql ="select protype_id,protype_name from protype limit "+pages+","+keys+"";
+			List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
+			return list;
+			
+		}
+		/**
+		 * 查询所有产品类型
+		 * @return
+		 */
+		public List<Protype> querytypeAll(){
+			String sql ="select protype_id,protype_name from protype";
+			List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
+			return list;
+			
+		}
 	/**
 	 * 查询名称
 	 * @author Administer

@@ -27,11 +27,21 @@ public class CasetypeDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	/**
-	 * 查询所有案例类型
+	 * 查询所有案例
 	 * @return
 	 */
 	public List<Casetype> queryAll(int pages, int keys){
 		String sql ="select casetype_id,casetype_name from casetype limit "+pages+","+keys+"";
+		List<Casetype> list = jdbcTemplate.query(sql,new CasetypeMapper());
+		return list;
+		
+	}
+	/**
+	 * 查询所有案例类型
+	 * @return
+	 */
+	public List<Casetype> querytypeAll(){
+		String sql ="select casetype_id,casetype_name from casetype";
 		List<Casetype> list = jdbcTemplate.query(sql,new CasetypeMapper());
 		return list;
 		
