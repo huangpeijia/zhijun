@@ -118,9 +118,9 @@
 								    </div>
 								  </div>	
 								  <div class="form-group">
-								  <label for="inputaboutProspects" class="col-sm-2 control-label">发展前景</label>	
+								  <label for="inputaboutProspects" class="col-sm-2 control-label">背景优势</label>	
 								    <div class="col-sm-9">
-								      <input type="text" class="form-control" id="EditaboutProspects" name="about_prospects" placeholder="请输入公司发展前景">
+								    <textarea class="form-control textarea_a" id="EditaboutProspects" rows="3" name="about_prospects" placeholder="请输入公司背景优势"></textarea>
 								    </div>
 								  </div>									  
 								   <div class="form-group">	
