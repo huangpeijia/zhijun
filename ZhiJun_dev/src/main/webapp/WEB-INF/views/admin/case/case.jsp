@@ -327,7 +327,7 @@ $('#AddcasePhoto').on('change',function(){
 //绑定编辑下拉框的类型
  function casetype(case_type){  
  	$.ajax({
- 		url:"casetype/all",
+ 		url:"casetype/all_type",
  		type:"POST",
  		async: false,
  		success:function(result){ 
@@ -370,7 +370,7 @@ $('#AddcasePhoto').on('change',function(){
 //绑定新建下拉框的类型
  function casetype_insert(){  
  	$.ajax({
- 		url:"casetype/all",
+ 		url:"casetype/all_type",
  		type:"POST",
  		async: false,
  		success:function(result){ 

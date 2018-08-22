@@ -34,6 +34,12 @@ public class ProtypeController {
 		System.out.println(c_page);
 		return protypedao.queryAll(c_page,7);
 	}
+	//查询全部类型
+		@RequestMapping(value = "/admin/protype/all_type", produces = "application/json; charset=utf-8")
+		@ResponseBody
+		public List<Protype> Protype(Model model){ 
+			return protypedao.querytypeAll();
+		}
 	//查询单条
 	@RequestMapping(value = "/admin/protype/one", produces = "application/json; charset=utf-8")
 	@ResponseBody

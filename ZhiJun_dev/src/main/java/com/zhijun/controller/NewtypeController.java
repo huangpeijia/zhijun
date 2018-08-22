@@ -28,11 +28,17 @@ public class NewtypeController {
 	//查询所有数据
 	@RequestMapping(value = "/admin/newtype/all", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<Newtype> Newtype(@RequestParam("c_page") int c_page,Model model){
+	public List<Newtype> News(@RequestParam("c_page") int c_page,Model model){
 		c_page-=1;
 		c_page=0+c_page*7;
 		System.out.println(c_page);
 		return newtypedao.queryAll(c_page,7);
+	}
+	//查询数据类型
+	@RequestMapping(value = "/admin/newtype/all_type", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<Newtype> NewAll_type(Model model){ 
+		return newtypedao.querytypeAll();
 	}
 	//查询单条
 	@RequestMapping(value = "/admin/newtype/one", produces = "application/json; charset=utf-8")
