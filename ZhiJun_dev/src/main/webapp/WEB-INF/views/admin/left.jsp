@@ -66,13 +66,13 @@
 						   <!--导航目录8-->
 						   <li>
 							   <a href="about">
-								   <span class="icon fa fa-phone"></span><span class="title">联系我们</span>
+								   <span class="icon fa fa-phone"></span><span class="title">关于我们</span>
 							   </a>
 						   </li>
 						   <!--导航目录9-->
 						   <li>
 							   <a href="type">
-								   <span class="icon fa fa-phone"></span><span class="title">类型管理</span>
+								   <span class="icon fa fa-circle-thin"></span><span class="title">类型管理</span>
 							   </a>
 						   </li>
 						   <!--导航目录10-->

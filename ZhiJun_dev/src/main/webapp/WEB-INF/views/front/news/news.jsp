@@ -6,9 +6,66 @@
     document.title="新闻中心";
     </script>
     <style type="text/css">
-        .ul_nav>li:nth-child(4)>a{
+        .ul_nav>li:nth-child(4)>a{/*头部的目录下划线  */
             border-bottom: 2px solid #FB8722;
         }
+        
+       
+/* 分页 */
+    #page{
+    float:right;   	
+    	margin-top:54px;
+    	width:480px;
+    	height:40px;
+    	text-align:right;
+    	
+    }
+   
+	#page a{
+	    text-decoration: none;
+	    font-size:12px;
+	    background-color:#ebebeb;
+	    padding:8px 16px 8px 16px;	   
+	    /* border: 1px solid #ccc; */
+	    margin-left:8px;
+	    }
+	    	
+	   
+	#page a.selected{
+		background: #1551fc;
+		color:#fff;
+		}
+		
+    #page .newss_lt{
+          font-size:18px;
+       padding:1px 16px 6px 16px;	
+    }
+    
+    #page .newss_gt{
+       font-size:18px;
+       padding:1px 16px 6px 16px;	
+    }
+		
+	/* 跳转框 */
+	#page input{
+	    margin-left:9px;
+	    width:45px;
+	    height:30px;
+	    text-align:center;
+	    }
+	    
+	#page button{
+	    width:45px;
+	    height:34px;
+	    background-color:#1551fc;
+	    color:#ffffff;
+	    border:none;
+	    outline:none;
+	    }
+	    
+	#coun_num{
+	    display:none;
+	}
     </style>
 	<!--内容-->
 	<div id="main" class="main_con">
@@ -31,24 +88,9 @@
 					</div>
 					<!--右边内容区 公司简介-->
 					<div class="right_content float_r">
-						<div>
-							<ul class="ul_news news">
-								<li><p>改革创新 再创辉煌--2017年度年会隆重召开</p><p>2018-08-14</p></li>
-								<li><p>我司与中海油信息科技有限公司共同研发工业领域特种作业人员安全态势智能物联网项目</p><p>2018-08-14</p></li>
-								<li><p>荣获国家多项专利</p><p>2018-08-14</p></li>
-								<li><p>我司荣获中海油信科技术有限公司“优秀供应商”殊荣</p><p>2018-08-14</p></li>
-								<li><p>我司与深圳大学电子科学与技术学院院长签署战略合作协议书</p><p>2018-08-14</p></li>
-								<li><p>我司与上海交通大学信息安全工程学院签署战略合作协议书</p><p>2018-08-14</p></li>
-								<li><p>喜讯！热烈祝贺我公司获得高新技术企业证书</p><p>2018-08-14</p></li>
-								<li><p>2013新产品介绍会顺利举办</p><p>2018-08-14</p></li>
-								<li><p>关爱员工，倡导健康</p><p>2018-08-14</p></li>
-								<li><p>改革创新 再创辉煌--2017年度年会隆重召开</p><p>2018-08-14</p></li>
-								<li><p>我司与中海油信息科技有限公司共同研发工业领域特种作业人员安全态势智能物联网项目</p><p>2018-08-14</p></li>
-								<li><p>荣获国家多项专利</p><p>2018-08-14</p></li>
-								<li><p>2013新产品介绍会顺利举办</p><p>2018-08-14</p></li>
-								<li><p>关爱员工，倡导健康</p><p>2018-08-14</p></li>
-							</ul>
+						<div id="news"> 
 						</div>
+						<div id="page" ></div>
 					</div>
 				</div>
 			</div>
@@ -56,8 +98,12 @@
 	</div>
 </main>
 <%@ include file="../footer.jsp" %>
-<script>
+<script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
+<script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
+<script> 
+var c_page=1; 
 	$(function () {
+		to_page(c_page);
 		$(".left_nav ul a").each(
 			function () {
 				$(this).click(function () {
@@ -66,5 +112,35 @@
 				});
 			}
 		);
+		
+		
 	});
+	function to_page(c_page){ 
+		$.ajax({
+			url:"news/news_all",
+			type:"POST",
+			data:"c_page="+c_page,
+			success:function(result){ 
+				//1、解析数据
+				build_news_table(result);
+				pages_news("news",c_page,14);
+			},
+		 error:function(e){
+			 alert("error:"+e);
+		 }
+		});
+	}
+	
+	function build_news_table(result){
+		//构建先前情况table,empty掏空信息的方法
+		$("#news").empty();
+		$.each(result,function(index,item){
+			var time=times(item.news_time);
+			item.news_time=time;
+			var titleTd=$("<p></p>").append(item.news_title);
+			var timeTd=$("<p></p>").append(item.news_time);	
+			var t_tTd=$("<li></li>").append(titleTd).append(timeTd);
+			$("<ul class='ul_news news'></ul>").append(t_tTd).appendTo("#news");
+		});
+	}
 </script>

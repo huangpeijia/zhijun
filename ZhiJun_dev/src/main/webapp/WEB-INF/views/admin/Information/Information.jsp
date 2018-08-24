@@ -82,9 +82,9 @@
 				    
 				   
 				   
-				  <!--  <div class="page-title">
+				   <div class="page-title">
 					   <span class="title">公司信息</span>					   
-				   </div> -->
+				   </div>
 				   <div class="row">
 					   <div class="col-xs-12">
 				  			 	   <!--编辑  -->				   
@@ -159,9 +159,9 @@
 								    </div>				    
 								  </div>
 								  <div class="form-group">	
-								   <label for="inputcomProfile" class="col-sm-2 control-label">成立背景</label>								  
+								   <label for="inputcomProfile" class="col-sm-2 control-label">基本情况</label>								  
 								    <div class="col-sm-9">
-								      <textarea class="form-control textarea_a" id="EditcomBackdrop" rows="3" name="com_backdrop" placeholder="成立背景"></textarea>
+								      <textarea class="form-control textarea_a" id="EditcomBackdrop" rows="3" name="com_backdrop" placeholder="基本情况"></textarea>
 								    </div>				    
 								  </div>
 								   <div class="form-group">	

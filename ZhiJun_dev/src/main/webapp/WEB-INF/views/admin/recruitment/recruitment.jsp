@@ -257,7 +257,7 @@ function to_page(c_page){
 		success:function(result){ 
 			//1、解析数据
 			build_rec_table(result);
-			pages("rec",c_page); 
+			pages("rec",c_page,7); 
 		},
 	 error:function(e){
 		 alert("error:"+e);

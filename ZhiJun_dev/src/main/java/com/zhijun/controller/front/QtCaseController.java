@@ -9,11 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zhijun.bean.Casetype;
+import com.zhijun.bean.Cases;
 import com.zhijun.bean.Information;
+import com.zhijun.dao.CaseDao;
+import com.zhijun.dao.CasetypeDao;
 import com.zhijun.dao.InformationDao;
 
 @Controller
@@ -21,6 +27,10 @@ public class QtCaseController {
 
 	@Autowired
 	private InformationDao infodao;
+	@Autowired
+	private CasetypeDao casetypedao;
+	@Autowired
+	private CaseDao casedao;
 	
 	@RequestMapping("/case")
 	public ModelAndView about(ModelAndView modelAndView,HttpServletRequest request) throws IOException{
@@ -39,4 +49,19 @@ public class QtCaseController {
 		maps.put("info", info);
 		return maps;
 	}
+	
+	//查询所有类型
+	@RequestMapping(value = "/casetype/all_type", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<Casetype> Casetype(Model model){ 
+		return casetypedao.querytypeAll();
+	}
+	
+	//根据类型查数据
+		@RequestMapping(value = "/casetype/type_queryAll", produces = "application/json; charset=utf-8")
+		@ResponseBody
+		public List<Cases> Casetype_queryAll(@RequestParam("case_type") int case_type,Model model){  
+			return casedao.typequeryAll(case_type);
+		}
 }
+

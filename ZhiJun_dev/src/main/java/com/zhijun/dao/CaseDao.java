@@ -78,6 +78,19 @@ public class CaseDao {
 		List<Cases> list = jdbcTemplate.query(sql, new CaseMapper());
 		return list;
 	}
+	
+	/**
+	 * 根据类型查数据
+	 * 方法
+	 * @version 2018年7月9日
+	 */
+	public List<Cases> typequeryAll(int case_type) {
+		String sql = "select case_id, case_name, case_constant, case_photo, case_time,case_type from cases where case_type="+case_type+"";
+		List<Cases> list = jdbcTemplate.query(sql, new CaseMapper());
+		return list;
+	}
+	
+	
 	/**
 	 * 修改
 	 * 方法
