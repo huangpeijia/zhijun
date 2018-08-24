@@ -26,10 +26,10 @@
 					<!--左边导航栏-->
 					<div class="left_nav nav_tabs float_l">
 						<ul>
-							<a href="javascript:void(none)"><li>公司简介</li></a>
-							<a href="javascript:void(none)"><li>基本情况</li></a>
-							<a href="javascript:void(none)"><li>发展历程</li></a>
-							<a href="javascript:void(none)"><li>背景优势</li></a>
+							<a href="javascript:void(none)" data="1"><li>公司简介</li></a>
+							<a href="javascript:void(none)" data="2"><li>基本情况</li></a>
+							<a href="javascript:void(none)" data="3"><li>发展历程</li></a>
+							<a href="javascript:void(none)" data="4"><li>背景优势</li></a>
 						</ul>
 					</div>
 					<div class="tab-content">
@@ -118,17 +118,10 @@
 		);
 
 		var div=$(".slide");
-		$(".left_nav ul a:nth-child(1)").click(function () {
-			div.animate({margin:'52px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(2)").click(function () {
-			div.animate({margin:'126px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(3)").click(function () {
-			div.animate({margin:'200px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(4)").click(function () {
-			div.animate({margin:'274px 0px 0px 0px'},'300ms');
+		$(".left_nav ul a").click(function () {
+			var numm=$(this).attr('data');
+			var i=52+(numm-1)*74;
+			div.animate({margin:''+i+'px 0px 0px 0px'},'300ms');
 		});
 	});
 </script>

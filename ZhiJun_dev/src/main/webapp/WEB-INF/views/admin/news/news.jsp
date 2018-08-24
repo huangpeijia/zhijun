@@ -297,7 +297,7 @@ function to_page(c_page){
 		success:function(result){ 
 			//1、解析数据
 			build_news_table(result);
-			pages("news",c_page);
+			pages("news",c_page,7);
 		},
 	 error:function(e){
 		 alert("error:"+e);

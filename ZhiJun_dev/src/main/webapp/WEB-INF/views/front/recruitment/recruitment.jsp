@@ -26,9 +26,9 @@
 					<!--左边导航栏-->
 					<div class="left_nav invite_nav float_l">
 						<ul>
-							<a href="javascript:void(none);"><li>实习生招聘</li></a>
-							<a href="javascript:void(none);"><li>应届生招聘</li></a>
-							<a href="javascript:void(none);"><li>社会招聘</li></a>
+							<a href="javascript:void(none);" data="1"><li>实习生招聘</li></a>
+							<a href="javascript:void(none);" data="2"><li>应届生招聘</li></a>
+							<a href="javascript:void(none);" data="3"><li>社会招聘</li></a>
 						</ul>
 					</div>
 					<!--右边内容区 公司简介-->
@@ -95,17 +95,10 @@
 		);
 
 		var div=$(".slide");
-		$(".left_nav ul a:nth-child(1)").click(function () {
-			div.animate({margin:'52px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(2)").click(function () {
-			div.animate({margin:'126px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(3)").click(function () {
-			div.animate({margin:'200px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(4)").click(function () {
-			div.animate({margin:'274px 0px 0px 0px'},'300ms');
+		$(".left_nav ul a").click(function () {
+			var numm=$(this).attr('data');
+			var i=52+(numm-1)*74;
+			div.animate({margin:''+i+'px 0px 0px 0px'},'300ms');
 		});
 	});
 
