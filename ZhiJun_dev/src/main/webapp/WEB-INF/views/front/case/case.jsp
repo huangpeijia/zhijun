@@ -24,60 +24,19 @@
 						<div class="slide"></div>
 					</div>
 					<!--左边导航栏-->
-					<div class="left_nav case_nav float_l">
+					<div class="left_nav case_nav float_l" id="casetype">
 						<ul>
-							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
-							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
-							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
-							<a href="javascript:void(none)"><li>智能排水整体解决方案</li></a>
+							<!-- 遍历  -->
 						</ul>
 					</div>
 					<!--右边内容区 成功案例-->
-					<div class="right_content case_img float_r">
+					<div class="right_content case_img float_r" id="case_list">
 						<ul>
-							<li>
-								<img src="img/case/案例一.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
-							<li>
-								<img src="img/case/案例二.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
-							<li>
-								<img src="img/case/案例三.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
-							<li>
-								<img src="img/case/案例四.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
-							<li>
-								<img src="img/case/案例五.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
-							<li>
-								<img src="img/case/案例六.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
-							<li>
-								<img src="img/case/案例七.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
-							<li>
-								<img src="img/case/案例八.png"/>
-								<span>污水厂运营信息管理化系统</span>
-							</li>
+							<!-- 遍历 -->
 						</ul>
-
-
-
-
-
-
-
-
 					</div>
 
+					
 				</div>
 			</div>
 		</div>
@@ -85,11 +44,15 @@
 </main>
 <%@ include file="../footer.jsp" %>
 	<script>
-
+ 
 	$(function () {
+		var j=1;
+		 casetype_all();/* 导航栏的类型数据 */ 
+		 type_queryall(j);/* 根据类型查数据 */
+		 
 		$(".left_nav ul a").each(
 			function () {
-				$(this).click(function () {
+				$(this).click(function () { 
 					$(this).css("color","#1551fc");
 					$(this).siblings().css("color","#afafaf");
 				});
@@ -97,17 +60,66 @@
 		);
 
 		var div=$(".slide");
-		$(".left_nav ul a:nth-child(1)").click(function () {
-			div.animate({margin:'52px 0px 0px 0px'},'300ms');
+		$(".left_nav ul a").click(function () {
+			var numm=$(this).index();
+			var data=$(this).attr("data");
+			var i=52+numm*74;
+			div.animate({margin:''+i+'px 0px 0px 0px'},'300ms');
+			type_queryall(data);
 		});
-		$(".left_nav ul a:nth-child(2)").click(function () {
-			div.animate({margin:'126px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(3)").click(function () {
-			div.animate({margin:'200px 0px 0px 0px'},'300ms');
-		});
-		$(".left_nav ul a:nth-child(4)").click(function () {
-			div.animate({margin:'274px 0px 0px 0px'},'300ms');
-		});
+		
+		
 	});
+	
+	/* 案例类型 */
+	function casetype_all(){
+		$.ajax({
+			url:"casetype/all_type",
+			type:"POST",
+			async:false,
+			success:function(result){  
+				//1、解析数据 
+				casetype_table(result);
+			},
+		 error:function(e){
+			 alert("error:"+e);
+		 }
+		});
+	} 
+	
+	function casetype_table(result){
+		//构建先前情况table,empty掏空信息的方法
+		$("#casetype ul").empty();
+		$.each(result,function(index,item){ 
+			var type_nameTd=$("<li></li>").append(item.casetype_name);  
+			$("<a a href='javascript:void(none);' class='sa' data='"+item.casetype_id+"'></a>").append(type_nameTd).appendTo("#casetype ul");  			 
+		});
+	}
+	
+	/* 根据类型查数据 */
+	function type_queryall(type_num){ 
+		$.ajax({
+			url:"casetype/type_queryAll",
+			type:"GET",
+			data:"case_type="+type_num,
+			async:false,
+			success:function(result){
+				//1、解析数据 
+				case_all(result);
+			},
+			error:function(e){
+				 alert("error:"+e);
+			 }
+		});
+	}
+	
+	function case_all(result){
+		//构建先前情况table,empty掏空信息的方法
+		$("#case_list ul").empty();
+		$.each(result,function(index,item){ 
+			var imgTd=$("<img src=''/>").attr("src","/upload/"+item.case_photo);
+			var case_titleTd=$("<span></span>").append(item.case_name);  
+			$("<li></li>").append(imgTd).append(case_titleTd).appendTo("#case_list ul");  			 
+		});
+	}
 </script>

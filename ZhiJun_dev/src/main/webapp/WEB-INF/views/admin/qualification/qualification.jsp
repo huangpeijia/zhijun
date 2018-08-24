@@ -294,7 +294,7 @@ function to_page(c_page){
 		success:function(result){ 
 			//1、解析数据
 			build_qua_table(result);
-			pages("qua",c_page);
+			pages("qua",c_page,7);
 		},
 	 error:function(e){
 		 alert("error:"+e);
