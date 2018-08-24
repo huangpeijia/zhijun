@@ -412,8 +412,7 @@ function getEditDate(id){
 				$("#EditnewsTitle").val(item.news_title);
 				/* $("#EditnewsPhoto").val(item.qua_photo); */
 				$("#EditnewsConstant").val(item.news_constant);
-				editor2.txt.html(item.news_constant)
-				$("input[name=news_type][value='"+item.news_type+"']").attr("checked",true);
+				editor2.txt.html(item.news_constant) 
 				$("#EditnewsTime").val(item.news_time);
 			});
 		},
