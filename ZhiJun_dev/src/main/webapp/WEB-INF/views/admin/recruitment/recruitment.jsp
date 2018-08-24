@@ -354,6 +354,9 @@ $(document).on("click","#editBtn",function(){
 	$("#EditrecSalary").val("");
 	$('#rec_type_up').next('span').remove();
 	$('#rec_type_up').removeAttr("tabindex class aria-hidden"); 
+	$('#rec_type_up').html("");
+	$('#rec_type_up').append("<option value=0>校园招聘</option>");
+	$('#rec_type_up').append("<option value=1>社会招聘</option>");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -410,6 +413,9 @@ $(document).on("click","#addpage",function(){
 	$("#AddrecSalary").val("");
 	$('#rec_type').next('span').remove();
 	$('#rec_type').removeAttr("tabindex class aria-hidden"); 
+	$('#rec_type').html("");
+	$('#rec_type').append("<option value=0>校园招聘</option>");
+	$('#rec_type').append("<option value=1>社会招聘</option>");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
