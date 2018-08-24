@@ -112,6 +112,13 @@
 								      <textarea class="form-control textarea_a" id="EditquaConstant" rows="3" name="qua_constant" style="display:none"></textarea>
 								    </div>
 								  </div>
+								  <div class="form-group">
+								  <label for="inputrecClaim" class="col-sm-2 control-label">招聘类型</label>										  
+								    <div class="col-sm-9">
+								    	<select  id="qua_type_up" class="qua_type_up" style="height:25px" name="qua_type">
+										</select> 
+								    </div>
+								  </div>
 								   <div class="form-group">	
 								   <label for="inputquaTime" class="col-sm-2 control-label">发布时间</label>								  
 								    <div class="col-sm-9">
@@ -160,6 +167,13 @@
 								      <textarea class="form-control textarea_a" id="AddquaConstant" rows="3" name="qua_constant" style="display:none" ></textarea>
 								    </div>
 								  </div>
+								   <div class="form-group">
+								  <label for="inputrecClaim" class="col-sm-2 control-label">招聘类型</label>										  
+								    <div class="col-sm-9">
+								    	<select  id="qua_type" class="qua_type" style="height:25px" name="qua_type">
+										</select> 
+								    </div>
+								  </div>
 								</form>
 						      </div>
 						      <div class="modal-footer">
@@ -188,6 +202,7 @@
 								              <th>资质名称</th>
 								              <th>照片路径</th>
 								              <th>资质内容</th>
+								              <th>资质类型</th>
 								              <th>发布时间</th>
 								              <th>操作</th>
 								          </tr>
@@ -292,6 +307,7 @@ function to_page(c_page){
 		type:"POST",
 		data:"c_page="+c_page,
 		success:function(result){ 
+			console.log(result);
 			//1、解析数据
 			build_qua_table(result);
 			pages("qua",c_page,7);
@@ -315,10 +331,16 @@ function build_qua_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.qua_time);
 		item.qua_time=time;
+		if(item.qua_type==0){
+			item.qua_type='资质信息';
+		}else{
+			item.qua_type='发展历程';
+		}
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_name);
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.qua_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_constant.substring(0,20)+'...');
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_type);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.qua_id);
@@ -332,7 +354,7 @@ function build_qua_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(timeTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(typeTd).append(timeTd)
 		.append(btnTd).appendTo("#qua_table tbody");
 	});
 }
@@ -349,7 +371,8 @@ function getEditDate(id){
 				$("#EditquaId").val(item.qua_id);
 				$("#EditquaName").val(item.qua_name);
 				$("#oldPhoto").attr("src","/upload/"+item.qua_photo);
-				$("#EditquaConstant").val(item.qua_constant);
+				$("#EditquaConstant").val(item.qua_constant);   
+				$("#qua_type_up option[value="+item.qua_type+"]").attr("selected",true);
 				editor2.txt.html(item.qua_constant);
 				$("#EditquaTime").val(item.qua_time);
 			});
@@ -365,7 +388,12 @@ $(document).on("click","#editBtn",function(){
 	$("#EditquaName").val("");
 	$("#EditquaPhoto").val("");
 	$("#EditquaConstant").val("");
-	$("#EditquaTime").val("");
+	$("#EditquaTime").val(""); 
+	$('#qua_type_up').next('span').remove();
+	$('#qua_type_up').removeAttr("tabindex class aria-hidden");  
+	$('#qua_type_up').html("");
+	$('#qua_type_up').append("<option value=0>资质信息</option>");
+	$('#qua_type_up').append("<option value=1>发展历程</option>");
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -386,6 +414,7 @@ $(document).on("click","#myEditBtn",function(){
 	var qua_time=$("#EditquaTime").val();
 	var old_photo = $("#oldPhoto")[0].src;
 	var index = old_photo .lastIndexOf("\/");  
+	var qua_type=$("#qua_type_up").val();
 	old_photo = old_photo.substring(index + 1, old_photo.length);
 	formData.append("qua_id",qua_id);
 	formData.append("qua_name",qua_name);
@@ -393,6 +422,7 @@ $(document).on("click","#myEditBtn",function(){
 	formData.append("qua_time",qua_time); 
 	formData.append("qua_photo",qua_photo);
 	formData.append("old_photo",old_photo);
+	formData.append("qua_type",qua_type);
 	console.log(qua_photo); 
 	if(qua_name == ""){
 		alert("资质名称不能为空!");
@@ -423,7 +453,7 @@ $(document).on("click","#myEditBtn",function(){
 	        	/* alert("上传成功"); */
 	        }
 		}); 
-	}
+	} 
 });
 //判断有没有包含空白字符的字符串
 function indexOf(str){
@@ -438,6 +468,11 @@ $(document).on("click","#addpage",function(){
 	$("#AddquaPhoto").val("");
 	$("#imgPhoto").attr("src","${APP_PATH }/js/img/2.jpeg");
 	$("#AddquaConstant").val("");
+	$('#qua_type').next('span').remove();
+	$('#qua_type').removeAttr("tabindex class aria-hidden");  
+	$('#qua_type').html("");
+	$('#qua_type').append("<option value=0>资质信息</option>");
+	$('#qua_type').append("<option value=1>发展历程</option>");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});
@@ -449,9 +484,11 @@ $(document).on("click","#myAddBtn",function(){
 	var qua_upload = $('#AddquaPhoto').get(0).files[0];
 	var qua_name=$("#AddquaName").val();
 	var qua_constant=$("#AddquaConstant").val();
+	var qua_type=$("#qua_type").val();
 	formData.append("qua_name",qua_name);
 	formData.append("qua_upload",qua_upload);
 	formData.append("qua_constant",qua_constant);
+	formData.append("qua_type",qua_type);
 	if(qua_name == ""){
 		alert("资质名称不能为空!");
 	}else if(indexOf(qua_name)){
