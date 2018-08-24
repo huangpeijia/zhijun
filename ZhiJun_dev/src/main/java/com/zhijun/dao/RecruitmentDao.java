@@ -43,7 +43,7 @@ public class RecruitmentDao {
 	 * @version 2018年7月10日
 	 */
 	public List<Recruitment> queryAll(int pages, int keys){
-		String sql ="select rec_id, rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time from recruitment order by rec_time desc limit "+pages+","+keys+"";
+		String sql ="select rec_id, rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time,rec_type from recruitment order by rec_time desc limit "+pages+","+keys+"";
 		List<Recruitment> list =jdbcTemplate.query(sql, new RecruitmentMapper());
 		return list;
 		
@@ -54,8 +54,8 @@ public class RecruitmentDao {
 	 * @version 2018年7月10日
 	 */
 	public int addRec(Recruitment rec) {
-		String sql = "insert into recruitment(rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time) value(?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql,new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),rec.getRec_time()});
+		String sql = "insert into recruitment(rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time,rec_type) value(?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql,new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),rec.getRec_time(),rec.getRec_type()});
 	}
 	/**
 	 * 删除
@@ -73,7 +73,7 @@ public class RecruitmentDao {
 	 * @version 2018年7月10日
 	 */
 	public List<Recruitment>query(int rec_id) {
-		String sql = "select rec_id, rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time from recruitment where rec_id="+rec_id+"";
+		String sql = "select rec_id, rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time, rec_type from recruitment where rec_id="+rec_id+"";
 		List<Recruitment> list = jdbcTemplate.query(sql,new RecruitmentMapper());
 		return list;
 	}
@@ -83,8 +83,8 @@ public class RecruitmentDao {
 	 * @version 2018年7月10日
 	 */
 	public int update(Recruitment rec) {
-		String sql = "update recruitment set rec_name=?, rec_num=?, rec_address=?, rec_claim=?, rec_salary=?, rec_time=? where rec_id=?";
-		return jdbcTemplate.update(sql, new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),rec.getRec_time(),rec.getRec_id()});
+		String sql = "update recruitment set rec_name=?, rec_num=?, rec_address=?, rec_claim=?, rec_salary=?, rec_time=?, rec_type=? where rec_id=?";
+		return jdbcTemplate.update(sql, new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),rec.getRec_time(),rec.getRec_type(),rec.getRec_id()});
 	}
 	public class RecruitmentMapper implements RowMapper<Recruitment>{
 
@@ -97,6 +97,7 @@ public class RecruitmentDao {
 			rec.setRec_claim(rs.getString("rec_claim"));
 			rec.setRec_salary(rs.getString("rec_salary"));
 			rec.setRec_time(rs.getTimestamp("rec_time"));
+			rec.setRec_type(rs.getInt("rec_type"));
 			return rec;
 		}
 		

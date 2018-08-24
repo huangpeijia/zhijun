@@ -118,6 +118,15 @@
 								      <input type="text" class="form-control" id="EditrecSalary" name="rec_salary" placeholder="请输入招聘薪资">
 								    </div>
 								  </div>
+								   <div class="form-group">
+								  <label for="inputrecClaim" class="col-sm-2 control-label">招聘类型</label>										  
+								    <div class="col-sm-9">
+								    	<select  id="rec_type_up" class="rec_type_up" style="height:25px" name="rec_type">
+											<option value="0">校园招聘</option>
+											<option value="1">社会招聘</option>
+										</select> 
+								    </div>
+								  </div>
 								   <div class="form-group">	
 								   <label for="inputrecTime" class="col-sm-2 control-label">招聘时间</label>							  
 								    <div class="col-sm-9">
@@ -167,6 +176,15 @@
 								      <textarea class="form-control textarea_a" id="AddrecClaim" rows="3" name="rec_claim" placeholder="请输入招聘要求"></textarea>
 								    </div>
 								  </div>
+								   <div class="form-group">
+								  <label for="inputrecClaim" class="col-sm-2 control-label">招聘类型</label>										  
+								    <div class="col-sm-9">
+								    	<select  id="rec_type" style="height:25px"  name="rec_type">
+											<option value="0">校园招聘</option>
+											<option value="1">社会招聘</option>
+										</select> 
+								    </div>
+								  </div>
 								  <div class="form-group">		
 								  <label for="inputrecSalary" class="col-sm-2 control-label">招聘薪资</label>									  
 								    <div class="col-sm-9">
@@ -204,6 +222,7 @@
 								              <th>招聘薪资</th>
 								              <th>工作地点</th>
 								              <th>招聘要求</th>
+								              <th>招聘类型</th>
 								              <th>招聘时间</th>
 								              <th>操作</th>
 								          </tr>
@@ -254,7 +273,7 @@ function to_page(c_page){
 		url:"rec/all",
 		type:"POST",
 		data:"c_page="+c_page,
-		success:function(result){ 
+		success:function(result){  
 			//1、解析数据
 			build_rec_table(result);
 			pages("rec",c_page,7); 
@@ -270,12 +289,18 @@ function build_rec_table(result){
 	$.each(result,function(index,item){
 		var time=times(item.rec_time);
 		item.rec_time=time;
+		if(item.rec_type==0){
+			item.rec_type='校园招聘';
+		}else{
+			item.rec_type='社会招聘';
+		}
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_id);
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_name);
 		var numTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_num);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_salary);
 		var addressTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_address);
 		var claimTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_claim);
+		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_type);
 		var salaryTd=$("<td style='vertical-align:middle;'></td>").append(item.rec_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.rec_id);
@@ -289,7 +314,7 @@ function build_rec_table(result){
 		
 		var btnTd=$("<th></th>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(timeTd).append(addressTd).append(claimTd).append(salaryTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(numTd).append(timeTd).append(addressTd).append(claimTd).append(typeTd).append(salaryTd)
 		.append(btnTd).appendTo("#index_table tbody");
 	});
 }
@@ -308,7 +333,8 @@ function getEditDate(id){
 				$("#EditrecNum").val(item.rec_num);
 				$("#EditrecTime").val(item.rec_time);
 				$("#EditrecAddress").val(item.rec_address);
-				$("#EditrecClaim").val(item.rec_claim);
+				$("#EditrecClaim").val(item.rec_claim); 
+				$("#rec_type_up option[value="+item.rec_type+"]").attr("selected",true);
 				$("#EditrecSalary").val(item.rec_salary);
 			});
 		},
@@ -326,6 +352,8 @@ $(document).on("click","#editBtn",function(){
 	$("#EditrecAddress").val("");
 	$("#EditrecClaim").val("");
 	$("#EditrecSalary").val("");
+	$('#rec_type_up').next('span').remove();
+	$('#rec_type_up').removeAttr("tabindex class aria-hidden"); 
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -380,6 +408,8 @@ $(document).on("click","#addpage",function(){
 	$("#AddrecAddress").val("");
 	$("#AddrecClaim").val("");
 	$("#AddrecSalary").val("");
+	$('#rec_type').next('span').remove();
+	$('#rec_type').removeAttr("tabindex class aria-hidden"); 
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});

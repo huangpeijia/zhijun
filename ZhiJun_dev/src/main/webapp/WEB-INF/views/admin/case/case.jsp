@@ -431,8 +431,7 @@ function getEditDate(id){
 				$("#EditcaseId").val(item.case_id);
 				$("#EditcaseName").val(item.case_name);
 				$("#oldPhoto").attr("src","/upload/"+item.case_photo);
-				$("#EditcaseConstant").val(item.case_constant);
-				$("input[name=case_type][value='"+item.case_type+"']").attr("checked",true);
+				$("#EditcaseConstant").val(item.case_constant); 
 				editor2.txt.html(item.case_constant)
 				$("#EditcaseTime").val(item.case_time);
 			});
