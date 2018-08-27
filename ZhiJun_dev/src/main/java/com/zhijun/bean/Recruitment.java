@@ -14,6 +14,13 @@ public class Recruitment {
 	private String rec_claim; //招聘要求
 	private String rec_salary; //招聘薪资
 	private Date rec_time; //招聘时间
+	private int rec_type; // 招聘类型
+	public int getRec_type() {
+		return rec_type;
+	}
+	public void setRec_type(int rec_type) {
+		this.rec_type = rec_type;
+	}
 	public int getRec_id() {
 		return rec_id;
 	}

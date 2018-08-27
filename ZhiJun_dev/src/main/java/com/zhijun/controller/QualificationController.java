@@ -89,8 +89,7 @@ public class QualificationController extends ControllerBase{
 			return "error";
 		}else {
 			String qua_upload_name=UploadInterface.upload_one(request,qua_upload);
-			qua.setQua_photo(qua_upload_name);
-			System.out.println("========================"+qua_upload_name);
+			qua.setQua_photo(qua_upload_name); 
 		}
 		qua.setQua_time(new Date());
 		int count =quadao.addQua(qua);
@@ -137,19 +136,19 @@ public class QualificationController extends ControllerBase{
 		String qua_name =request.getParameter("qua_name");
 		String qua_constant =request.getParameter("qua_constant");
 		String old_photo =request.getParameter("old_photo");
+		int qua_type =Integer.parseInt(request.getParameter("qua_type"));
 		Qualification qua =new Qualification();
 		String qua_upload_name;
 		if(qua_photo==null) {
-			qua.setQua_photo(old_photo);
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa"+qua_photo);
+			qua.setQua_photo(old_photo); 
 		}else {
 			 qua_upload_name=UploadInterface.upload_one(request,qua_photo);
-			qua.setQua_photo(qua_upload_name);
-			System.out.println("========================"+qua_upload_name);
+			qua.setQua_photo(qua_upload_name); 
 		}
 		qua.setQua_id(qua_id);
 		qua.setQua_name(qua_name);
 		qua.setQua_constant(qua_constant);
+		qua.setQua_type(qua_type);
 		qua.setQua_time(new Date());
 		int count = quadao.update(qua);
 		System.out.println(count);
