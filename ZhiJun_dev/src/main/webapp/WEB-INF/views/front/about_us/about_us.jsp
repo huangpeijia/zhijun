@@ -32,13 +32,15 @@
 					</div>
 					<!--右边内容区 公司简介-->
 					<div class="right_content float_r">
+					<c:forEach items="${requestScope.info}" var="info">
 						<div class="con_info">
-							<span>地址：深圳市南山区南海大道海王大厦A座7F</span><br/>
-							<span>邮编：518054</span><br/>
-							<span>电话：(86-755)26416922</span><br/>
-							<span>传真：(86-755)26415322</span><br/>
-							<span>E-mail：sales@sunway-sz.com</span>
+							<span>地址：${info.com_address}</span><br/>
+							<span>邮编：${info.com_code}</span><br/>
+							<span>电话：${info.com_number}</span><br/>
+							<span>传真：${info.com_fax}</span><br/>
+							<span>E-mail：${info.com_email}</span>
 						</div>
+					</c:forEach>
 						<div class="con_map">
 							<iframe width="604" height="485" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://j.map.baidu.com/s/fsiXLV"></iframe>
 						</div>

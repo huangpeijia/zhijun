@@ -53,6 +53,7 @@ function pages_news(urlname,c_page,num){
 	$.ajax({
 		url:urlname+"/countall",
 		type:"GET",
+		async:false,
 		success:function(result){  
 			counts_newss(result,c_page,num);
 		},
