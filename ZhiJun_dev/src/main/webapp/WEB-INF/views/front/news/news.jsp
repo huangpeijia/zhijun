@@ -89,6 +89,7 @@
 					<!--右边内容区 公司简介-->
 					<div class="right_content float_r">
 						<div id="news"> 
+						<ul class="ul_news news"></ul>
 						</div>
 						<div id="page" ></div>
 					</div>
@@ -101,6 +102,11 @@
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script>
 <script> 
+$(".ul_news").on("click","li",function(){   
+		var id=$(this).attr("data");
+		window.location.href="news/demotion_news?id="+id;
+	 
+});
 var c_page=1; 
 	$(function () {
 		to_page(c_page);
@@ -113,12 +119,13 @@ var c_page=1;
 			}
 		);
 		
-		
-	});
+	}); 
+	
 	function to_page(c_page){ 
 		$.ajax({
 			url:"news/news_all",
 			type:"POST",
+			async:false,
 			data:"c_page="+c_page,
 			success:function(result){ 
 				//1、解析数据
@@ -133,14 +140,14 @@ var c_page=1;
 	
 	function build_news_table(result){
 		//构建先前情况table,empty掏空信息的方法
-		$("#news").empty();
+		$("#news ul").empty();
 		$.each(result,function(index,item){
-			var time=times(item.news_time);
+			var time=timest(item.news_time);
 			item.news_time=time;
 			var titleTd=$("<p></p>").append(item.news_title);
 			var timeTd=$("<p></p>").append(item.news_time);	
-			var t_tTd=$("<li></li>").append(titleTd).append(timeTd);
-			$("<ul class='ul_news news'></ul>").append(t_tTd).appendTo("#news");
+			$("<li data='"+item.news_id+"'></li>").append(titleTd).append(timeTd).appendTo("#news ul");
+			
 		});
 	}
 </script>

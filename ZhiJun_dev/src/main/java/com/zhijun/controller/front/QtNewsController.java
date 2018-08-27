@@ -63,4 +63,15 @@ public class QtNewsController {
 		return count;
 		
 	}
+	
+	@RequestMapping(value="/news/demotion_news")
+	public ModelAndView demotionNews(ModelAndView modelAndView,@RequestParam(value="id") int id) throws IOException{
+		Map<String,Object> map=queryNewest();
+		List<News> news =newsdao.query(id);
+		modelAndView.setViewName("front/news/demotion_news");
+		modelAndView.addObject("news",news);
+		modelAndView.addObject("info",map.get("info"));
+		return modelAndView;
+	}
+	
 }
