@@ -25,7 +25,7 @@ public class ProtypeDao {
 		 * @return
 		 */
 		public List<Protype> queryAll(int pages, int keys){
-			String sql ="select protype_id,protype_name from protype limit "+pages+","+keys+"";
+			String sql ="select protype_id,protype_name,protype_constant from protype limit "+pages+","+keys+"";
 			List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
 			return list;
 			
@@ -35,7 +35,7 @@ public class ProtypeDao {
 		 * @return
 		 */
 		public List<Protype> querytypeAll(){
-			String sql ="select protype_id,protype_name from protype";
+			String sql ="select protype_id,protype_name,protype_constant from protype";
 			List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
 			return list;
 			
@@ -46,7 +46,7 @@ public class ProtypeDao {
 	 *
 	 */
 	public List<Protype> select_one(int pro_id){
-		String sql = "select protype_id,protype_name from protype where protype_id="+pro_id+""; 
+		String sql = "select protype_id,protype_name,protype_constant from protype where protype_id="+pro_id+""; 
 		List<Protype> list = jdbcTemplate.query(sql,new ProtypeMapper());
 		return list;
 		
@@ -60,8 +60,8 @@ public class ProtypeDao {
 	}
 	//添加
 		public int add(Protype protype) {
-			String sql = "insert into protype(protype_name) value(?)";
-			return jdbcTemplate.update(sql,new Object[] {protype.getProtype_name()});
+			String sql = "insert into protype(protype_name,protype_constant) value(?,?)";
+			return jdbcTemplate.update(sql,new Object[] {protype.getProtype_name(),protype.getProtype_constant()});
 		}
 		//删除
 		public int delete(int protype_id) {
@@ -71,14 +71,15 @@ public class ProtypeDao {
 		
 		//修改
 		public int update(Protype protype) {
-			String sql = "update protype set protype_name=? where protype_id=?";
-			return jdbcTemplate.update(sql,new Object[] {protype.getProtype_name(),protype.getProtype_id()});
+			String sql = "update protype set protype_name=?,protype_constant=? where protype_id=?";
+			return jdbcTemplate.update(sql,new Object[] {protype.getProtype_name(),protype.getProtype_constant(),protype.getProtype_id()});
 		}
 	public class ProtypeMapper implements RowMapper<Protype>{
 		public Protype mapRow(ResultSet rs, int rowNum) throws SQLException{
 			Protype protype= new Protype(); 
 			protype.setProtype_id(rs.getInt("protype_id"));
 			protype.setProtype_name(rs.getString("protype_name"));
+			protype.setProtype_constant(rs.getString("protype_constant"));
 			return protype;
 		}
 	}

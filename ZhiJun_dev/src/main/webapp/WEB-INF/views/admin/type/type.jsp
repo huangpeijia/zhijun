@@ -84,6 +84,12 @@
 																    	<input type="text" class="form-control" id="EditnewtypeName" name="newtype_name" placeholder="请输入新闻类型名称">
 																     </div>
 																  </div>  
+																  <div class="form-group">	
+																   <label for="inputnewtypeName" class="col-sm-3 control-label">新闻类型名称</label>								  
+																    <div class="col-sm-8">  
+																    	  <textarea   id="EditnewtypeConstant" style="margin: 0px; width: 367px; height: 80px;"name="newtype_constant"   placeholder="请输入新闻类型介绍"></textarea>
+																     </div>
+																  </div>  
 																</form>
 														      </div>
 														      <div class="modal-footer">
@@ -104,10 +110,18 @@
 													      <div class="modal-body">
 													        <form class="form-horizontal" id="myAddForm">
 															   <div class="form-group">	
-															   <label for="inputnewsConstant" class="col-sm-3 control-label">新闻类型名称</label>								  
+															   <label for="inputnewsName" class="col-sm-3 control-label">新闻类型名称</label>								  
 															    <div class="col-sm-8">
 															     <div id="editor"></div> 
 															       <input type="text" class="form-control" id="AddnewtypeName" name="newtype_name" placeholder="请输入新闻类型名称">
+															    </div>
+															  </div> 
+															  <div class="form-group">	
+															   <label for="inputnewsConstant" class="col-sm-3 control-label">新闻类型介绍</label>								  
+															    <div class="col-sm-8"> 
+															      <!--  <input type="text" class="form-control" id="AddnewtypeConstant" name="newtype_constant" placeholder="请输入新闻类型介绍">
+															       -->  <textarea   id="AddnewtypeConstant" style="margin: 0px; width: 367px; height: 80px;"name="newtype_constant"   placeholder="请输入新闻类型介绍"></textarea>
+								   
 															    </div>
 															  </div> 
 															</form>
@@ -134,6 +148,7 @@
 																              <th>序号</th>
 																              <th>新闻类型编号</th> 					          
 																              <th>新闻类型名称</th> 
+																               <th>新闻类型介绍</th> 
 																              <th>操作</th> 
 																          </tr>
 																       </thead>
@@ -171,7 +186,13 @@
 																    <div class="col-sm-8">  
 																    	<input type="text" class="form-control" id="EditprotypeName" name="protype_name" placeholder="请输入产品类型名称">
 																     </div>
-																  </div>  
+																  </div> 
+																  <div class="form-group">	
+															   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型名称</label>								  
+															    <div class="col-sm-8">  
+															         <textarea   id="EditprotypeConstant" style="margin: 0px; width: 367px; height: 80px;" name="protype_constant"   placeholder="请输入产品类型介绍"></textarea>
+															    </div>
+															  </div> 
 																</form>
 														      </div>
 														      <div class="modal-footer">
@@ -192,11 +213,17 @@
 													      <div class="modal-body">
 													        <form class="form-horizontal" id="myAddForm_pro">
 															   <div class="form-group">	
-															   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型名称</label>								  
+															   <label for="inputnewsName" class="col-sm-3 control-label">产品类型名称</label>								  
 															    <div class="col-sm-8"> 
 															       <input type="text" class="form-control" id="AddprotypeName" name="protype_name" placeholder="请输入产品类型名称">
 															    </div>
 															  </div> 
+															  <div class="form-group">	
+															   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型名称</label>								  
+															    <div class="col-sm-8">  
+															         <textarea   id="AddprotypeConstant" style="margin: 0px; width: 367px; height: 80px;" name="protype_constant"   placeholder="请输入产品类型介绍"></textarea>
+															    </div>
+															  </div>
 															</form>
 													      </div>
 													      <div class="modal-footer">
@@ -221,6 +248,7 @@
 																              <th>序号</th>
 																              <th>产品类型编号</th> 					          
 																              <th>产品类型名称</th> 
+																              <th>产品类型介绍</th> 
 																              <th>操作</th> 
 																          </tr>
 																       </thead>
@@ -259,7 +287,14 @@
 																    <div class="col-sm-8">  
 																    	<input type="text" class="form-control" id="EditcasetypeName" name="casetype_name" placeholder="请输入案例类型名称">
 																     </div>
-																  </div>  
+																  </div> 
+																    <div class="form-group">	
+																   <label for="inputcaseConstant" class="col-sm-3 control-label">案例类型介绍</label>								  
+																    <div class="col-sm-8">  
+																   	   <textarea   id="EditcasetypeConstant" style="margin: 0px; width: 367px; height: 80px;" name="casetype_constant"   placeholder="请输入案例类型介绍"></textarea>
+																  
+																    </div>
+															  </div>
 																</form>
 														      </div>
 														      <div class="modal-footer">
@@ -280,9 +315,16 @@
 													      <div class="modal-body">
 													        <form class="form-horizontal" id="myAddForm_case">
 															   <div class="form-group">	
-															   <label for="inputcaseConstant" class="col-sm-3 control-label">产品类型名称</label>								  
+															   <label for="inputcaseName" class="col-sm-3 control-label">案例类型名称</label>								  
 															    <div class="col-sm-8"> 
 															       <input type="text" class="form-control" id="AddcasetypeName" name="casetype_name" placeholder="请输入案例类型名称">
+															    </div>
+															  </div> 
+															   <div class="form-group">	
+															   <label for="inputcaseConstant" class="col-sm-3 control-label">案例类型介绍</label>								  
+															    <div class="col-sm-8">  
+															   	   <textarea   id="AddcasetypeConstant" style="margin: 0px; width: 367px; height: 80px;" name="casetype_constant"   placeholder="请输入案例类型介绍"></textarea>
+															  
 															    </div>
 															  </div> 
 															</form>
@@ -308,7 +350,8 @@
 																          <tr>
 																              <th>序号</th>
 																              <th>类型编号</th> 					          
-																              <th>案例类型名称</th> 
+																              <th>案例类型名称</th>
+																              <th>案例类型介绍</th> 
 																              <th>操作</th> 
 																          </tr>
 																       </thead>
@@ -371,7 +414,7 @@ function newtype_all(c_page){
 		success:function(result){  
 			//1、解析数据 
 			newtype_table(result);
-			pages("newtype",c_page);
+			pages("newtype",c_page,7);
 		},
 	 error:function(e){
 		 alert("error:"+e);
@@ -384,7 +427,7 @@ function protype_all(c_page){
 		url:"type/pro",
 		type:"POST",
 		data:"c_page="+c_page,
-		success:function(result){  
+		success:function(result){   
 			//1、解析数据 
 			protype_table(result);
 			pages_class("protype",c_page);
@@ -418,6 +461,7 @@ function newtype_table(result){
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(++index);  
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.newtype_id);  
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.newtype_name.substring(0,20)+'...'); 
+		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.newtype_constant.substring(0,20)+'...'); 
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.newtype_id);
 		
@@ -430,7 +474,7 @@ function newtype_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd)
+		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd).append(constantTd)
 		.append(btnTd).appendTo("#newtype_table tbody");
 	});
 }
@@ -441,7 +485,8 @@ function protype_table(result){
 	$.each(result,function(index,item){ 
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(++index);  
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_id);  
-		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_name.substring(0,20)+'...'); 
+		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_name.substring(0,20)+'...');
+		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_constant.substring(0,20)+'...');
 		var editBtn=$("<button id='editBtn_pro'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.protype_id);
 		
@@ -454,7 +499,7 @@ function protype_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd)
+		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd).append(constantTd)
 		.append(btnTd).appendTo("#protype_table tbody");
 	});
 }
@@ -466,6 +511,7 @@ function casetype_table(result){
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(++index);  
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.casetype_id);  
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.casetype_name.substring(0,20)+'...'); 
+		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.casetype_constant.substring(0,20)+'...'); 
 		var editBtn=$("<button id='editBtn_case'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.casetype_id);
 		
@@ -478,13 +524,14 @@ function casetype_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd)
+		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd).append(constantTd)
 		.append(btnTd).appendTo("#casetype_table tbody");
 	});
 }
 //打开新闻添加模态框
 $(document).on("click","#addpage",function(){ 
-	$("#AddnewtypeName").val(""); 
+	$("#AddnewtypeName").val("");
+	$("#AddnewtypeConstant").val("");
 	$("#myAddModel").modal({
 		backdrop:'static'
 	});  
@@ -492,6 +539,7 @@ $(document).on("click","#addpage",function(){
 //打开产品添加模态框
 $(document).on("click","#addpage_pro",function(){ 
 	$("#AddprotypeName").val(""); 
+	$("#AddprotypeConstant").val(""); 
 	$("#myAddModel_pro").modal({
 		backdrop:'static'
 	});  
@@ -624,6 +672,7 @@ $(document).on("click","#delBtn_case",function(){
 $(document).on("click","#editBtn",function(){
 	$("#EditnewtypeId").val("");
 	$("#EditnewtypeName").val(""); 
+	$("#EditnewtypeConstant").val(""); 
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -637,6 +686,7 @@ $(document).on("click","#editBtn",function(){
 $(document).on("click","#editBtn_pro",function(){
 	$("#EditprotypeId").val("");
 	$("#EditprotypeName").val(""); 
+	$("#EditprotypeConstant").val(""); 
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -650,6 +700,7 @@ $(document).on("click","#editBtn_pro",function(){
 $(document).on("click","#editBtn_case",function(){
 	$("#EditcasetypeId").val("");
 	$("#EditcasetypeName").val(""); 
+	$("#EditcasetypeConstant").val(""); 
 	//获取编辑按钮自定义属性ID
 	var id = $(this).attr("edit-id");
 	//传递参数ID
@@ -665,10 +716,11 @@ function getEditDate(id){
 		url:"newtype/one",
 		type:"POST",
 		data:"new_id="+id,
-		success:function(result){
+		success:function(result){ 
 			$.each(result,function(index,item){  
 				$("#EditnewtypeId").val(item.newtype_id); 
-				$("#EditnewtypeName").val(item.newtype_name);   
+				$("#EditnewtypeName").val(item.newtype_name);  
+				$("#EditnewtypeConstant").val(item.newtype_constant);
 			});
 		},
 		error:function(result){
@@ -685,7 +737,8 @@ function getEditDate_pro(id){
 		success:function(result){
 			$.each(result,function(index,item){  
 				$("#EditprotypeId").val(item.protype_id); 
-				$("#EditprotypeName").val(item.protype_name);   
+				$("#EditprotypeName").val(item.protype_name); 
+				$("#EditprotypeConstant").val(item.protype_constant); 
 			});
 		},
 		error:function(result){
@@ -702,7 +755,8 @@ function getEditDate_case(id){
 		success:function(result){
 			$.each(result,function(index,item){  
 				$("#EditcasetypeId").val(item.casetype_id); 
-				$("#EditcasetypeName").val(item.casetype_name);   
+				$("#EditcasetypeName").val(item.casetype_name);  
+				$("#EditcasetypeConstant").val(item.casetype_constant);  
 			});
 		},
 		error:function(result){
@@ -723,6 +777,7 @@ function getEditDate_case(id){
 	$(document).on("click","#myEditBtn",function(){
 		var newtype_id=$("#EditnewtypeId").val(); 
 		var newtype_name=$("#EditnewtypeName").val();
+		var newtype_constant=$("#EditnewtypeConstant").val();
 		if(newtype_name==""){
 			alert("新闻类型名称不能为空!");
 		}else{
@@ -743,7 +798,7 @@ function getEditDate_case(id){
 	//点击产品编辑模态框的保存按钮
 	$(document).on("click","#myEditBtn_pro",function(){
 		var protype_id=$("#EditprotypeId").val(); 
-		var protype_name=$("#EditprotypeName").val(); 
+		var protype_name=$("#EditprotypeName").val();  
 		if(protype_name==""){
 			alert("新闻类型名称不能为空!");
 		}else{

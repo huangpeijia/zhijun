@@ -3,6 +3,13 @@ package com.zhijun.bean;
 public class Newtype { 
 	private int newtype_id; //新闻id
 	private String newtype_name; //新闻类型名 
+	private String newtype_constant;//新闻介绍
+	public String getNewtype_constant() {
+		return newtype_constant;
+	}
+	public void setNewtype_constant(String newtype_constant) {
+		this.newtype_constant = newtype_constant;
+	}
 	public int getNewtype_id() {
 		return newtype_id;
 	}
