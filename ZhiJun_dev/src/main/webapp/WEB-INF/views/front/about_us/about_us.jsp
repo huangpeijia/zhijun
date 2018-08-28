@@ -11,6 +11,16 @@
         }
     </style>
     <!-- 联系我们 -->
+       <!--主体-->
+<main>
+	<!--轮播-->
+	<div class="div_lunbo div_view div_mainly">
+		<div id="intro" class="div_imgs div_display">
+			<!--图1-->
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/banner.png)">				
+			</div>					
+		</div>
+	</div>
 	<!--内容-->
 	<div id="main" class="main_con">
 		<div class="div_main1">

@@ -63,5 +63,16 @@ public class QtCaseController {
 		public List<Cases> Casetype_queryAll(@RequestParam("case_type") int case_type,Model model){  
 			return casedao.typequeryAll(case_type);
 		}
+		
+		
+		@RequestMapping(value="/case/demotion_case")
+		public ModelAndView demotionNews(ModelAndView modelAndView,@RequestParam(value="id") int id) throws IOException{
+			Map<String,Object> map=queryNewest();
+			List<Cases> cases =casedao.query(id);
+			modelAndView.setViewName("front/case/demotion_case");
+			modelAndView.addObject("cases",cases);
+			modelAndView.addObject("info",map.get("info"));
+			return modelAndView;
+		}
 }
 

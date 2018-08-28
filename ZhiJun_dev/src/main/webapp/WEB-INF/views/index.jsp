@@ -7,6 +7,55 @@
             border-bottom: 2px solid #FB8722;
         }
     </style>
+    <!--主体-->
+<main>
+	<!--轮播-->
+	<div class="div_lunbo div_mainly">
+		<div id="intro" class="div_imgs div_display">
+			<!--图1-->
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/banner1.png)">
+				<div class="div_zz"><!--遮罩-->
+					<div class="caption">
+						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
+						<div class="div_hr1" style=""></div>
+						<p class="wow fadeInDown delay-05s" style="font-family: pmzdtitlefont">智能管理解决方案的先锋队</p>
+						<div class="div_hr2" style=""></div>
+						
+					</div>
+				</div>
+			</div>
+			<!--图2-->
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/artificial.jpg)">
+				<div class="div_zz"><!--遮罩-->
+					<div class="caption">
+						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
+						<div class="div_hr1" style=""></div>
+						<p class="wow fadeInDown delay-05s" style="font-family: pmzdtitlefont">智能管理解决方案的先锋队</p>
+						<div class="div_hr2" style=""></div>
+						
+					</div>
+				</div>
+			</div>
+			<!--图3-->
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/oil.jpg)">
+				<div class="div_zz"><!--遮罩-->
+					<div class="caption">
+						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
+						<div class="div_hr1" style=""></div>
+						<p class="wow fadeInDown delay-05s" style="font-family: pmzdtitlefont">智能管理解决方案的先锋队</p>
+						<div class="div_hr2" style=""></div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--轮播底部按钮-->
+		<div class="div_btn">
+			<ul class="div_ul">
+				<li id="first">1</li><li>2</li><li>3</li>
+			</ul>
+		</div>
+	</div>
 	<!--内容-->
 	<div id="main" class="">
 		<div class="div_main">
@@ -99,7 +148,7 @@
 					<div class="float_l">
 						<ul class="ul_news cf">
 						<c:forEach items="${requestScope.news}" var="news">
-							<li><a href="#"><span>${news.news_title}</span>
+							<li data="${news.news_id}"><a href="#"><span>${news.news_title}</span>
 							<span><fmt:formatDate value="${news.news_time}" pattern="yyyy-MM-dd"/></span>
 							</a></li>
 							</c:forEach>
@@ -117,8 +166,8 @@
 				<div class="div_content cf">
 					<ul class="ul_case">
 					<c:forEach items="${requestScope.cases}" var="cases">
-						<a href="#" class="">
-							<li class="">
+						<a href="case/demotion_case?id=${cases.case_id}" class="">
+							<li class="" data="${cases.case_id}">
 								<img src="${APP_PATH }/upload/${cases.case_photo}" class=""/>
 								<div class="div_case float_r">
 									<div class="case_title cf"><span>${cases.case_name}</span>
@@ -139,6 +188,12 @@
 </main>
    <%@ include file="front/footer.jsp" %>
    <script>
+   $(".ul_news").on("click","li",function(){   
+		var id=$(this).attr("data");
+		window.location.href="news/demotion_news?id="+id;
+	 
+	});
+   
    $(function(){
 		$(".pro_span>div>span").each(function(){
 			var maxwidth=60;

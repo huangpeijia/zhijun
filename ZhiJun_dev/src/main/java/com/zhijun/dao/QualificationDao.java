@@ -81,6 +81,18 @@ public class QualificationDao {
 		List<Qualification> list =jdbcTemplate.query(sql, new QualificationMapper());
 		return list;
 	}
+	
+	/**
+	 * 根据类型查所以数据
+	 * 方法
+	 * @author wzh
+	 * @version 2018年8月27日
+	 */
+	public List<Qualification> type_query(int qua_type) {
+		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time, qua_type,qua_date FROM qualification where qua_type="+qua_type+"";
+		List<Qualification> list =jdbcTemplate.query(sql, new QualificationMapper());
+		return list;
+	}
 	/**
 	 * 修改
 	 * 方法

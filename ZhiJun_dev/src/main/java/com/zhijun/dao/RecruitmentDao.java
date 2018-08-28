@@ -86,6 +86,15 @@ public class RecruitmentDao {
 		String sql = "update recruitment set rec_name=?, rec_num=?, rec_address=?, rec_claim=?, rec_salary=?, rec_time=?, rec_type=? where rec_id=?";
 		return jdbcTemplate.update(sql, new Object[] {rec.getRec_name(),rec.getRec_num(),rec.getRec_address(),rec.getRec_claim(),rec.getRec_salary(),rec.getRec_time(),rec.getRec_type(),rec.getRec_id()});
 	}
+	/**
+	 * 根据类型查所有
+	 * @version 20180828
+	 */
+	public List <Recruitment> type_queryall(int rec_type){
+		String sql="select rec_id, rec_name, rec_num, rec_address, rec_claim, rec_salary, rec_time, rec_type from recruitment where rec_type="+rec_type+"";
+		List<Recruitment> list=jdbcTemplate.query(sql, new RecruitmentMapper());
+		return list;
+	}
 	public class RecruitmentMapper implements RowMapper<Recruitment>{
 
 		public Recruitment mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -101,5 +110,6 @@ public class RecruitmentDao {
 			return rec;
 		}
 		
-	}
+	}			
+	 
 }
