@@ -10,7 +10,7 @@
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
-<link rel="shortcut icon" href="img/work-2.jpg"><!-- 标题小图标 -->
+<link rel="shortcut icon" href="${APP_PATH }/js/front/img/images/icon_logo.png"><!-- 标题小图标 -->
 <link rel="stylesheet" href="${APP_PATH }/js/front/css/font-awesome-4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="${APP_PATH }/js/front/css/index.css"/>
 <link rel="stylesheet" href="${APP_PATH }/js/front/css/animate.css"/>
@@ -60,52 +60,3 @@
 		</nav>
 	</div>
 </header>
-<!--主体-->
-<main>
-	<!--轮播-->
-	<div class="div_lunbo div_mainly">
-		<div id="intro" class="div_imgs div_display">
-			<!--图1-->
-			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/banner1.png)">
-				<div class="div_zz"><!--遮罩-->
-					<div class="caption">
-						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
-						<div class="div_hr1" style=""></div>
-						<p class="wow fadeInDown delay-05s" style="font-family: pmzdtitlefont">智能管理解决方案的先锋队</p>
-						<div class="div_hr2" style=""></div>
-						
-					</div>
-				</div>
-			</div>
-			<!--图2-->
-			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/artificial.jpg)">
-				<div class="div_zz"><!--遮罩-->
-					<div class="caption">
-						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
-						<div class="div_hr1" style=""></div>
-						<p class="wow fadeInDown delay-05s" style="font-family: pmzdtitlefont">智能管理解决方案的先锋队</p>
-						<div class="div_hr2" style=""></div>
-						
-					</div>
-				</div>
-			</div>
-			<!--图3-->
-			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/oil.jpg)">
-				<div class="div_zz"><!--遮罩-->
-					<div class="caption">
-						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
-						<div class="div_hr1" style=""></div>
-						<p class="wow fadeInDown delay-05s" style="font-family: pmzdtitlefont">智能管理解决方案的先锋队</p>
-						<div class="div_hr2" style=""></div>
-					
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--轮播底部按钮-->
-		<div class="div_btn">
-			<ul class="div_ul">
-				<li id="first">1</li><li>2</li><li>3</li>
-			</ul>
-		</div>
-	</div>
