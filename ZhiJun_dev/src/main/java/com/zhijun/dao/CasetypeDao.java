@@ -31,7 +31,7 @@ public class CasetypeDao {
 	 * @return
 	 */
 	public List<Casetype> queryAll(int pages, int keys){
-		String sql ="select casetype_id,casetype_name from casetype limit "+pages+","+keys+"";
+		String sql ="select casetype_id,casetype_name,casetype_constant from casetype limit "+pages+","+keys+"";
 		List<Casetype> list = jdbcTemplate.query(sql,new CasetypeMapper());
 		return list;
 		
@@ -41,7 +41,7 @@ public class CasetypeDao {
 	 * @return
 	 */
 	public List<Casetype> querytypeAll(){
-		String sql ="select casetype_id,casetype_name from casetype";
+		String sql ="select casetype_id,casetype_name,casetype_constant from casetype";
 		List<Casetype> list = jdbcTemplate.query(sql,new CasetypeMapper());
 		return list;
 		
@@ -52,7 +52,7 @@ public class CasetypeDao {
 	 *
 	 */
 	public List<Casetype> select_one(int case_id){
-		String sql = "select casetype_id,casetype_name from casetype where casetype_id="+case_id+""; 
+		String sql = "select casetype_id,casetype_name,casetype_constant from casetype where casetype_id="+case_id+""; 
 		List<Casetype> list = jdbcTemplate.query(sql,new CasetypeMapper());
 		return list;
 		
@@ -66,8 +66,8 @@ public class CasetypeDao {
 		}
 		//添加
 		public int add(Casetype casetype) {
-			String sql = "insert into casetype(casetype_name) value(?)";
-			return jdbcTemplate.update(sql,new Object[] {casetype.getCasetype_name()});
+			String sql = "insert into casetype(casetype_name,casetype_constant) value(?,?)";
+			return jdbcTemplate.update(sql,new Object[] {casetype.getCasetype_name(),casetype.getCasetype_constant()});
 		}
 		//删除
 		public int delete(int casetype_id) {
@@ -76,14 +76,15 @@ public class CasetypeDao {
 		}
 		//修改
 		public int update(Casetype casetype) {
-			String sql = "update casetype set casetype_name=? where casetype_id=?";
-			return jdbcTemplate.update(sql,new Object[] {casetype.getCasetype_name(),casetype.getCasetype_id()});
+			String sql = "update casetype set casetype_name=?,casetype_constant=? where casetype_id=?";
+			return jdbcTemplate.update(sql,new Object[] {casetype.getCasetype_name(),casetype.getCasetype_constant(),casetype.getCasetype_id()});
 		}
 	public class CasetypeMapper implements RowMapper<Casetype>{
 		public Casetype mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Casetype casetype= new Casetype(); 
 			casetype.setCasetype_id(rs.getInt("casetype_id"));
 			casetype.setCasetype_name(rs.getString("casetype_name"));
+			casetype.setCasetype_constant(rs.getString("casetype_constant"));
 			return casetype;
 		}
 	}
