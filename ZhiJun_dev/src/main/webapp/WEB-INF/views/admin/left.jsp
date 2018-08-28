@@ -18,7 +18,7 @@
 					   <!--蓝方框以下的导航-->
 					   <ul class="nav navbar-nav">
 						   <!--导航目录-->
-							<li class="active">
+							<li>
 								<a href="index">
 									<span class="icon fa fa-home"></span><span class="title">首页</span>
 								</a>

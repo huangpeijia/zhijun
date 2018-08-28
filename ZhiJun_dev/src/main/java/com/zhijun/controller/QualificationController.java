@@ -137,6 +137,7 @@ public class QualificationController extends ControllerBase{
 		String qua_constant =request.getParameter("qua_constant");
 		String old_photo =request.getParameter("old_photo");
 		int qua_type =Integer.parseInt(request.getParameter("qua_type"));
+		int qua_date =Integer.parseInt(request.getParameter("qua_date"));
 		Qualification qua =new Qualification();
 		String qua_upload_name;
 		if(qua_photo==null) {
@@ -149,6 +150,7 @@ public class QualificationController extends ControllerBase{
 		qua.setQua_name(qua_name);
 		qua.setQua_constant(qua_constant);
 		qua.setQua_type(qua_type);
+		qua.setQua_date(qua_date);
 		qua.setQua_time(new Date());
 		int count = quadao.update(qua);
 		System.out.println(count);
