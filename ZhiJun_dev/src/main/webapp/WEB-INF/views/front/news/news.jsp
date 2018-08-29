@@ -61,6 +61,7 @@
 	    color:#ffffff;
 	    border:none;
 	    outline:none;
+	    cursor:pointer;/*小手*/
 	    }
 	    
 	#coun_num{

@@ -39,4 +39,10 @@ public class QtProductController {
 		maps.put("info", info);
 		return maps;
 	}
+	
+	@RequestMapping(value="/product/demotion_product")
+	public String demotion_product() {
+		return "front/product/demotion_product";
+		
+	}
 }

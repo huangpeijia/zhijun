@@ -1092,6 +1092,7 @@ main{
 .news>li{
 	color:#1551FC;
 	font-size: 30px;
+	cursor:pointer;/*小手*/
 }
 
 .ul_news>li>p{

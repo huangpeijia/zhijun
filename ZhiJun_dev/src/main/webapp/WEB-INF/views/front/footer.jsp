@@ -68,7 +68,7 @@
 	</div>
 	</c:forEach>
 </div>
-<div class="arrows_top"><a href="#transparent"><span class="fa fa-chevron-up"></span></a></div><!--置顶-->
+<div class="arrows_top"><a href="javascript:void(none);"><span class="fa fa-chevron-up"></span></a></div><!--置顶-->
 
 <script src="${APP_PATH }/js/front/js/wow.js"></script>
 <script src="${APP_PATH }/js/front/js/jquery-3.3.1.min.js"></script>
@@ -79,6 +79,20 @@
 	});
 	wow.init();
 
+	$(function(){ //置顶
+		var top=$(".arrows_top");
+		$(window).scroll(function(){
+			($(window).scrollTop()>300)?top.show(500):top.hide(100);
+			
+		});
+		
+		$(".arrows_top").click(function(){
+			$('body,html').animate({
+				scrollTop:'0px'
+			},800);
+
+		});
+	});
 </script>
 </body>
 </html>
