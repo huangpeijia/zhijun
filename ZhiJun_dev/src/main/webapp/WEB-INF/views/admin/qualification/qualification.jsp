@@ -119,8 +119,14 @@
 										</select> 
 								    </div>
 								  </div>
+								  <div class="form-group">
+								  <label for="inputrecClaim" class="col-sm-2 control-label">发展时间</label>										  
+								    <div class="col-sm-9">
+								     <input id="EditquaDate" type="number" value="2018" name="qua_date" />
+								    </div>
+								  </div>
 								   <div class="form-group">	
-								   <label for="inputquaTime" class="col-sm-2 control-label">发布时间</label>								  
+								   <label for="inputquaTime" class="col-sm-2 control-label">修改时间</label>								  
 								    <div class="col-sm-9">
 								      <input type="text" class="form-control" id="EditquaTime" placeholder="请输入发布时间" readonly>
 								    </div>
@@ -168,10 +174,16 @@
 								    </div>
 								  </div>
 								   <div class="form-group">
-								  <label for="inputrecClaim" class="col-sm-2 control-label">招聘类型</label>										  
+								  <label for="inputrecClaim" class="col-sm-2 control-label">资质类型</label>										  
 								    <div class="col-sm-9">
 								    	<select  id="qua_type" class="qua_type" style="height:25px" name="qua_type">
 										</select> 
+								    </div>
+								  </div>
+								  <div class="form-group">
+								  <label for="inputrecClaim" class="col-sm-2 control-label">发展时间</label>										  
+								    <div class="col-sm-9">
+										<input type="number" value="2018" id="qua_date" class="qua_date" name="qua_date"/>
 								    </div>
 								  </div>
 								</form>
@@ -203,7 +215,8 @@
 								              <th>照片路径</th>
 								              <th>资质内容</th>
 								              <th>资质类型</th>
-								              <th>发布时间</th>
+								              <th>发展时间</th>
+								              <th>修改时间</th>
 								              <th>操作</th>
 								          </tr>
 								       </thead>
@@ -341,6 +354,7 @@ function build_qua_table(result){
 		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.qua_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_constant.substring(0,20)+'...');
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_type);
+		var dateTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_date);
 		var timeTd=$("<td style='vertical-align:middle;'></td>").append(item.qua_time);
 		var editBtn=$("<button id='editBtn'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.qua_id);
@@ -354,7 +368,7 @@ function build_qua_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(typeTd).append(timeTd)
+		$("<tr></tr>").append(idTd).append(nameTd).append(photoTd).append(constantTd).append(typeTd).append(dateTd).append(timeTd)
 		.append(btnTd).appendTo("#qua_table tbody");
 	});
 }
@@ -373,6 +387,7 @@ function getEditDate(id){
 				$("#oldPhoto").attr("src","/upload/"+item.qua_photo);
 				$("#EditquaConstant").val(item.qua_constant);   
 				$("#qua_type_up option[value="+item.qua_type+"]").attr("selected",true);
+				$("#EditquaDate").val(item.qua_date);  
 				editor2.txt.html(item.qua_constant);
 				$("#EditquaTime").val(item.qua_time);
 			});
@@ -415,6 +430,7 @@ $(document).on("click","#myEditBtn",function(){
 	var old_photo = $("#oldPhoto")[0].src;
 	var index = old_photo .lastIndexOf("\/");  
 	var qua_type=$("#qua_type_up").val();
+	var qua_date=$("#EditquaDate").val();
 	old_photo = old_photo.substring(index + 1, old_photo.length);
 	formData.append("qua_id",qua_id);
 	formData.append("qua_name",qua_name);
@@ -423,6 +439,7 @@ $(document).on("click","#myEditBtn",function(){
 	formData.append("qua_photo",qua_photo);
 	formData.append("old_photo",old_photo);
 	formData.append("qua_type",qua_type);
+	formData.append("qua_date",qua_date);
 	console.log(qua_photo); 
 	if(qua_name == ""){
 		alert("资质名称不能为空!");
@@ -485,10 +502,12 @@ $(document).on("click","#myAddBtn",function(){
 	var qua_name=$("#AddquaName").val();
 	var qua_constant=$("#AddquaConstant").val();
 	var qua_type=$("#qua_type").val();
+	var qua_date=$("#qua_date").val();
 	formData.append("qua_name",qua_name);
 	formData.append("qua_upload",qua_upload);
 	formData.append("qua_constant",qua_constant);
 	formData.append("qua_type",qua_type);
+	formData.append("qua_date",qua_date);
 	if(qua_name == ""){
 		alert("资质名称不能为空!");
 	}else if(indexOf(qua_name)){

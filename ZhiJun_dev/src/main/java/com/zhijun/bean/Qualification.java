@@ -11,8 +11,15 @@ public class Qualification {
 	private String qua_name; //资质名称
 	private String qua_photo; //资质照片 
 	private String qua_constant; //资质描述
-	private Date qua_time; //资质时间
-	private int qua_type; //资质类型 
+	private Date qua_time; //修改时间
+	private int qua_type; //资质类型
+	private int qua_date;
+	public int getQua_date() {
+		return qua_date;
+	}
+	public void setQua_date(int qua_date) {
+		this.qua_date = qua_date;
+	}
 	public int getQua_type() {
 		return qua_type;
 	}

@@ -10,6 +10,16 @@
             border-bottom: 2px solid #FB8722;
         }
     </style>
+   <!--主体-->
+<main>
+	<!--轮播-->
+	<div class="div_lunbo div_view div_mainly">
+		<div id="intro" class="div_imgs div_display">
+			<!--图1-->
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/banner.png)">				
+			</div>					
+		</div>
+	</div>
 	<!--内容-->
 	<div id="main" class="main_con">
 		<div class="div_main1">
@@ -43,44 +53,27 @@
 						<div class="right_content tab-pane float_r">
 							<div>${info.com_backdrop}</div>
 						</div>
-	
+					</c:forEach>
 	
 						<!--右边内容区 发展历程-->
 						<div class="right_content tab-pane float_r">
 							<div class="div_timer_shaft cf">
 								<ul>
+								<c:forEach items="${requestScope.qua}" var="qua">
+								
 									<li class="">
 										<span class="fa fa-dot-circle-o fa-lg"></span>
 										<div class="timer_shaft_content">
-											<h2>2015年</h2>
-											<span>成为中国石油总公司供应商建立华北、华南地区办事处</span>
+											<h2>${qua.qua_date}年</h2>
+											<span>${qua.qua_constant}</span>
 										</div>
 									</li>
-									<li class="">
-										<span class="fa fa-dot-circle-o fa-lg"></span>
-										<div class="timer_shaft_content">
-											<h2>2012年</h2>
-											<span>成功申请成为国家高新技术企业</span>
-										</div>
-									</li>
-									<li class="">
-										<span class="fa fa-dot-circle-o fa-lg"></span>
-										<div class="timer_shaft_content">
-											<h2>2011年</h2>
-											<span>与上海交大建立产学研合作关系与美国联邦信号、披克等各大品牌签订战略合作协议</span>
-										</div>
-									</li>
-									<li class="">
-										<span class="fa fa-dot-circle-o fa-lg"></span>
-										<div class="timer_shaft_content">
-											<h2>2010年</h2>
-											<span>公司通过ISO9001:2008的国际质量认证<br/>进军海洋石油行业<br/>成为中国海洋石油集团一级供应商</span>
-										</div>
-									</li>
+								</c:forEach>
+									
 								</ul>
 							</div>
 						</div>
-						</c:forEach>
+						
 						
 						<!--右边内容区 背景优势-->
 						<c:forEach items="${requestScope.about}" var="about">

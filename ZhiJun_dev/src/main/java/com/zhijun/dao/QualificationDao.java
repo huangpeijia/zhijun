@@ -46,7 +46,7 @@ public class QualificationDao {
 	 * @version 2018年7月10日
 	 */
 	public List<Qualification> queryAll(int pages, int keys){
-		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time, qua_type FROM qualification order by qua_time desc limit "+pages+","+keys+"";
+		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time, qua_type,qua_date FROM qualification order by qua_time desc limit "+pages+","+keys+"";
 		List<Qualification> list= jdbcTemplate.query(sql, new QualificationMapper());
 		return list;
 	}
@@ -57,8 +57,8 @@ public class QualificationDao {
 	 * @version 2018年7月10日
 	 */
 	public int addQua(Qualification qua) {
-		String sql = "insert into qualification(qua_name,qua_photo,qua_constant,qua_time,qua_type) value(?,?,?,?,?)";
- 		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),qua.getQua_time(),qua.getQua_type()});
+		String sql = "insert into qualification(qua_name,qua_photo,qua_constant,qua_time,qua_type,qua_date) value(?,?,?,?,?,?)";
+ 		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),qua.getQua_time(),qua.getQua_type(),qua.getQua_date()});
 	}
 	/**
 	 * 删除
@@ -77,7 +77,19 @@ public class QualificationDao {
 	 * @version 2018年7月10日
 	 */
 	public List<Qualification> query(int qua_id) {
-		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time, qua_type FROM qualification where qua_id="+qua_id+"";
+		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time, qua_type,qua_date FROM qualification where qua_id="+qua_id+"";
+		List<Qualification> list =jdbcTemplate.query(sql, new QualificationMapper());
+		return list;
+	}
+	
+	/**
+	 * 根据类型查所以数据
+	 * 方法
+	 * @author wzh
+	 * @version 2018年8月27日
+	 */
+	public List<Qualification> type_query(int qua_type) {
+		String sql = "SELECT qua_id, qua_name, qua_photo, qua_constant, qua_time, qua_type,qua_date FROM qualification where qua_type="+qua_type+"";
 		List<Qualification> list =jdbcTemplate.query(sql, new QualificationMapper());
 		return list;
 	}
@@ -88,8 +100,8 @@ public class QualificationDao {
 	 * @version 2018年7月10日
 	 */
 	public int update(Qualification qua) {
-		String sql = "update qualification set qua_name=?, qua_photo=?, qua_constant=?,qua_time=?,qua_type=? where qua_id=?";
-		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),qua.getQua_time(),qua.getQua_type(),qua.getQua_id()});
+		String sql = "update qualification set qua_name=?, qua_photo=?, qua_constant=?,qua_time=?,qua_type=?,qua_date=? where qua_id=?";
+		return jdbcTemplate.update(sql,new Object[] {qua.getQua_name(),qua.getQua_photo(),qua.getQua_constant(),qua.getQua_time(),qua.getQua_type(),qua.getQua_date(),qua.getQua_id()});
 	}
 	
 	public class QualificationMapper implements RowMapper<Qualification>{
@@ -102,6 +114,7 @@ public class QualificationDao {
 			qua.setQua_constant(rs.getString("qua_constant")); 
 			qua.setQua_time(rs.getTimestamp("qua_time"));
 			qua.setQua_type(rs.getInt("qua_type"));
+			qua.setQua_date(rs.getInt("qua_date"));
 			return qua;
 		}
 		

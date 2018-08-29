@@ -188,6 +188,10 @@ main{
 	/*background-color: #363842;*/
 }
 
+.div_view{
+	height:480px;
+}
+
 @media screen and (max-width:1217px) {
 	.div_lunbo{
 		width: 1200px;
@@ -669,7 +673,7 @@ main{
 	background-color: #06194D;
 }
 
-.div_footer a,p{
+.div_footer a,.div_footer p{
 	color: #D9ECFA;
 }
 
@@ -779,6 +783,7 @@ main{
 
 .arrows_top:hover>a{
 	background-color: #1141CA;
+	transition: all 500ms;
 	/*opacity: 0.5;*/
 }
 
@@ -853,6 +858,7 @@ main{
 	width: 870px;
 	padding:52px 30px 20px 30px;
 	font-size: 14px;
+	overflow:hidden;
 }
 
 .right_content>p{
@@ -1053,6 +1059,20 @@ main{
 }
 
 .invite>div>p{
+	font-size: 14px;
+	color: #666666;
+}
+
+.rec_invite>div>div{
+	margin: 10px 0px 10px 0px;
+}
+
+.rec_invite>div>div>span{
+	font-size: 20px;
+	color: #666666;
+}
+
+.rec_invite>div>div>p{
 	font-size: 14px;
 	color: #666666;
 }

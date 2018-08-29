@@ -10,6 +10,16 @@
             border-bottom: 2px solid #FB8722;
         }
     </style>
+       <!--主体-->
+<main>
+	<!--轮播-->
+	<div class="div_lunbo div_view div_mainly">
+		<div id="intro" class="div_imgs div_display">
+			<!--图1-->
+			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/banner.png)">				
+			</div>					
+		</div>
+	</div>
 	<!--内容-->
 	<div id="main" class="main_con">
 		<div class="div_main1">
@@ -45,6 +55,12 @@
 <%@ include file="../footer.jsp" %>
 	<script>
  
+	$("#case_list ul").on("click","li",function(){   
+		var id=$(this).attr("data");
+		window.location.href="case/demotion_case?id="+id;
+	 
+	});
+	
 	$(function () {
 		var j=1;
 		 casetype_all();/* 导航栏的类型数据 */ 
@@ -119,7 +135,8 @@
 		$.each(result,function(index,item){ 
 			var imgTd=$("<img src=''/>").attr("src","/upload/"+item.case_photo);
 			var case_titleTd=$("<span></span>").append(item.case_name);  
-			$("<li></li>").append(imgTd).append(case_titleTd).appendTo("#case_list ul");  			 
+			$("<li data='"+item.case_id+"'></li>").append(imgTd).append(case_titleTd).appendTo("#case_list ul");  			 
 		});
 	}
+	
 </script>

@@ -32,7 +32,7 @@ public class NewtypeDao {
 	 * @return
 	 */
 	public List<Newtype> queryAll(int pages, int keys){
-		String sql ="select newtype_id,newtype_name from newtype limit "+pages+","+keys+"";
+		String sql ="select newtype_id,newtype_name,newtype_constant from newtype limit "+pages+","+keys+"";
 		List<Newtype> list = jdbcTemplate.query(sql,new NewtypeMapper());
 		return list;
 		
@@ -42,7 +42,7 @@ public class NewtypeDao {
 	 * @return
 	 */
 	public List<Newtype> querytypeAll(){
-		String sql ="select newtype_id,newtype_name from newtype";
+		String sql ="select newtype_id,newtype_name,newtype_constant from newtype";
 		List<Newtype> list = jdbcTemplate.query(sql,new NewtypeMapper());
 		return list;
 		
@@ -63,15 +63,15 @@ public class NewtypeDao {
 	 *
 	 */
 	public List<Newtype> select_one(int new_id){
-		String sql = "select newtype_id,newtype_name from newtype where newtype_id="+new_id+""; 
+		String sql = "select newtype_id,newtype_name, newtype_constant from newtype where newtype_id="+new_id+""; 
 		List<Newtype> list = jdbcTemplate.query(sql,new NewtypeMapper());
 		return list;
 		
 	}
 	//添加
 	public int add(Newtype newtype) {
-		String sql = "insert into newtype(newtype_name) value(?)";
-		return jdbcTemplate.update(sql,new Object[] {newtype.getNewtype_name()});
+		String sql = "insert into newtype(newtype_name,newtype_constant) value(?,?)";
+		return jdbcTemplate.update(sql,new Object[] {newtype.getNewtype_name(),newtype.getNewtype_constant()});
 	}
 	//删除
 	public int delete(int newtype_id) {
@@ -80,14 +80,15 @@ public class NewtypeDao {
 	}
 	//修改
 	public int update(Newtype newtype) {
-		String sql = "update newtype set newtype_name=? where newtype_id=?";
-		return jdbcTemplate.update(sql,new Object[] {newtype.getNewtype_name(),newtype.getNewtype_id()});
+		String sql = "update newtype set newtype_name=?,newtype_constant=? where newtype_id=?";
+		return jdbcTemplate.update(sql,new Object[] {newtype.getNewtype_name(),newtype.getNewtype_constant(),newtype.getNewtype_id()});
 	}
 	public class NewtypeMapper implements RowMapper<Newtype>{
 		public Newtype mapRow(ResultSet rs, int rowNum) throws SQLException{
 			Newtype newtype = new Newtype(); 
 			newtype.setNewtype_id(rs.getInt("newtype_id"));
 			newtype.setNewtype_name(rs.getString("newtype_name"));
+			newtype.setNewtype_constant(rs.getString("newtype_constant"));
 			return newtype;
 		}
 	}
