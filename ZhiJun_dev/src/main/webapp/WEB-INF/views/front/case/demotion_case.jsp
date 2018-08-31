@@ -3,7 +3,7 @@
     
     <%@ include file="../head.jsp" %>
      <script>
-    document.title="成功案例";
+    document.title+="-成功案例";
     </script>
     <link rel="stylesheet" href="${APP_PATH }/js/front/css/demotion.css"/>
     <style type="text/css">

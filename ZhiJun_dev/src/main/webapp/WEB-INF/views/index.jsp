@@ -65,25 +65,25 @@
 				<div class="div_content cf">
 					<ul class="ul_feature">
 						<li class=" ">
-							<a href="javascript:void(none)">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts1.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>专业核心竞争力</span></div>
 							</a>
 						</li>
 						<li class="">
-							<a href="#">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts2.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>工业级互联网思维</span></div>
 							</a>
 						</li>
 						<li class="">
-							<a href="#">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts3.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>极致化服务</span></div>
 							</a>
 						</li>
 						<li class="">
-							<a href="#">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts4.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>工业领域大数据挖掘</span></div>
 							</a>

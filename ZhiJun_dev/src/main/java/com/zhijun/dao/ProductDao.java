@@ -81,6 +81,20 @@ public class ProductDao {
 		List<Product> list =jdbcTemplate.query(sql, new ProductMapper());
 		return list;
 	}
+	
+	
+	/**
+	 * 根据类型查数据
+	 * 方法
+	 * @version 2018年8月30日
+	 */
+	public List<Product> typequeryAll(int pro_type) {
+		String sql = "select pro_id, pro_name, pro_constant, pro_photo, pro_time, pro_type from product where pro_type="+pro_type+"";
+		List<Product> list = jdbcTemplate.query(sql, new ProductMapper());
+		return list;
+	}
+	
+	
 	/**
 	 * 修改
 	 * 方法
