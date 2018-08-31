@@ -3,7 +3,8 @@
     
     <%@ include file="../head.jsp" %>
      <script>
-    document.title="产品服务";
+    
+    document.title+="-产品服务";
     </script>
     <style type="text/css">
         .ul_nav>li:nth-child(3)>a{
@@ -32,55 +33,54 @@
 				</div>
 			</div>
 		</div>
-		<div class="product">
+		<div class="product" id="product">
 			<ul>
-				<li>
-					<div class="pro_img_content cf">
-						<img src="${APP_PATH }/js/front/img/pro/product1.png">
-						<div class="product_main">
-							<span>工业互联网</span>
-							<p>工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
-							工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
-							工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="pro_img_content cf">
-						<img src="${APP_PATH }/js/front/img/pro/product2.png">
-						<div class="product_main">
-							<span>工业互联网</span>
-							<p>工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
-								工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
-								工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="pro_img_content cf">
-						<img src="${APP_PATH }/js/front/img/pro/product3.png">
-						<div class="product_main">
-							<span>工业互联网</span>
-							<p>工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
-								工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网
-								工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网工业互联网</p>
-						</div>
-					</div>
-				</li>
+				<!-- 遍历 -->
 			</ul>
 		</div>
 	</div>
 </main>
 <%@ include file="../footer.jsp" %>
 <script>
-	$(function () {
-		$(".left_nav ul a").each(
-			function () {
-				$(this).click(function () {
-					$(this).css("color","#1551fc");
-					$(this).siblings().css("color","#afafaf");
-				});
-			}
-		);
+
+	$("#product ul").on("click","li",function(){   
+		var pro_type=$(this).attr("data");
+		window.location.href="product/demotion_product?pro_type="+pro_type;
+	 
 	});
+
+	$(function () {
+		protype_all();/* 查类型数据 */
+		
+	});
+	
+	/* 案例类型 */
+	function protype_all(){
+		$.ajax({
+			url:"protype/all_type",
+			type:"POST",
+			async:false,
+			success:function(result){  
+				//1、解析数据 
+				protype_table(result);
+			},
+		 error:function(e){
+			 alert("error:"+e);
+		 }
+		});
+	} 
+	
+	function protype_table(result){
+		//构建先前情况table,empty掏空信息的方法
+		$("#product ul").empty();
+		$.each(result,function(index,item){ 
+			var type_imgTd=$("<img src=''/>").attr("src","/upload/");/* +item.protype_photo */
+			var type_titleTd=$("<span></span>").append(item.protype_name); 
+			var type_constant=$("<p></p>").append(item.protype_constant);
+			var type_div=$("<div class='product_main'></div>").append(type_titleTd).append(type_constant);
+			var type_div2=$("<div class='pro_img_content cf'></div>").append(type_imgTd).append(type_div);
+			$("<li data="+item.protype_id+"></li>").append(type_div2).appendTo("#product ul");  			 
+		});
+	}
+	
 </script>

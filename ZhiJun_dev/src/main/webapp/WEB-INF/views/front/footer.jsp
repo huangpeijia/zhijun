@@ -68,7 +68,7 @@
 	</div>
 	</c:forEach>
 </div>
-<div class="arrows_top"><a href="javascript:void(none);"><span class="fa fa-chevron-up"></span></a></div><!--置顶-->
+<div class="arrows_top"><a href="javascript:void(0);"><span class="fa fa-chevron-up"></span></a></div><!--置顶-->
 
 <script src="${APP_PATH }/js/front/js/wow.js"></script>
 <script src="${APP_PATH }/js/front/js/jquery-3.3.1.min.js"></script>

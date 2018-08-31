@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>首页</title>
+<c:forEach items="${requestScope.info}" var="info">
+<title>${info.com_name}</title>
+</c:forEach>
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
@@ -29,31 +31,31 @@
 		<nav class="float_r">
 			<ul class="ul_nav float_r">
 				<li>
-					<a href="index">首页</a>
+					<a href="/index">首页</a>
 					
 				</li>
 				<li>
-					<a href="Information">公司概况</a>
+					<a href="/Information">公司概况</a>
 					
 				</li>
 				<li>
-					<a href="product">产品服务</a>
+					<a href="/product">产品服务</a>
 					
 				</li>
 				<li>
-					<a href="news">新闻中心</a>
+					<a href="/news">新闻中心</a>
 					
 				</li>
 				<li>
-					<a href="case">成功案例</a>
+					<a href="/case">成功案例</a>
 					
 				</li>
 				<li>
-					<a href="recruitment">人才招聘</a>
+					<a href="/recruitment">人才招聘</a>
 					
 				</li>
 				<li>
-					<a href="about">联系我们</a>
+					<a href="/about">联系我们</a>
 					
 				</li>
 			</ul>

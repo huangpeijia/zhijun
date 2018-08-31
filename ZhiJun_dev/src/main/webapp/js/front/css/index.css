@@ -982,6 +982,7 @@ main{
 
 .product>ul>li{
 	padding: 10px 0px;
+	cursor:pointer;/*小手*/
 }
 
 .pro_img_content{

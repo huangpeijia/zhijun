@@ -3,7 +3,7 @@
     
     <%@ include file="../head.jsp" %>
     <script>
-    document.title="人才招聘";
+    document.title+="-人才招聘";
     </script>
     <style type="text/css">
         .ul_nav>li:nth-child(6)>a{
@@ -36,8 +36,8 @@
 					<!--左边导航栏-->
 					<div class="left_nav invite_nav float_l">
 						<ul>
-							<a href="javascript:void(none);" data="0"><li>校园招聘</li></a>
-							<a href="javascript:void(none);" data="1"><li>社会招聘</li></a>
+							<a href="javascript:void(0);" data="0"><li>校园招聘</li></a>
+							<a href="javascript:void(0);" data="1"><li>社会招聘</li></a>
 						</ul>
 					</div>
 					<!--右边内容区 公司简介-->
