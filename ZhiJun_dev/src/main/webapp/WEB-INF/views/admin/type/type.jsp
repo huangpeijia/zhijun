@@ -187,12 +187,20 @@
 																    	<input type="text" class="form-control" id="EditprotypeName" name="protype_name" placeholder="请输入产品类型名称">
 																     </div>
 																  </div> 
+																  <div class="form-group">
+																	  <label for="inputprotypePhoto" class="col-sm-3 control-label">照片路径</label>	
+																	    <div class="col-sm-8">
+																	      <img id="oldPhoto" style="width:100px;height:100px"/>
+																	      <input id="EditprotypePhoto" type="file" accept="image/*" name="protype_photo" />
+																	      <!-- <input type="text" class="form-control" id="EditproPhoto" name="pro_photo" placeholder="请输入照片路径"> -->
+																	    </div>
+																	  </div>	
 																  <div class="form-group">	
-															   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型名称</label>								  
-															    <div class="col-sm-8">  
-															         <textarea   id="EditprotypeConstant" style="margin: 0px; width: 367px; height: 80px;" name="protype_constant"   placeholder="请输入产品类型介绍"></textarea>
-															    </div>
-															  </div> 
+																   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型介绍</label>								  
+																    <div class="col-sm-8">  
+																         <textarea   id="EditprotypeConstant" style="margin: 0px; width: 367px; height: 80px;" name="protype_constant"   placeholder="请输入产品类型介绍"></textarea>
+																    </div>
+															 	 </div> 
 																</form>
 														      </div>
 														      <div class="modal-footer">
@@ -218,8 +226,16 @@
 															       <input type="text" class="form-control" id="AddprotypeName" name="protype_name" placeholder="请输入产品类型名称">
 															    </div>
 															  </div> 
+															  <div class="form-group">
+															  <label for="inputprotypePhoto" class="col-sm-3 control-label">照片路径</label>	
+															    <div class="col-sm-8">
+															      <img id="imgPhoto" style="width:100px;height:100px" src=""/>
+															   	  <input id="AddprotypePhoto" type="file" accept="image/*" name="protype_photo" />
+															      <!-- <input type="text" class="form-control" id="AddproPhoto" name="pro_photo" placeholder="请输入照片路径"> -->
+															    </div>
+															  </div>
 															  <div class="form-group">	
-															   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型名称</label>								  
+															   <label for="inputnewsConstant" class="col-sm-3 control-label">产品类型介绍</label>								  
 															    <div class="col-sm-8">  
 															         <textarea   id="AddprotypeConstant" style="margin: 0px; width: 367px; height: 80px;" name="protype_constant"   placeholder="请输入产品类型介绍"></textarea>
 															    </div>
@@ -248,6 +264,7 @@
 																              <th>序号</th>
 																              <th>产品类型编号</th> 					          
 																              <th>产品类型名称</th> 
+																              <th>照片路径</th>
 																              <th>产品类型介绍</th> 
 																              <th>操作</th> 
 																          </tr>
@@ -396,6 +413,15 @@
 <script type="text/javascript" src="${APP_PATH}/js/js/times.js"></script>
 <script type="text/javascript" src="${APP_PATH}/js/js/pagination.js"></script> 
 <script type="text/javascript">
+
+$('#AddprotypePhoto').on('change',function(){
+	var filePath = window.URL.createObjectURL(this.files[0]);
+	$('#imgPhoto').attr("src",filePath);
+ });
+ $('#EditprotypePhoto').on('change',function(){
+		var filePath = window.URL.createObjectURL(this.files[0]);
+		$('#oldPhoto').attr("src",filePath);
+	 });
 var c_page=1;//当前页数 
 $(function(){
 	to_page(c_page);
@@ -428,6 +454,7 @@ function protype_all(c_page){
 		type:"POST",
 		data:"c_page="+c_page,
 		success:function(result){   
+			console.log(result);
 			//1、解析数据 
 			protype_table(result);
 			pages_class("protype",c_page);
@@ -486,6 +513,7 @@ function protype_table(result){
 		var idTd=$("<td style='vertical-align:middle;'></td>").append(++index);  
 		var typeTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_id);  
 		var nameTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_name.substring(0,20)+'...');
+		var photoTd=$("<td style='vertical-align:middle;'></td>").append($("<img ></img>").attr("src","/upload/"+item.protype_photo).attr("style","width:50px;height:50px;"));
 		var constantTd=$("<td style='vertical-align:middle;'></td>").append(item.protype_constant.substring(0,20)+'...');
 		var editBtn=$("<button id='editBtn_pro'></button>").addClass("btn btn-info btn-sm edit_btn").append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append(" 编辑");
 		editBtn.attr("edit-id",item.protype_id);
@@ -499,7 +527,7 @@ function protype_table(result){
 		
 		var btnTd=$("<td></td>").append(editBtn).append(" ").append(delBtn);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
-		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd).append(constantTd)
+		$("<tr></tr>").append(idTd).append(typeTd).append(nameTd).append(photoTd).append(constantTd)
 		.append(btnTd).appendTo("#protype_table tbody");
 	});
 }
@@ -540,6 +568,7 @@ $(document).on("click","#addpage",function(){
 $(document).on("click","#addpage_pro",function(){ 
 	$("#AddprotypeName").val(""); 
 	$("#AddprotypeConstant").val(""); 
+	$("#imgPhoto").attr("src","${APP_PATH }/js/img/2.jpeg");
 	$("#myAddModel_pro").modal({
 		backdrop:'static'
 	});  
@@ -573,14 +602,24 @@ $(document).on("click","#myAddBtn",function(){
 });
 //点击产品保存按钮
 $(document).on("click","#myAddBtn_pro",function(){
+	var formData = new FormData();
+	var pro_upload = $('#AddprotypePhoto').get(0).files[0];
 	var protype_name=$("#AddprotypeName").val();
+	var protype_constant=$("#AddprotypeConstant").val();
+	formData.append("protype_name",protype_name);
+	formData.append("pro_upload",pro_upload);
+	formData.append("protype_constant",protype_constant);
 	if(protype_name==""){
 		alert("产品类型名称不能为空!");
 	}else{
+		if("undefined" != typeof(pro_upload) && pro_upload != null && pro_upload != ""){
 		 $.ajax({
 			url:"protype/add",
 			type:"POST",
-			data:$("#myAddForm_pro").serialize(),
+			data:formData,
+			cache: false, 
+			contentType: false, //不设置内容类型
+			processData: false, //不处理数据
 			success:function(result){
 				$("#myAddModel_pro").modal('hide'); 
 				protype_all(c_page);
@@ -589,6 +628,9 @@ $(document).on("click","#myAddBtn_pro",function(){
 				alert("添加时发生错误!");
 			}
 		});
+		}else{
+			alert("选择的文件无效！请重新选择");
+		}
 	}
 });
 //点击案例保存按钮
@@ -738,6 +780,7 @@ function getEditDate_pro(id){
 			$.each(result,function(index,item){  
 				$("#EditprotypeId").val(item.protype_id); 
 				$("#EditprotypeName").val(item.protype_name); 
+				$("#oldPhoto").attr("src","/upload/"+item.protype_photo);
 				$("#EditprotypeConstant").val(item.protype_constant); 
 			});
 		},
@@ -796,16 +839,30 @@ function getEditDate_case(id){
 		}
 	});
 	//点击产品编辑模态框的保存按钮
-	$(document).on("click","#myEditBtn_pro",function(){
+	$(document).on("click","#myEditBtn_pro",function(){ 
+		var formData = new FormData();
+		var pro_photo = $('#EditprotypePhoto').get(0).files[0];
 		var protype_id=$("#EditprotypeId").val(); 
-		var protype_name=$("#EditprotypeName").val();  
+		var protype_name=$("#EditprotypeName").val();
+		var protype_constant=$("#EditprotypeConstant").val(); 
+		var old_photo = $("#oldPhoto")[0].src; 
+		var index = old_photo .lastIndexOf("\/");  
+		old_photo = old_photo.substring(index + 1, old_photo.length); 
+		formData.append("protype_id",protype_id); 
+		formData.append("protype_name",protype_name);
+		formData.append("pro_photo",pro_photo);
+		formData.append("old_photo",old_photo);
+		formData.append("protype_constant",protype_constant);
 		if(protype_name==""){
 			alert("新闻类型名称不能为空!");
 		}else{
 			 $.ajax({
 				url:"protype/update",
 				type:"POST",
-				data:$("#myEditForm_pro").serialize(),
+				data:formData, 
+				cache: false, 
+				contentType: false, //不设置内容类型
+				processData: false, //不处理数据
 				success:function(result){
 					$("#myEditModel_pro").modal('hide');//隐藏模态框
 					protype_all(c_page);//显示全部
