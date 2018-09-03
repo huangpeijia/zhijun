@@ -98,7 +98,7 @@
 								       <tbody> 
 								       </tbody>
 								   </table>
-								   <div id="page"></div>
+								   <div class="page_docu"></div>
 							   </div>
 						   </div>
 					   </div>
@@ -164,7 +164,7 @@ function to_page(c_page){
 	$.ajax({
 		url:"document/all",
 		type:"POST",
-		success:function(result){
+		success:function(result){ 
 			//1、解析数据
 			build_news_table(result,(c_page-1)*7,7*c_page);
 			document_count(c_page);

@@ -43,7 +43,7 @@ function document_count(d_pages){
 		url:"document/count",
 		type:"POST",
 		success:function(result){ 
-			count(result,d_pages);
+			count_docu(result,d_pages);
 		}
 	});
 }
@@ -240,7 +240,65 @@ function count_case(result,c_pages){
 	list += '共 <span id="coun_num">'+coun+'</span>页   合计'+result+'条数据';
     $(".page_case").html(list);
 }
-
+//添加数据（document）
+function count_docu(result,c_pages){
+	var coun=Math.ceil(result/7);
+	var list='';
+	var onpage=c_pages-1; //上一页
+	var unpage =c_pages+1;//下一页
+	list += '<a href="javascript:void(0)" data="' + 1 + '">首页</a>';
+	
+	if(c_pages!=1){
+		list += '<a href="javascript:void(0)" data="' + onpage + '">上页</a>';
+	} 
+	if(coun<=5){
+		for (var j = 1; j <=coun; j++) {
+			 if (c_pages == j) list += '<a href="javascript:void(0)" data="' + j + '" class="selected">' + j + '</a>';
+		     else list += '<a href="javascript:void(0)" data="' + j + '">' + j + '</a>';
+			}
+		}else{
+			if(c_pages<=3){
+				for (var j = 1; j <=5; j++) {
+					 if (c_pages == j) list += '<a href="javascript:void(0)" data="' + j + '" class="selected">' + j + '</a>';
+				     else list += '<a href="javascript:void(0)" data="' + j + '">' + j + '</a>';
+					}
+			}else{
+				if(c_pages+2<coun){
+					for (var j =c_pages-2; j <=c_pages+2; j++) {
+						if (c_pages == j) list += '<a href="javascript:void(0)" data="' + j + '" class="selected">' + j + '</a>';
+						else list += '<a href="javascript:void(0)" data="' + j + '">' + j + '</a>';
+						}
+				}
+				if(c_pages+2==coun){
+					for (var j =c_pages-2; j <=coun; j++) {
+						if (c_pages == j) list += '<a href="javascript:void(0)" data="' + j + '" class="selected">' + j + '</a>';
+						else list += '<a href="javascript:void(0)" data="' + j + '">' + j + '</a>';
+						}
+				}
+				if(c_pages+1==coun){
+					for (var j =c_pages-3; j <=coun; j++) {
+						if (c_pages == j) list += '<a href="javascript:void(0)" data="' + j + '" class="selected">' + j + '</a>';
+						else list += '<a href="javascript:void(0)" data="' + j + '">' + j + '</a>';
+						}
+				}
+				if(c_pages==coun){
+					for (var j =c_pages-4; j <=coun; j++) {
+						if (c_pages == j) list += '<a href="javascript:void(0)" data="' + j + '" class="selected">' + j + '</a>';
+						else list += '<a href="javascript:void(0)" data="' + j + '">' + j + '</a>';
+						}
+				}
+			}
+	}
+	if(c_pages!=coun){
+		list += '<a href="javascript:void(0)" data="' + unpage + '">下页</a>';
+	}
+	
+	list += '<a href="javascript:void(0)" data="' + coun + '">尾页</a>';
+	list += '<input type="text" id="tiaoz"/>';
+	list += '<button type="button" onclick="tz()">跳转</button>';
+	list += '共 <span id="coun_num">'+coun+'</span>页   合计'+result+'条数据';
+    $(".page_docu").html(list);
+}
 //添加前台新闻数据
 function counts_newss(result,c_pages,num){ 
 	var coun=Math.ceil(result/num);
@@ -322,4 +380,8 @@ $(".page").on('click','a',function () {   //为a标签动态绑定事件
 $(".page_case").on('click','a',function () {   //为a标签动态绑定事件 
     var pages=parseInt($(this).attr("data"));  //获取链接里的页码
     casetype_all(pages);
+});
+$(".page_docu").on('click','a',function () {   //为a标签动态绑定事件 
+    var pages=parseInt($(this).attr("data"));  //获取链接里的页码
+    to_page(pages);
 });
