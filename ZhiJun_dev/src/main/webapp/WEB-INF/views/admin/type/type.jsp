@@ -576,6 +576,7 @@ $(document).on("click","#addpage_pro",function(){
 //打开案例添加模态框
 $(document).on("click","#addpage_case",function(){ 
 	$("#AddcasetypeName").val(""); 
+	$("#AddcasetypeConstant").val("");
 	$("#myAddModel_case").modal({
 		backdrop:'static'
 	});  
