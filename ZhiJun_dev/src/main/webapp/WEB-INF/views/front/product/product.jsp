@@ -74,7 +74,7 @@
 		//构建先前情况table,empty掏空信息的方法
 		$("#product ul").empty();
 		$.each(result,function(index,item){ 
-			var type_imgTd=$("<img src=''/>").attr("src","/upload/");/* +item.protype_photo */
+			var type_imgTd=$("<img src=''/>").attr("src","/upload/"+item.protype_photo);/*  */
 			var type_titleTd=$("<span></span>").append(item.protype_name); 
 			var type_constant=$("<p></p>").append(item.protype_constant);
 			var type_div=$("<div class='product_main'></div>").append(type_titleTd).append(type_constant);
