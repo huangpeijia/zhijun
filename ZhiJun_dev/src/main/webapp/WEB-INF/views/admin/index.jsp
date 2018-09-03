@@ -245,7 +245,7 @@ function build_news_newest(result){
 		var t_cTd=$("<div class='message-block'></div>").append(t_tTd).append(constantTd);
 		//append方法执行完以后还是回到原来的元素,也就是一个一个加进tr
 		var lTd=$("<li></li>").append(t_cTd);
-		$("<a href='#'></a>").append(lTd).appendTo("#newest_4");
+		$("<a href='#' style='cursor: default;'></a>").append(lTd).appendTo("#newest_4");
 	});
 }
 function to_pro_newest(){
@@ -268,7 +268,7 @@ function build_pro_newest(result){
 		item.news_time=time;
 		var nameTd=$("<h3 id='thumbnail-label'></h3>").append(item.pro_name);
 		var constantTd=$("<p></p>").append(item.pro_constant.substring(0,130)+'...');
-		var photoTd=$("<img src='' class='img-responsive'>").attr("src","/upload/"+item.pro_photo);
+		var photoTd=$("<img src='' class='img-responsive' style='height: 282px;width: 326px;'>").attr("src","/upload/"+item.pro_photo);
         
 		var n_cTd=$("<div class='caption'></div>").append(nameTd).append(constantTd);
 		var p_nTd=$("<div class='thumbnail no-margin-bottom'></div>").append(photoTd).append(n_cTd);
