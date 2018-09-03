@@ -48,12 +48,15 @@
 					<div class="right_content float_r" id="pro_content">			    			    	
 							<div class="pro_ct">							  
 							   <div class="cf pro_tt">		
-							   		<h2 class="title" style="float:left;">ddd</h2>
-							   		<p class="time" style="float:right;">ddd</p>
+							   		<h2 class="title" style="float:left;">dddddd<!-- 数据 --></h2>
+							   		<p class="time" style="float:right;">dddddddd<!-- 数据 --></p>
 							   </div>
-							   <span class="content">
-							       ddd
-							   </span>						  
+							   <div style="border:1px solid red;">
+							   <img src="" style="width:300px;height:400px;float:left;margin-right:10px;" />
+							   <span class="content" style="border:1px solid blue;">
+							      dddddddddddddddasdfasdf asdf sadf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf adf azsdf adf safdsdfa sdf azsadf asdf asf adfs asfdasdf asdf <!--  数据  -->
+							   </span>
+							   </div>						  
 							</div>
 						</div>
 					</div>
@@ -153,8 +156,10 @@ function proid_table(result){
 		var pro_titleTd=$("<h2 class='title' style='float:left;'></h2>").append(item.pro_name);
 		var pro_timeTd=$("<p class='time' style='float:right;'></p>").append(item.pro_time);
 		var pro_ttTd=$("<div class='cf pro_tt'></div>").append(pro_titleTd).append(pro_timeTd);
+		var pro_imgTd=$("<img src='' style='float:left;margin-right:10px;'/>").attr("src","/upload/"+item.pro_photo);		
 		var pro_contentTd=$("<span class='content'></span>").append(item.pro_constant);
-		$("<div class='pro_ct'></div>").append(pro_ttTd).append(pro_contentTd).appendTo("#pro_content");  			 
+		var pro_icTd=$("<div></div>").append(pro_imgTd).append(pro_contentTd);
+		$("<div class='pro_ct'></div>").append(pro_icTd).appendTo("#pro_content");  			 
 	});
 }
 
