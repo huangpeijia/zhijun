@@ -26,7 +26,7 @@
 			</div>
 			<!--图2-->
 			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/artificial.jpg)">
-				<div class="div_zz"><!--遮罩-->
+				<!-- <div class="div_zz">遮罩
 					<div class="caption">
 						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
 						<div class="div_hr1" style=""></div>
@@ -34,11 +34,11 @@
 						<div class="div_hr2" style=""></div>
 						
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<!--图3-->
 			<div class="intro_item" target="_blank" style="background-image: url(${APP_PATH }/js/front/img/images/oil.jpg)">
-				<div class="div_zz"><!--遮罩-->
+				<!-- <div class="div_zz">遮罩
 					<div class="caption">
 						<p class="wow fadeInDown delay-02s" style="font-family:pmzdtitlefont">我们是</p>
 						<div class="div_hr1" style=""></div>
@@ -46,7 +46,7 @@
 						<div class="div_hr2" style=""></div>
 					
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!--轮播底部按钮-->
@@ -60,30 +60,30 @@
 	<div id="main" class="">
 		<div class="div_main">
 			<!--层1-->
-			<div>
+			<div class="feature">
 				<div class="div_title">智钧特色</div>
 				<div class="div_content cf">
 					<ul class="ul_feature">
 						<li class=" ">
-							<a href="javascript:void(none)">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts1.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>专业核心竞争力</span></div>
 							</a>
 						</li>
 						<li class="">
-							<a href="#">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts2.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>工业级互联网思维</span></div>
 							</a>
 						</li>
 						<li class="">
-							<a href="#">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts3.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>极致化服务</span></div>
 							</a>
 						</li>
 						<li class="">
-							<a href="#">
+							<a href="javascript:void(0);">
 								<img src="${APP_PATH }/js/front/img/images/ts4.png">
 								<div data-wow-duration="2s" class="wow fadeInUp "><span>工业领域大数据挖掘</span></div>
 							</a>
@@ -193,6 +193,10 @@
 		window.location.href="news/demotion_news?id="+id;
 	 
 	});
+   $(".div_pro1").click(function(){window.location.href="product/demotion_product?pro_type="+${pro[0].pro_type};});
+   $(".div_pro2").click(function(){window.location.href="product/demotion_product?pro_type="+${pro[1].pro_type};});
+   $(".div_pro3").click(function(){window.location.href="product/demotion_product?pro_type="+${pro[2].pro_type};});
+   $(".div_pro4").click(function(){window.location.href="product/demotion_product?pro_type="+${pro[3].pro_type};});
    
    $(function(){
 		$(".pro_span>div>span").each(function(){

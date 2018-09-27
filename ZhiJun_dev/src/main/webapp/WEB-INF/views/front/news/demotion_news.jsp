@@ -3,7 +3,7 @@
     
     <%@ include file="../head.jsp" %>
      <script>
-    document.title="新闻中心";
+    document.title+="-新闻中心";
     </script>
     <link rel="stylesheet" href="${APP_PATH }/js/front/css/demotion.css"/>
     <style type="text/css">
@@ -37,7 +37,7 @@
 					<!--左边导航栏-->
 					<div class="left_nav invite_nav float_l">
 						<ul>
-							<a href="javascript:void(none);"><li>新闻中心</li></a>
+							<a href="javascript:void(0);"><li>新闻中心</li></a>
 						</ul>
 					</div>
 					<!--右边内容区 公司简介-->

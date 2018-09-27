@@ -8,6 +8,13 @@ public class Protype {
 	private int protype_id; //产品类型id
 	private String protype_name; //产品类型名称 
 	private String protype_constant;//产品类型介绍
+	private String protype_photo;//产品类型照片
+	public String getProtype_photo() {
+		return protype_photo;
+	}
+	public void setProtype_photo(String protype_photo) {
+		this.protype_photo = protype_photo;
+	}
 	public String getProtype_constant() {
 		return protype_constant;
 	}

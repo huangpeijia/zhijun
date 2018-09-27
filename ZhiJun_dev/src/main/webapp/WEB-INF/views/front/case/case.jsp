@@ -3,7 +3,7 @@
     
     <%@ include file="../head.jsp" %>
      <script>
-    document.title="成功案例";
+    document.title+="-成功案例";
     </script>
     <style type="text/css">
         .ul_nav>li:nth-child(5)>a{
@@ -108,7 +108,7 @@
 		$("#casetype ul").empty();
 		$.each(result,function(index,item){ 
 			var type_nameTd=$("<li></li>").append(item.casetype_name);  
-			$("<a a href='javascript:void(none);' class='sa' data='"+item.casetype_id+"'></a>").append(type_nameTd).appendTo("#casetype ul");  			 
+			$("<a a href='javascript:void(0);' class='sa' data='"+item.casetype_id+"'></a>").append(type_nameTd).appendTo("#casetype ul");  			 
 		});
 	}
 	

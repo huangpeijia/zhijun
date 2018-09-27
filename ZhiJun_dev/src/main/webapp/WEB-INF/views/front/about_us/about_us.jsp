@@ -3,7 +3,7 @@
     
     <%@ include file="../head.jsp" %>
      <script>
-    document.title="联系我们";
+    document.title+="-联系我们";
     </script>
     <style type="text/css">
         .ul_nav>li:nth-child(7)>a{
@@ -37,7 +37,7 @@
 					<!--左边导航栏-->
 					<div class="left_nav float_l">
 						<ul>
-							<a href="javascript:void(none)"><li>深圳总部</li></a>
+							<a href="javascript:void(0);"><li>深圳总部</li></a>
 						</ul>
 					</div>
 					<!--右边内容区 公司简介-->

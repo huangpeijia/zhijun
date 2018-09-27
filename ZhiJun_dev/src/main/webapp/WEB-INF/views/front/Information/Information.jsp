@@ -3,7 +3,7 @@
     
     <%@ include file="../head.jsp" %>
      <script>
-    document.title="公司概况";
+    document.title+="-公司概况";
     </script>
     <style type="text/css">
         .ul_nav>li:nth-child(2)>a{
@@ -36,10 +36,10 @@
 					<!--左边导航栏-->
 					<div class="left_nav nav_tabs float_l">
 						<ul>
-							<a href="javascript:void(none)" data="1"><li>公司简介</li></a>
-							<a href="javascript:void(none)" data="2"><li>基本情况</li></a>
-							<a href="javascript:void(none)" data="3"><li>发展历程</li></a>
-							<a href="javascript:void(none)" data="4"><li>背景优势</li></a>
+							<a href="javascript:void(0)" data="1"><li>公司简介</li></a>
+							<a href="javascript:void(0)" data="2"><li>基本情况</li></a>
+							<a href="javascript:void(0)" data="3"><li>发展历程</li></a>
+							<a href="javascript:void(0)" data="4"><li>背景优势</li></a>
 						</ul>
 					</div>
 					<div class="tab-content">
@@ -103,8 +103,8 @@
 
 		var div=$(".slide");
 		$(".left_nav ul a").click(function () {
-			var numm=$(this).attr('data');
-			var i=52+(numm-1)*74;
+			var numm=$(this).index();
+			var i=52+numm*74;
 			div.animate({margin:''+i+'px 0px 0px 0px'},'300ms');
 		});
 	});
